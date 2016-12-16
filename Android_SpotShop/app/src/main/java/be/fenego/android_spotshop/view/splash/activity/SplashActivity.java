@@ -1,7 +1,9 @@
-package be.fenego.android_spotshop;
+package be.fenego.android_spotshop.view.splash.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import be.fenego.android_spotshop.R;
 
 public class SplashActivity extends AppCompatActivity {
 
