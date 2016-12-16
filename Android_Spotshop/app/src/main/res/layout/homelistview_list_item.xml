@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        app:srcCompat="@drawable/ic_button_camera"
+        android:id="@+id/imageView"
+        android:layout_height="150dp"
+        android:layout_width="150dp"
+        android:layout_gravity="center"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/productTitleTextView"
+        android:text="@string/listItemProductTitle"
+        android:textAlignment="center"/>
+
+    <RatingBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/productRatingBar"
+        android:isIndicator="false"
+        android:numStars="5"
+        android:stepSize="1"
+        android:layout_gravity="center"/>
+
+    <TextView
+        android:text="@string/listItemProductPrice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/productPriceTextView"
+        android:textAlignment="center"/>
+
+    <TextView
+        android:text="@string/listItemProductAvailability"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/productAvailabilityTextView"
+        android:textAlignment="center"/>
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/ic_button_addShoppingCart"
+        android:id="@+id/imageButton"
+        android:layout_gravity="center"/>
+
+</LinearLayout>
