@@ -1,4 +1,4 @@
-package com.example.thijs.android_spotshop;
+package be.fenego.android_spotshop;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.example.thijs.android_spotshop", appContext.getPackageName());
+        assertEquals("be.fenego.android_spotshop", appContext.getPackageName());
     }
 }

@@ -1,4 +1,4 @@
-package com.example.thijs.android_spotshop;
+package be.fenego.android_spotshop;
 
 import org.junit.Test;
 
