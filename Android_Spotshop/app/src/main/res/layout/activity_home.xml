@@ -9,7 +9,9 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="be.fenego.android_spotshop.home.HomeActivity">
+    tools:context="be.fenego.android_spotshop.home.HomeActivity"
+    android:descendantFocusability="beforeDescendants"
+    android:focusableInTouchMode="true">
 
 
     <ListView
@@ -18,19 +20,32 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_below="@+id/searchButton"
-        android:id="@+id/productListView" />
+        android:id="@+id/productListView"
+        android:layout_below="@+id/imagePickerButton" />
 
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:srcCompat="@drawable/ic_button_camera"
         android:id="@+id/imagePickerButton"
-        android:layout_alignParentTop="true"
+        android:layout_below="@+id/searchButton"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_toRightOf="@+id/searchButton"
-        android:layout_toEndOf="@+id/searchButton" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:text=""
+        android:id="@+id/searchEditText"
+        android:layout_alignParentTop="true"
+        android:drawableLeft="@drawable/ic_button_search"
+        android:drawablePadding="10dp"
+        android:layout_toLeftOf="@+id/searchButton"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"/>
 
     <ImageButton
         android:layout_width="wrap_content"
@@ -38,7 +53,8 @@
         app:srcCompat="@drawable/ic_button_search"
         android:id="@+id/searchButton"
         android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
 
 </RelativeLayout>
