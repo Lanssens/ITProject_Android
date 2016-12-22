@@ -32,29 +32,26 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-
         productService = ProductService.retrofit.create(ProductService.class);
 
-
+        showProducts();
 
 
 
     }
 
-    private void setProductAdapter(){
-        ArrayList<Product> products = new ArrayList<Product>();
+    private void showProducts(){
 
         productService.getProducts().enqueue(new Callback<ArrayList<Product>>() {
             @Override
             public void onResponse(Call<ArrayList<Product>> call, Response<ArrayList<Product>> response) {
-                // productAdapter = new ProductAdapter(this, response.body().toArray()); ??
-               // productListView.setAdapter(productAdapter);
-
+                productAdapter = new ProductAdapter(getApplicationContext(), response.body());
+                productListView.setAdapter(productAdapter);
             }
 
             @Override
             public void onFailure(Call<ArrayList<Product>> call, Throwable t) {
-
+                Toast.makeText(getApplicationContext(),"Can't load products.\nError: " + t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
             }
         });
 

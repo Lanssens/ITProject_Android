@@ -17,13 +17,16 @@ import retrofit2.http.*;
 
 public interface ProductService {
 
-    public static final String BASE_URL = "https://axesso.fenego.zone/INTERSHOP/rest/WFS/inSPIRED-inTRONICS-Site/-";
+    public static final String BASE_URL = "https://axesso.fenego.zone/INTERSHOP/rest/WFS/inSPIRED-inTRONICS-Site/";
 
-    @GET("/products/{SKU}")
+    @GET("-/products/{SKU}")
     Call<Product> getProduct(@Path("SKU") String SKU);
 
-    @GET("/products")
+    @GET("-/products")
     Call<ArrayList<Product>> getProducts();
+
+    @GET("-/categories/Specials/TopSellers/products")
+    Call<ArrayList<Product>> getFeaturedProducts();
 
 
     Gson gson = new GsonBuilder().create();

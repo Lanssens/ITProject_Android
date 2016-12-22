@@ -3,9 +3,14 @@ package be.fenego.android_spotshop.home;
 import android.content.Context;
 import android.view.*;
 import android.widget.*;
+
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
+import java.util.List;
 
 import be.fenego.android_spotshop.R;
+import be.fenego.android_spotshop.model.Attribute;
 import be.fenego.android_spotshop.model.Product;
 import butterknife.*;
 
@@ -38,7 +43,12 @@ public class ProductAdapter extends ArrayAdapter<Product> {
             view.setTag(holder);
         }
 
-        //holder.productImage =
+        if(getImageURL(position).isEmpty()){
+            Picasso.with(context).load(R.drawable.ic_button_camera).into(holder.productImage);
+        }else{
+            Picasso.with(context).load(getImageURL(position)).into(holder.productImage);
+        }
+
         holder.productTitle.setText(products.get(position).getProductName());
         holder.productRating.setRating(Float.valueOf(products.get(position).getRoundedAverageRating()));
         holder.productPrice.setText(products.get(position).getPrice());
@@ -73,6 +83,17 @@ public class ProductAdapter extends ArrayAdapter<Product> {
         public ViewHolder(View view) {
             ButterKnife.bind(this, view);
         }
+    }
+
+    public String getImageURL(int position){
+        String URL = "";
+        List<Attribute> attributes = products.get(position).getAttributes();
+        for (Attribute a : attributes) {
+            if(a.getName() == "image"){
+                URL = a.getValue();
+            }
+        }
+        return URL;
     }
 
 }
