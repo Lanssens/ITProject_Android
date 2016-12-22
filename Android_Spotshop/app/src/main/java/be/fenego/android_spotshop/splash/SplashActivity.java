@@ -1,36 +1,15 @@
 package be.fenego.android_spotshop.splash;
 
-import android.app.Activity;
-import android.content.Intent;
-import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import be.fenego.android_spotshop.R;
-import be.fenego.android_spotshop.home.HomeActivity;
 
-public class SplashActivity extends Activity {
+public class SplashActivity extends AppCompatActivity {
 
-    /** Duur van splashscreen in ms **/
-    private final int SPLASH_DISPLAY_LENGTH = 1000;
-
-    /** Functie die wordt aangeroepen wanneer de activity aangemaakt wordt */
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-
-            //https://www.bignerdranch.com/blog/splash-screens-the-right-way/
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-
-            new Handler().postDelayed(new Runnable(){
-                @Override
-                public void run() {
-                    Intent mainIntent = new Intent(SplashActivity.this,HomeActivity.class);
-                    SplashActivity.this.startActivity(mainIntent);
-                    SplashActivity.this.finish();
-                }
-            }, SPLASH_DISPLAY_LENGTH);
-        super.onCreate(savedInstanceState);
-
     }
 }
