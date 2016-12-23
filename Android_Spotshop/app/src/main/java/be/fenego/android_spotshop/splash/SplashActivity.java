@@ -10,6 +10,9 @@ import be.fenego.android_spotshop.R;
 import be.fenego.android_spotshop.home.HomeActivity;
 import be.fenego.android_spotshop.menu.MenuActivity;
 
+/**
+ * Created by Thijs on 12/21/2016.
+ */
 public class SplashActivity extends Activity {
 
     /** Duur van splashscreen in ms **/
