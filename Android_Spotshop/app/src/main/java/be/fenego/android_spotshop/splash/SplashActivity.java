@@ -8,6 +8,7 @@ import android.os.Bundle;
 
 import be.fenego.android_spotshop.R;
 import be.fenego.android_spotshop.home.HomeActivity;
+import be.fenego.android_spotshop.menu.MenuActivity;
 
 public class SplashActivity extends Activity {
 
@@ -25,7 +26,7 @@ public class SplashActivity extends Activity {
         new Handler().postDelayed(new Runnable(){
             @Override
             public void run() {
-                Intent mainIntent = new Intent(SplashActivity.this,HomeActivity.class);
+                Intent mainIntent = new Intent(SplashActivity.this,MenuActivity.class);
                 SplashActivity.this.startActivity(mainIntent);
                 SplashActivity.this.finish();
             }
