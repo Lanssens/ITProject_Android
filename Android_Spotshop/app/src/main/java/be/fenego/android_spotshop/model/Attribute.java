@@ -10,15 +10,9 @@ import java.io.Serializable;
 
 public class Attribute implements Serializable {
 
-    @SerializedName("name")
-    @Expose
     private String name;
-    @SerializedName("type")
-    @Expose
     private String type;
-    @SerializedName("value")
-    @Expose
-    private String value;
+    private Object value;
 
 
     public Attribute() {
@@ -26,7 +20,6 @@ public class Attribute implements Serializable {
 
 
     public Attribute(String name, String type, String value) {
-        super();
         this.name = name;
         this.type = type;
         this.value = value;
@@ -48,7 +41,7 @@ public class Attribute implements Serializable {
         this.type = type;
     }
 
-    public String getValue() {
+    public Object getValue() {
         return value;
     }
 

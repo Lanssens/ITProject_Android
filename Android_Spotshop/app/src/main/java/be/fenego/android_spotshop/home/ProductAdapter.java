@@ -1,31 +1,39 @@
 package be.fenego.android_spotshop.home;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.*;
 import android.widget.*;
 
+import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Objects;
 
 import be.fenego.android_spotshop.R;
-import be.fenego.android_spotshop.model.Attribute;
-import be.fenego.android_spotshop.model.Product;
+import be.fenego.android_spotshop.model.Element;
+import be.fenego.android_spotshop.model.SalesPrice;
+import be.fenego.android_spotshop.service.ProductService;
 import butterknife.*;
 
 /**
  * Created by Nick on 20/12/2016.
  */
 
-public class ProductAdapter extends ArrayAdapter<Product> {
+public class ProductAdapter extends ArrayAdapter<Element> {
     private final Context context;
-    private final ArrayList<Product> products;
+    private final ArrayList<Element> elements;
+    private static final String BASE_IMAGE_URL = "https://axesso.fenego.zone";
+    private ViewHolder holder;
+    private String imageUrl;
+    Gson gson;
 
-    public ProductAdapter(Context context, ArrayList<Product> products) {
-        super(context, -1, products);
+    public ProductAdapter(Context context, ArrayList<Element> elements) {
+        super(context, -1, elements);
         this.context = context;
-        this.products = products;
+        this.elements = elements;
+        gson = new Gson();
     }
 
     @Override
@@ -34,7 +42,6 @@ public class ProductAdapter extends ArrayAdapter<Product> {
         LayoutInflater inflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-        ViewHolder holder;
         if (view != null) {
             holder = (ViewHolder) view.getTag();
         } else {
@@ -43,25 +50,41 @@ public class ProductAdapter extends ArrayAdapter<Product> {
             view.setTag(holder);
         }
 
-        if(getImageURL(position).isEmpty()){
-            Picasso.with(context).load(R.drawable.ic_button_camera).into(holder.productImage);
-        }else{
-            Picasso.with(context).load(getImageURL(position)).into(holder.productImage);
-        }
-
-        holder.productTitle.setText(products.get(position).getProductName());
-        holder.productRating.setRating(Float.valueOf(products.get(position).getRoundedAverageRating()));
-        holder.productPrice.setText(products.get(position).getPrice());
-
-        if(products.get(position).getAvailability()){
-            holder.productAvailability.setText("In Stock");
-        }else{
-            holder.productAvailability.setText("out of stock");
-        }
+        setViews(position);
 
         return view;
     }
 
+    private void setViews(int position){
+        setImageView(position);
+        setAvailabilityView(position);
+        setPriceView(position);
+
+        holder.productTitle.setText(elements.get(position).getTitle());
+        holder.productRating.setRating(Float.valueOf((String) elements.get(position).getAttibuteValueByName("roundedAverageRating")));
+    }
+
+    private void setImageView(int position){
+        imageUrl = BASE_IMAGE_URL + (String) elements.get(position).getAttibuteValueByName("image");
+        if(imageUrl.isEmpty() || imageUrl == null){
+            Picasso.with(context).load(R.drawable.ic_button_camera).into(holder.productImage);
+        }else{
+            Picasso.with(context).load(imageUrl).into(holder.productImage);
+        }
+    }
+
+    private void setAvailabilityView(int position){
+        if((Boolean) elements.get(position).getAttibuteValueByName("availability")){
+            holder.productAvailability.setText("In Stock");
+        }else{
+            holder.productAvailability.setText("out of stock");
+        }
+    }
+
+    private void setPriceView(int position){
+        SalesPrice salesPrice = gson.fromJson(elements.get(position).getAttibuteValueByName("salePrice").toString(), SalesPrice.class);
+        holder.productPrice.setText(Float.toString(salesPrice.getValue()) + " $");
+    }
 
     static class ViewHolder {
         @BindView(R.id.productImageImageView)
@@ -79,21 +102,8 @@ public class ProductAdapter extends ArrayAdapter<Product> {
         @BindView(R.id.productAvailabilityTextView)
         TextView productAvailability;
 
-
         public ViewHolder(View view) {
             ButterKnife.bind(this, view);
         }
     }
-
-    public String getImageURL(int position){
-        String URL = "";
-        List<Attribute> attributes = products.get(position).getAttributes();
-        for (Attribute a : attributes) {
-            if(a.getName() == "image"){
-                URL = a.getValue();
-            }
-        }
-        return URL;
-    }
-
 }

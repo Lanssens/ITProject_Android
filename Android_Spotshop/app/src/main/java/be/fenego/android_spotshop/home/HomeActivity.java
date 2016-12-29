@@ -3,57 +3,73 @@ package be.fenego.android_spotshop.home;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
 import android.widget.ListView;
-import android.widget.Toast;
 
-import java.io.Console;
 import java.util.ArrayList;
 
 import be.fenego.android_spotshop.R;
-import be.fenego.android_spotshop.model.Product;
+import be.fenego.android_spotshop.model.Element;
+import be.fenego.android_spotshop.model.ProductCollection;
 import be.fenego.android_spotshop.service.ProductService;
 import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
+
 
 public class HomeActivity extends AppCompatActivity {
 
     ProductService productService;
-    ProductAdapter productAdapter;
+    ArrayAdapter<Element> productAdapter;
 
     @BindView(R.id.productListView)
     ListView productListView;
+
+    @BindView(R.id.searchButton)
+    ImageButton searchButton;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        ButterKnife.bind(this);
 
         productService = ProductService.retrofit.create(ProductService.class);
+        Call<ProductCollection> getProducts = productService.getProducts();
+        Call<ProductCollection> getFeaturedProducts = productService.getFeaturedProducts();
 
-        showProducts();
-
-
+        setProductAdapter(getFeaturedProducts);
 
     }
 
-    private void showProducts(){
-
-        productService.getProducts().enqueue(new Callback<ArrayList<Product>>() {
+    private void setProductAdapter(Call<ProductCollection> call){
+        call.enqueue(new Callback<ProductCollection>() {
             @Override
-            public void onResponse(Call<ArrayList<Product>> call, Response<ArrayList<Product>> response) {
-                productAdapter = new ProductAdapter(getApplicationContext(), response.body());
+            public void onResponse(Call<ProductCollection> call, Response<ProductCollection> response) {
+                ProductCollection productCollection = response.body();
+                ArrayList<Element> elementList = (ArrayList<Element>) productCollection.getElements();
+
+                Log.v("output: ", productCollection.getName());
+                Log.v("output: ",  elementList.get(0).getDescription());
+                Log.v("output: ",(String) elementList.get(0).getAttibuteValueByName("image"));
+
+                productAdapter = new ProductAdapter(getApplicationContext(), elementList);
                 productListView.setAdapter(productAdapter);
             }
 
             @Override
-            public void onFailure(Call<ArrayList<Product>> call, Throwable t) {
-                Toast.makeText(getApplicationContext(),"Can't load products.\nError: " + t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+            public void onFailure(Call<ProductCollection> call, Throwable t) {
+                t.printStackTrace();
+                //TODO: wat als hij faalt ???
             }
         });
-
     }
 }
+
+

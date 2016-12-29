@@ -19,12 +19,12 @@
         android:textAlignment="center"/>
 
     <RatingBar
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/productRatingBar"
-        android:isIndicator="false"
+        android:isIndicator="true"
         android:numStars="5"
-        android:stepSize="1"
+        android:stepSize="0.1"
         android:layout_gravity="center"/>
 
     <TextView
@@ -40,12 +40,5 @@
         android:layout_height="wrap_content"
         android:id="@+id/productAvailabilityTextView"
         android:textAlignment="center"/>
-
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/ic_button_add_shopping_cart"
-        android:id="@+id/imageButton"
-        android:layout_gravity="center"/>
 
 </LinearLayout>
