@@ -1,13 +1,18 @@
 package be.fenego.android_spotshop.home;
 
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.ListView;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 
 import be.fenego.android_spotshop.R;
@@ -24,8 +29,12 @@ import retrofit2.Response;
 
 public class HomeActivity extends AppCompatActivity {
 
+    private static final int REQUEST_IMAGE_CAPTURE = 1;
+
     ProductService productService;
     ArrayAdapter<Element> productAdapter;
+    Bitmap imageBitmap;
+    String imageBase64;
 
     @BindView(R.id.productListView)
     ListView productListView;
@@ -46,6 +55,36 @@ public class HomeActivity extends AppCompatActivity {
 
         setProductAdapter(getFeaturedProducts);
 
+
+    }
+
+    @OnClick(R.id.imagePickerButton)
+    void openCamera(){
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+            if(resultCode == RESULT_OK){
+                imageBitmap = (Bitmap) data.getExtras().get("data");
+                imageBase64 = bitmapToBase64(imageBitmap);
+                Log.v("ImageBase64: ", imageBase64);
+            }else{
+                //TODO: gecancelled
+                Log.v("Error: ", "image was not taken");
+            }
+        }
+    }
+
+    private String bitmapToBase64(Bitmap bitmap){
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
+        byte[] byteArray = byteArrayOutputStream .toByteArray();
+        return Base64.encodeToString(byteArray, Base64.DEFAULT);
     }
 
     private void setProductAdapter(Call<ProductCollection> call){

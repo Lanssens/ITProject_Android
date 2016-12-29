@@ -66,11 +66,11 @@ public class ProductAdapter extends ArrayAdapter<Element> {
 
     private void setImageView(int position){
         imageUrl = BASE_IMAGE_URL + (String) elements.get(position).getAttibuteValueByName("image");
-        if(imageUrl.isEmpty() || imageUrl == null){
-            Picasso.with(context).load(R.drawable.ic_button_camera).into(holder.productImage);
-        }else{
-            Picasso.with(context).load(imageUrl).into(holder.productImage);
-        }
+        Picasso.with(context)
+                .load(imageUrl)
+                .placeholder(R.drawable.ic_button_camera)
+                .error(R.drawable.ic_button_camera)
+                .into(holder.productImage);
     }
 
     private void setAvailabilityView(int position){
