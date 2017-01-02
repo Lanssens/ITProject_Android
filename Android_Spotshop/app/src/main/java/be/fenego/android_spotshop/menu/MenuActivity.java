@@ -5,18 +5,17 @@ import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Gravity;
 import android.view.MenuItem;
 import android.widget.Toast;
 
 import be.fenego.android_spotshop.R;
 import be.fenego.android_spotshop.home.HomeActivity;
-import be.fenego.android_spotshop.home.test;
+import be.fenego.android_spotshop.test.TestActivity;
+import be.fenego.android_spotshop.login.LoginActivity;
 
 /**
  * Created by Thijs on 12/22/2016.
@@ -46,6 +45,20 @@ public class MenuActivity extends AppCompatActivity {
         nvDrawer = (NavigationView) findViewById(R.id.nvView);
 
         setupDrawerContent(nvDrawer);
+
+        //Load the main fragment
+        Fragment fragment = null;
+        try {
+            fragment = (Fragment) TestActivity.class.newInstance();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if(fragment!=null){
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            fragmentManager.beginTransaction().replace(R.id.flContent, fragment).commit();
+        }
+
 
     }
 
@@ -82,28 +95,32 @@ public class MenuActivity extends AppCompatActivity {
         }
 
     }
-
+    @Override
+    public void onBackPressed() {
+        // disable going back to the MainActivity
+        moveTaskToBack(true);
+    }
     public void selectDrawerItem(MenuItem menuItem) {
         // Create a new fragment and specify the fragment to show based on nav item clicked
         Fragment fragment = null;
         Class fragmentClass;
         switch (menuItem.getItemId()) {
-            case R.id.nav_first_fragment:
-                fragmentClass = test.class;
+            case R.id.nav_seventh_fragment:
+                fragmentClass = LoginActivity.class;
                 break;
             case R.id.nav_second_fragment:
-                fragmentClass = test.class;
+                fragmentClass = TestActivity.class;
                 break;
             case R.id.nav_third_fragment:
-                fragmentClass = test.class;
+                fragmentClass = TestActivity.class;
                 break;
             default:
-                fragmentClass = test.class;
+                fragmentClass = TestActivity.class;
         }
 
         try {
             fragment = (Fragment) fragmentClass.newInstance();
-            Toast.makeText(getApplicationContext(), "OP NAAR EEN NIEUWE FRAGMENT", Toast.LENGTH_SHORT).show();
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -111,7 +128,6 @@ public class MenuActivity extends AppCompatActivity {
 
         // Insert the fragment by replacing any existing fragment
         FragmentManager fragmentManager = getSupportFragmentManager();
-
         if(fragmentManager!=null){
             fragmentManager.beginTransaction().replace(R.id.flContent, fragment).commit();
         }else{
