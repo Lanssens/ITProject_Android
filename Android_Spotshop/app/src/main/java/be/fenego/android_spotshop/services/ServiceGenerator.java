@@ -1,4 +1,4 @@
-package be.fenego.android_spotshop.general;
+package be.fenego.android_spotshop.services;
 
 import android.util.Base64;
 

@@ -41,6 +41,7 @@ public class LoginActivity extends android.support.v4.app.Fragment  {
     @InjectView(R.id.input_password) EditText _passwordText;
     @InjectView(R.id.btn_login) Button _loginButton;
     @InjectView(R.id.link_signup) TextView _signupLink;
+    @InjectView(R.id.link_forgot_password) TextView _forgotPasswordLink;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -63,6 +64,14 @@ public class LoginActivity extends android.support.v4.app.Fragment  {
                 openSignupFragment();
             }
         });
+
+        _forgotPasswordLink.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openForgotPasswordFragment();
+            }
+        });
+
         return fragmentView;
     }
 
@@ -121,6 +130,25 @@ public class LoginActivity extends android.support.v4.app.Fragment  {
         // Commit the transaction
         transaction.commit();
     }
+
+    public void openForgotPasswordFragment() {
+        Toast.makeText(getActivity(), "Clicked on forgot password", Toast.LENGTH_LONG).show();
+
+
+        //TODO: implement "forgot password"
+ /*       // Create new fragment and transaction
+        Fragment newFragment = new SignupActivity();
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+
+        // Replace whatever is in the fragment_container view with this fragment,
+        // and add the transaction to the back stack
+        transaction.replace(R.id.flContent, newFragment);
+        transaction.addToBackStack(null);
+
+        // Commit the transaction
+        transaction.commit();*/
+    }
+
 
  /*   @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {

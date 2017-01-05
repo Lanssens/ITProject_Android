@@ -4,8 +4,10 @@ import android.app.Activity;
 import android.content.SharedPreferences;
 import android.support.v4.app.Fragment;
 import android.util.Log;
-import android.widget.Toast;
 
+import be.fenego.android_spotshop.services.LoginService;
+import be.fenego.android_spotshop.models.User;
+import be.fenego.android_spotshop.services.ServiceGenerator;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

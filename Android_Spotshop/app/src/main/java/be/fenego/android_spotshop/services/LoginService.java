@@ -1,8 +1,8 @@
-package be.fenego.android_spotshop.general;
+package be.fenego.android_spotshop.services;
 
+import be.fenego.android_spotshop.models.User;
 import retrofit2.Call;
 import retrofit2.http.GET;
-import retrofit2.http.POST;
 
 /**
  * Created by Thijs on 5/01/2017.
