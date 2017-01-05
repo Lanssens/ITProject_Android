@@ -17,7 +17,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import be.fenego.android_spotshop.R;
+import be.fenego.android_spotshop.general.UserUtility;
+import be.fenego.android_spotshop.home.HomeActivity;
+import be.fenego.android_spotshop.menu.MenuActivity;
 import be.fenego.android_spotshop.signup.SignupActivity;
+import be.fenego.android_spotshop.test.TestActivity;
 import butterknife.ButterKnife;
 import butterknife.*;
 
@@ -84,14 +88,20 @@ public class LoginActivity extends android.support.v4.app.Fragment  {
         String email = _emailText.getText().toString();
         String password = _passwordText.getText().toString();
 
-        // TODO: Implement your own authentication logic here.
+        UserUtility.loginUser(this, email, password);
 
         new android.os.Handler().postDelayed(
                 new Runnable() {
                     public void run() {
                         // On complete call either onLoginSuccess or onLoginFailed
-                        onLoginSuccess();
-                        // onLoginFailed();
+                        if(UserUtility.loggedIn){
+                            onLoginSuccess();
+                        }
+                        else{
+                            onLoginFailed();
+                        }
+
+
                         progressDialog.dismiss();
                     }
                 }, 3000);
@@ -113,7 +123,7 @@ public class LoginActivity extends android.support.v4.app.Fragment  {
         transaction.commit();
     }
 
-    @Override
+ /*   @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_SIGNUP) {
             if (resultCode == RESULT_OK) {
@@ -123,16 +133,37 @@ public class LoginActivity extends android.support.v4.app.Fragment  {
                 //this.finish();
             }
         }
-    }
+    }*/
 
     public void onLoginSuccess() {
-        _loginButton.setEnabled(true);
+        //Remove login option and add other options to drawermenu
+        ((MenuActivity)getActivity()).changePersonalTabInMenu(UserUtility.loggedIn);
+
+        //Cannot login anymore for safety
+        _loginButton.setEnabled(false);
+
+        // Check if no view has focus:
+        MenuActivity.hideKeyboard((MenuActivity)getActivity());
+
+
+        // Create new fragment and transaction
+        Fragment newFragment = new TestActivity();
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+
+        // Replace whatever is in the fragment_container view with this fragment,
+        // and add the transaction to the back stack
+        transaction.replace(R.id.flContent, newFragment);
+        transaction.addToBackStack(null);
+
+        // Commit the transaction
+        transaction.commit();
+
         Toast.makeText(getActivity(), "Login succeeded", Toast.LENGTH_LONG).show();
         //finish();
     }
 
     public void onLoginFailed() {
-        Toast.makeText(getActivity(), "Login failed", Toast.LENGTH_LONG).show();
+        Toast.makeText(getActivity(), "Incorrect login details. Try again.", Toast.LENGTH_LONG).show();
 
         _loginButton.setEnabled(true);
     }
@@ -150,8 +181,8 @@ public class LoginActivity extends android.support.v4.app.Fragment  {
             _emailText.setError(null);
         }
 
-        if (password.isEmpty() || password.length() < 4 || password.length() > 10) {
-            _passwordText.setError("Between 4 and 10 alphanumeric characters");
+        if (password.isEmpty() || password.length() < 4 || password.length() > 20) {
+            _passwordText.setError("Between 4 and 20 alphanumeric characters");
             valid = false;
         } else {
             _passwordText.setError(null);

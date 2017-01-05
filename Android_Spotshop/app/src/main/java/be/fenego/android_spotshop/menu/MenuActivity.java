@@ -1,5 +1,6 @@
 package be.fenego.android_spotshop.menu;
 
+import android.app.Activity;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -10,6 +11,8 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
 import be.fenego.android_spotshop.R;
@@ -39,6 +42,7 @@ public class MenuActivity extends AppCompatActivity {
         drawerToggle = setupDrawerToggle();
         mDrawer.addDrawerListener(drawerToggle);
 
+
         //If you want to change the content of header :3
         //View headerLayout = navigationView.getHeaderView(0);
 
@@ -46,10 +50,43 @@ public class MenuActivity extends AppCompatActivity {
 
         setupDrawerContent(nvDrawer);
 
-        //Load the main fragment
+        loadFragmentInContainer(TestActivity.class);
+        changePersonalTabInMenu(false);
+
+
+    }
+
+    public static void hideKeyboard(Activity activity) {
+        InputMethodManager imm = (InputMethodManager) activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
+        //Find the currently focused view, so we can grab the correct window token from it.
+        View view = activity.getCurrentFocus();
+        //If no view currently has focus, create a new one, just so we can grab a window token from it
+        if (view == null) {
+            view = new View(activity);
+        }
+        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+    }
+
+    public void changePersonalTabInMenu(boolean loggedIn){
+
+        if(nvDrawer != null){
+            nvDrawer.getMenu().findItem(R.id.nav_fourth_fragment).setVisible(loggedIn);
+            nvDrawer.getMenu().findItem(R.id.nav_fifth_fragment).setVisible(loggedIn);
+            nvDrawer.getMenu().findItem(R.id.nav_sixth_fragment).setVisible(loggedIn);
+            nvDrawer.getMenu().findItem(R.id.nav_seventh_fragment).setVisible(!loggedIn);
+        }
+
+
+
+
+    }
+
+
+    public void loadFragmentInContainer(Class fragmentClass){
+        //Load in the right fragment
         Fragment fragment = null;
         try {
-            fragment = (Fragment) TestActivity.class.newInstance();
+            fragment = (Fragment) fragmentClass.newInstance();
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -58,10 +95,7 @@ public class MenuActivity extends AppCompatActivity {
             FragmentManager fragmentManager = getSupportFragmentManager();
             fragmentManager.beginTransaction().replace(R.id.flContent, fragment).commit();
         }
-
-
     }
-
 
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
@@ -97,7 +131,7 @@ public class MenuActivity extends AppCompatActivity {
     }
     @Override
     public void onBackPressed() {
-        // disable going back to the MainActivity
+        // Disable going back to the SplashActivity
         moveTaskToBack(true);
     }
     public void selectDrawerItem(MenuItem menuItem) {
@@ -106,6 +140,7 @@ public class MenuActivity extends AppCompatActivity {
         Class fragmentClass;
         switch (menuItem.getItemId()) {
             case R.id.nav_seventh_fragment:
+
                 fragmentClass = LoginActivity.class;
                 break;
             case R.id.nav_second_fragment:
@@ -118,22 +153,8 @@ public class MenuActivity extends AppCompatActivity {
                 fragmentClass = TestActivity.class;
         }
 
-        try {
-            fragment = (Fragment) fragmentClass.newInstance();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-
-        // Insert the fragment by replacing any existing fragment
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        if(fragmentManager!=null){
-            fragmentManager.beginTransaction().replace(R.id.flContent, fragment).commit();
-        }else{
-            Toast.makeText(getApplicationContext(), "Fragmentmanager is null", Toast.LENGTH_SHORT).show();
-        }
-
+        //Load in the appropriate fragment inside the container :)
+        loadFragmentInContainer(fragmentClass);
 
         // Highlight the selected item has been done by NavigationView
         menuItem.setChecked(true);
