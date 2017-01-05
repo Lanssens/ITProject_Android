@@ -1,5 +1,7 @@
 package be.fenego.android_spotshop.general;
 
+import android.app.Activity;
+import android.content.SharedPreferences;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.widget.Toast;
@@ -13,9 +15,47 @@ import retrofit2.Response;
  */
 
 public class UserUtility {
-    public static boolean loggedIn = false;
 
-    public static boolean loginUser(final Fragment currentFragment, String username, String password){
+
+
+    private static Activity currentAct;
+    private static final String userCredentials = "UserDataSpotShop";
+
+    public static boolean isUserLoggedIn(){
+        SharedPreferences settings = currentAct.getSharedPreferences(userCredentials, 0);
+        String silent = settings.getString("spotShopUsername", "");
+        if(silent.equals("")){
+            return false;
+        }else{
+            return true;
+        }
+    }
+    public static void removeUserCredentials(){
+        currentAct.getSharedPreferences(userCredentials, 0).edit().clear().commit();
+    }
+    public static void retrieveUserCredentials(){
+        SharedPreferences settings = currentAct.getSharedPreferences(userCredentials, 0);
+        String username = settings.getString("spotShopUsername", "");
+        String password = settings.getString("spotShopUsername", "");
+    }
+
+    public static void storeUserCredentials(String username, String password){
+
+        // We need an Editor object to make preference changes.
+        // All objects are from android.context.Context
+        SharedPreferences settings = currentAct.getSharedPreferences(userCredentials, 0);
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putString("spotShopUsername", username);
+        editor.putString("spotShopPassword", password);
+
+        // Commit the edits!
+        editor.commit();
+    }
+
+    public static void setCurrentAct(Activity currentAct) {
+        UserUtility.currentAct = currentAct;
+    }
+    public static boolean loginUser(final Fragment currentFragment, final String username, final String password){
 
         LoginService loginService =
                 ServiceGenerator.createService(LoginService.class, username, password);
@@ -27,15 +67,15 @@ public class UserUtility {
 
                 if (response.isSuccessful()) {
                     // User object available
-                    loggedIn = true;
+                    storeUserCredentials( username, password);
+
+
 
                 } else {
                     // Error response (kan unauthorized zijn)
                     // No implementation needed right now :c
                 }
             }
-
-
             @Override
             public void onFailure(Call<User> call, Throwable t) {
                 // Something went seriously wrong
@@ -44,4 +84,7 @@ public class UserUtility {
         });
         return false;
     }
+
 }
+
+

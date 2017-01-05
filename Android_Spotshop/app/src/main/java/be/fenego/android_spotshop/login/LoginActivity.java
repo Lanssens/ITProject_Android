@@ -94,13 +94,12 @@ public class LoginActivity extends android.support.v4.app.Fragment  {
                 new Runnable() {
                     public void run() {
                         // On complete call either onLoginSuccess or onLoginFailed
-                        if(UserUtility.loggedIn){
+                        if(UserUtility.isUserLoggedIn()){
                             onLoginSuccess();
                         }
                         else{
                             onLoginFailed();
                         }
-
 
                         progressDialog.dismiss();
                     }
@@ -128,7 +127,7 @@ public class LoginActivity extends android.support.v4.app.Fragment  {
         if (requestCode == REQUEST_SIGNUP) {
             if (resultCode == RESULT_OK) {
 
-                // TODO: Implement successful signup logic here
+                //  Implement successful signup logic here
                 // By default we just finish the Activity and log them in automatically
                 //this.finish();
             }
@@ -137,7 +136,7 @@ public class LoginActivity extends android.support.v4.app.Fragment  {
 
     public void onLoginSuccess() {
         //Remove login option and add other options to drawermenu
-        ((MenuActivity)getActivity()).changePersonalTabInMenu(UserUtility.loggedIn);
+
 
         //Cannot login anymore for safety
         _loginButton.setEnabled(false);
@@ -157,9 +156,8 @@ public class LoginActivity extends android.support.v4.app.Fragment  {
 
         // Commit the transaction
         transaction.commit();
-
+        ((MenuActivity)getActivity()).changePersonalTabInMenu(UserUtility.isUserLoggedIn());
         Toast.makeText(getActivity(), "Login succeeded", Toast.LENGTH_LONG).show();
-        //finish();
     }
 
     public void onLoginFailed() {

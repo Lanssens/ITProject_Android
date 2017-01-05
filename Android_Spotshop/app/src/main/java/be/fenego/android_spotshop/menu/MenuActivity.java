@@ -1,6 +1,7 @@
 package be.fenego.android_spotshop.menu;
 
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -16,6 +17,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
 import be.fenego.android_spotshop.R;
+import be.fenego.android_spotshop.general.UserUtility;
 import be.fenego.android_spotshop.home.HomeActivity;
 import be.fenego.android_spotshop.test.TestActivity;
 import be.fenego.android_spotshop.login.LoginActivity;
@@ -33,6 +35,8 @@ public class MenuActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
         setContentView(R.layout.activity_menu);
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -50,8 +54,12 @@ public class MenuActivity extends AppCompatActivity {
 
         setupDrawerContent(nvDrawer);
 
+        //TODO: Load in the home page fragment when ready
         loadFragmentInContainer(TestActivity.class);
-        changePersonalTabInMenu(false);
+
+        //Fix the login logic of the application
+        UserUtility.setCurrentAct(this);
+        changePersonalTabInMenu(UserUtility.isUserLoggedIn());
 
 
     }
@@ -75,10 +83,6 @@ public class MenuActivity extends AppCompatActivity {
             nvDrawer.getMenu().findItem(R.id.nav_sixth_fragment).setVisible(loggedIn);
             nvDrawer.getMenu().findItem(R.id.nav_seventh_fragment).setVisible(!loggedIn);
         }
-
-
-
-
     }
 
 
@@ -142,6 +146,13 @@ public class MenuActivity extends AppCompatActivity {
             case R.id.nav_seventh_fragment:
 
                 fragmentClass = LoginActivity.class;
+                break;
+            case R.id.nav_sixth_fragment:
+                UserUtility.removeUserCredentials();
+                Toast.makeText(getApplicationContext(), "Logged out succesfully.", Toast.LENGTH_SHORT).show();
+                changePersonalTabInMenu(UserUtility.isUserLoggedIn());
+
+                fragmentClass = TestActivity.class;
                 break;
             case R.id.nav_second_fragment:
                 fragmentClass = TestActivity.class;
