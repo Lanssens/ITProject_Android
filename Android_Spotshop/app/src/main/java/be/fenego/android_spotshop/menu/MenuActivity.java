@@ -1,7 +1,6 @@
 package be.fenego.android_spotshop.menu;
 
 import android.app.Activity;
-import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -17,8 +16,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
 import be.fenego.android_spotshop.R;
-import be.fenego.android_spotshop.general.UserUtility;
-import be.fenego.android_spotshop.home.HomeActivity;
+import be.fenego.android_spotshop.general.LoginUtility;
 import be.fenego.android_spotshop.test.TestActivity;
 import be.fenego.android_spotshop.login.LoginActivity;
 
@@ -26,7 +24,7 @@ import be.fenego.android_spotshop.login.LoginActivity;
  * Created by Thijs on 12/22/2016.
  */
 
-public class MenuActivity extends AppCompatActivity {
+public class MenuActivity extends AppCompatActivity  {
     private DrawerLayout mDrawer;
     private Toolbar toolbar;
     private NavigationView nvDrawer;
@@ -47,9 +45,6 @@ public class MenuActivity extends AppCompatActivity {
         mDrawer.addDrawerListener(drawerToggle);
 
 
-        //If you want to change the content of header :3
-        //View headerLayout = navigationView.getHeaderView(0);
-
         nvDrawer = (NavigationView) findViewById(R.id.nvView);
 
         setupDrawerContent(nvDrawer);
@@ -58,8 +53,9 @@ public class MenuActivity extends AppCompatActivity {
         loadFragmentInContainer(TestActivity.class);
 
         //Fix the login logic of the application
-        UserUtility.setCurrentAct(this);
-        changePersonalTabInMenu(UserUtility.isUserLoggedIn());
+        LoginUtility.setCurrentAct(this);
+        changePersonalTabInMenu(LoginUtility.isUserLoggedIn());
+
 
 
     }
@@ -75,9 +71,9 @@ public class MenuActivity extends AppCompatActivity {
         imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 
-    public void changePersonalTabInMenu(boolean loggedIn){
+    public void changePersonalTabInMenu(boolean loggedIn) {
 
-        if(nvDrawer != null){
+        if (nvDrawer != null) {
             nvDrawer.getMenu().findItem(R.id.nav_fourth_fragment).setVisible(loggedIn);
             nvDrawer.getMenu().findItem(R.id.nav_fifth_fragment).setVisible(loggedIn);
             nvDrawer.getMenu().findItem(R.id.nav_sixth_fragment).setVisible(loggedIn);
@@ -86,7 +82,7 @@ public class MenuActivity extends AppCompatActivity {
     }
 
 
-    public void loadFragmentInContainer(Class fragmentClass){
+    public void loadFragmentInContainer(Class fragmentClass) {
         //Load in the right fragment
         Fragment fragment = null;
         try {
@@ -95,9 +91,9 @@ public class MenuActivity extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        if(fragment!=null){
+        if (fragment != null) {
             FragmentManager fragmentManager = getSupportFragmentManager();
-            fragmentManager.beginTransaction().replace(R.id.flContent, fragment).commit();
+            fragmentManager.beginTransaction().replace(R.id.flContent, fragment).addToBackStack(null).commit();
         }
     }
 
@@ -113,9 +109,11 @@ public class MenuActivity extends AppCompatActivity {
         // Pass any configuration change to the drawer toggles
         drawerToggle.onConfigurationChanged(newConfig);
     }
+
     private ActionBarDrawerToggle setupDrawerToggle() {
-        return new ActionBarDrawerToggle(this, mDrawer, toolbar, R.string.drawer_open,  R.string.drawer_close);
+        return new ActionBarDrawerToggle(this, mDrawer, toolbar, R.string.drawer_open, R.string.drawer_close);
     }
+
     private void setupDrawerContent(NavigationView navigationView) {
         if (navigationView != null) {
             navigationView.setNavigationItemSelectedListener(
@@ -128,16 +126,23 @@ public class MenuActivity extends AppCompatActivity {
                         }
                     });
 
-        }else{
+        } else {
             Toast.makeText(getApplicationContext(), "NavigationView is null", Toast.LENGTH_SHORT).show();
         }
 
     }
+
     @Override
     public void onBackPressed() {
-        // Disable going back to the SplashActivity
+
+        if (getFragmentManager().getBackStackEntryCount() == 0) {
+            this.finish();
+        } else {
+            getFragmentManager().popBackStack();
+        }
         moveTaskToBack(true);
     }
+
     public void selectDrawerItem(MenuItem menuItem) {
         // Create a new fragment and specify the fragment to show based on nav item clicked
         Fragment fragment = null;
@@ -148,9 +153,9 @@ public class MenuActivity extends AppCompatActivity {
                 fragmentClass = LoginActivity.class;
                 break;
             case R.id.nav_sixth_fragment:
-                UserUtility.removeUserCredentials();
+                LoginUtility.removeUserCredentials();
                 Toast.makeText(getApplicationContext(), "Logged out succesfully.", Toast.LENGTH_SHORT).show();
-                changePersonalTabInMenu(UserUtility.isUserLoggedIn());
+                changePersonalTabInMenu(LoginUtility.isUserLoggedIn());
 
                 fragmentClass = TestActivity.class;
                 break;

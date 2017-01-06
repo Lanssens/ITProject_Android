@@ -14,8 +14,7 @@
         android:orientation="vertical">
 
         <!-- The ActionBar displayed at the top -->
-        <include
-            layout="@layout/menu_toolbar"
+        <include layout="@layout/menu_toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 

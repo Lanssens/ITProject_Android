@@ -1,17 +1,15 @@
-package be.fenego.android_spotshop.models;
 
-/**
- * Created by Thijs on 3/01/2017.
- */
+package be.fenego.android_spotshop.models;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class User {
+/**
+ * Created by Thijs on 6/01/2017.
+ */
 
-    @SerializedName("type")
-    @Expose
-    private String type;
+public class Customer {
+
     @SerializedName("customerNo")
     @Expose
     private String customerNo;
@@ -24,6 +22,9 @@ public class User {
     @SerializedName("lastName")
     @Expose
     private String lastName;
+    @SerializedName("birthday")
+    @Expose
+    private String birthday;
     @SerializedName("phoneHome")
     @Expose
     private String phoneHome;
@@ -42,14 +43,12 @@ public class User {
     @SerializedName("preferredLanguage")
     @Expose
     private String preferredLanguage;
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
+    @SerializedName("credentials")
+    @Expose
+    private Credentials credentials;
+    @SerializedName("address")
+    @Expose
+    private Address address;
 
     public String getCustomerNo() {
         return customerNo;
@@ -81,6 +80,14 @@ public class User {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public String getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(String birthday) {
+        this.birthday = birthday;
     }
 
     public String getPhoneHome() {
@@ -129,6 +136,22 @@ public class User {
 
     public void setPreferredLanguage(String preferredLanguage) {
         this.preferredLanguage = preferredLanguage;
+    }
+
+    public Credentials getCredentials() {
+        return credentials;
+    }
+
+    public void setCredentials(Credentials credentials) {
+        this.credentials = credentials;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
 }

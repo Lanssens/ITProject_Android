@@ -6,7 +6,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 
-import android.content.Intent;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,15 +16,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import be.fenego.android_spotshop.R;
-import be.fenego.android_spotshop.general.UserUtility;
-import be.fenego.android_spotshop.home.HomeActivity;
+import be.fenego.android_spotshop.general.LoginUtility;
 import be.fenego.android_spotshop.menu.MenuActivity;
 import be.fenego.android_spotshop.signup.SignupActivity;
 import be.fenego.android_spotshop.test.TestActivity;
 import butterknife.ButterKnife;
 import butterknife.*;
-
-import static android.app.Activity.RESULT_OK;
 
 /**
  * Created by Thijs on 02/01/2017.
@@ -42,6 +38,13 @@ public class LoginActivity extends android.support.v4.app.Fragment  {
     @InjectView(R.id.btn_login) Button _loginButton;
     @InjectView(R.id.link_signup) TextView _signupLink;
     @InjectView(R.id.link_forgot_password) TextView _forgotPasswordLink;
+
+    @OnTextChanged(value = { R.id.input_email, R.id.input_password },
+            callback = OnTextChanged.Callback.AFTER_TEXT_CHANGED)
+    void fixValidationOnTextChanged() {
+        validate();
+    }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -97,19 +100,18 @@ public class LoginActivity extends android.support.v4.app.Fragment  {
         String email = _emailText.getText().toString();
         String password = _passwordText.getText().toString();
 
-        UserUtility.loginUser(this, email, password);
+        LoginUtility.loginUser(this, email, password);
 
         new android.os.Handler().postDelayed(
                 new Runnable() {
                     public void run() {
                         // On complete call either onLoginSuccess or onLoginFailed
-                        if(UserUtility.isUserLoggedIn()){
+                        if(LoginUtility.isUserLoggedIn()){
                             onLoginSuccess();
                         }
                         else{
                             onLoginFailed();
                         }
-
                         progressDialog.dismiss();
                     }
                 }, 3000);
@@ -162,16 +164,15 @@ public class LoginActivity extends android.support.v4.app.Fragment  {
         }
     }*/
 
-    public void onLoginSuccess() {
-        //Remove login option and add other options to drawermenu
 
+
+    public void onLoginSuccess() {
 
         //Cannot login anymore for safety
         _loginButton.setEnabled(false);
 
         // Check if no view has focus:
         MenuActivity.hideKeyboard((MenuActivity)getActivity());
-
 
         // Create new fragment and transaction
         Fragment newFragment = new TestActivity();
@@ -184,7 +185,7 @@ public class LoginActivity extends android.support.v4.app.Fragment  {
 
         // Commit the transaction
         transaction.commit();
-        ((MenuActivity)getActivity()).changePersonalTabInMenu(UserUtility.isUserLoggedIn());
+        ((MenuActivity)getActivity()).changePersonalTabInMenu(LoginUtility.isUserLoggedIn());
         Toast.makeText(getActivity(), "Login succeeded", Toast.LENGTH_LONG).show();
     }
 
@@ -207,12 +208,19 @@ public class LoginActivity extends android.support.v4.app.Fragment  {
             _emailText.setError(null);
         }
 
-        if (password.isEmpty() || password.length() < 4 || password.length() > 20) {
-            _passwordText.setError("Between 4 and 20 alphanumeric characters");
+        if (password.isEmpty() || password.length() < 7 || password.length() > 20) {
+            _passwordText.setError("Between 7 and 20 alphanumeric characters");
             valid = false;
         } else {
             _passwordText.setError(null);
         }
         return valid;
+    }
+
+    //To hide keyboard when going to different fragment
+    @Override
+    public void onDestroyView() {
+        MenuActivity.hideKeyboard((MenuActivity)getActivity());
+        super.onDestroyView();
     }
 }

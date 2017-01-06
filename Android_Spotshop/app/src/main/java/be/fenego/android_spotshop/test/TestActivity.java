@@ -6,8 +6,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import be.fenego.android_spotshop.R;
-import be.fenego.android_spotshop.general.UserUtility;
 
+/**
+ * Created by Thijs on 12/21/2016.
+ */
 public class TestActivity extends android.support.v4.app.Fragment {
 
     @Override

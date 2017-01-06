@@ -5,8 +5,11 @@ import android.content.SharedPreferences;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 
-import be.fenego.android_spotshop.services.LoginService;
-import be.fenego.android_spotshop.models.User;
+import java.util.ArrayList;
+import java.util.List;
+
+import be.fenego.android_spotshop.models.Customer;
+import be.fenego.android_spotshop.services.CustomerService;
 import be.fenego.android_spotshop.services.ServiceGenerator;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -16,7 +19,7 @@ import retrofit2.Response;
  * Created by Thijs on 3/01/2017.
  */
 
-public class UserUtility {
+public class LoginUtility {
 
 
 
@@ -35,10 +38,14 @@ public class UserUtility {
     public static void removeUserCredentials(){
         currentAct.getSharedPreferences(userCredentials, 0).edit().clear().commit();
     }
-    public static void retrieveUserCredentials(){
+    public static List<String> retrieveUserCredentials(){
+        List<String> userCreds = new ArrayList<String>();
+        userCreds.clear();
         SharedPreferences settings = currentAct.getSharedPreferences(userCredentials, 0);
-        String username = settings.getString("spotShopUsername", "");
-        String password = settings.getString("spotShopUsername", "");
+        userCreds.add(settings.getString("spotShopUsername", ""));
+        userCreds.add(settings.getString("spotShopPassword", ""));
+        userCreds.add(settings.getString("spotShopAuthToken", ""));
+        return userCreds;
     }
 
     public static void storeUserCredentials(String username, String password){
@@ -55,23 +62,28 @@ public class UserUtility {
     }
 
     public static void setCurrentAct(Activity currentAct) {
-        UserUtility.currentAct = currentAct;
+        LoginUtility.currentAct = currentAct;
     }
     public static boolean loginUser(final Fragment currentFragment, final String username, final String password){
 
-        LoginService loginService =
-                ServiceGenerator.createService(LoginService.class, username, password);
-        Call<User> call = loginService.getUserInformation();
+        CustomerService customerService =
+                ServiceGenerator.createService(CustomerService.class, username, password);
+        Call<Customer> call = customerService.getUserInformation();
 
-        call.enqueue(new Callback<User>() {
+        call.enqueue(new Callback<Customer>() {
             @Override
-            public void onResponse(Call<User> call, Response<User> response) {
+            public void onResponse(Call<Customer> call, Response<Customer> response) {
 
                 if (response.isSuccessful()) {
+
                     // User object available
-                    storeUserCredentials( username, password);
+                    storeUserCredentials(username, password);
 
+                    //Get all headers
+                    //Headers headers = response.headers();
 
+                    //Get header value
+                    //String cookie = response.headers().get("authentication-token");
 
                 } else {
                     // Error response (kan unauthorized zijn)
@@ -79,7 +91,7 @@ public class UserUtility {
                 }
             }
             @Override
-            public void onFailure(Call<User> call, Throwable t) {
+            public void onFailure(Call<Customer> call, Throwable t) {
                 // Something went seriously wrong
                 Log.d("Error", t.getMessage());
             }
