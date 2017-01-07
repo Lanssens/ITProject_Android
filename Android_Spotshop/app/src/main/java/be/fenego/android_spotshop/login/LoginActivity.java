@@ -169,7 +169,7 @@ public class LoginActivity extends android.support.v4.app.Fragment  {
     public void onLoginSuccess() {
 
         //Cannot login anymore for safety
-        _loginButton.setEnabled(false);
+        _loginButton.setEnabled(true);
 
         // Check if no view has focus:
         MenuActivity.hideKeyboard((MenuActivity)getActivity());
