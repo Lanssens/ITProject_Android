@@ -1,5 +1,6 @@
 package be.fenego.android_spotshop.signup;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -36,6 +37,8 @@ public class SignupActivity extends android.support.v4.app.Fragment implements Q
 
     private List<Question> allQuestions;
     @InjectView(R.id.register_btn_next) Button _nextButton;
+    @InjectView(R.id.register_title1) TextView titleText1;
+    @InjectView(R.id.register_title2) TextView titleText2;
     @InjectView(R.id.register_input_email) EditText _emailText1;
     @InjectView(R.id.register_input_email2) EditText _emailText2;
     @InjectView(R.id.register_input_password) EditText _passwordText1;
@@ -45,6 +48,12 @@ public class SignupActivity extends android.support.v4.app.Fragment implements Q
     View fragmentView;
     LayoutInflater inflater;
     ViewGroup container;
+
+    @OnTextChanged(value = { R.id.register_input_email, R.id.register_input_email2 , R.id.register_input_password , R.id.register_input_password2 , R.id.register_input_answer },
+            callback = OnTextChanged.Callback.AFTER_TEXT_CHANGED)
+    void fixValidationOnTextChanged() {
+        validate();
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -58,7 +67,8 @@ public class SignupActivity extends android.support.v4.app.Fragment implements Q
 
         CustomerUtility.getAllQuestions(this);
 
-
+        titleText1.setTextColor(Color.parseColor("#df6162"));
+        titleText2.setTextColor(Color.parseColor("#df6162"));
 
         _nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -99,10 +109,25 @@ public class SignupActivity extends android.support.v4.app.Fragment implements Q
         } else {
             _passwordText1.setError(null);
         }
+        if (!password2.equals(password1)) {
+            _passwordText2.setError("Passwords not identical");
+            valid = false;
+        } else {
+            _passwordText2.setError(null);
+        }
+        //.chars().allMatch(Character::isLetter);
+
+        if (answer.isEmpty() || answer.length() < 3 || answer.length() > 20) {
+            _answerText.setError("Must be between 3 and 20 letters long");
+            valid = false;
+        } else {
+            _answerText.setError(null);
+        }
+
         return valid;
     }
     private void nextFragment() {
-        Toast.makeText(getActivity(), "Clicked on signup", Toast.LENGTH_LONG).show();
+
 
         // Create new fragment and transaction
         Fragment newFragment = new SignupActivity2();

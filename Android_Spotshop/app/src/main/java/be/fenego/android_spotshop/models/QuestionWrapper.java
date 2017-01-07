@@ -5,6 +5,10 @@ import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+/**
+ * Created by Thijs on 6/01/2017.
+ */
+
 public class QuestionWrapper {
 
     @SerializedName("elements")

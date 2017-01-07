@@ -3,7 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:fitsSystemWindows="true">
+    android:fitsSystemWindows="true"
+    android:clickable="true"
+    android:focusableInTouchMode="true" >
 
     <LinearLayout
         android:orientation="vertical"
@@ -17,8 +19,8 @@
             android:layout_width="match_parent"
             android:layout_height="2dp"
             android:background="?android:attr/listDivider"/>
-        <TextView xmlns:android="http://schemas.android.com/apk/res/android" style="?android:listSeparatorTextViewStyle"
-
+        <TextView  xmlns:android="http://schemas.android.com/apk/res/android" style="?android:listSeparatorTextViewStyle"
+            android:id="@+id/register_title1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="left"
@@ -82,7 +84,7 @@
             android:background="?android:attr/listDivider"/>
 
         <TextView xmlns:android="http://schemas.android.com/apk/res/android" style="?android:listSeparatorTextViewStyle"
-
+            android:id="@+id/register_title2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="left"
