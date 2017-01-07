@@ -128,18 +128,31 @@ public class SignupActivity extends android.support.v4.app.Fragment implements Q
     }
     private void nextFragment() {
 
+        if(validate()){
+            // Create new fragment and transaction
+            Fragment newFragment = new SignupActivity2();
+            Spinner spinner = (Spinner) getView().findViewById(R.id.register_input_security_questions);
 
-        // Create new fragment and transaction
-        Fragment newFragment = new SignupActivity2();
-        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+            Bundle bundle = new Bundle();
+            bundle.putString("email", _emailText1.getText().toString());
+            bundle.putString("password", _passwordText1.getText().toString());
+            bundle.putString("question", spinner.getSelectedItem().toString());
+            bundle.putString("answer", _answerText.getText().toString());
+            newFragment.setArguments(bundle);
 
-        // Replace whatever is in the fragment_container view with this fragment,
-        // and add the transaction to the back stack
-        transaction.replace(R.id.flContent, newFragment);
-        transaction.addToBackStack(null);
+            FragmentTransaction transaction = getFragmentManager().beginTransaction();
 
-        // Commit the transaction
-        transaction.commit();
+            // Replace whatever is in the fragment_container view with this fragment,
+            // and add the transaction to the back stack
+            transaction.replace(R.id.flContent, newFragment);
+            transaction.addToBackStack(null);
+
+            // Commit the transaction
+            transaction.commit();
+        }else{
+            Toast.makeText(getActivity(), "Fill in the field correctly", Toast.LENGTH_SHORT).show();
+        }
+
     }
 
 

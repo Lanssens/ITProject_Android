@@ -21,6 +21,7 @@ import android.widget.Toast;
 
 import be.fenego.android_spotshop.R;
 import be.fenego.android_spotshop.general.LoginUtility;
+import be.fenego.android_spotshop.signup.SignupActivity2;
 import be.fenego.android_spotshop.test.TestActivity;
 import be.fenego.android_spotshop.login.LoginActivity;
 
@@ -184,7 +185,7 @@ public class MenuActivity extends AppCompatActivity  {
                 fragmentClass = TestActivity.class;
                 break;
             case R.id.nav_second_fragment:
-                fragmentClass = TestActivity.class;
+                fragmentClass = SignupActivity2.class;
                 break;
             case R.id.nav_third_fragment:
                 fragmentClass = TestActivity.class;
