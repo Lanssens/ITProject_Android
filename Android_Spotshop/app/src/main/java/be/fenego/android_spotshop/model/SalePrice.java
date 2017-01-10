@@ -4,13 +4,13 @@ package be.fenego.android_spotshop.model;
  * Created by Nick on 29/12/2016.
  */
 
-public class SalesPrice {
+public class SalePrice {
     //type=Money, value=172.5, currencyMnemonic=USD
     String type;
     float value;
     String currencyMnemonic;
 
-    public SalesPrice(String type, float value, String currencyMnemonic) {
+    public SalePrice(String type, float value, String currencyMnemonic) {
         this.type = type;
         this.value = value;
         this.currencyMnemonic = currencyMnemonic;

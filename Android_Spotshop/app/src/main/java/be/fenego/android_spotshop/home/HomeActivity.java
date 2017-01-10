@@ -8,9 +8,11 @@ import android.os.Bundle;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
@@ -18,10 +20,13 @@ import java.util.ArrayList;
 import be.fenego.android_spotshop.R;
 import be.fenego.android_spotshop.model.Element;
 import be.fenego.android_spotshop.model.ProductCollection;
+import be.fenego.android_spotshop.productDetails.ProductDetailsActivity;
 import be.fenego.android_spotshop.service.ProductService;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import butterknife.OnItemClick;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -30,6 +35,9 @@ import retrofit2.Response;
 public class HomeActivity extends AppCompatActivity {
 
     private static final int REQUEST_IMAGE_CAPTURE = 1;
+
+    ProductCollection productCollection = null;
+    ArrayList<Element> elementList = null;
 
     ProductService productService;
     ArrayAdapter<Element> productAdapter;
@@ -50,11 +58,20 @@ public class HomeActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         productService = ProductService.retrofit.create(ProductService.class);
-        Call<ProductCollection> getProducts = productService.getProducts();
+        //Call<ProductCollection> getProducts = productService.getProducts();
         Call<ProductCollection> getFeaturedProducts = productService.getFeaturedProducts();
 
         setProductAdapter(getFeaturedProducts);
 
+    }
+
+    @OnItemClick(R.id.productListView)
+    void showProductDetails(AdapterView<?> adapterView, View view, int i, long l){
+        //TODO: als productcollection en elementlist niet null zijn !
+
+        Intent productDetailIntent = new Intent(this, ProductDetailsActivity.class);
+        productDetailIntent.putExtra("ProductURI", elementList.get(i).getUri());
+        startActivity(productDetailIntent);
 
     }
 
@@ -91,13 +108,8 @@ public class HomeActivity extends AppCompatActivity {
         call.enqueue(new Callback<ProductCollection>() {
             @Override
             public void onResponse(Call<ProductCollection> call, Response<ProductCollection> response) {
-                ProductCollection productCollection = response.body();
-                ArrayList<Element> elementList = (ArrayList<Element>) productCollection.getElements();
-
-                Log.v("output: ", productCollection.getName());
-                Log.v("output: ",  elementList.get(0).getDescription());
-                Log.v("output: ",(String) elementList.get(0).getAttibuteValueByName("image"));
-
+                productCollection = response.body();
+                elementList = (ArrayList<Element>) productCollection.getElements();
                 productAdapter = new ProductAdapter(getApplicationContext(), elementList);
                 productListView.setAdapter(productAdapter);
             }

@@ -1,7 +1,6 @@
 package be.fenego.android_spotshop.home;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.*;
 import android.widget.*;
 
@@ -9,12 +8,10 @@ import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 import be.fenego.android_spotshop.R;
 import be.fenego.android_spotshop.model.Element;
-import be.fenego.android_spotshop.model.SalesPrice;
-import be.fenego.android_spotshop.service.ProductService;
+import be.fenego.android_spotshop.model.SalePrice;
 import butterknife.*;
 
 /**
@@ -82,8 +79,8 @@ public class ProductAdapter extends ArrayAdapter<Element> {
     }
 
     private void setPriceView(int position){
-        SalesPrice salesPrice = gson.fromJson(elements.get(position).getAttibuteValueByName("salePrice").toString(), SalesPrice.class);
-        holder.productPrice.setText(Float.toString(salesPrice.getValue()) + " $");
+        SalePrice salePrice = gson.fromJson(elements.get(position).getAttibuteValueByName("salePrice").toString(), SalePrice.class);
+        holder.productPrice.setText("$ " + Float.toString(salePrice.getValue()));
     }
 
     static class ViewHolder {

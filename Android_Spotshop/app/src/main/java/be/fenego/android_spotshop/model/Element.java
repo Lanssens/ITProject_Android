@@ -2,6 +2,7 @@ package be.fenego.android_spotshop.model;
 
 import android.content.res.Resources;
 
+import java.io.Serializable;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
@@ -10,7 +11,7 @@ import java.util.ListIterator;
  * Created by Nick on 23/12/2016.
  */
 
-public class Element {
+public class Element{
     private String type;
     private List<Attribute> attributes = null;
     private String uri;

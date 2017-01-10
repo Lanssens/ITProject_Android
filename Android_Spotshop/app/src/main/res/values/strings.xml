@@ -2,5 +2,13 @@
     <string name="app_name">Spotshop</string>
     <string name="listItemProductTitle">Product title</string>
     <string name="listItemProductPrice">€ 00.00</string>
-    <string name="listItemProductAvailability" >product-availability</string>
+    <string name="listItemProductAvailability">product-availability</string>
+    <string name="productDetailTitleTextView">TextView</string>
+    <string name="productDetailsPriceTextView">€ 00.00</string>
+    <string name="ProductDetailsAvailabilityTextView">product-availability</string>
+    <string name="productDetailsDescriptionTextView">productDetails description</string>
+    <string name="productdetailsDescription">Description:</string>
+    <string name="productDetailsQuantity">Quantity:</string>
+    <string name="productDetailsQuantityEditText">1</string>
+    <string name="productDetailsAddToCartButton">ADD TO CART</string>
 </resources>

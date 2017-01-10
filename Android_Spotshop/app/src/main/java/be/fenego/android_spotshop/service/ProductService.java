@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import be.fenego.android_spotshop.model.ProductCollection;
+import be.fenego.android_spotshop.model.ProductDetails;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Retrofit;
@@ -17,16 +18,16 @@ import retrofit2.http.*;
 public interface ProductService {
 
     //https://axesso.fenego.zone/INTERSHOP/rest/WFS/inSPIRED-inTRONICS-Site/-/products?attrs=roundedAverageRating,salePrice,availability
-    public static final String BASE_URL = "https://axesso.fenego.zone/INTERSHOP/rest/WFS/inSPIRED-inTRONICS-Site/";
+    public static final String BASE_URL = "https://axesso.fenego.zone/INTERSHOP/rest/WFS/";
 
 
-    @GET("-/products/{SKU}")
-    Call<ResponseBody> getProduct(@Path("SKU") String SKU);  ///check type !!!!!
+    @GET
+    Call<ProductDetails> getProduct(@Url String SKU);
 
-    @GET("-/products?attrs=roundedAverageRating,salePrice,availability")
+    @GET("inSPIRED-inTRONICS-Site/-/products?attrs=roundedAverageRating,salePrice,availability")
     Call<ProductCollection> getProducts();
 
-    @GET("-/categories/Specials/TopSellers/products?attrs=image,roundedAverageRating,salePrice,availability")
+    @GET("inSPIRED-inTRONICS-Site/-/categories/Specials/TopSellers/products?attrs=image,roundedAverageRating,salePrice,availability")
     Call<ProductCollection> getFeaturedProducts();
 
     Gson gson = new GsonBuilder().create();
