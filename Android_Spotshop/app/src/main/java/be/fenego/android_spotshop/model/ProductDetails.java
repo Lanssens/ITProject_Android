@@ -224,4 +224,14 @@ public class ProductDetails {
     public void setImages(List<Image> images) {
         this.images = images;
     }
+
+    public Image getImageURLByName(String name){
+        Image image = null;
+        for(Image i : images){
+            if(i.getName().equals(name)){
+                image = i;
+            }
+        }
+        return image;
+    }
 }

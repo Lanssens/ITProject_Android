@@ -76,4 +76,5 @@ public class Image {
     public void setPrimaryImage(Boolean primaryImage) {
         this.primaryImage = primaryImage;
     }
+
 }

@@ -26,7 +26,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.OnItemClick;
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -57,7 +56,10 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
         ButterKnife.bind(this);
 
+        //Service instantie aanmaken voor calls uit te voeren.
         productService = ProductService.retrofit.create(ProductService.class);
+
+        //Call die uitgevoerd kan worden via setProductAdapter methode.
         //Call<ProductCollection> getProducts = productService.getProducts();
         Call<ProductCollection> getFeaturedProducts = productService.getFeaturedProducts();
 
@@ -65,14 +67,19 @@ public class HomeActivity extends AppCompatActivity {
 
     }
 
+    //Geeft detailpagina weer voor bepaald product.
     @OnItemClick(R.id.productListView)
     void showProductDetails(AdapterView<?> adapterView, View view, int i, long l){
-        //TODO: als productcollection en elementlist niet null zijn !
-
-        Intent productDetailIntent = new Intent(this, ProductDetailsActivity.class);
-        productDetailIntent.putExtra("ProductURI", elementList.get(i).getUri());
-        startActivity(productDetailIntent);
-
+        try{
+            if(productCollection != null && elementList != null){
+                Intent productDetailIntent = new Intent(this, ProductDetailsActivity.class);
+                productDetailIntent.putExtra("ProductURI", elementList.get(i).getUri());
+                startActivity(productDetailIntent);
+            }
+        }catch (Exception e){
+            Toast.makeText(getApplicationContext(),"Could not display product details!",Toast.LENGTH_SHORT).show();
+            e.printStackTrace();
+        }
     }
 
     @OnClick(R.id.imagePickerButton)
@@ -104,22 +111,28 @@ public class HomeActivity extends AppCompatActivity {
         return Base64.encodeToString(byteArray, Base64.DEFAULT);
     }
 
+    //Call uitvoeren & response opslaan & adapter initialiseren en toevoegen aan listview.
     private void setProductAdapter(Call<ProductCollection> call){
-        call.enqueue(new Callback<ProductCollection>() {
-            @Override
-            public void onResponse(Call<ProductCollection> call, Response<ProductCollection> response) {
-                productCollection = response.body();
-                elementList = (ArrayList<Element>) productCollection.getElements();
-                productAdapter = new ProductAdapter(getApplicationContext(), elementList);
-                productListView.setAdapter(productAdapter);
-            }
+        try{
+            call.enqueue(new Callback<ProductCollection>() {
+                @Override
+                public void onResponse(Call<ProductCollection> call, Response<ProductCollection> response) {
+                    productCollection = response.body();
+                    elementList = (ArrayList<Element>) productCollection.getElements();
+                    productAdapter = new ProductAdapter(getApplicationContext(), elementList);
+                    productListView.setAdapter(productAdapter);
+                }
 
-            @Override
-            public void onFailure(Call<ProductCollection> call, Throwable t) {
-                t.printStackTrace();
-                //TODO: wat als hij faalt ???
-            }
-        });
+                @Override
+                public void onFailure(Call<ProductCollection> call, Throwable t) {
+                    Toast.makeText(getApplicationContext(),"Could not display products!\nGetting product list failed!",Toast.LENGTH_SHORT).show();
+                    t.printStackTrace();
+                }
+            });
+        }catch (Exception e){
+            e.printStackTrace();
+            Toast.makeText(getApplicationContext(),"Could not display product list!",Toast.LENGTH_SHORT).show();
+        }
     }
 }
 

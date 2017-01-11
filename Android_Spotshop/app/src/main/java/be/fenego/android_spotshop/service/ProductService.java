@@ -5,7 +5,6 @@ import com.google.gson.GsonBuilder;
 
 import be.fenego.android_spotshop.model.ProductCollection;
 import be.fenego.android_spotshop.model.ProductDetails;
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -13,13 +12,12 @@ import retrofit2.http.*;
 
 /**
  * Created by Nick on 21/12/2016.
+ * Interface gebruikt door Retrofit voor het uitvoeren van HTTP-Requests.
  */
 
 public interface ProductService {
 
-    //https://axesso.fenego.zone/INTERSHOP/rest/WFS/inSPIRED-inTRONICS-Site/-/products?attrs=roundedAverageRating,salePrice,availability
-    public static final String BASE_URL = "https://axesso.fenego.zone/INTERSHOP/rest/WFS/";
-
+    String BASE_URL = "https://axesso.fenego.zone/INTERSHOP/rest/WFS/";
 
     @GET
     Call<ProductDetails> getProduct(@Url String SKU);
