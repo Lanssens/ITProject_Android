@@ -23,6 +23,7 @@ import be.fenego.android_spotshop.R;
 import be.fenego.android_spotshop.general.LoginUtility;
 import be.fenego.android_spotshop.menu.MenuActivity;
 import be.fenego.android_spotshop.signup.SignupActivity;
+import be.fenego.android_spotshop.signup.SignupActivity2;
 import be.fenego.android_spotshop.test.TestActivity;
 import butterknife.ButterKnife;
 import butterknife.*;

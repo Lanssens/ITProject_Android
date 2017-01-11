@@ -212,11 +212,14 @@ public class SignupActivity2 extends android.support.v4.app.Fragment implements 
             customer.setPhoneMobile(postPhone);
             customer.setFax(postPhone);
             customer.setEmail(postEmail);
-            customer.setPreferredLanguage("en_EN");
+            customer.setPreferredLanguage("de_DE");
 
             customer.setCredentials(creds);
             customer.setAddress(add);
 
+
+            Toast.makeText(getActivity(), postCountry + " " + postCountrycode, Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), postDate, Toast.LENGTH_SHORT).show();
             CustomerService customerService =
                     ServiceGenerator.createService(CustomerService.class);
             Call<Customer> call = customerService.createCustomer(customer);

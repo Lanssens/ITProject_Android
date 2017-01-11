@@ -6,115 +6,132 @@
     android:fitsSystemWindows="true">
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="24dp"
+        android:clickable="true"
+        android:focusableInTouchMode="true"
+        android:orientation="vertical"
         android:paddingLeft="24dp"
         android:paddingRight="24dp"
-        android:clickable="true"
-        android:focusableInTouchMode="true" >
+        android:paddingTop="24dp">
 
         <View
             android:layout_width="match_parent"
             android:layout_height="2dp"
-            android:background="?android:attr/listDivider"/>
-        <TextView xmlns:android="http://schemas.android.com/apk/res/android" style="?android:listSeparatorTextViewStyle"
+            android:background="?android:attr/listDivider" />
+
+        <TextView xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/register_title3"
+            style="?android:listSeparatorTextViewStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="left"
             android:padding="10dip"
+            android:text="PERSONAL:"
             android:textColor="#9e9d9d"
-            android:textSize="18sp"
 
-            tools:text="PERSONAL:"
-            android:text="PERSONAL:" />
+            android:textSize="18sp"
+            tools:text="PERSONAL:" />
 
         <LinearLayout
-            android:layout_width="fill_parent"
-            android:orientation="horizontal"
             android:id="@+id/linearLayout2"
+            android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:gravity="bottom">
+            android:gravity="bottom"
+            android:orientation="horizontal">
+
             <android.support.design.widget.TextInputLayout
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp">
-                <EditText android:id="@+id/register_input_firstname"
+                android:layout_weight="1">
+
+                <EditText
+                    android:id="@+id/register_input_firstname"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="First name"/>
+                    android:hint="First name" />
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp">
-                <EditText android:id="@+id/register_input_lastname"
+                android:layout_weight="1">
+
+                <EditText
+                    android:id="@+id/register_input_lastname"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Last name"/>
+                    android:hint="Last name" />
             </android.support.design.widget.TextInputLayout>
         </LinearLayout>
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp">
-            <EditText android:id="@+id/register_input_phone"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp">
+
+            <EditText
+                android:id="@+id/register_input_phone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Phone"/>
+                android:hint="Phone" />
         </android.support.design.widget.TextInputLayout>
 
 
         <LinearLayout
-            android:layout_width="fill_parent"
-            android:orientation="horizontal"
             android:id="@+id/linearLayout3"
+            android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:gravity="bottom">
+            android:gravity="bottom"
+            android:orientation="horizontal">
+
             <android.widget.LinearLayout
                 android:layout_width="0dp"
-                android:layout_weight="5"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp">
-                <Spinner android:id="@+id/register_input_month"
+                android:layout_weight="5">
+
+                <Spinner
+                    android:id="@+id/register_input_month"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Month"/>
+                    android:hint="Month" />
             </android.widget.LinearLayout>
+
             <android.support.design.widget.TextInputLayout
                 android:layout_width="0dp"
-                android:layout_weight="2"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp">
-                <EditText android:id="@+id/register_input_day"
+                android:layout_weight="2">
+
+                <EditText
+                    android:id="@+id/register_input_day"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="numberDecimal"
-                    android:hint="Day"/>
+                    android:hint="Day"
+                    android:inputType="numberDecimal" />
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="0dp"
-                android:layout_weight="3"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp">
-                <EditText android:id="@+id/register_input_year"
+                android:layout_weight="3">
+
+                <EditText
+                    android:id="@+id/register_input_year"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="numberDecimal"
-                    android:hint="Year"/>
+                    android:hint="Year"
+                    android:inputType="numberDecimal" />
             </android.support.design.widget.TextInputLayout>
         </LinearLayout>
 
@@ -122,69 +139,80 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="2dp"
-            android:background="?android:attr/listDivider"/>
-        <TextView xmlns:android="http://schemas.android.com/apk/res/android" style="?android:listSeparatorTextViewStyle"
+            android:background="?android:attr/listDivider" />
+
+        <TextView xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/register_title4"
+            style="?android:listSeparatorTextViewStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="left"
             android:padding="10dip"
+            android:text="ADDRESS:"
             android:textColor="#9e9d9d"
-            android:textSize="18sp"
 
-            tools:text="ADDRESS:"
-            android:text="ADDRESS:" />
+            android:textSize="18sp"
+            tools:text="ADDRESS:" />
 
         <android.widget.LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp">
-            <Spinner android:id="@+id/register_input_countries"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp">
+
+            <Spinner
+                android:id="@+id/register_input_countries"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Countries"/>
+                android:hint="Countries" />
         </android.widget.LinearLayout>
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp">
-            <EditText android:id="@+id/register_input_address"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp">
+
+            <EditText
+                android:id="@+id/register_input_address"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Address"/>
+                android:hint="Address" />
         </android.support.design.widget.TextInputLayout>
 
         <LinearLayout
-            android:layout_width="fill_parent"
-            android:orientation="horizontal"
             android:id="@+id/linearLayout4"
+            android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:gravity="bottom">
+            android:gravity="bottom"
+            android:orientation="horizontal">
+
             <android.support.design.widget.TextInputLayout
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp">
-                <EditText android:id="@+id/register_input_postalcode"
+                android:layout_weight="1">
+
+                <EditText
+                    android:id="@+id/register_input_postalcode"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Postal code"/>
+                    android:hint="Postal code" />
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp">
-                <EditText android:id="@+id/register_input_city"
+                android:layout_weight="1">
+
+                <EditText
+                    android:id="@+id/register_input_city"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="City"/>
+                    android:hint="City" />
             </android.support.design.widget.TextInputLayout>
         </LinearLayout>
 
@@ -192,10 +220,10 @@
             android:id="@+id/register_btn_complete"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
             android:layout_marginBottom="24dp"
+            android:layout_marginTop="24dp"
             android:padding="12dp"
-            android:text="Complete"/>
+            android:text="Complete" />
 
     </LinearLayout>
 </ScrollView>

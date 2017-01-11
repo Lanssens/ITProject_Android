@@ -24,32 +24,8 @@ import retrofit2.http.POST;
  */
 
 public class CustomerUtility {
-    public static boolean createUser(final Fragment currentFragment, final Customer customer){
-
-        CustomerService customerService =
-                ServiceGenerator.createService(CustomerService.class);
-        Call<Customer> call = customerService.createCustomer(customer);
-
-        call.enqueue(new Callback<Customer>() {
-            @Override
-            public void onResponse(Call<Customer> call, Response<Customer> response) {
-
-                if (response.isSuccessful()) {
-
-
-
-                } else {
-                    // Error response (kan unauthorized zijn)
-                    // No implementation needed right now :c
-                }
-            }
-            @Override
-            public void onFailure(Call<Customer> call, Throwable t) {
-                // Something went seriously wrong
-                Log.d("Error", t.getMessage());
-            }
-        });
-        return false;
+    public static void createUser(final Fragment currentFragment, final Customer customer){
+        //TODO: Deze methode met een callback gebruiken ipv in activity
     }
 
     public static void getAllQuestions(final QuestionCallback callback){

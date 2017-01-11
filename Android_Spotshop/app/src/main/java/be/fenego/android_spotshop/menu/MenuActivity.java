@@ -19,8 +19,12 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 import be.fenego.android_spotshop.R;
 import be.fenego.android_spotshop.general.LoginUtility;
+import be.fenego.android_spotshop.home.HomeActivity;
 import be.fenego.android_spotshop.signup.SignupActivity2;
 import be.fenego.android_spotshop.test.TestActivity;
 import be.fenego.android_spotshop.login.LoginActivity;
@@ -34,6 +38,8 @@ public class MenuActivity extends AppCompatActivity  {
     private Toolbar toolbar;
     private NavigationView nvDrawer;
     private ActionBarDrawerToggle drawerToggle;
+
+    private Queue<android.support.v4.app.Fragment> fragments = new LinkedList<android.support.v4.app.Fragment>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -159,13 +165,13 @@ public class MenuActivity extends AppCompatActivity  {
 
     @Override
     public void onBackPressed() {
-
-        if (getFragmentManager().getBackStackEntryCount() == 0) {
+        Toast.makeText(getApplicationContext(), "No back button implemented :(", Toast.LENGTH_SHORT).show();
+        /*if (getFragmentManager().getBackStackEntryCount() == 0) {
             this.finish();
         } else {
             getFragmentManager().popBackStack();
         }
-        moveTaskToBack(true);
+        moveTaskToBack(true);*/
     }
 
     public void selectDrawerItem(MenuItem menuItem) {
@@ -214,4 +220,5 @@ public class MenuActivity extends AppCompatActivity  {
         return super.onOptionsItemSelected(item);
 
     }
+
 }
