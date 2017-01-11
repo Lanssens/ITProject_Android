@@ -3,26 +3,36 @@
     package="be.fenego.android_spotshop">
 
     <uses-permission android:name="android.permission.INTERNET" />
+<<<<<<< HEAD
 
     <uses-feature
         android:name="android.hardware.camera"
         android:required="false" />
 
+=======
+>>>>>>> 7d1e21c407806cb9b931d4c7f44f19379ae5fce6
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".splash.SplashActivity">
+        <activity android:name=".menu.MenuActivity" />
+        <activity android:name=".home.HomeActivity" />
+        <activity android:name=".splash.SplashActivity"> <!-- android:theme="@style/SplashTheme" -->
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+<<<<<<< HEAD
         <activity android:name=".home.HomeActivity" />
         <activity android:name=".productDetails.ProductDetailsActivity"></activity>
+=======
+        <activity android:name=".signup.SignupActivity"></activity>
+>>>>>>> 7d1e21c407806cb9b931d4c7f44f19379ae5fce6
     </application>
 
 </manifest>

@@ -1,5 +1,4 @@
 <resources>
-    <string name="app_name">Spotshop</string>
     <string name="listItemProductTitle">Product title</string>
     <string name="listItemProductPrice">€ 00.00</string>
     <string name="listItemProductAvailability">product-availability</string>
@@ -12,5 +11,11 @@
     <string name="productDetailsQuantityEditText">1</string>
     <string name="productDetailsAddToCartButton">ADD TO CART</string>
     <string name="productDetailsSpecs">Specs: </string>
+    <string name="app_name">Android_Spotshop</string>
+    <string name="drawer_open">Open navigation drawer</string>
+    <string name="drawer_close">Close navigation drawer</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

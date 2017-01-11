@@ -53,6 +53,7 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_home);
         ButterKnife.bind(this);
 
@@ -134,6 +135,7 @@ public class HomeActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(),"Could not display product list!",Toast.LENGTH_SHORT).show();
         }
     }
+
 }
 
 
