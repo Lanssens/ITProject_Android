@@ -45,6 +45,11 @@ public class SignupActivity extends android.support.v4.app.Fragment implements Q
     LayoutInflater inflater;
     ViewGroup container;
 
+    @OnClick(R.id.register_btn_next)
+    public void loginButton(Button view) {
+        nextFragment();
+    }
+
     @OnTextChanged(value = { R.id.register_input_email, R.id.register_input_email2 , R.id.register_input_password , R.id.register_input_password2 , R.id.register_input_answer },
             callback = OnTextChanged.Callback.AFTER_TEXT_CHANGED)
     void fixValidationOnTextChanged() {
@@ -66,12 +71,6 @@ public class SignupActivity extends android.support.v4.app.Fragment implements Q
         titleText1.setTextColor(Color.parseColor("#df6162"));
         titleText2.setTextColor(Color.parseColor("#df6162"));
 
-        _nextButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                nextFragment();
-            }
-        });
 
         return fragmentView;
     }
@@ -99,8 +98,8 @@ public class SignupActivity extends android.support.v4.app.Fragment implements Q
         }
 
 
-        if (password1.isEmpty() || password1.length() < 7 || password1.length() > 20) {
-            _passwordText1.setError("Between 7 and 20 alphanumeric characters");
+        if (password1.isEmpty() || password1.length() < 7 || password1.length() > 20 || !password1.matches(".*\\d+.*") || !password1.matches(".*[A-Z].*")) {
+            _passwordText1.setError("Between 7 and 20 alphanumeric characters, atleast one number and uppercase character");
             valid = false;
         } else {
             _passwordText1.setError(null);

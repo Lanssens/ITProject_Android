@@ -33,6 +33,7 @@ import java.util.UUID;
 import be.fenego.android_spotshop.R;
 import be.fenego.android_spotshop.general.CountryCallback;
 import be.fenego.android_spotshop.general.CountryUtility;
+import be.fenego.android_spotshop.general.CustomerCreationCallback;
 import be.fenego.android_spotshop.general.CustomerUtility;
 import be.fenego.android_spotshop.general.InputFilterMinMax;
 import be.fenego.android_spotshop.general.QuestionCallback;
@@ -46,6 +47,7 @@ import be.fenego.android_spotshop.services.CustomerService;
 import be.fenego.android_spotshop.services.ServiceGenerator;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import butterknife.OnTextChanged;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -57,7 +59,7 @@ import static android.R.attr.value;
  * Created by Thijs on 02/01/2017.
  */
 
-public class SignupActivity2 extends android.support.v4.app.Fragment implements CountryCallback {
+public class SignupActivity2 extends android.support.v4.app.Fragment implements CustomerCreationCallback, CountryCallback {
 
     private List<Country> allCountries;
     private List<String> allMonths;
@@ -93,6 +95,12 @@ public class SignupActivity2 extends android.support.v4.app.Fragment implements 
         validate();
     }
 
+
+    @OnClick(R.id.register_btn_complete)
+    public void loginButton(Button view) {
+        nextFragment();
+    }
+
     private String postEmail;
     private String postPassword;
     private String postQuestion;
@@ -105,7 +113,6 @@ public class SignupActivity2 extends android.support.v4.app.Fragment implements 
     private String postAddress;
     private String postPostal;
     private String postCity;
-
 
 
     @Override
@@ -129,13 +136,6 @@ public class SignupActivity2 extends android.support.v4.app.Fragment implements 
 
         titleText3.setTextColor(Color.parseColor("#df6162"));
         titleText4.setTextColor(Color.parseColor("#df6162"));
-
-        _nextButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                nextFragment();
-            }
-        });
 
         CountryUtility.getAllCountries(this);
 
@@ -218,50 +218,12 @@ public class SignupActivity2 extends android.support.v4.app.Fragment implements 
             customer.setAddress(add);
 
 
-            Toast.makeText(getActivity(), postCountry + " " + postCountrycode, Toast.LENGTH_SHORT).show();
-            Toast.makeText(getActivity(), postDate, Toast.LENGTH_SHORT).show();
-            CustomerService customerService =
-                    ServiceGenerator.createService(CustomerService.class);
-            Call<Customer> call = customerService.createCustomer(customer);
 
-            call.enqueue(new Callback<Customer>() {
-                @Override
-                public void onResponse(Call<Customer> call, Response<Customer> response) {
-
-                    if (response.isSuccessful()) {
-
-                        Toast.makeText(getActivity(), "Registration successful", Toast.LENGTH_SHORT).show();
-
-                        Fragment newFragment = new LoginActivity();
-                        FragmentTransaction transaction = getFragmentManager().beginTransaction();
-
-                        // Replace whatever is in the fragment_container view with this fragment,
-                        // and add the transaction to the back stack
-                        transaction.replace(R.id.flContent, newFragment);
-                        transaction.addToBackStack(null);
-
-                        // Commit the transaction
-                        transaction.commit();
-
-                    } else {
-                        // Error response (kan unauthorized zijn)
-
-                        Toast.makeText(getActivity(), response.message(), Toast.LENGTH_SHORT).show();
-                        Toast.makeText(getActivity(), response.errorBody().toString(), Toast.LENGTH_SHORT).show();
-
-                    }
-                }
-                @Override
-                public void onFailure(Call<Customer> call, Throwable t) {
-                    // Something went seriously wrong
-                    Log.d("Error", t.getMessage());
-                }
-            });
+            CustomerUtility.createCustomer(this, customer);
 
         }else{
             Toast.makeText(getActivity(), "Fill in the field correctly", Toast.LENGTH_SHORT).show();
         }
-
     }
 
     final static String DATE_FORMAT = "dd-MM-yyyy";
@@ -391,7 +353,22 @@ public class SignupActivity2 extends android.support.v4.app.Fragment implements 
     }
 
     @Override
-    public void onError() {
+    public void onSuccessCreationCustomer() {
+        Toast.makeText(getActivity(), "Registration successful", Toast.LENGTH_SHORT).show();
+        Fragment newFragment = new LoginActivity();
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
 
+        // Replace whatever is in the fragment_container view with this fragment,
+        // and add the transaction to the back stack
+        transaction.replace(R.id.flContent, newFragment);
+        transaction.addToBackStack(null);
+
+        // Commit the transaction
+        transaction.commit();
+    }
+
+    @Override
+    public void onError() {
+        Toast.makeText(getActivity(), "Email is already in use, choose a different one", Toast.LENGTH_SHORT).show();
     }
 }

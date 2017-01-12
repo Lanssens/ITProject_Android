@@ -23,6 +23,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 import be.fenego.android_spotshop.R;
+import be.fenego.android_spotshop.account.AccountActivity;
 import be.fenego.android_spotshop.general.LoginUtility;
 //import be.fenego.android_spotshop.home.HomeActivity;
 import be.fenego.android_spotshop.home.HomeFragment;
@@ -60,7 +61,6 @@ public class MenuActivity extends AppCompatActivity  {
 
         setupDrawerContent(nvDrawer);
 
-        //TODO: Load in the home page fragment when ready
         loadFragmentInContainer(HomeFragment.class);
 
         //Fix the login logic of the application
@@ -166,13 +166,14 @@ public class MenuActivity extends AppCompatActivity  {
 
     @Override
     public void onBackPressed() {
-        Toast.makeText(getApplicationContext(), "No back button implemented :(", Toast.LENGTH_SHORT).show();
-        /*if (getFragmentManager().getBackStackEntryCount() == 0) {
-            this.finish();
+        int count = getFragmentManager().getBackStackEntryCount();
+
+        if (count == 0) {
+            super.onBackPressed();
+            //additional code
         } else {
             getFragmentManager().popBackStack();
         }
-        moveTaskToBack(true);*/
     }
 
     public void selectDrawerItem(MenuItem menuItem) {
@@ -181,28 +182,32 @@ public class MenuActivity extends AppCompatActivity  {
         Class fragmentClass;
         switch (menuItem.getItemId()) {
             case R.id.nav_first_fragment:
-
                 fragmentClass = HomeFragment.class;
                 break;
-            case R.id.nav_seventh_fragment:
-
-                fragmentClass = LoginActivity.class;
+            case R.id.nav_second_fragment:
+                fragmentClass = AccountActivity.class;
+                break;
+            case R.id.nav_third_fragment:
+                fragmentClass = AccountActivity.class;
+                break;
+            case R.id.nav_fourth_fragment:
+                fragmentClass = AccountActivity.class;
                 break;
             case R.id.nav_sixth_fragment:
                 LoginUtility.removeUserCredentials();
                 Toast.makeText(getApplicationContext(), "Logged out succesfully.", Toast.LENGTH_SHORT).show();
                 changePersonalTabInMenu(LoginUtility.isUserLoggedIn());
 
-                fragmentClass = TestActivity.class;
+                fragmentClass = AccountActivity.class;
                 break;
-            case R.id.nav_second_fragment:
-                fragmentClass = SignupActivity2.class;
+            case R.id.nav_seventh_fragment:
+
+                fragmentClass = LoginActivity.class;
                 break;
-            case R.id.nav_third_fragment:
-                fragmentClass = TestActivity.class;
-                break;
+
+
             default:
-                fragmentClass = TestActivity.class;
+                fragmentClass = HomeFragment.class;
         }
 
         //Load in the appropriate fragment inside the container :)
