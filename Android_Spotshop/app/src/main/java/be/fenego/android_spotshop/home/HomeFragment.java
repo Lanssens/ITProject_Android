@@ -1,13 +1,19 @@
 package be.fenego.android_spotshop.home;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.provider.MediaStore;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.AttributeSet;
 import android.util.Base64;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
@@ -18,10 +24,10 @@ import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 
 import be.fenego.android_spotshop.R;
-import be.fenego.android_spotshop.model.Element;
-import be.fenego.android_spotshop.model.ProductCollection;
+import be.fenego.android_spotshop.models.Element;
+import be.fenego.android_spotshop.models.ProductCollection;
 import be.fenego.android_spotshop.productDetails.ProductDetailsActivity;
-import be.fenego.android_spotshop.service.ProductService;
+import be.fenego.android_spotshop.services.ProductService;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -30,8 +36,13 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import be.fenego.android_spotshop.R;
 
-public class HomeActivity extends AppCompatActivity {
+/**
+ * Created by Nick on 11/01/2017.
+ */
+
+public class HomeFragment extends Fragment {
 
     private static final int REQUEST_IMAGE_CAPTURE = 1;
 
@@ -49,13 +60,10 @@ public class HomeActivity extends AppCompatActivity {
     @BindView(R.id.searchButton)
     ImageButton searchButton;
 
-
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        setContentView(R.layout.activity_home);
-        ButterKnife.bind(this);
+    public View onCreateView(LayoutInflater inflater,  ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_activity_home,container, false);
+        ButterKnife.bind(this, view);
 
         //Service instantie aanmaken voor calls uit te voeren.
         productService = ProductService.retrofit.create(ProductService.class);
@@ -66,6 +74,7 @@ public class HomeActivity extends AppCompatActivity {
 
         setProductAdapter(getFeaturedProducts);
 
+        return view;
     }
 
     //Geeft detailpagina weer voor bepaald product.
@@ -73,43 +82,14 @@ public class HomeActivity extends AppCompatActivity {
     void showProductDetails(AdapterView<?> adapterView, View view, int i, long l){
         try{
             if(productCollection != null && elementList != null){
-                Intent productDetailIntent = new Intent(this, ProductDetailsActivity.class);
+                Intent productDetailIntent = new Intent(getContext(), ProductDetailsActivity.class);
                 productDetailIntent.putExtra("ProductURI", elementList.get(i).getUri());
                 startActivity(productDetailIntent);
             }
         }catch (Exception e){
-            Toast.makeText(getApplicationContext(),"Could not display product details!",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(),"Could not display product details!",Toast.LENGTH_SHORT).show();
             e.printStackTrace();
         }
-    }
-
-    @OnClick(R.id.imagePickerButton)
-    void openCamera(){
-        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
-            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
-        }
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
-            if(resultCode == RESULT_OK){
-                imageBitmap = (Bitmap) data.getExtras().get("data");
-                imageBase64 = bitmapToBase64(imageBitmap);
-                Log.v("ImageBase64: ", imageBase64);
-            }else{
-                //TODO: gecancelled
-                Log.v("Error: ", "image was not taken");
-            }
-        }
-    }
-
-    private String bitmapToBase64(Bitmap bitmap){
-        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
-        byte[] byteArray = byteArrayOutputStream .toByteArray();
-        return Base64.encodeToString(byteArray, Base64.DEFAULT);
     }
 
     //Call uitvoeren & response opslaan & adapter initialiseren en toevoegen aan listview.
@@ -120,22 +100,19 @@ public class HomeActivity extends AppCompatActivity {
                 public void onResponse(Call<ProductCollection> call, Response<ProductCollection> response) {
                     productCollection = response.body();
                     elementList = (ArrayList<Element>) productCollection.getElements();
-                    productAdapter = new ProductAdapter(getApplicationContext(), elementList);
+                    productAdapter = new ProductAdapter(getContext(), elementList);
                     productListView.setAdapter(productAdapter);
                 }
 
                 @Override
                 public void onFailure(Call<ProductCollection> call, Throwable t) {
-                    Toast.makeText(getApplicationContext(),"Could not display products!\nGetting product list failed!",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(),"Could not display products!\nGetting product list failed!",Toast.LENGTH_SHORT).show();
                     t.printStackTrace();
                 }
             });
         }catch (Exception e){
             e.printStackTrace();
-            Toast.makeText(getApplicationContext(),"Could not display product list!",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(),"Could not display product list!",Toast.LENGTH_SHORT).show();
         }
     }
-
 }
-
-

@@ -30,7 +30,7 @@ public class TestActivity extends android.support.v4.app.Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Haal Fragment-layout op
-        View fragmentView = inflater.inflate(R.layout.fragment_activity_test, container, false);
+        View fragmentView = inflater.inflate(R.layout.fragment_activity_home, container, false);
         //testPostCustomer();
 
         return fragmentView;

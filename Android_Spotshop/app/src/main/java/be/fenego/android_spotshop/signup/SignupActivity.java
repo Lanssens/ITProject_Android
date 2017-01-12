@@ -2,7 +2,6 @@ package be.fenego.android_spotshop.signup;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
@@ -19,13 +18,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import be.fenego.android_spotshop.R;
-import be.fenego.android_spotshop.general.CountryCallback;
-import be.fenego.android_spotshop.general.CountryUtility;
 import be.fenego.android_spotshop.general.CustomerUtility;
 import be.fenego.android_spotshop.general.QuestionCallback;
-import be.fenego.android_spotshop.models.Country;
 import be.fenego.android_spotshop.models.Question;
-import butterknife.ButterKnife;
+import butterknife.OnTextChanged;
 import butterknife.*;
 
 /**
@@ -36,14 +32,14 @@ public class SignupActivity extends android.support.v4.app.Fragment implements Q
 
 
     private List<Question> allQuestions;
-    @InjectView(R.id.register_btn_next) Button _nextButton;
-    @InjectView(R.id.register_title1) TextView titleText1;
-    @InjectView(R.id.register_title2) TextView titleText2;
-    @InjectView(R.id.register_input_email) EditText _emailText1;
-    @InjectView(R.id.register_input_email2) EditText _emailText2;
-    @InjectView(R.id.register_input_password) EditText _passwordText1;
-    @InjectView(R.id.register_input_password2) EditText _passwordText2;
-    @InjectView(R.id.register_input_answer) EditText _answerText;
+    @BindView(R.id.register_btn_next) Button _nextButton;
+    @BindView(R.id.register_title1) TextView titleText1;
+    @BindView(R.id.register_title2) TextView titleText2;
+    @BindView(R.id.register_input_email) EditText _emailText1;
+    @BindView(R.id.register_input_email2) EditText _emailText2;
+    @BindView(R.id.register_input_password) EditText _passwordText1;
+    @BindView(R.id.register_input_password2) EditText _passwordText2;
+    @BindView(R.id.register_input_answer) EditText _answerText;
 
     View fragmentView;
     LayoutInflater inflater;
@@ -58,7 +54,7 @@ public class SignupActivity extends android.support.v4.app.Fragment implements Q
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         fragmentView = inflater.inflate(R.layout.fragment_activity_signup, container, false);
-        ButterKnife.inject(this, fragmentView);
+        ButterKnife.bind(this, fragmentView);
 
         getActivity().setTitle("Signup");
         // Haal Fragment-layout op

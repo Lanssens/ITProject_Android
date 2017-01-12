@@ -11,8 +11,8 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 
 import be.fenego.android_spotshop.R;
-import be.fenego.android_spotshop.model.Element;
-import be.fenego.android_spotshop.model.SalePrice;
+import be.fenego.android_spotshop.models.Element;
+import be.fenego.android_spotshop.models.SalePrice;
 import butterknife.*;
 
 /**

@@ -24,7 +24,8 @@ import java.util.Queue;
 
 import be.fenego.android_spotshop.R;
 import be.fenego.android_spotshop.general.LoginUtility;
-import be.fenego.android_spotshop.home.HomeActivity;
+//import be.fenego.android_spotshop.home.HomeActivity;
+import be.fenego.android_spotshop.home.HomeFragment;
 import be.fenego.android_spotshop.signup.SignupActivity2;
 import be.fenego.android_spotshop.test.TestActivity;
 import be.fenego.android_spotshop.login.LoginActivity;
@@ -60,7 +61,7 @@ public class MenuActivity extends AppCompatActivity  {
         setupDrawerContent(nvDrawer);
 
         //TODO: Load in the home page fragment when ready
-        loadFragmentInContainer(TestActivity.class);
+        loadFragmentInContainer(HomeFragment.class);
 
         //Fix the login logic of the application
         LoginUtility.setCurrentAct(this);
@@ -179,6 +180,10 @@ public class MenuActivity extends AppCompatActivity  {
         Fragment fragment = null;
         Class fragmentClass;
         switch (menuItem.getItemId()) {
+            case R.id.nav_first_fragment:
+
+                fragmentClass = HomeFragment.class;
+                break;
             case R.id.nav_seventh_fragment:
 
                 fragmentClass = LoginActivity.class;

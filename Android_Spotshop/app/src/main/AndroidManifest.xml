@@ -3,14 +3,11 @@
     package="be.fenego.android_spotshop">
 
     <uses-permission android:name="android.permission.INTERNET" />
-<<<<<<< HEAD
 
     <uses-feature
         android:name="android.hardware.camera"
         android:required="false" />
 
-=======
->>>>>>> 7d1e21c407806cb9b931d4c7f44f19379ae5fce6
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -27,12 +24,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-<<<<<<< HEAD
-        <activity android:name=".home.HomeActivity" />
-        <activity android:name=".productDetails.ProductDetailsActivity"></activity>
-=======
-        <activity android:name=".signup.SignupActivity"></activity>
->>>>>>> 7d1e21c407806cb9b931d4c7f44f19379ae5fce6
+
+        <activity android:name=".productDetails.ProductDetailsActivity" />
+        <activity android:name=".signup.SignupActivity"/>
+
     </application>
 
 </manifest>

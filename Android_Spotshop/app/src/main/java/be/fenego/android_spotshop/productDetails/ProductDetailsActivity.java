@@ -18,12 +18,12 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 
 import be.fenego.android_spotshop.R;
-import be.fenego.android_spotshop.model.Attribute;
-import be.fenego.android_spotshop.model.Image;
-import be.fenego.android_spotshop.model.ProductDetails;
-import be.fenego.android_spotshop.model.ResourceAttribute;
-import be.fenego.android_spotshop.model.SalePrice;
-import be.fenego.android_spotshop.service.ProductService;
+import be.fenego.android_spotshop.models.Attribute;
+import be.fenego.android_spotshop.models.Image;
+import be.fenego.android_spotshop.models.ProductDetails;
+import be.fenego.android_spotshop.models.ResourceAttribute;
+import be.fenego.android_spotshop.models.SalePrice;
+import be.fenego.android_spotshop.services.ProductService;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import retrofit2.Call;

@@ -1,4 +1,4 @@
-package be.fenego.android_spotshop.model;
+package be.fenego.android_spotshop.models;
 
 import java.util.List;
 

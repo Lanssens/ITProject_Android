@@ -38,11 +38,11 @@ public class LoginActivity extends android.support.v4.app.Fragment  {
     private static final String TAG = "LoginActivity";
     private static final int REQUEST_SIGNUP = 0;
 
-    @InjectView(R.id.input_email) EditText _emailText;
-    @InjectView(R.id.input_password) EditText _passwordText;
-    @InjectView(R.id.btn_login) Button _loginButton;
-    @InjectView(R.id.link_signup) TextView _signupLink;
-    @InjectView(R.id.link_forgot_password) TextView _forgotPasswordLink;
+    @BindView(R.id.input_email) EditText _emailText;
+    @BindView(R.id.input_password) EditText _passwordText;
+    @BindView(R.id.btn_login) Button _loginButton;
+    @BindView(R.id.link_signup) TextView _signupLink;
+    @BindView(R.id.link_forgot_password) TextView _forgotPasswordLink;
 
     @OnTextChanged(value = { R.id.input_email, R.id.input_password },
             callback = OnTextChanged.Callback.AFTER_TEXT_CHANGED)
@@ -58,7 +58,7 @@ public class LoginActivity extends android.support.v4.app.Fragment  {
         //http://sourcey.com/beautiful-android-login-and-signup-screens-with-material-design/
         View fragmentView = inflater.inflate(R.layout.fragment_activity_login, container, false);
 
-        ButterKnife.inject(this, fragmentView);
+        ButterKnife.bind(this, fragmentView);
 
         _loginButton.setOnClickListener(new View.OnClickListener() {
             @Override

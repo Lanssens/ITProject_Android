@@ -10,7 +10,7 @@ import android.os.Handler;
 import android.os.Bundle;
 
 import be.fenego.android_spotshop.R;
-import be.fenego.android_spotshop.home.HomeActivity;
+//import be.fenego.android_spotshop.home.HomeActivity;
 import be.fenego.android_spotshop.menu.MenuActivity;
 
 
@@ -31,7 +31,7 @@ public class SplashActivity extends Activity {
         setContentView(R.layout.activity_splash);
 
 
-        startActivity(new Intent(this, HomeActivity.class));
+        startActivity(new Intent(this, MenuActivity.class));
         new Handler().postDelayed(new Runnable(){
             @Override
             public void run() {

@@ -1,11 +1,6 @@
-package be.fenego.android_spotshop.model;
+package be.fenego.android_spotshop.models;
 
-import android.content.res.Resources;
-
-import java.io.Serializable;
-import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
 
 /**
  * Created by Nick on 23/12/2016.

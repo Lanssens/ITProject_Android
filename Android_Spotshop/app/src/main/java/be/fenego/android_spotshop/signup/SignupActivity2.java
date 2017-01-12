@@ -44,8 +44,8 @@ import be.fenego.android_spotshop.models.Customer;
 import be.fenego.android_spotshop.models.Question;
 import be.fenego.android_spotshop.services.CustomerService;
 import be.fenego.android_spotshop.services.ServiceGenerator;
+import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 import butterknife.OnTextChanged;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -62,27 +62,27 @@ public class SignupActivity2 extends android.support.v4.app.Fragment implements 
     private List<Country> allCountries;
     private List<String> allMonths;
 
-    @InjectView(R.id.register_btn_complete)
+    @BindView(R.id.register_btn_complete)
     Button _nextButton;
-    @InjectView(R.id.register_title3)
+    @BindView(R.id.register_title3)
     TextView titleText3;
-    @InjectView(R.id.register_title4)
+    @BindView(R.id.register_title4)
     TextView titleText4;
-    @InjectView(R.id.register_input_firstname)
+    @BindView(R.id.register_input_firstname)
     EditText _firstnameText;
-    @InjectView(R.id.register_input_lastname)
+    @BindView(R.id.register_input_lastname)
     EditText _lastnameText;
-    @InjectView(R.id.register_input_phone)
+    @BindView(R.id.register_input_phone)
     EditText _phoneText;
-    @InjectView(R.id.register_input_day)
+    @BindView(R.id.register_input_day)
     EditText _dayText;
-    @InjectView(R.id.register_input_year)
+    @BindView(R.id.register_input_year)
     EditText _yearText;
-    @InjectView(R.id.register_input_address)
+    @BindView(R.id.register_input_address)
     EditText _addressText;
-    @InjectView(R.id.register_input_postalcode)
+    @BindView(R.id.register_input_postalcode)
     EditText _postalcodeText;
-    @InjectView(R.id.register_input_city)
+    @BindView(R.id.register_input_city)
     EditText _cityText;
 
     View fragmentView;
@@ -112,7 +112,7 @@ public class SignupActivity2 extends android.support.v4.app.Fragment implements 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         fragmentView = inflater.inflate(R.layout.fragment_activity_signup2, container, false);
 
-        ButterKnife.inject(this, fragmentView);
+        ButterKnife.bind(this, fragmentView);
 
         getActivity().setTitle("Signup");
 

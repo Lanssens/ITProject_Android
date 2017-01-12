@@ -1,10 +1,10 @@
-package be.fenego.android_spotshop.service;
+package be.fenego.android_spotshop.services;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import be.fenego.android_spotshop.model.ProductCollection;
-import be.fenego.android_spotshop.model.ProductDetails;
+import be.fenego.android_spotshop.models.ProductCollection;
+import be.fenego.android_spotshop.models.ProductDetails;
 import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;

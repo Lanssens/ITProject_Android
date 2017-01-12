@@ -1,4 +1,4 @@
-package be.fenego.android_spotshop.model;
+package be.fenego.android_spotshop.models;
 
 /**
  * Created by Nick on 11/01/2017.
