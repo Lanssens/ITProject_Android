@@ -2,13 +2,9 @@ package be.fenego.android_spotshop.signup;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.provider.CalendarContract;
-import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.util.TimeUtils;
 import android.text.InputFilter;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,7 +22,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -36,30 +31,21 @@ import be.fenego.android_spotshop.general.CountryUtility;
 import be.fenego.android_spotshop.general.CustomerCreationCallback;
 import be.fenego.android_spotshop.general.CustomerUtility;
 import be.fenego.android_spotshop.general.InputFilterMinMax;
-import be.fenego.android_spotshop.general.QuestionCallback;
-import be.fenego.android_spotshop.login.LoginActivity;
+import be.fenego.android_spotshop.login.LoginFragment;
 import be.fenego.android_spotshop.models.Address;
 import be.fenego.android_spotshop.models.Country;
 import be.fenego.android_spotshop.models.Credentials;
 import be.fenego.android_spotshop.models.Customer;
-import be.fenego.android_spotshop.models.Question;
-import be.fenego.android_spotshop.services.CustomerService;
-import be.fenego.android_spotshop.services.ServiceGenerator;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.OnTextChanged;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-
-import static android.R.attr.value;
 
 /**
  * Created by Thijs on 02/01/2017.
  */
 
-public class SignupActivity2 extends android.support.v4.app.Fragment implements CustomerCreationCallback, CountryCallback {
+public class SignupFragment2 extends android.support.v4.app.Fragment implements CustomerCreationCallback, CountryCallback {
 
     private List<Country> allCountries;
     private List<String> allMonths;
@@ -355,7 +341,7 @@ public class SignupActivity2 extends android.support.v4.app.Fragment implements 
     @Override
     public void onSuccessCreationCustomer() {
         Toast.makeText(getActivity(), "Registration successful", Toast.LENGTH_SHORT).show();
-        Fragment newFragment = new LoginActivity();
+        Fragment newFragment = new LoginFragment();
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
 
         // Replace whatever is in the fragment_container view with this fragment,

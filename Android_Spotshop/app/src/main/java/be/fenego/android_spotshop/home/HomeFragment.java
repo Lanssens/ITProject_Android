@@ -68,6 +68,7 @@ public class HomeFragment extends Fragment {
         //Service instantie aanmaken voor calls uit te voeren.
         productService = ProductService.retrofit.create(ProductService.class);
 
+        getActivity().setTitle("Home");
         //Call die uitgevoerd kan worden via setProductAdapter methode.
         //Call<ProductCollection> getProducts = productService.getProducts();
         Call<ProductCollection> getFeaturedProducts = productService.getFeaturedProducts();

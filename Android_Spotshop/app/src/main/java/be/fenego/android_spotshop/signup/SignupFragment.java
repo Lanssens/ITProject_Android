@@ -28,7 +28,7 @@ import butterknife.*;
  * Created by Thijs on 02/01/2017.
  */
 
-public class SignupActivity extends android.support.v4.app.Fragment implements QuestionCallback {
+public class SignupFragment extends android.support.v4.app.Fragment implements QuestionCallback {
 
 
     private List<Question> allQuestions;
@@ -125,7 +125,7 @@ public class SignupActivity extends android.support.v4.app.Fragment implements Q
 
         if(validate()){
             // Create new fragment and transaction
-            Fragment newFragment = new SignupActivity2();
+            Fragment newFragment = new SignupFragment2();
             Spinner spinner = (Spinner) getView().findViewById(R.id.register_input_security_questions);
 
             Bundle bundle = new Bundle();

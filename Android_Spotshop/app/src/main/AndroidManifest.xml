@@ -26,7 +26,7 @@
         </activity>
 
         <activity android:name=".productDetails.ProductDetailsActivity" />
-        <activity android:name=".signup.SignupActivity"/>
+        <activity android:name=".signup.SignupFragment"/>
 
     </application>
 

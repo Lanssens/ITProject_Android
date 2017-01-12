@@ -12,7 +12,7 @@ import android.widget.Toast;
 import java.util.UUID;
 
 import be.fenego.android_spotshop.R;
-import be.fenego.android_spotshop.login.LoginActivity;
+import be.fenego.android_spotshop.login.LoginFragment;
 import be.fenego.android_spotshop.models.Address;
 import be.fenego.android_spotshop.models.Credentials;
 import be.fenego.android_spotshop.models.Customer;
@@ -25,7 +25,7 @@ import retrofit2.Response;
 /**
  * Created by Thijs on 12/21/2016.
  */
-public class TestActivity extends android.support.v4.app.Fragment {
+public class TestFragment extends android.support.v4.app.Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -80,7 +80,7 @@ public class TestActivity extends android.support.v4.app.Fragment {
 
                     Toast.makeText(getActivity(), "Registration successful", Toast.LENGTH_SHORT).show();
 
-                    Fragment newFragment = new LoginActivity();
+                    Fragment newFragment = new LoginFragment();
                     FragmentTransaction transaction = getFragmentManager().beginTransaction();
 
                     // Replace whatever is in the fragment_container view with this fragment,

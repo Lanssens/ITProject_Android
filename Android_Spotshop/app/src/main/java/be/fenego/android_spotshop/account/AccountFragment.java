@@ -5,6 +5,8 @@ package be.fenego.android_spotshop.account;
  */
 
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +16,9 @@ import android.widget.Toast;
 import be.fenego.android_spotshop.R;
 import be.fenego.android_spotshop.general.CustomerCallback;
 import be.fenego.android_spotshop.general.CustomerUtility;
+import be.fenego.android_spotshop.general.LoginUtility;
+import be.fenego.android_spotshop.login.LoginFragment;
+import be.fenego.android_spotshop.menu.MenuActivity;
 import be.fenego.android_spotshop.models.Customer;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -23,7 +28,7 @@ import butterknife.OnClick;
 /**
  * Created by Thijs on 12/21/2016.
  */
-public class AccountActivity extends android.support.v4.app.Fragment implements CustomerCallback {
+public class AccountFragment extends android.support.v4.app.Fragment implements CustomerCallback {
 
 
     @BindView(R.id.account_header_mail)
@@ -38,13 +43,17 @@ public class AccountActivity extends android.support.v4.app.Fragment implements 
         Toast.makeText(getContext(), "Clicked on " + view.getText(), Toast.LENGTH_SHORT).show();
 
         switch(view.getText().toString()){
-            case "Account Details": break;
+            case "Account Details":  break;
             case "Order History": break;
-            case "Change Password": break;
-            case "Change Email": break;
-            case "Logout": break;
+            case "Change Password": loadFragment(ChangePasswordFragment.class); break;
+            case "Change Email":  break;
+            case "Logout": LoginUtility.removeUserCredentials();
+                Toast.makeText(getContext(), "Logged out succesfully.", Toast.LENGTH_SHORT).show();
+                ((MenuActivity)getActivity()).changePersonalTabInMenu(LoginUtility.isUserLoggedIn());
+                loadFragment(LoginFragment.class); break;
         }
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -52,13 +61,36 @@ public class AccountActivity extends android.support.v4.app.Fragment implements 
         View fragmentView = inflater.inflate(R.layout.fragment_activity_account, container, false);
         ButterKnife.bind(this, fragmentView);
 
-
+        getActivity().setTitle("Account");
 
         CustomerUtility.getCustomerData(this);
 
         return fragmentView;
     }
 
+    public void loadFragment(Class fragmentClass) {
+
+        // Create new fragment and transaction
+        Fragment fragment = null;
+        try {
+            fragment = (Fragment) fragmentClass.newInstance();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if (fragment != null) {
+            FragmentTransaction transaction = getFragmentManager().beginTransaction();
+
+            // Replace whatever is in the fragment_container view with this fragment,
+            // and add the transaction to the back stack
+            transaction.replace(R.id.flContent, fragment);
+            transaction.addToBackStack(null);
+
+            // Commit the transaction
+            transaction.commit();
+        }
+
+    }
 
 
 

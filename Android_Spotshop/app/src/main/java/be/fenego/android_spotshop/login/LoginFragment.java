@@ -1,19 +1,14 @@
 package be.fenego.android_spotshop.login;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 
-import android.view.Gravity;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -23,9 +18,7 @@ import be.fenego.android_spotshop.R;
 import be.fenego.android_spotshop.general.LoginUtility;
 import be.fenego.android_spotshop.home.HomeFragment;
 import be.fenego.android_spotshop.menu.MenuActivity;
-import be.fenego.android_spotshop.signup.SignupActivity;
-import be.fenego.android_spotshop.signup.SignupActivity2;
-import be.fenego.android_spotshop.test.TestActivity;
+import be.fenego.android_spotshop.signup.SignupFragment;
 import butterknife.ButterKnife;
 import butterknife.*;
 
@@ -34,9 +27,9 @@ import butterknife.*;
  */
 
 
-public class LoginActivity extends android.support.v4.app.Fragment  {
+public class LoginFragment extends android.support.v4.app.Fragment  {
 
-    private static final String TAG = "LoginActivity";
+    private static final String TAG = "LoginFragment";
     private static final int REQUEST_SIGNUP = 0;
 
     @BindView(R.id.input_email) EditText _emailText;
@@ -72,7 +65,7 @@ public class LoginActivity extends android.support.v4.app.Fragment  {
         View fragmentView = inflater.inflate(R.layout.fragment_activity_login, container, false);
 
         ButterKnife.bind(this, fragmentView);
-
+        getActivity().setTitle("Login");
 
         return fragmentView;
     }
@@ -118,7 +111,7 @@ public class LoginActivity extends android.support.v4.app.Fragment  {
     public void openSignupFragment() {
 
         // Create new fragment and transaction
-        Fragment newFragment = new SignupActivity();
+        Fragment newFragment = new SignupFragment();
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
 
         // Replace whatever is in the fragment_container view with this fragment,
