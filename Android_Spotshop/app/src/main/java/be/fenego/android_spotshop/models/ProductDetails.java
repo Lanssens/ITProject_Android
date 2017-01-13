@@ -1,13 +1,14 @@
 package be.fenego.android_spotshop.models;
 
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by Nick on 10/01/2017.
  */
 
-public class ProductDetails {
+public class ProductDetails implements Serializable {
     private String name;
     private String type;
     private List<Attribute> attributes = null;

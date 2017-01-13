@@ -1,10 +1,12 @@
 package be.fenego.android_spotshop.models;
 
+import java.io.Serializable;
+
 /**
  * Created by Nick on 29/12/2016.
  */
 
-public class SalePrice {
+public class SalePrice implements Serializable{
     //type=Money, value=172.5, currencyMnemonic=USD
     String type;
     float value;

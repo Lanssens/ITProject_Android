@@ -15,7 +15,9 @@
         android:paddingLeft="24dp"
         android:paddingRight="24dp">
 
-        <ImageView android:src="@drawable/splash_name"
+        <ImageView
+            android:contentDescription="@string/logo_spotshot"
+            android:src="@drawable/splash_name"
             android:layout_width="wrap_content"
             android:layout_height="72dp"
             android:layout_marginBottom="24dp"
