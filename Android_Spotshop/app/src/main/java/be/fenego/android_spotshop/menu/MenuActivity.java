@@ -21,6 +21,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 import be.fenego.android_spotshop.R;
+import be.fenego.android_spotshop.account.AccountDetailFragment;
 import be.fenego.android_spotshop.account.AccountFragment;
 import be.fenego.android_spotshop.account.ChangeEmailFragment;
 import be.fenego.android_spotshop.general.LoginUtility;
@@ -59,7 +60,7 @@ public class MenuActivity extends AppCompatActivity  {
 
         setupDrawerContent(nvDrawer);
 
-        loadFragmentInContainer(ChangeEmailFragment.class);
+        loadFragmentInContainer(AccountDetailFragment.class);
 
         //Fix the login logic of the application
         LoginUtility.setCurrentAct(this);

@@ -32,6 +32,7 @@ public class CustomerUtility {
             public void onResponse(Call<Customer> call, Response<Customer> response) {
 
                 if (response.isSuccessful()) {
+
                     //LoginUtility.storeUserCredentials(customer.getCredentials().getLogin(), data.get(1));
                     callback.onSuccess();
 
