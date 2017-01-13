@@ -15,7 +15,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".menu.MenuActivity" />
-        <activity android:name=".home.HomeActivity" />
         <activity android:name=".splash.SplashActivity"> <!-- android:theme="@style/SplashTheme" -->
 
             <intent-filter>
@@ -26,7 +25,6 @@
         </activity>
 
         <activity android:name=".productDetails.ProductDetailsActivity" />
-        <activity android:name=".signup.SignupFragment"/>
 
     </application>
 

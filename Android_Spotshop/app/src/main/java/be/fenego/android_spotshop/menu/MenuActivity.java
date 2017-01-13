@@ -22,10 +22,12 @@ import java.util.Queue;
 
 import be.fenego.android_spotshop.R;
 import be.fenego.android_spotshop.account.AccountFragment;
+import be.fenego.android_spotshop.account.ChangeEmailFragment;
 import be.fenego.android_spotshop.general.LoginUtility;
 //import be.fenego.android_spotshop.home.HomeActivity;
 import be.fenego.android_spotshop.home.HomeFragment;
 import be.fenego.android_spotshop.login.LoginFragment;
+import be.fenego.android_spotshop.signup.SignupFragment2;
 
 /**
  * Created by Thijs on 12/22/2016.
@@ -57,7 +59,7 @@ public class MenuActivity extends AppCompatActivity  {
 
         setupDrawerContent(nvDrawer);
 
-        loadFragmentInContainer(HomeFragment.class);
+        loadFragmentInContainer(ChangeEmailFragment.class);
 
         //Fix the login logic of the application
         LoginUtility.setCurrentAct(this);
@@ -181,10 +183,10 @@ public class MenuActivity extends AppCompatActivity  {
                 fragmentClass = HomeFragment.class;
                 break;
             case R.id.nav_second_fragment:
-                fragmentClass = AccountFragment.class;
+                fragmentClass = HomeFragment.class;
                 break;
             case R.id.nav_third_fragment:
-                fragmentClass = AccountFragment.class;
+                fragmentClass = HomeFragment.class;
                 break;
             case R.id.nav_fourth_fragment:
                 fragmentClass = AccountFragment.class;

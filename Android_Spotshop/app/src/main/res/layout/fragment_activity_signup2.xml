@@ -225,7 +225,7 @@
             android:layout_marginTop="24dp"
             android:layout_marginBottom="24dp"
             android:padding="12dp"
-            android:backgroundTint="#df6162"
+            android:background="#df6162"
             android:textColor="#ffffff"
 
             android:text="Complete"/>

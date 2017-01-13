@@ -10,5 +10,5 @@ import be.fenego.android_spotshop.models.Country;
 
 public interface CountryCallback {
     void onSuccessCountry(List<Country> countries);
-    void onError();
+    void onCountryError();
 }

@@ -77,6 +77,12 @@ public class LoginUtility {
                 if (response.isSuccessful()) {
 
                     // User object available
+
+                    System.out.println(response.headers().toString());
+                    System.out.println(response.raw().headers().toString());
+                    System.out.println(response.raw().code());
+
+                    System.out.println(response.message());
                     storeUserCredentials(username, password);
 
                     //Get all headers

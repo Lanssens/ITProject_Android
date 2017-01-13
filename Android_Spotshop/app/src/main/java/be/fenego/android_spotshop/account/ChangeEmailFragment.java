@@ -1,13 +1,26 @@
 package be.fenego.android_spotshop.account;
 
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
+
+import java.util.UUID;
 
 import be.fenego.android_spotshop.R;
+import be.fenego.android_spotshop.general.CustomerCallback;
+import be.fenego.android_spotshop.general.CustomerUtility;
+import be.fenego.android_spotshop.general.GeneralCallback;
+import be.fenego.android_spotshop.general.LoginUtility;
+import be.fenego.android_spotshop.login.LoginFragment;
+import be.fenego.android_spotshop.models.Credentials;
+import be.fenego.android_spotshop.models.Customer;
+import be.fenego.android_spotshop.models.CustomerFew;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -17,16 +30,29 @@ import butterknife.OnTextChanged;
  * Created by Thijs on 1/12/2017.
  */
 
-public class ChangeEmailFragment extends android.support.v4.app.Fragment {
+public class ChangeEmailFragment extends android.support.v4.app.Fragment implements GeneralCallback, CustomerCallback {
     @BindView(R.id.change_email_input1)
     EditText _emailText1;
     @BindView(R.id.change_email_input2)
     EditText _emailText2;
 
+    private CustomerFew newCustomer;
+    private Customer customer;
+
     @OnClick(R.id.change_email_save)
-    public void loginButton(Button view) {
+    public void saveButton(Button view) {
         if(validate()){
-            //TODO: put new password
+            if(!customer.equals(null)){
+                newCustomer = new CustomerFew();
+                newCustomer.setCustomerNo(UUID.randomUUID().toString());
+                newCustomer.setPreferredLanguage("de_DE");
+                newCustomer.setFirstName(customer.getFirstName());
+                newCustomer.setLastName(customer.getLastName());
+                newCustomer.setEmail(_emailText1.getText().toString());
+                CustomerUtility.updateCustomer(this, newCustomer);
+            }
+
+
         }
     }
 
@@ -38,8 +64,10 @@ public class ChangeEmailFragment extends android.support.v4.app.Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Haal Fragment-layout op
-        View fragmentView = inflater.inflate(R.layout.fragment_activity_changepassword, container, false);
+        View fragmentView = inflater.inflate(R.layout.fragment_activity_changemail, container, false);
         ButterKnife.bind(this, fragmentView);
+
+        CustomerUtility.getCustomerData(this);
 
         getActivity().setTitle("Change email");
 
@@ -67,5 +95,32 @@ public class ChangeEmailFragment extends android.support.v4.app.Fragment {
         }
 
         return valid;
+    }
+    @Override
+    public void onSuccess() {
+        Toast.makeText(getActivity(), "Password changed", Toast.LENGTH_SHORT).show();
+
+        LoginUtility.removeUserCredentials();
+        Fragment newFragment = new LoginFragment();
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+
+        // Replace whatever is in the fragment_container view with this fragment,
+        // and add the transaction to the back stack
+        transaction.replace(R.id.flContent, newFragment);
+        transaction.addToBackStack(null);
+
+        // Commit the transaction
+        transaction.commit();
+    }
+
+
+    @Override
+    public void onSuccessCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    @Override
+    public void onError() {
+        Toast.makeText(getActivity(), "Email already in use", Toast.LENGTH_SHORT).show();
     }
 }

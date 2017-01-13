@@ -1,14 +1,19 @@
 package be.fenego.android_spotshop.account;
 
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import be.fenego.android_spotshop.R;
 import be.fenego.android_spotshop.general.CustomerUtility;
+import be.fenego.android_spotshop.general.GeneralCallback;
+import be.fenego.android_spotshop.models.PasswordChange;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -18,16 +23,18 @@ import butterknife.OnTextChanged;
  * Created by Thijs on 1/12/2017.
  */
 
-public class ChangePasswordFragment extends android.support.v4.app.Fragment {
+public class ChangePasswordFragment extends android.support.v4.app.Fragment implements GeneralCallback {
     @BindView(R.id.change_password_input1)
     EditText _passwordText1;
     @BindView(R.id.change_password_input2)
     EditText _passwordText2;
 
     @OnClick(R.id.change_password_save)
-    public void loginButton(Button view) {
+    public void saveButton(Button view) {
         if(validate()){
-            //TODO: put new password
+            PasswordChange pw = new PasswordChange();
+            pw.setPassword(_passwordText1.getText().toString());
+            CustomerUtility.updatePassword(this, pw );
         }
     }
 
@@ -68,5 +75,27 @@ public class ChangePasswordFragment extends android.support.v4.app.Fragment {
         }
 
         return valid;
+    }
+
+    @Override
+    public void onSuccess() {
+        Toast.makeText(getActivity(), "PasswordChange changed", Toast.LENGTH_SHORT).show();
+
+        Fragment newFragment = new AccountFragment();
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+
+        // Replace whatever is in the fragment_container view with this fragment,
+        // and add the transaction to the back stack
+        transaction.replace(R.id.flContent, newFragment);
+        transaction.addToBackStack(null);
+
+        // Commit the transaction
+        transaction.commit();
+    }
+
+    @Override
+    public void onError() {
+        Toast.makeText(getActivity(), "Something went wrong", Toast.LENGTH_SHORT).show();
+
     }
 }

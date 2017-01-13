@@ -72,6 +72,8 @@ public class SignupFragment2 extends android.support.v4.app.Fragment implements 
     EditText _postalcodeText;
     @BindView(R.id.register_input_city)
     EditText _cityText;
+    @BindView(R.id.register_input_countries)
+    Spinner _allCountriesSpinner;
 
     View fragmentView;
 
@@ -217,7 +219,8 @@ public class SignupFragment2 extends android.support.v4.app.Fragment implements 
     public static boolean isDateValid(String date)
     {
         try {
-            DateFormat df = new SimpleDateFormat(DATE_FORMAT);
+            //DateFormat df = new SimpleDateFormat(DATE_FORMAT);
+            DateFormat df = DateFormat.getDateInstance();
             df.setLenient(false);
             df.parse(date);
             return true;
@@ -337,6 +340,55 @@ public class SignupFragment2 extends android.support.v4.app.Fragment implements 
 
 
     }
+
+
+    public void loadCountriesWhenAPIDown() {
+        allCountries = new ArrayList<>();
+
+        Country belgium = new Country();
+        belgium.setName("Belgium");
+        belgium.setAlpha2Code("BE");
+        Country nederland = new Country();
+        nederland.setName("Netherlands");
+        nederland.setAlpha2Code("NL");
+        Country duitsland = new Country();
+        duitsland.setName("Germany");
+        duitsland.setAlpha2Code("DE");
+        Country luxemburg = new Country();
+        luxemburg.setName("Luxemburg");
+        luxemburg.setAlpha2Code("LU");
+
+        allCountries.add(belgium);
+        allCountries.add(nederland);
+        allCountries.add(duitsland);
+        allCountries.add(luxemburg);
+
+        List<String> spinnerArrayCountries = new ArrayList<String>();
+
+
+        for (Country country : allCountries) {
+            spinnerArrayCountries.add(country.getName());
+
+        }
+        Spinner spinnerCountries = (Spinner) getView().findViewById(R.id.register_input_countries);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), R.layout.signup_spinner_item, spinnerArrayCountries);
+        spinnerCountries.setAdapter(adapter); // this will set list of values to spinner
+
+        spinnerCountries.setSelection(0);//set selected value in spinner
+
+
+    }
+
+    @Override
+    public void onCountryError() {
+        loadMonths();
+
+        loadCountriesWhenAPIDown();
+
+
+        Toast.makeText(getActivity(), "Couldn't load countries", Toast.LENGTH_SHORT).show();
+    }
+
 
     @Override
     public void onSuccessCreationCustomer() {

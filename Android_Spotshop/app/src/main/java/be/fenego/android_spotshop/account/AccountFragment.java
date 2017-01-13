@@ -45,8 +45,8 @@ public class AccountFragment extends android.support.v4.app.Fragment implements 
         switch(view.getText().toString()){
             case "Account Details":  break;
             case "Order History": break;
-            case "Change Password": loadFragment(ChangePasswordFragment.class); break;
-            case "Change Email":  break;
+            case "Change PasswordChange": loadFragment(ChangePasswordFragment.class); break;
+            case "Change Email": loadFragment(ChangeEmailFragment.class); break;
             case "Logout": LoginUtility.removeUserCredentials();
                 Toast.makeText(getContext(), "Logged out succesfully.", Toast.LENGTH_SHORT).show();
                 ((MenuActivity)getActivity()).changePersonalTabInMenu(LoginUtility.isUserLoggedIn());

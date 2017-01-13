@@ -26,14 +26,18 @@ public class CountryUtility {
         call.enqueue(new Callback<List<Country>>() {
             @Override
             public void onResponse(Call<List<Country>> call, Response<List<Country>> response) {
+                if(response.isSuccessful()){
+                    callback.onSuccessCountry(response.body());
+                }else{
+                    callback.onCountryError();
+                }
 
-                callback.onSuccessCountry(response.body());
 
             }
             @Override
             public void onFailure(Call<List<Country>> call, Throwable t) {
                 System.out.println(t.getMessage());
-                callback.onError();
+                callback.onCountryError();
             }
         });
     }
