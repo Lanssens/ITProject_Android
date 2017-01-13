@@ -4,12 +4,9 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.view.*;
 import android.widget.*;
-
 import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
-
 import java.util.ArrayList;
-
 import be.fenego.android_spotshop.R;
 import be.fenego.android_spotshop.models.Element;
 import be.fenego.android_spotshop.models.SalePrice;

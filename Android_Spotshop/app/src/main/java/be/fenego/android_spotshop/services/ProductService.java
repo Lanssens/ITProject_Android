@@ -28,6 +28,12 @@ public interface ProductService {
     @GET("inSPIRED-inTRONICS-Site/-/categories/Specials/TopSellers/products?attrs=image,roundedAverageRating,salePrice,availability")
     Call<ProductCollection> getFeaturedProducts();
 
+    @GET
+    Call<ProductCollection> getProductsByImage(@Url String annotations);
+
+    @GET
+    Call<ProductCollection> getProductsByText(@Url String annotations);
+
     Gson gson = new GsonBuilder().create();
 
     Retrofit retrofit = new Retrofit.Builder()
