@@ -21,6 +21,7 @@ import android.widget.Toast;
 
 import be.fenego.android_spotshop.R;
 import be.fenego.android_spotshop.general.LoginUtility;
+import be.fenego.android_spotshop.home.HomeFragment;
 import be.fenego.android_spotshop.menu.MenuActivity;
 import be.fenego.android_spotshop.signup.SignupActivity;
 import be.fenego.android_spotshop.signup.SignupActivity2;
@@ -51,6 +52,18 @@ public class LoginActivity extends android.support.v4.app.Fragment  {
     }
 
 
+    @OnClick(R.id.btn_login)
+    public void loginButton(Button view) {
+        login();
+    }
+    @OnClick({R.id.link_signup, R.id.link_forgot_password})
+    public void linkToRightPage(TextView view) {
+        Toast.makeText(getContext(), "Clicked on " + view.getText(), Toast.LENGTH_SHORT).show();
+        switch(view.getText().toString()){
+            case "Forgot your password?": openForgotPasswordFragment(); break;
+            case "Sign up": openSignupFragment(); break;
+        }
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -59,27 +72,6 @@ public class LoginActivity extends android.support.v4.app.Fragment  {
         View fragmentView = inflater.inflate(R.layout.fragment_activity_login, container, false);
 
         ButterKnife.bind(this, fragmentView);
-
-        _loginButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                login();
-            }
-        });
-
-        _signupLink.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openSignupFragment();
-            }
-        });
-
-        _forgotPasswordLink.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openForgotPasswordFragment();
-            }
-        });
 
 
         return fragmentView;
@@ -96,10 +88,9 @@ public class LoginActivity extends android.support.v4.app.Fragment  {
 
         _loginButton.setEnabled(false);
 
-        final ProgressDialog progressDialog = new ProgressDialog(getActivity(),
-                R.style.AppTheme);
-        progressDialog.setIndeterminate(true);
-        progressDialog.getWindow().setGravity(Gravity.BOTTOM);
+        final ProgressDialog progressDialog = new ProgressDialog(getActivity());
+        //progressDialog.setIndeterminate(true);
+        //progressDialog.getWindow().setGravity(Gravity.BOTTOM);
         progressDialog.setMessage("Authenticating...");
         progressDialog.show();
 
@@ -142,33 +133,7 @@ public class LoginActivity extends android.support.v4.app.Fragment  {
     public void openForgotPasswordFragment() {
         Toast.makeText(getActivity(), "Clicked on forgot password", Toast.LENGTH_LONG).show();
 
-
-        //TODO: implement "forgot password"
- /*       // Create new fragment and transaction
-        Fragment newFragment = new SignupActivity();
-        FragmentTransaction transaction = getFragmentManager().beginTransaction();
-
-        // Replace whatever is in the fragment_container view with this fragment,
-        // and add the transaction to the back stack
-        transaction.replace(R.id.flContent, newFragment);
-        transaction.addToBackStack(null);
-
-        // Commit the transaction
-        transaction.commit();*/
     }
-
-
- /*   @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == REQUEST_SIGNUP) {
-            if (resultCode == RESULT_OK) {
-
-                //  Implement successful signup logic here
-                // By default we just finish the Activity and log them in automatically
-                //this.finish();
-            }
-        }
-    }*/
 
 
 
@@ -181,7 +146,7 @@ public class LoginActivity extends android.support.v4.app.Fragment  {
         MenuActivity.hideKeyboard((MenuActivity)getActivity());
 
         // Create new fragment and transaction
-        Fragment newFragment = new TestActivity();
+        Fragment newFragment = new HomeFragment();
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
 
         // Replace whatever is in the fragment_container view with this fragment,
@@ -214,7 +179,7 @@ public class LoginActivity extends android.support.v4.app.Fragment  {
             _emailText.setError(null);
         }
 
-        if (password.isEmpty() || password.length() < 7 || password.length() > 20) {
+        if (password.isEmpty() || password.length() < 7 || password.length() > 20 ) {
             _passwordText.setError("Between 7 and 20 alphanumeric characters");
             valid = false;
         } else {

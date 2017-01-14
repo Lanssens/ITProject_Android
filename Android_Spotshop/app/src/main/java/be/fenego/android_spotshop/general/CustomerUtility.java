@@ -24,8 +24,29 @@ import retrofit2.http.POST;
  */
 
 public class CustomerUtility {
-    public static void createUser(final Fragment currentFragment, final Customer customer){
-        //TODO: Deze methode met een callback gebruiken ipv in activity
+    public static void createCustomer(final CustomerCreationCallback callback, final Customer customer) {
+        CustomerService customerService =
+                ServiceGenerator.createService(CustomerService.class);
+        Call<Customer> call = customerService.createCustomer(customer);
+
+        call.enqueue(new Callback<Customer>() {
+            @Override
+            public void onResponse(Call<Customer> call, Response<Customer> response) {
+
+                if (response.isSuccessful()) {
+                    callback.onSuccessCreationCustomer();
+
+                } else {
+                    callback.onError();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Customer> call, Throwable t) {
+                // Something went seriously wrong
+                Log.d("Error", t.getMessage());
+            }
+        });
     }
 
     public static void getAllQuestions(final QuestionCallback callback){
@@ -46,5 +67,34 @@ public class CustomerUtility {
                 callback.onError();
             }
         });
+    }
+    public static boolean getCustomerData(final CustomerCallback callback) {
+
+        List<String> data = LoginUtility.retrieveUserCredentials();
+
+        CustomerService customerService =
+                ServiceGenerator.createService(CustomerService.class, data.get(0), data.get(1));
+        Call<Customer> call = customerService.getUserInformation();
+
+        call.enqueue(new Callback<Customer>() {
+            @Override
+            public void onResponse(Call<Customer> call, Response<Customer> response) {
+
+                if (response.isSuccessful()) {
+                    callback.onSuccessCustomer(response.body());
+
+                } else {
+                    callback.onError();
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Customer> call, Throwable t) {
+                // Something went seriously wrong
+                Log.d("Error", t.getMessage());
+            }
+        });
+        return false;
     }
 }
