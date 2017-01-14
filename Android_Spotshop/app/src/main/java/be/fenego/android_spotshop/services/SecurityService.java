@@ -12,6 +12,7 @@ import retrofit2.http.GET;
  * Created by Thijs on 6/01/2017.
  */
 
+@SuppressWarnings("DefaultFileTemplate")
 public interface SecurityService {
     @GET("security/questions")
     Call<QuestionWrapper> getAllSecurityQuestions();

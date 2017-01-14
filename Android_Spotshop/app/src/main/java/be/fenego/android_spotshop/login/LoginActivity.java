@@ -1,31 +1,24 @@
 package be.fenego.android_spotshop.login;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 
-import android.view.Gravity;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import be.fenego.android_spotshop.R;
-import be.fenego.android_spotshop.general.LoginUtility;
+import be.fenego.android_spotshop.utilities.LoginUtility;
 import be.fenego.android_spotshop.home.HomeFragment;
 import be.fenego.android_spotshop.menu.MenuActivity;
 import be.fenego.android_spotshop.signup.SignupActivity;
-import be.fenego.android_spotshop.signup.SignupActivity2;
-import be.fenego.android_spotshop.test.TestActivity;
 import butterknife.ButterKnife;
 import butterknife.*;
 
@@ -34,6 +27,7 @@ import butterknife.*;
  */
 
 
+@SuppressWarnings("DefaultFileTemplate")
 public class LoginActivity extends android.support.v4.app.Fragment  {
 
     private static final String TAG = "LoginActivity";

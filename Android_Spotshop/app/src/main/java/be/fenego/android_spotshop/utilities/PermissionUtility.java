@@ -1,6 +1,5 @@
-package be.fenego.android_spotshop.general;
+package be.fenego.android_spotshop.utilities;
 
-import android.app.Activity;
 import android.content.pm.PackageManager;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
@@ -12,6 +11,7 @@ import java.util.ArrayList;
  * Created by Nick on 12/01/2017.
  */
 
+@SuppressWarnings({"unused", "DefaultFileTemplate"})
 public class PermissionUtility {
     public static boolean requestPermission(
             Fragment fragment, int requestCode, String... permissions) {
@@ -40,13 +40,6 @@ public class PermissionUtility {
 
     public static boolean permissionGranted(
             int requestCode, int permissionCode, int[] grantResults) {
-        if (requestCode == permissionCode) {
-            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                return true;
-            } else {
-                return false;
-            }
-        }
-        return false;
+        return requestCode == permissionCode && grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED;
     }
 }

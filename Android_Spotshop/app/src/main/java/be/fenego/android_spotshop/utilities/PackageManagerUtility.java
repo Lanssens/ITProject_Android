@@ -1,5 +1,6 @@
-package be.fenego.android_spotshop.general;
+package be.fenego.android_spotshop.utilities;
 
+import android.annotation.SuppressLint;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
@@ -13,7 +14,8 @@ import java.security.NoSuchAlgorithmException;
  * Created by Nick on 12/01/2017.
  */
 
-public class PackageManagerUtility {
+@SuppressWarnings("DefaultFileTemplate")
+class PackageManagerUtility {
 
     /**
      * Gets the SHA1 signature, hex encoded for inclusion with Google Cloud Platform API requests
@@ -23,7 +25,7 @@ public class PackageManagerUtility {
      */
     public static String getSignature(@NonNull PackageManager pm, @NonNull String packageName) {
         try {
-            PackageInfo packageInfo = pm.getPackageInfo(packageName, PackageManager.GET_SIGNATURES);
+            @SuppressLint("PackageManagerGetSignatures") PackageInfo packageInfo = pm.getPackageInfo(packageName, PackageManager.GET_SIGNATURES);
             if (packageInfo == null
                     || packageInfo.signatures == null
                     || packageInfo.signatures.length == 0

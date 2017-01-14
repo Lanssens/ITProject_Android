@@ -1,4 +1,4 @@
-package be.fenego.android_spotshop.general;
+package be.fenego.android_spotshop.utilities;
 
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
@@ -23,6 +23,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import be.fenego.android_spotshop.callbacks.CloudVisionCallback;
+
 /**
  * Created by Nick on 13/01/2017.
  * utility voor het ophalen van annotations van een afbeelding via google cloud vision.
@@ -33,12 +35,12 @@ public class CloudVisionUtility {
     private static final String ANDROID_PACKAGE_HEADER = "X-Android-Package";
     private static final String CLOUD_VISION_API_KEY = "AIzaSyAxOtQGcr5J11JNALl91xn63XW8ncew52Q";
 
-    public static void postImage(final CloudVisionCallback callback, final Bitmap bitmap) throws IOException {
+    public static void postImage(final CloudVisionCallback callback, final Bitmap bitmap) {
         final Fragment f = (Fragment) callback;
         new AsyncTask<Object, Void, BatchAnnotateImagesResponse>() {
             @Override
             protected BatchAnnotateImagesResponse doInBackground(Object... params) {
-                BatchAnnotateImagesResponse response = null;
+                BatchAnnotateImagesResponse response;
                 try {
                     HttpTransport httpTransport = AndroidHttp.newCompatibleTransport();
                     JsonFactory jsonFactory = GsonFactory.getDefaultInstance();
@@ -117,7 +119,7 @@ public class CloudVisionUtility {
                     Log.d(f.getTag(), "failed to make API request because of other IOException " +
                             e.getMessage());
                 }
-                return response;
+                return null;
             }
 
             @Override

@@ -28,12 +28,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import be.fenego.android_spotshop.R;
-import be.fenego.android_spotshop.general.CloudVisionCallback;
-import be.fenego.android_spotshop.general.CloudVisionUtility;
-import be.fenego.android_spotshop.general.ImageUtility;
-import be.fenego.android_spotshop.general.PermissionUtility;
-import be.fenego.android_spotshop.general.ProductCallback;
-import be.fenego.android_spotshop.general.ProductUtility;
+import be.fenego.android_spotshop.callbacks.CloudVisionCallback;
+import be.fenego.android_spotshop.utilities.CloudVisionUtility;
+import be.fenego.android_spotshop.utilities.ImageUtility;
+import be.fenego.android_spotshop.utilities.PermissionUtility;
+import be.fenego.android_spotshop.callbacks.ProductCallback;
+import be.fenego.android_spotshop.utilities.ProductUtility;
 import be.fenego.android_spotshop.models.Element;
 import be.fenego.android_spotshop.models.ProductCollection;
 import be.fenego.android_spotshop.models.ProductDetails;
@@ -50,18 +50,16 @@ import static android.app.Activity.RESULT_OK;
  * Created by Nick on 11/01/2017.
  */
 
+@SuppressWarnings({"WeakerAccess", "UnusedParameters", "DefaultFileTemplate"})
 public class HomeFragment extends Fragment implements CloudVisionCallback, ProductCallback{
     //images
     private static final int GALLERY_PERMISSIONS_REQUEST = 0;
     private static final int GALLERY_IMAGE_REQUEST = 1;
-    public static final int CAMERA_PERMISSIONS_REQUEST = 2;
-    public static final int CAMERA_IMAGE_REQUEST = 3;
-    public static final String FILE_NAME = "temp.jpg";
+    private static final int CAMERA_PERMISSIONS_REQUEST = 2;
+    private static final int CAMERA_IMAGE_REQUEST = 3;
+    private static final String FILE_NAME = "temp.jpg";
 
-    ProductCollection productCollection = null;
-    ArrayList<Element> elementList = null;
-
-    ArrayAdapter<Element> productAdapter;
+    private ArrayList<Element> elementList = null;
 
     @BindView(R.id.productListView)
     ListView productListView;
@@ -116,7 +114,7 @@ public class HomeFragment extends Fragment implements CloudVisionCallback, Produ
     }
 
     //Zal de gallerychooser oproepen.
-    public void startGalleryChooser() {
+    private void startGalleryChooser() {
         if (PermissionUtility.requestPermission(this, GALLERY_PERMISSIONS_REQUEST, Manifest.permission.READ_EXTERNAL_STORAGE)) {
             Intent intent = new Intent();
             intent.setType("image/*");
@@ -127,7 +125,7 @@ public class HomeFragment extends Fragment implements CloudVisionCallback, Produ
     }
 
     //Zal camera app starten.
-    public void startCamera() {
+    private void startCamera() {
         if (PermissionUtility.requestPermission(
                 this,
                 CAMERA_PERMISSIONS_REQUEST,
@@ -140,7 +138,7 @@ public class HomeFragment extends Fragment implements CloudVisionCallback, Produ
     }
 
     //Haalt gemaakte afbeelding op.
-    public File getCameraFile() {
+    private File getCameraFile() {
         File dir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
         return new File(dir, FILE_NAME);
     }
@@ -157,7 +155,7 @@ public class HomeFragment extends Fragment implements CloudVisionCallback, Produ
     }
 
     //Scaled afbeelding down & roept cloudvision utility op.
-    public void uploadImage(Uri uri) {
+    private void uploadImage(Uri uri) {
         if (uri != null) {
             try {
                 // scale the image to save on bandwidth
@@ -184,24 +182,6 @@ public class HomeFragment extends Fragment implements CloudVisionCallback, Produ
     @Override
     public void onErrorPostImage() {
         Toast.makeText(getContext(),"Could not get products from image!\nGetting product list failed!",Toast.LENGTH_SHORT).show();
-    }
-
-    private String formatResponse(BatchAnnotateImagesResponse cloudVisionResponse){
-        String result = "inSPIRED-inTRONICS-Site/-/products?attrs=image,roundedAverageRating,salePrice,availability&searchTerm=*";
-
-        List<EntityAnnotation> annotations = new ArrayList<EntityAnnotation>();
-        if(cloudVisionResponse.getResponses().get(0).getLabelAnnotations() != null)
-        annotations.addAll(cloudVisionResponse.getResponses().get(0).getLabelAnnotations());
-        if(cloudVisionResponse.getResponses().get(0).getLogoAnnotations() != null)
-            annotations.addAll(cloudVisionResponse.getResponses().get(0).getLogoAnnotations());
-        if(cloudVisionResponse.getResponses().get(0).getTextAnnotations() != null)
-            annotations.addAll(cloudVisionResponse.getResponses().get(0).getTextAnnotations());
-
-        for(EntityAnnotation entityAnnotation : annotations){
-            result += entityAnnotation.getDescription() + "*";
-        }
-
-        return result;
     }
 
     @Override
@@ -255,14 +235,33 @@ public class HomeFragment extends Fragment implements CloudVisionCallback, Produ
     }
 
     private void handleSuccess(ProductCollection productCollection){
-        this.productCollection = productCollection;
         elementList = (ArrayList<Element>) productCollection.getElements();
         setProductAdapter();
     }
 
     //Adapter initialiseren en toevoegen aan listview.
     private void setProductAdapter(){
-        productAdapter = new ProductAdapter(getContext(), elementList);
+        ArrayAdapter<Element> productAdapter = new ProductAdapter(getContext(), elementList);
         productListView.setAdapter(productAdapter);
+    }
+
+    private String formatResponse(BatchAnnotateImagesResponse cloudVisionResponse){
+        String result = "inSPIRED-inTRONICS-Site/-/products?attrs=image,roundedAverageRating,salePrice,availability&searchTerm=*";
+
+        List<EntityAnnotation> annotations = new ArrayList<>();
+        if(cloudVisionResponse.getResponses().get(0).getLabelAnnotations() != null)
+            annotations.addAll(cloudVisionResponse.getResponses().get(0).getLabelAnnotations());
+        if(cloudVisionResponse.getResponses().get(0).getLogoAnnotations() != null)
+            annotations.addAll(cloudVisionResponse.getResponses().get(0).getLogoAnnotations());
+        if(cloudVisionResponse.getResponses().get(0).getTextAnnotations() != null)
+            annotations.addAll(cloudVisionResponse.getResponses().get(0).getTextAnnotations());
+
+        for(EntityAnnotation entityAnnotation : annotations){
+            if(entityAnnotation.getScore() > 0.5){  //zekerheid ratio
+                result += entityAnnotation.getDescription() + "*";
+            }
+        }
+
+        return result;
     }
 }

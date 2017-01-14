@@ -6,6 +6,7 @@ import java.util.List;
  * Created by Nick on 23/12/2016.
  */
 
+@SuppressWarnings({"unused", "DefaultFileTemplate"})
 public class Element{
     private String type;
     private List<Attribute> attributes = null;
@@ -53,7 +54,7 @@ public class Element{
         this.description = description;
     }
 
-    public Object getAttibuteValueByName(String name){
+    public Object getAttributeValueByName(String name){
         Object o = null;
         for (Attribute attribute : attributes)
         {

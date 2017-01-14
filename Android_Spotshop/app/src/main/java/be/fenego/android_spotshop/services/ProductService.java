@@ -22,8 +22,10 @@ public interface ProductService {
     @GET
     Call<ProductDetails> getProduct(@Url String SKU);
 
-    @GET("inSPIRED-inTRONICS-Site/-/products?attrs=roundedAverageRating,salePrice,availability")
-    Call<ProductCollection> getProducts();
+// --Commented out by Inspection START (14/01/2017 16:24):
+//    @GET("inSPIRED-inTRONICS-Site/-/products?attrs=roundedAverageRating,salePrice,availability")
+//    Call<ProductCollection> getProducts();
+// --Commented out by Inspection STOP (14/01/2017 16:24)
 
     @GET("inSPIRED-inTRONICS-Site/-/categories/Specials/TopSellers/products?attrs=image,roundedAverageRating,salePrice,availability")
     Call<ProductCollection> getFeaturedProducts();

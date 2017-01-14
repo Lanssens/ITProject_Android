@@ -10,6 +10,7 @@ import com.google.gson.annotations.SerializedName;
  * Created by Thijs on 6/01/2017.
  */
 
+@SuppressWarnings("DefaultFileTemplate")
 public class Country {
 
     @SerializedName("name")

@@ -13,6 +13,7 @@ import retrofit2.http.Path;
  * Created by Thijs on 6/01/2017.
  */
 
+@SuppressWarnings("DefaultFileTemplate")
 public interface CountryService {
     @GET("all")
     Call<List<Country>> getAllCountries();

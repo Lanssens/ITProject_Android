@@ -1,5 +1,6 @@
 package be.fenego.android_spotshop.productDetails;
 
+import android.annotation.SuppressLint;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -28,14 +29,15 @@ import butterknife.ButterKnife;
  * Created by Nick on 13/01/2017.
  */
 
+@SuppressWarnings({"WeakerAccess", "DefaultFileTemplate"})
 public class ProductDetailsFragment extends Fragment {
 
     private ProductDetails productDetails = null;
     private ArrayList<Attribute> productDetailsAttributes = null;
 
     private static final String BASE_IMAGE_URL = "https://axesso.fenego.zone";
-    private String imageUrl;
 
+    @SuppressWarnings("unused")
     private Gson gson;
 
     @BindView(R.id.productDetailsTitleTextView)
@@ -64,7 +66,7 @@ public class ProductDetailsFragment extends Fragment {
         //getting product details & attributes from home.
         Bundle bundle = getArguments();
         productDetails = (ProductDetails) bundle.get("productDetails");
-        productDetailsAttributes =(ArrayList<Attribute>) productDetails.getAttributes();
+        productDetailsAttributes =(ArrayList<Attribute>) (productDetails != null ? productDetails.getAttributes() : null);
 
         setViews();
 
@@ -75,8 +77,9 @@ public class ProductDetailsFragment extends Fragment {
     private void setViews(){
         try{
             productDetailsTitle.setText(productDetails.getProductName());
+            //noinspection deprecation
             productDetailsDescription.setText(Html.fromHtml(productDetails.getLongDescription()));
-            productDetailsRatingBar.setRating(Float.valueOf((String) productDetails.getRoundedAverageRating()));
+            productDetailsRatingBar.setRating(Float.valueOf(productDetails.getRoundedAverageRating()));
             setPriceView();
             setAvailabilityView();
             setImageView();
@@ -89,6 +92,7 @@ public class ProductDetailsFragment extends Fragment {
     }
 
     //ProductPriceView vullen
+    @SuppressLint("SetTextI18n")
     private void setPriceView(){
         try{
             SalePrice salePrice = productDetails.getSalePrice();
@@ -100,6 +104,7 @@ public class ProductDetailsFragment extends Fragment {
     }
 
     //ProductAvailabilityView vullen
+    @SuppressLint("SetTextI18n")
     private void setAvailabilityView(){
         try{
             if(productDetails.getAvailability()){
@@ -115,9 +120,10 @@ public class ProductDetailsFragment extends Fragment {
     }
 
     //Correcte image ophalen.
+    @SuppressWarnings("UnusedAssignment")
     private void setImageView(){
         try{
-            Image image = null;
+            Image image;
             image = productDetails.getImageURLByName("front M");
 
             if(image == null){
@@ -138,7 +144,7 @@ public class ProductDetailsFragment extends Fragment {
 
     //ProductImageView vullen via Picasso.
     private void loadImage(Image image){
-        imageUrl = BASE_IMAGE_URL + image.getEffectiveUrl();
+        String imageUrl = BASE_IMAGE_URL + image.getEffectiveUrl();
         Picasso.with(getContext())
                 .load(imageUrl)
                 .placeholder(R.drawable.ic_button_camera)
@@ -147,6 +153,8 @@ public class ProductDetailsFragment extends Fragment {
     }
 
     //Correcte product specificaties zoeken en in textViews steken.
+    @SuppressWarnings("TryWithIdenticalCatches")
+    @SuppressLint("SetTextI18n")
     private void setSpecsTable(){
         try{
             for (Attribute attribute : productDetailsAttributes){
@@ -155,6 +163,7 @@ public class ProductDetailsFragment extends Fragment {
                 switch (attribute.getType()){
                     case "String":
                         productDetailsSpecsName.setText(attribute.getName());
+                        //noinspection deprecation
                         productDetailsSpecsValue.setText(Html.fromHtml((String) attribute.getValue()));
                         addRow(productDetailsSpecsName, productDetailsSpecsValue);
                         break;

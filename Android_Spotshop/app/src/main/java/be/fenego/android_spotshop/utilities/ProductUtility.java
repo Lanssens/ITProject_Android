@@ -1,7 +1,9 @@
-package be.fenego.android_spotshop.general;
+package be.fenego.android_spotshop.utilities;
 
 
 import android.widget.Toast;
+
+import be.fenego.android_spotshop.callbacks.ProductCallback;
 import be.fenego.android_spotshop.models.ProductCollection;
 import be.fenego.android_spotshop.models.ProductDetails;
 import be.fenego.android_spotshop.services.ProductService;
@@ -15,7 +17,7 @@ import retrofit2.Response;
  */
 
 public class ProductUtility {
-    static ProductService productService = ProductService.retrofit.create(ProductService.class);
+    private static final ProductService productService = ProductService.retrofit.create(ProductService.class);
 
     public static void getProductDetails(final ProductCallback callback, String SKU){
         android.support.v4.app.Fragment f =(android.support.v4.app.Fragment) callback;

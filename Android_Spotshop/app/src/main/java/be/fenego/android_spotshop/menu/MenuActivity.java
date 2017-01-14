@@ -1,19 +1,15 @@
 package be.fenego.android_spotshop.menu;
 
 import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
@@ -26,19 +22,16 @@ import java.util.Queue;
 
 import be.fenego.android_spotshop.R;
 import be.fenego.android_spotshop.account.AccountActivity;
-import be.fenego.android_spotshop.general.LoginUtility;
+import be.fenego.android_spotshop.utilities.LoginUtility;
 //import be.fenego.android_spotshop.home.HomeActivity;
 import be.fenego.android_spotshop.home.HomeFragment;
-import be.fenego.android_spotshop.models.ProductDetails;
-import be.fenego.android_spotshop.productDetails.ProductDetailsFragment;
-import be.fenego.android_spotshop.signup.SignupActivity2;
-import be.fenego.android_spotshop.test.TestActivity;
 import be.fenego.android_spotshop.login.LoginActivity;
 
 /**
  * Created by Thijs on 12/22/2016.
  */
 
+@SuppressWarnings("DefaultFileTemplate")
 public class MenuActivity extends AppCompatActivity{
     private DrawerLayout mDrawer;
     private Toolbar toolbar;

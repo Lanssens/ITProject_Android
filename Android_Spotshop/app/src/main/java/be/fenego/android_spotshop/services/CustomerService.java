@@ -10,6 +10,7 @@ import retrofit2.http.POST;
  * Created by Thijs on 5/01/2017.
  */
 
+@SuppressWarnings("DefaultFileTemplate")
 public interface CustomerService {
     @GET("customers/-")
     Call<Customer> getUserInformation();

@@ -1,28 +1,26 @@
-package be.fenego.android_spotshop.general;
+package be.fenego.android_spotshop.utilities;
 
-import android.support.v4.app.Fragment;
 import android.util.Log;
 
 import java.util.List;
 
-import be.fenego.android_spotshop.models.Country;
+import be.fenego.android_spotshop.callbacks.CustomerCallback;
+import be.fenego.android_spotshop.callbacks.CustomerCreationCallback;
+import be.fenego.android_spotshop.callbacks.QuestionCallback;
 import be.fenego.android_spotshop.models.Customer;
-import be.fenego.android_spotshop.models.Question;
 import be.fenego.android_spotshop.models.QuestionWrapper;
-import be.fenego.android_spotshop.services.CountryService;
 import be.fenego.android_spotshop.services.CustomerService;
 import be.fenego.android_spotshop.services.SecurityService;
 import be.fenego.android_spotshop.services.ServiceGenerator;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.http.Body;
-import retrofit2.http.POST;
 
 /**
  * Created by Thijs on 6/01/2017.
  */
 
+@SuppressWarnings("DefaultFileTemplate")
 public class CustomerUtility {
     public static void createCustomer(final CustomerCreationCallback callback, final Customer customer) {
         CustomerService customerService =

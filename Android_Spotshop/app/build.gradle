@@ -1,11 +1,13 @@
 apply plugin: 'com.android.application'
 
+//noinspection GroovyMissingReturnStatement
 android {
     compileSdkVersion 24
     buildToolsVersion "24.0.2"
     defaultConfig {
         applicationId "be.fenego.android_spotshop"
         minSdkVersion 16
+        //noinspection OldTargetApi
         targetSdkVersion 24
         versionCode 1
         versionName "1.0"
@@ -41,9 +43,12 @@ dependencies {
     compile 'com.squareup.retrofit2:converter-gson:2.1.0'
 
 
+    //noinspection GradleDependency
     compile 'com.android.support:appcompat-v7:24.1.0'
     compile 'com.jakewharton:butterknife:8.4.0'
+    //noinspection GradleDependency
     compile 'com.android.support:design:24.1.0'
+    //noinspection GradleDependency
     compile 'com.android.support:support-v4:24.1.0'
     compile 'com.squareup.retrofit2:retrofit:2.1.0'
     compile 'com.squareup.retrofit2:converter-gson:2.1.0'

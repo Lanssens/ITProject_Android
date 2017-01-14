@@ -25,6 +25,7 @@ import retrofit2.Response;
 /**
  * Created by Thijs on 12/21/2016.
  */
+@SuppressWarnings("DefaultFileTemplate")
 public class TestActivity extends android.support.v4.app.Fragment {
 
     @Override

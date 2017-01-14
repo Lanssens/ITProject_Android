@@ -1,12 +1,13 @@
-package be.fenego.android_spotshop.general;
+package be.fenego.android_spotshop.utilities;
 import android.graphics.Bitmap;
 
 /**
  * Created by Nick on 12/01/2017.
  */
 
+@SuppressWarnings("DefaultFileTemplate")
 public class ImageUtility {
-    public static Bitmap scaleImageDown(Bitmap bitmap, int maxDimension){
+    public static Bitmap scaleImageDown(Bitmap bitmap, @SuppressWarnings("SameParameterValue") int maxDimension){
         int originalWidth = bitmap.getWidth();
         int originalHeight = bitmap.getHeight();
         int resizedWidth = maxDimension;

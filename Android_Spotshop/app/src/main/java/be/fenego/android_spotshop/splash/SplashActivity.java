@@ -17,6 +17,7 @@ import be.fenego.android_spotshop.menu.MenuActivity;
 /**
  * Created by Thijs on 12/21/2016.
  */
+@SuppressWarnings("DefaultFileTemplate")
 public class SplashActivity extends Activity {
 
     /** Duur van splashscreen in ms **/

@@ -9,7 +9,6 @@
     <string name="productdetailsDescription">Description:</string>
     <string name="productDetailsQuantity">Quantity:</string>
     <string name="productDetailsQuantityEditText">1</string>
-    <string name="productDetailsAddToCartButton">ADD TO CART</string>
     <string name="productDetailsSpecs">Specs: </string>
     <string name="app_name">Android_Spotshop</string>
     <string name="drawer_open">Open navigation drawer</string>
