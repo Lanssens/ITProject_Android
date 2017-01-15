@@ -1,4 +1,4 @@
-package be.fenego.android_spotshop.general;
+package be.fenego.android_spotshop.utilities;
 
 import android.text.InputFilter;
 import android.text.Spanned;
@@ -7,6 +7,7 @@ import android.text.Spanned;
  * Created by Thijs on 7/01/2017.
  */
 
+@SuppressWarnings("DefaultFileTemplate")
 public class InputFilterMinMax implements InputFilter {
 
     private int min, max;

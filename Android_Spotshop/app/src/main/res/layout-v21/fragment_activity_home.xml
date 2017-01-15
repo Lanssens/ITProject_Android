@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/fragment_activity_home"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="be.fenego.android_spotshop.test.TestActivity"
+    android:descendantFocusability="beforeDescendants"
+    android:focusableInTouchMode="true"
+    android:background="@color/colorWhite">
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:id="@+id/productListView"
+        android:layout_below="@+id/imagePickerButton"/>
+
+    <ImageButton
+        android:contentDescription="@string/homepage_zoek_image_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/ic_button_camera_white"
+        android:id="@+id/imagePickerButton"
+        android:layout_below="@+id/searchButton"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:backgroundTint="@color/colorPrimary"
+        style="@android:style/Widget.DeviceDefault.ImageButton"
+        tools:ignore="RtlHardcoded" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:text=""
+        android:id="@+id/searchEditText"
+        android:layout_alignParentTop="true"
+        android:drawableStart="@drawable/ic_button_search"
+        android:drawablePadding="10dp"
+        android:layout_toStartOf="@+id/searchButton"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        tools:ignore="RtlHardcoded" />
+
+    <ImageButton
+        android:contentDescription="@string/homepage_zoek_via_tekst_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/ic_button_search_white"
+        android:id="@+id/searchButton"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:backgroundTint="@color/colorPrimary"
+        style="@android:style/Widget.DeviceDefault.ImageButton"
+        tools:ignore="RtlHardcoded" />
+
+</RelativeLayout>

@@ -12,8 +12,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import be.fenego.android_spotshop.R;
-import be.fenego.android_spotshop.general.CustomerCallback;
-import be.fenego.android_spotshop.general.CustomerUtility;
+import be.fenego.android_spotshop.callbacks.CustomerCallback;
+import be.fenego.android_spotshop.utilities.CustomerUtility;
 import be.fenego.android_spotshop.models.Customer;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -23,6 +23,7 @@ import butterknife.OnClick;
 /**
  * Created by Thijs on 12/21/2016.
  */
+@SuppressWarnings("DefaultFileTemplate")
 public class AccountActivity extends android.support.v4.app.Fragment implements CustomerCallback {
 
 

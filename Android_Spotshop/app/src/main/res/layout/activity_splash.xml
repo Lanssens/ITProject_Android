@@ -5,6 +5,7 @@
     android:gravity="center">
 
     <ImageView
+        android:contentDescription="@string/splashscreen_image"
         android:id="@+id/imageView"
         android:src="@drawable/launch_screen"
         android:layout_width="fill_parent"

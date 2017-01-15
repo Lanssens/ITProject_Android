@@ -16,6 +16,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * Created by Thijs on 3/01/2017.
  */
 
+@SuppressWarnings("DefaultFileTemplate")
 public class ServiceGenerator {
 
     public static final String API_BASE_URL = "https://axesso.fenego.zone/INTERSHOP/rest/WFS/inSPIRED-inTRONICS-Site/-/";

@@ -18,8 +18,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import be.fenego.android_spotshop.R;
-import be.fenego.android_spotshop.general.CustomerUtility;
-import be.fenego.android_spotshop.general.QuestionCallback;
+import be.fenego.android_spotshop.utilities.CustomerUtility;
+import be.fenego.android_spotshop.callbacks.QuestionCallback;
 import be.fenego.android_spotshop.models.Question;
 import butterknife.OnTextChanged;
 import butterknife.*;
@@ -28,6 +28,7 @@ import butterknife.*;
  * Created by Thijs on 02/01/2017.
  */
 
+@SuppressWarnings("DefaultFileTemplate")
 public class SignupActivity extends android.support.v4.app.Fragment implements QuestionCallback {
 
 
