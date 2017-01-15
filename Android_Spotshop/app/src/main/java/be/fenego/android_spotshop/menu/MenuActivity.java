@@ -105,7 +105,7 @@ public class MenuActivity extends AppCompatActivity  {
 
         if (nvDrawer != null) {
             nvDrawer.getMenu().findItem(R.id.nav_fourth_fragment).setVisible(loggedIn);
-            nvDrawer.getMenu().findItem(R.id.nav_fifth_fragment).setVisible(loggedIn);
+            //nvDrawer.getMenu().findItem(R.id.nav_fifth_fragment).setVisible(loggedIn);
             nvDrawer.getMenu().findItem(R.id.nav_sixth_fragment).setVisible(loggedIn);
             nvDrawer.getMenu().findItem(R.id.nav_seventh_fragment).setVisible(!loggedIn);
         }

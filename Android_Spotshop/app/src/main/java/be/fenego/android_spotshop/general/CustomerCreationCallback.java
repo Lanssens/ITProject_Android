@@ -6,5 +6,5 @@ package be.fenego.android_spotshop.general;
 
 public interface CustomerCreationCallback {
     void onSuccessCreationCustomer();
-    void onError();
+    void onErrorCreationCustomer();
 }

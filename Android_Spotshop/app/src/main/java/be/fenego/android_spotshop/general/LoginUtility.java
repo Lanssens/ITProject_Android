@@ -14,6 +14,7 @@ import be.fenego.android_spotshop.services.ServiceGenerator;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.http.Headers;
 
 /**
  * Created by Thijs on 3/01/2017.
@@ -79,10 +80,20 @@ public class LoginUtility {
                     // User object available
 
                     System.out.println(response.headers().toString());
+                    System.out.println("----");
                     System.out.println(response.raw().headers().toString());
+                    System.out.println("----");
                     System.out.println(response.raw().code());
-
+                    System.out.println("----");
                     System.out.println(response.message());
+                    System.out.println("----");
+                    System.out.println(response.headers());
+                    System.out.println("----");
+                    System.out.println(response.message());
+                    System.out.println("----");
+                    for(int i = 0; i < response.headers().size(); i++){
+                        System.out.println(response.headers().value(i));
+                    }
                     removeUserCredentials();
                     storeUserCredentials(username, password);
 

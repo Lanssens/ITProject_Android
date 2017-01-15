@@ -56,12 +56,66 @@ public class AccountDetailFragment extends android.support.v4.app.Fragment imple
     @OnClick(R.id.account_detail_btn_save)
     public void saveButton(Button view) {
         if(validate()){
-
+            
         }
     }
 
     private boolean validate() {
-        return true;
+        boolean valid = true;
+
+        String firstname = _firstName.getText().toString();
+        String lastname = _lastName.getText().toString();
+        String phone = _phone.getText().toString();
+        String postal = _postal.getText().toString();
+        String city = _city.getText().toString();
+        String address = _street.getText().toString();
+
+
+        //Check the rest
+        if (firstname.isEmpty() || firstname.length() < 1 || firstname.length() > 20) {
+            _firstName.setError("Cannot be empty");
+            valid = false;
+        } else {
+            _firstName.setError(null);
+        }
+
+        if (lastname.isEmpty() || lastname.length() < 1 || lastname.length() > 20) {
+            _lastName.setError("Cannot be empty");
+            valid = false;
+        } else {
+            _lastName.setError(null);
+        }
+
+        if (phone.isEmpty() || phone.length() < 1 || phone.length() > 20) {
+            _phone.setError("Cannot be empty");
+            valid = false;
+        } else {
+            _phone.setError(null);
+        }
+
+        if (address.isEmpty() || address.length() < 1 || address.length() > 20) {
+            _street.setError("Cannot be empty");
+            valid = false;
+        } else {
+            _street.setError(null);
+        }
+
+        if (postal.isEmpty() || postal.length() < 1 || postal.length() > 20) {
+            _postal.setError("Cannot be empty");
+            valid = false;
+        } else {
+            _postal.setError(null);
+        }
+
+        if (city.isEmpty() || city.length() < 1 || city.length() > 20) {
+            _city.setError("Cannot be empty");
+            valid = false;
+        } else {
+            _city.setError(null);
+        }
+
+
+        return valid;
     }
 
     @Override
@@ -130,14 +184,14 @@ public class AccountDetailFragment extends android.support.v4.app.Fragment imple
 
     @Override
     public void onSuccessString(String text) {
-        Toast.makeText(getActivity(), "textyes", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getActivity(), "textyes", Toast.LENGTH_SHORT).show();
         CustomerUtility.getCustomerAddress(this, text);
 
     }
 
     @Override
     public void onErrorString() {
-        Toast.makeText(getActivity(), "textno", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getActivity(), "textno", Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -162,6 +216,6 @@ public class AccountDetailFragment extends android.support.v4.app.Fragment imple
 
     @Override
     public void onAddressError() {
-        Toast.makeText(getActivity(), "addressno", Toast.LENGTH_SHORT).show();
+       // Toast.makeText(getActivity(), "addressno", Toast.LENGTH_SHORT).show();
     }
 }

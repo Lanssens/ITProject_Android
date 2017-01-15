@@ -123,8 +123,9 @@ public class CustomerUtility {
 
                 } else {
 
-
-                    callback.onError();
+                    System.out.println(response.errorBody().toString());
+                    System.out.println(response.raw());
+                    callback.onErrorCreationCustomer();
                 }
             }
 

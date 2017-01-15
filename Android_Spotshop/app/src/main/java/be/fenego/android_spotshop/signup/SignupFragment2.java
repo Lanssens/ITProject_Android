@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.text.InputFilter;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -168,7 +169,7 @@ public class SignupFragment2 extends android.support.v4.app.Fragment implements 
             postDate = _yearText.getText().toString() + "-" + month + "-" +  _dayText.getText().toString();
             postFirstname = _firstnameText.getText().toString();
             postLastname = _lastnameText.getText().toString();
-            postPhone = _postalcodeText.getText().toString();
+            postPhone = _phoneText.getText().toString();
             postCountry = spinnerCountry.getSelectedItem().toString();
             postAddress = _addressText.getText().toString();
             postPostal = _postalcodeText.getText().toString();
@@ -185,31 +186,50 @@ public class SignupFragment2 extends android.support.v4.app.Fragment implements 
 
             Credentials creds = new Credentials();
             creds.setLogin(postEmail);
+            Log.v("test", postEmail);
             creds.setPassword(postPassword);
+            Log.v("test", postPassword);
             creds.setSecurityQuestion(postQuestion);
+            Log.v("test", postQuestion);
             creds.setSecurityQuestionAnswer(postAnswer);
+            Log.v("test", postAnswer);
 
             Address add = new Address();
             add.setAddressName("FirstAddress");
             add.setEmail(postEmail);
+            Log.v("test", postEmail);
             add.setFirstName(postFirstname);
+            Log.v("test", postFirstname);
             add.setLastName(postLastname);
+            Log.v("test", postLastname);
             add.setCountryCode(postCountrycode);
+            Log.v("test", postCountrycode);
             add.setPostalCode(postPostal);
+            Log.v("test", postPostal);
             add.setCity(postCity);
+            Log.v("test", postCity);
             add.setStreet(postAddress);
+            Log.v("test", postAddress);
 
             Customer customer = new Customer();
             customer.setCustomerNo(UUID.randomUUID().toString());
             customer.setTitle("Mr");
             customer.setFirstName(postFirstname);
+            Log.v("test", postFirstname);
             customer.setLastName(postLastname);
+            Log.v("test", postLastname);
             customer.setBirthday(postDate);
+            Log.v("test", postDate);
             customer.setPhoneHome(postPhone);
+            Log.v("test", postPhone);
             customer.setPhoneMobile(postPhone);
+            Log.v("test", postPhone);
             customer.setFax(postPhone);
+            Log.v("test", postPhone);
             customer.setEmail(postEmail);
+            Log.v("test", postEmail);
             customer.setPreferredLanguage("de_DE");
+
 
             customer.setCredentials(creds);
             customer.setAddress(add);
@@ -414,7 +434,8 @@ public class SignupFragment2 extends android.support.v4.app.Fragment implements 
     }
 
     @Override
-    public void onError() {
+    public void onErrorCreationCustomer() {
         Toast.makeText(getActivity(), "Email is already in use, choose a different one", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getActivity(), "Something went wrong", Toast.LENGTH_SHORT).show();
     }
 }
