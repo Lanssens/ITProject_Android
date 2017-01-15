@@ -28,6 +28,10 @@ public class CustomerFew {
     @SerializedName("preferredLanguage")
     @Expose
     private String preferredLanguage;
+    @SerializedName("phoneMobile")
+    @Expose
+    private String phoneMobile;
+
 
     public String getCustomerNo() {
         return customerNo;
@@ -59,6 +63,14 @@ public class CustomerFew {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getPhoneMobile() {
+        return phoneMobile;
+    }
+
+    public void setPhoneMobile(String email) {
+        this.phoneMobile = phoneMobile;
     }
 
     public String getPreferredLanguage() {

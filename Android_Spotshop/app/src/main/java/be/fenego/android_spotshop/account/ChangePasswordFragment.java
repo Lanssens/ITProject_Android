@@ -79,7 +79,7 @@ public class ChangePasswordFragment extends android.support.v4.app.Fragment impl
 
     @Override
     public void onSuccess() {
-        Toast.makeText(getActivity(), "PasswordChange changed", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getActivity(), "Password changed", Toast.LENGTH_SHORT).show();
 
         Fragment newFragment = new AccountFragment();
         FragmentTransaction transaction = getFragmentManager().beginTransaction();

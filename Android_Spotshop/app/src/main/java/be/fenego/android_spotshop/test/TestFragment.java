@@ -12,6 +12,10 @@ import android.widget.Toast;
 import java.util.UUID;
 
 import be.fenego.android_spotshop.R;
+import be.fenego.android_spotshop.general.AddressCallback;
+import be.fenego.android_spotshop.general.CustomerCallback;
+import be.fenego.android_spotshop.general.CustomerUtility;
+import be.fenego.android_spotshop.general.StringCallback;
 import be.fenego.android_spotshop.login.LoginFragment;
 import be.fenego.android_spotshop.models.Address;
 import be.fenego.android_spotshop.models.Credentials;
@@ -25,7 +29,7 @@ import retrofit2.Response;
 /**
  * Created by Thijs on 12/21/2016.
  */
-public class TestFragment extends android.support.v4.app.Fragment {
+public class TestFragment extends android.support.v4.app.Fragment implements StringCallback, AddressCallback{
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -33,13 +37,15 @@ public class TestFragment extends android.support.v4.app.Fragment {
         View fragmentView = inflater.inflate(R.layout.fragment_activity_home, container, false);
         //testPostCustomer();
 
+        //CustomerUtility.getCustomerAddressUri( this);
+
         return fragmentView;
     }
 
     public void testPostCustomer(){
         Credentials creds = new Credentials();
-        creds.setLogin("aaaeee6565@gmail.com");
-        creds.setPassword("Testie123");
+        creds.setLogin("Siep2@gmail.com");
+        creds.setPassword("SiepSiep2");
         creds.setSecurityQuestion("What is");
         creds.setSecurityQuestionAnswer("Test123");
 
@@ -105,5 +111,28 @@ public class TestFragment extends android.support.v4.app.Fragment {
                 Log.d("Error", t.getMessage());
             }
         });
+    }
+
+
+
+    @Override
+    public void onSuccessString(String text) {
+        Toast.makeText(getActivity(), "textyes", Toast.LENGTH_SHORT).show();
+        CustomerUtility.getCustomerAddress(this, text);
+    }
+
+    @Override
+    public void onErrorString() {
+        Toast.makeText(getActivity(), "textno", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onSuccessAddress(Address address) {
+        Toast.makeText(getActivity(), "addressyes", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onAddressError() {
+        Toast.makeText(getActivity(), "addressno", Toast.LENGTH_SHORT).show();
     }
 }

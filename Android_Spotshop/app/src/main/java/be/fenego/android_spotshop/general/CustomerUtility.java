@@ -4,6 +4,8 @@ import android.util.Log;
 
 import java.util.List;
 
+import be.fenego.android_spotshop.models.Address;
+import be.fenego.android_spotshop.models.Addresses;
 import be.fenego.android_spotshop.models.Customer;
 import be.fenego.android_spotshop.models.CustomerFew;
 import be.fenego.android_spotshop.models.PasswordChange;
@@ -177,6 +179,73 @@ public class CustomerUtility {
 
             @Override
             public void onFailure(Call<Customer> call, Throwable t) {
+                // Something went seriously wrong
+                Log.d("Error", t.getMessage());
+            }
+        });
+        return false;
+    }
+
+    public static boolean getCustomerAddressUri(final StringCallback callback) {
+
+        List<String> data = LoginUtility.retrieveUserCredentials();
+
+        CustomerService customerService =
+                ServiceGenerator.createService(CustomerService.class, data.get(0), data.get(1));
+        Call<Addresses> call = customerService.getCustomerAddresses();
+
+        call.enqueue(new Callback<Addresses>() {
+            @Override
+            public void onResponse(Call<Addresses> call, Response<Addresses> response) {
+
+                if (response.isSuccessful()) {
+
+
+                    String uri = response.body().getElements().get(0).getUri().split("Site/-/customers/-/addresses/")[1];
+                    //getCustomerAddressUri(callback, uri);
+                    System.out.println(uri);
+                    callback.onSuccessString(uri);
+
+                } else {
+                    callback.onErrorString();
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Addresses> call, Throwable t) {
+                // Something went seriously wrong
+                Log.d("Error", t.getMessage());
+            }
+        });
+        return false;
+    }
+
+    public static boolean getCustomerAddress(final AddressCallback callback, final String uri) {
+
+        List<String> data = LoginUtility.retrieveUserCredentials();
+
+        CustomerService customerService =
+                ServiceGenerator.createService(CustomerService.class, data.get(0), data.get(1));
+        Call<Address> call = customerService.getCustomerAddress(uri);
+
+        call.enqueue(new Callback<Address>() {
+            @Override
+            public void onResponse(Call<Address> call, Response<Address> response) {
+
+                if (response.isSuccessful()) {
+                    System.out.println(response.body().getStreet());
+                    callback.onSuccessAddress(response.body());
+
+
+                } else {
+                    callback.onAddressError();
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Address> call, Throwable t) {
                 // Something went seriously wrong
                 Log.d("Error", t.getMessage());
             }

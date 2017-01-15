@@ -29,6 +29,7 @@ import be.fenego.android_spotshop.general.LoginUtility;
 import be.fenego.android_spotshop.home.HomeFragment;
 import be.fenego.android_spotshop.login.LoginFragment;
 import be.fenego.android_spotshop.signup.SignupFragment2;
+import be.fenego.android_spotshop.test.TestFragment;
 
 /**
  * Created by Thijs on 12/22/2016.
@@ -60,13 +61,11 @@ public class MenuActivity extends AppCompatActivity  {
 
         setupDrawerContent(nvDrawer);
 
-        loadFragmentInContainer(AccountDetailFragment.class);
+        loadFragmentInContainer(HomeFragment.class);
 
         //Fix the login logic of the application
         LoginUtility.setCurrentAct(this);
         changePersonalTabInMenu(LoginUtility.isUserLoggedIn());
-
-
 
     }
 
@@ -187,7 +186,7 @@ public class MenuActivity extends AppCompatActivity  {
                 fragmentClass = HomeFragment.class;
                 break;
             case R.id.nav_third_fragment:
-                fragmentClass = HomeFragment.class;
+                fragmentClass = TestFragment.class;
                 break;
             case R.id.nav_fourth_fragment:
                 fragmentClass = AccountFragment.class;

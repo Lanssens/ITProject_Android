@@ -48,6 +48,7 @@ public class ChangeEmailFragment extends android.support.v4.app.Fragment impleme
                 newCustomer.setPreferredLanguage("de_DE");
                 newCustomer.setFirstName(customer.getFirstName());
                 newCustomer.setLastName(customer.getLastName());
+                newCustomer.setPhoneMobile(customer.getPhoneMobile());
                 newCustomer.setEmail(_emailText1.getText().toString());
                 CustomerUtility.updateCustomer(this, newCustomer);
             }
@@ -98,7 +99,7 @@ public class ChangeEmailFragment extends android.support.v4.app.Fragment impleme
     }
     @Override
     public void onSuccess() {
-        Toast.makeText(getActivity(), "Password changed", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getActivity(), "Email Changed", Toast.LENGTH_SHORT).show();
 
         LoginUtility.removeUserCredentials();
         Fragment newFragment = new LoginFragment();

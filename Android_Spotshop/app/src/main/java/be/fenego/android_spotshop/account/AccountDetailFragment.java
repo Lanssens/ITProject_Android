@@ -1,19 +1,27 @@
 package be.fenego.android_spotshop.account;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import be.fenego.android_spotshop.R;
+import be.fenego.android_spotshop.general.AddressCallback;
 import be.fenego.android_spotshop.general.CountryCallback;
+import be.fenego.android_spotshop.general.CountryUtility;
 import be.fenego.android_spotshop.general.CustomerCallback;
 import be.fenego.android_spotshop.general.CustomerUtility;
+import be.fenego.android_spotshop.general.StringCallback;
+import be.fenego.android_spotshop.models.Address;
 import be.fenego.android_spotshop.models.Country;
 import be.fenego.android_spotshop.models.Customer;
 import butterknife.BindView;
@@ -24,7 +32,7 @@ import butterknife.OnClick;
  * Created by Thijs on 1/13/2017.
  */
 
-public class AccountDetailFragment extends android.support.v4.app.Fragment implements CountryCallback, CustomerCallback {
+public class AccountDetailFragment extends android.support.v4.app.Fragment implements CountryCallback, CustomerCallback ,StringCallback, AddressCallback {
 
     @BindView(R.id.account_detail_firstname)
     EditText _firstName;
@@ -40,7 +48,10 @@ public class AccountDetailFragment extends android.support.v4.app.Fragment imple
     EditText _city;
     @BindView(R.id.account_detail_street)
     EditText _street;
-    
+
+    private ProgressDialog progress;
+
+    private List<Country> allCountries;
 
     @OnClick(R.id.account_detail_btn_save)
     public void saveButton(Button view) {
@@ -59,16 +70,41 @@ public class AccountDetailFragment extends android.support.v4.app.Fragment imple
         View fragmentView = inflater.inflate(R.layout.fragment_activity_accountdetails, container, false);
         ButterKnife.bind(this, fragmentView);
 
-        getActivity().setTitle("Account Detail");
+
+        progress = new ProgressDialog(getActivity());
+        progress.setTitle("Loading");
+        progress.setMessage("Loading data...");
+        progress.setCancelable(false); // disable dismiss by tapping outside of the dialog
+        progress.show();
 
         CustomerUtility.getCustomerData(this);
+
+        CountryUtility.getAllCountries(this);
+        getActivity().setTitle("Account Detail");
+
+
 
         return fragmentView;
     }
 
+    Spinner spinnerCountries;
     @Override
     public void onSuccessCountry(List<Country> countries) {
+        allCountries = countries;
+        List<String> spinnerArrayCountries = new ArrayList<String>();
 
+
+        for (Country country : allCountries) {
+            spinnerArrayCountries.add(country.getName());
+
+        }
+        spinnerCountries = (Spinner) getView().findViewById(R.id.account_detail_countries);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), R.layout.signup_spinner_item, spinnerArrayCountries);
+        spinnerCountries.setAdapter(adapter); // this will set list of values to spinner
+
+        spinnerCountries.setSelection(0);//set selected value in spinner
+
+        CustomerUtility.getCustomerAddressUri( this);
     }
 
     @Override
@@ -83,11 +119,49 @@ public class AccountDetailFragment extends android.support.v4.app.Fragment imple
 
         _phone.setText(customer.getPhoneMobile());
         //_countries.setText(customer.getFirstName());
+       // Toast.makeText(getActivity(), customer.getAddress().getStreet(), Toast.LENGTH_SHORT).show();
 
     }
 
     @Override
     public void onError() {
 
+    }
+
+    @Override
+    public void onSuccessString(String text) {
+        Toast.makeText(getActivity(), "textyes", Toast.LENGTH_SHORT).show();
+        CustomerUtility.getCustomerAddress(this, text);
+
+    }
+
+    @Override
+    public void onErrorString() {
+        Toast.makeText(getActivity(), "textno", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onSuccessAddress(Address address) {
+        Toast.makeText(getActivity(), address.getCountryCode(), Toast.LENGTH_SHORT).show();
+        _postal.setText(address.getPostalCode());
+        _city.setText(address.getCity());
+        _street.setText(address.getStreet());
+
+        int selectionNumber = 0;
+        for(int i = 0; i < allCountries.size(); i++){
+            if(allCountries.get(i).getAlpha2Code().equals(address.getCountryCode())){
+                selectionNumber=i;
+            }
+
+        }
+        spinnerCountries.setSelection(selectionNumber);
+
+        progress.dismiss();
+
+    }
+
+    @Override
+    public void onAddressError() {
+        Toast.makeText(getActivity(), "addressno", Toast.LENGTH_SHORT).show();
     }
 }

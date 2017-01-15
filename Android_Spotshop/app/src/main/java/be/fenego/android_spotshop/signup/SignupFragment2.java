@@ -217,7 +217,6 @@ public class SignupFragment2 extends android.support.v4.app.Fragment implements 
 
 
             CustomerUtility.createCustomer(this, customer);
-
         }else{
             Toast.makeText(getActivity(), "Fill in the field correctly", Toast.LENGTH_SHORT).show();
         }

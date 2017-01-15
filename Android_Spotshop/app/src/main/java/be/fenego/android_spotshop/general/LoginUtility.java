@@ -83,6 +83,7 @@ public class LoginUtility {
                     System.out.println(response.raw().code());
 
                     System.out.println(response.message());
+                    removeUserCredentials();
                     storeUserCredentials(username, password);
 
                     //Get all headers
