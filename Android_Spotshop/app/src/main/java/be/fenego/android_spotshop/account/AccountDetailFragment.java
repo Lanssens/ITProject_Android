@@ -20,6 +20,7 @@ import be.fenego.android_spotshop.general.CountryCallback;
 import be.fenego.android_spotshop.general.CountryUtility;
 import be.fenego.android_spotshop.general.CustomerCallback;
 import be.fenego.android_spotshop.general.CustomerUtility;
+import be.fenego.android_spotshop.general.GeneralCallback;
 import be.fenego.android_spotshop.general.StringCallback;
 import be.fenego.android_spotshop.models.Address;
 import be.fenego.android_spotshop.models.Country;
@@ -32,7 +33,7 @@ import butterknife.OnClick;
  * Created by Thijs on 1/13/2017.
  */
 
-public class AccountDetailFragment extends android.support.v4.app.Fragment implements CountryCallback, CustomerCallback ,StringCallback, AddressCallback {
+public class AccountDetailFragment extends android.support.v4.app.Fragment implements CountryCallback, CustomerCallback ,StringCallback, AddressCallback, GeneralCallback{
 
     @BindView(R.id.account_detail_firstname)
     EditText _firstName;
@@ -56,7 +57,19 @@ public class AccountDetailFragment extends android.support.v4.app.Fragment imple
     @OnClick(R.id.account_detail_btn_save)
     public void saveButton(Button view) {
         if(validate()){
-            
+            customer.setFirstName(_firstName.getText().toString());
+            customer.setLastName(_lastName.getText().toString());
+            customer.setPhoneMobile(_phone.getText().toString());
+
+            CustomerUtility.updateCustomerFull(this, customer);
+
+            address.setStreet(_street.getText().toString());
+            address.setPostalCode(_postal.getText().toString());
+            address.setCity(_city.getText().toString());
+            address.setCountryCode(spinnerCountries.getSelectedItem().toString());
+
+            CustomerUtility.updateCustomerAddress(this, uri, address);
+
         }
     }
 
@@ -166,14 +179,23 @@ public class AccountDetailFragment extends android.support.v4.app.Fragment imple
 
     }
 
+    private Customer customer;
     @Override
     public void onSuccessCustomer(Customer customer) {
+        this.customer = customer;
         _firstName.setText(customer.getFirstName());
         _lastName.setText(customer.getLastName());
 
         _phone.setText(customer.getPhoneMobile());
+
+
         //_countries.setText(customer.getFirstName());
        // Toast.makeText(getActivity(), customer.getAddress().getStreet(), Toast.LENGTH_SHORT).show();
+
+    }
+
+    @Override
+    public void onSuccess() {
 
     }
 
@@ -182,8 +204,10 @@ public class AccountDetailFragment extends android.support.v4.app.Fragment imple
 
     }
 
+    private String uri;
     @Override
     public void onSuccessString(String text) {
+        this.uri = text;
         //Toast.makeText(getActivity(), "textyes", Toast.LENGTH_SHORT).show();
         CustomerUtility.getCustomerAddress(this, text);
 
@@ -194,8 +218,10 @@ public class AccountDetailFragment extends android.support.v4.app.Fragment imple
         //Toast.makeText(getActivity(), "textno", Toast.LENGTH_SHORT).show();
     }
 
+    private Address address;
     @Override
     public void onSuccessAddress(Address address) {
+        this.address = address;
         Toast.makeText(getActivity(), address.getCountryCode(), Toast.LENGTH_SHORT).show();
         _postal.setText(address.getPostalCode());
         _city.setText(address.getCity());

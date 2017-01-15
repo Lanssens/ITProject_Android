@@ -22,20 +22,54 @@ import retrofit2.Response;
  */
 
 public class CustomerUtility {
-    public static void updateCustomer(final GeneralCallback callback, final CustomerFew customer) {
+    public static void updateCustomerFew(final GeneralCallback callback, final CustomerFew customer) {
         final List<String> data = LoginUtility.retrieveUserCredentials();
 
         CustomerService customerService =
                 ServiceGenerator.createService(CustomerService.class, data.get(0), data.get(1));
-        Call<Customer> call = customerService.updateCustomer(customer);
+        Call<CustomerFew> call = customerService.updateCustomer(customer);
+
+        call.enqueue(new Callback<CustomerFew>() {
+            @Override
+            public void onResponse(Call<CustomerFew> call, Response<CustomerFew> response) {
+
+                if (response.isSuccessful()) {
+
+                    //LoginUtility.storeUserCredentials(customer.getCredentials().getLogin(), data.get(1));
+                    callback.onSuccess();
+
+                } else {
+                    System.out.println(response.errorBody().toString());
+                    System.out.println(response.code());
+                    System.out.println(response.raw().toString());
+                    callback.onError();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<CustomerFew> call, Throwable t) {
+                // Something went seriously wrong
+                Log.d("Error", t.getMessage());
+            }
+        });
+    }
+
+
+
+    public static void updateCustomerFull(final GeneralCallback callback, final Customer customer) {
+        final List<String> data = LoginUtility.retrieveUserCredentials();
+
+        CustomerService customerService =
+                ServiceGenerator.createService(CustomerService.class, data.get(0), data.get(1));
+        Call<Customer> call = customerService.updateCustomerFully(customer);
 
         call.enqueue(new Callback<Customer>() {
             @Override
             public void onResponse(Call<Customer> call, Response<Customer> response) {
 
                 if (response.isSuccessful()) {
-
-                    //LoginUtility.storeUserCredentials(customer.getCredentials().getLogin(), data.get(1));
+                    System.out.println("Worked!");
+                    //
                     callback.onSuccess();
 
                 } else {
@@ -241,6 +275,36 @@ public class CustomerUtility {
 
                 } else {
                     callback.onAddressError();
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Address> call, Throwable t) {
+                // Something went seriously wrong
+                Log.d("Error", t.getMessage());
+            }
+        });
+        return false;
+    }
+
+    public static boolean updateCustomerAddress(final GeneralCallback callback, final String uri, Address address) {
+
+        List<String> data = LoginUtility.retrieveUserCredentials();
+
+        CustomerService customerService =
+                ServiceGenerator.createService(CustomerService.class, data.get(0), data.get(1));
+        Call<Address> call = customerService.putCustomerAddress(uri, address);
+
+        call.enqueue(new Callback<Address>() {
+            @Override
+            public void onResponse(Call<Address> call, Response<Address> response) {
+
+                if (response.isSuccessful()) {
+                    System.out.println(response.body().getStreet());
+
+
+                } else {
 
                 }
             }

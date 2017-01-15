@@ -43,14 +43,18 @@ public class ChangeEmailFragment extends android.support.v4.app.Fragment impleme
     public void saveButton(Button view) {
         if(validate()){
             if(!customer.equals(null)){
-                newCustomer = new CustomerFew();
+               /* newCustomer = new CustomerFew();
                 newCustomer.setCustomerNo(UUID.randomUUID().toString());
                 newCustomer.setPreferredLanguage("de_DE");
                 newCustomer.setFirstName(customer.getFirstName());
                 newCustomer.setLastName(customer.getLastName());
                 newCustomer.setPhoneMobile(customer.getPhoneMobile());
                 newCustomer.setEmail(_emailText1.getText().toString());
-                CustomerUtility.updateCustomer(this, newCustomer);
+                CustomerUtility.updateCustomerFew(this, newCustomer);*/
+
+                customer.setEmail(_emailText1.getText().toString());
+                CustomerUtility.updateCustomerFull(this, customer);
+
             }
 
 

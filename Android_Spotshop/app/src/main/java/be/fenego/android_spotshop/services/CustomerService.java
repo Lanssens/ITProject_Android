@@ -24,7 +24,10 @@ public interface CustomerService {
     Call<Customer> createCustomer(@Body Customer customer);
 
     @PUT("customers/-")
-    Call<Customer> updateCustomer(@Body CustomerFew customer);
+    Call<CustomerFew> updateCustomer(@Body CustomerFew customer);
+
+    @PUT("customers/-")
+    Call<Customer> updateCustomerFully(@Body Customer customer);
 
     @PUT("customers/-/credentials/password")
     Call<Customer> updatePassword(@Body PasswordChange password);
@@ -35,6 +38,9 @@ public interface CustomerService {
 
     @GET("customers/-/addresses/{address-id}")
     Call<Address> getCustomerAddress(@Path("address-id") String addressId);
+
+    @PUT("customers/-/addresses/{address-id}")
+    Call<Address> putCustomerAddress(@Path("address-id") String addressId, @Body Address address);
 
 
 
