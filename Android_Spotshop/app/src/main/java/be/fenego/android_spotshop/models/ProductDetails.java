@@ -63,11 +63,9 @@ public class ProductDetails implements Serializable {
         return attributes;
     }
 
-// --Commented out by Inspection START (14/01/2017 16:28):
-//    public void setAttributes(List<Attribute> attributes) {
-//        this.attributes = attributes;
-//    }
-// --Commented out by Inspection STOP (14/01/2017 16:28)
+    public void setAttributes(List<Attribute> attributes) {
+        this.attributes = attributes;
+    }
 
 // --Commented out by Inspection START (14/01/2017 16:28):
 //    public String getSku() {
@@ -85,11 +83,9 @@ public class ProductDetails implements Serializable {
         return productName;
     }
 
-// --Commented out by Inspection START (14/01/2017 16:28):
-//    public void setProductName(String productName) {
-//        this.productName = productName;
-//    }
-// --Commented out by Inspection STOP (14/01/2017 16:28)
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
 
 // --Commented out by Inspection START (14/01/2017 16:28):
 //    public String getShortDescription() {
@@ -107,21 +103,17 @@ public class ProductDetails implements Serializable {
         return longDescription;
     }
 
-// --Commented out by Inspection START (14/01/2017 16:28):
-//    public void setLongDescription(String longDescription) {
-//        this.longDescription = longDescription;
-//    }
-// --Commented out by Inspection STOP (14/01/2017 16:28)
+    public void setLongDescription(String longDescription) {
+        this.longDescription = longDescription;
+    }
 
     public Boolean getAvailability() {
         return availability;
     }
 
-// --Commented out by Inspection START (14/01/2017 16:28):
-//    public void setAvailability(Boolean availability) {
-//        this.availability = availability;
-//    }
-// --Commented out by Inspection STOP (14/01/2017 16:28)
+    public void setAvailability(Boolean availability) {
+        this.availability = availability;
+    }
 
 // --Commented out by Inspection START (14/01/2017 16:28):
 //    public Boolean getRetailSet() {
@@ -175,11 +167,9 @@ public class ProductDetails implements Serializable {
         return roundedAverageRating;
     }
 
-// --Commented out by Inspection START (14/01/2017 16:28):
-//    public void setRoundedAverageRating(String roundedAverageRating) {
-//        this.roundedAverageRating = roundedAverageRating;
-//    }
-// --Commented out by Inspection STOP (14/01/2017 16:28)
+    public void setRoundedAverageRating(String roundedAverageRating) {
+        this.roundedAverageRating = roundedAverageRating;
+    }
 
 // --Commented out by Inspection START (14/01/2017 16:28):
 //    public Integer getReadyForShipmentMin() {
@@ -253,11 +243,9 @@ public class ProductDetails implements Serializable {
         return salePrice;
     }
 
-// --Commented out by Inspection START (14/01/2017 16:28):
-//    public void setSalePrice(SalePrice salePrice) {
-//        this.salePrice = salePrice;
-//    }
-// --Commented out by Inspection STOP (14/01/2017 16:28)
+    public void setSalePrice(SalePrice salePrice) {
+        this.salePrice = salePrice;
+    }
 
 // --Commented out by Inspection START (14/01/2017 16:28):
 //    public List<ShippingMethod> getShippingMethods() {

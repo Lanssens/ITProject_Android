@@ -19,11 +19,9 @@ public class SalePrice implements Serializable{
         this.currencyMnemonic = currencyMnemonic;
     }
 
-// --Commented out by Inspection START (14/01/2017 16:29):
-//    public String getCurrencyMnemonic() {
-//        return currencyMnemonic;
-//    }
-// --Commented out by Inspection STOP (14/01/2017 16:29)
+    public String getCurrencyMnemonic() {
+        return currencyMnemonic;
+    }
 
 // --Commented out by Inspection START (14/01/2017 16:29):
 //    public void setCurrencyMnemonic(String currencyMnemonic) {
@@ -41,11 +39,9 @@ public class SalePrice implements Serializable{
 //    }
 // --Commented out by Inspection STOP (14/01/2017 16:29)
 
-// --Commented out by Inspection START (14/01/2017 16:29):
-//    public String getType() {
-//        return type;
-//    }
-// --Commented out by Inspection STOP (14/01/2017 16:29)
+    public String getType() {
+        return type;
+    }
 
 // --Commented out by Inspection START (14/01/2017 16:29):
 //    public void setType(String type) {

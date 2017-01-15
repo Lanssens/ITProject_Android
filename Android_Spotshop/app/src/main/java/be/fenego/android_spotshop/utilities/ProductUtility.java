@@ -103,5 +103,4 @@ public class ProductUtility {
             Toast.makeText(f.getContext(),"Could not get products from database!",Toast.LENGTH_SHORT).show();
         }
     }
-
 }
