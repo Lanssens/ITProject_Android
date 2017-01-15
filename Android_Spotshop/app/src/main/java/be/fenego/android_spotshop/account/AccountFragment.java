@@ -4,6 +4,7 @@ package be.fenego.android_spotshop.account;
  * Created by Thijs on 1/11/2017.
  */
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -54,9 +55,14 @@ public class AccountFragment extends android.support.v4.app.Fragment implements 
         }
     }
 
-
+    private ProgressDialog progress;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        progress = new ProgressDialog(getActivity());
+        progress.setTitle("Loading");
+        progress.setMessage("Loading data...");
+        progress.setCancelable(false); // disable dismiss by tapping outside of the dialog
+        progress.show();
         // Haal Fragment-layout op
         View fragmentView = inflater.inflate(R.layout.fragment_activity_account, container, false);
         ButterKnife.bind(this, fragmentView);
@@ -101,7 +107,7 @@ public class AccountFragment extends android.support.v4.app.Fragment implements 
 
         headerMail.setText(customer.getEmail());
         headerName.setText(customer.getFirstName() + " " + customer.getLastName());
-
+        progress.dismiss();
     }
 
     @Override

@@ -1,5 +1,6 @@
 package be.fenego.android_spotshop.signup;
 
+import android.app.ProgressDialog;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -56,8 +57,16 @@ public class SignupFragment extends android.support.v4.app.Fragment implements Q
         validate();
     }
 
+    private ProgressDialog progress;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        progress = new ProgressDialog(getActivity());
+        progress.setTitle("Loading");
+        progress.setMessage("Loading data...");
+        progress.setCancelable(false); // disable dismiss by tapping outside of the dialog
+        progress.show();
+// To dismiss the dialog
+
         fragmentView = inflater.inflate(R.layout.fragment_activity_signup, container, false);
         ButterKnife.bind(this, fragmentView);
 
@@ -163,6 +172,7 @@ public class SignupFragment extends android.support.v4.app.Fragment implements Q
         spinnerQuestions.setAdapter(adapter); // this will set list of values to spinner
 
         spinnerQuestions.setSelection(0);//set selected value in spinner
+        progress.dismiss();
     }
 
     @Override

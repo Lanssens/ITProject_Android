@@ -1,5 +1,6 @@
 package be.fenego.android_spotshop.signup;
 
+import android.app.ProgressDialog;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -49,6 +50,7 @@ public class SignupFragment2 extends android.support.v4.app.Fragment implements 
 
     private List<Country> allCountries;
     private List<String> allMonths;
+    private ProgressDialog progress;
 
     @BindView(R.id.register_btn_complete)
     Button _nextButton;
@@ -107,6 +109,12 @@ public class SignupFragment2 extends android.support.v4.app.Fragment implements 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         fragmentView = inflater.inflate(R.layout.fragment_activity_signup2, container, false);
 
+        progress = new ProgressDialog(getActivity());
+        progress.setTitle("Loading");
+        progress.setMessage("Loading data...");
+        progress.setCancelable(false); // disable dismiss by tapping outside of the dialog
+        progress.show();
+
         ButterKnife.bind(this, fragmentView);
 
         getActivity().setTitle("Signup");
@@ -146,6 +154,7 @@ public class SignupFragment2 extends android.support.v4.app.Fragment implements 
         spinnerMonths.setAdapter(adapter); // this will set list of values to spinner
 
         spinnerMonths.setSelection(0);
+        progress.dismiss();
     }
 
     private void nextFragment() {
@@ -219,8 +228,8 @@ public class SignupFragment2 extends android.support.v4.app.Fragment implements 
     public static boolean isDateValid(String date)
     {
         try {
-            //DateFormat df = new SimpleDateFormat(DATE_FORMAT);
-            DateFormat df = DateFormat.getDateInstance();
+            DateFormat df = new SimpleDateFormat(DATE_FORMAT);
+            //DateFormat df = DateFormat.getDateInstance();
             df.setLenient(false);
             df.parse(date);
             return true;
