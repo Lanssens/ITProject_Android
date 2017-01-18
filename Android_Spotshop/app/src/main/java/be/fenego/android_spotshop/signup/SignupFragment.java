@@ -31,7 +31,6 @@ import butterknife.*;
 
 public class SignupFragment extends android.support.v4.app.Fragment implements QuestionCallback {
 
-
     private List<Question> allQuestions;
     @BindView(R.id.register_btn_next) Button _nextButton;
     @BindView(R.id.register_title1) TextView titleText1;

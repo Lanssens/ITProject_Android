@@ -23,16 +23,17 @@ import java.util.Queue;
 import be.fenego.android_spotshop.R;
 import be.fenego.android_spotshop.account.AccountFragment;
 import be.fenego.android_spotshop.utilities.LoginUtility;
-//import be.fenego.android_spotshop.home.HomeActivity;
 import be.fenego.android_spotshop.home.HomeFragment;
 import be.fenego.android_spotshop.login.LoginFragment;
 import be.fenego.android_spotshop.test.TestFragment;
+
 
 /**
  * Created by Thijs on 12/22/2016.
  */
 
-public class MenuActivity extends AppCompatActivity  {
+@SuppressWarnings("DefaultFileTemplate")
+public class MenuActivity extends AppCompatActivity{
     private DrawerLayout mDrawer;
     private Toolbar toolbar;
     private NavigationView nvDrawer;
@@ -216,7 +217,6 @@ public class MenuActivity extends AppCompatActivity  {
         mDrawer.closeDrawers();
     }
 
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (drawerToggle.onOptionsItemSelected(item)) {
@@ -225,5 +225,4 @@ public class MenuActivity extends AppCompatActivity  {
         return super.onOptionsItemSelected(item);
 
     }
-
 }

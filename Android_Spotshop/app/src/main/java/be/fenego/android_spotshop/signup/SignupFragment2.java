@@ -48,7 +48,6 @@ import butterknife.OnTextChanged;
  */
 
 public class SignupFragment2 extends android.support.v4.app.Fragment implements CustomerCreationCallback, CountryCallback {
-
     private List<Country> allCountries;
     private List<String> allMonths;
     private ProgressDialog progress;
