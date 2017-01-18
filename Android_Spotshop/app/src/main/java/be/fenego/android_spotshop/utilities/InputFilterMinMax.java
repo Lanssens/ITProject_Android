@@ -1,4 +1,4 @@
-package be.fenego.android_spotshop.general;
+package be.fenego.android_spotshop.utilities;
 
 import android.text.InputFilter;
 import android.text.Spanned;

@@ -1,4 +1,4 @@
-package be.fenego.android_spotshop.general;
+package be.fenego.android_spotshop.utilities;
 
 import android.app.Activity;
 import android.content.SharedPreferences;
@@ -14,7 +14,6 @@ import be.fenego.android_spotshop.services.ServiceGenerator;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.http.Headers;
 
 /**
  * Created by Thijs on 3/01/2017.

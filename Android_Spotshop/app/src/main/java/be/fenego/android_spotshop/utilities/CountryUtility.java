@@ -1,11 +1,8 @@
-package be.fenego.android_spotshop.general;
-
-import android.widget.TextView;
+package be.fenego.android_spotshop.utilities;
 
 import java.util.List;
-import java.util.concurrent.ArrayBlockingQueue;
-import java.util.concurrent.BlockingQueue;
 
+import be.fenego.android_spotshop.callbacks.CountryCallback;
 import be.fenego.android_spotshop.models.Country;
 import be.fenego.android_spotshop.services.CountryService;
 import retrofit2.Call;

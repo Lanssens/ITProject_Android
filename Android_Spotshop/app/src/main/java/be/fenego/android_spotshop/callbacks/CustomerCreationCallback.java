@@ -1,4 +1,4 @@
-package be.fenego.android_spotshop.general;
+package be.fenego.android_spotshop.callbacks;
 
 /**
  * Created by Thijs on 1/11/2017.
