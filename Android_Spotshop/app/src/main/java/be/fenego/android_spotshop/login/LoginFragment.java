@@ -15,7 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import be.fenego.android_spotshop.R;
-import be.fenego.android_spotshop.general.LoginUtility;
+import be.fenego.android_spotshop.utilities.LoginUtility;
 import be.fenego.android_spotshop.home.HomeFragment;
 import be.fenego.android_spotshop.menu.MenuActivity;
 import be.fenego.android_spotshop.signup.SignupFragment;

@@ -28,11 +28,11 @@ import java.util.List;
 import java.util.UUID;
 
 import be.fenego.android_spotshop.R;
-import be.fenego.android_spotshop.general.CountryCallback;
-import be.fenego.android_spotshop.general.CountryUtility;
-import be.fenego.android_spotshop.general.CustomerCreationCallback;
-import be.fenego.android_spotshop.general.CustomerUtility;
-import be.fenego.android_spotshop.general.InputFilterMinMax;
+import be.fenego.android_spotshop.callbacks.CountryCallback;
+import be.fenego.android_spotshop.utilities.CountryUtility;
+import be.fenego.android_spotshop.callbacks.CustomerCreationCallback;
+import be.fenego.android_spotshop.utilities.CustomerUtility;
+import be.fenego.android_spotshop.utilities.InputFilterMinMax;
 import be.fenego.android_spotshop.login.LoginFragment;
 import be.fenego.android_spotshop.models.Address;
 import be.fenego.android_spotshop.models.Country;

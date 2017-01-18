@@ -11,8 +11,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import be.fenego.android_spotshop.R;
-import be.fenego.android_spotshop.general.CustomerUtility;
-import be.fenego.android_spotshop.general.GeneralCallback;
+import be.fenego.android_spotshop.utilities.CustomerUtility;
+import be.fenego.android_spotshop.callbacks.GeneralCallback;
 import be.fenego.android_spotshop.models.PasswordChange;
 import butterknife.BindView;
 import butterknife.ButterKnife;

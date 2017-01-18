@@ -10,15 +10,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import java.util.UUID;
-
 import be.fenego.android_spotshop.R;
-import be.fenego.android_spotshop.general.CustomerCallback;
-import be.fenego.android_spotshop.general.CustomerUtility;
-import be.fenego.android_spotshop.general.GeneralCallback;
-import be.fenego.android_spotshop.general.LoginUtility;
+import be.fenego.android_spotshop.callbacks.CustomerCallback;
+import be.fenego.android_spotshop.utilities.CustomerUtility;
+import be.fenego.android_spotshop.callbacks.GeneralCallback;
+import be.fenego.android_spotshop.utilities.LoginUtility;
 import be.fenego.android_spotshop.login.LoginFragment;
-import be.fenego.android_spotshop.models.Credentials;
 import be.fenego.android_spotshop.models.Customer;
 import be.fenego.android_spotshop.models.CustomerFew;
 import butterknife.BindView;

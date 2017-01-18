@@ -12,10 +12,9 @@ import android.widget.Toast;
 import java.util.UUID;
 
 import be.fenego.android_spotshop.R;
-import be.fenego.android_spotshop.general.AddressCallback;
-import be.fenego.android_spotshop.general.CustomerCallback;
-import be.fenego.android_spotshop.general.CustomerUtility;
-import be.fenego.android_spotshop.general.StringCallback;
+import be.fenego.android_spotshop.callbacks.AddressCallback;
+import be.fenego.android_spotshop.utilities.CustomerUtility;
+import be.fenego.android_spotshop.callbacks.StringCallback;
 import be.fenego.android_spotshop.login.LoginFragment;
 import be.fenego.android_spotshop.models.Address;
 import be.fenego.android_spotshop.models.Credentials;
