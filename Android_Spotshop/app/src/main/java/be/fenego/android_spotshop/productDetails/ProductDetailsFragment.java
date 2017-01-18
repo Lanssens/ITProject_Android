@@ -1,9 +1,11 @@
 package be.fenego.android_spotshop.productDetails;
 
+import android.annotation.SuppressLint;
 import android.content.res.Resources;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.text.Html;
+import android.view.*;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RatingBar;
@@ -11,36 +13,32 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
-
 import java.util.ArrayList;
-
 import be.fenego.android_spotshop.R;
 import be.fenego.android_spotshop.models.Attribute;
 import be.fenego.android_spotshop.models.Image;
 import be.fenego.android_spotshop.models.ProductDetails;
 import be.fenego.android_spotshop.models.ResourceAttribute;
 import be.fenego.android_spotshop.models.SalePrice;
-import be.fenego.android_spotshop.services.ProductService;
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
-public class ProductDetailsActivity extends AppCompatActivity {
+/**
+ * Created by Nick on 13/01/2017.
+ */
 
-    private static final String BASE_IMAGE_URL = "https://axesso.fenego.zone";
-    private String imageUrl;
+@SuppressWarnings({"WeakerAccess", "DefaultFileTemplate"})
+public class ProductDetailsFragment extends Fragment {
 
-    ProductService productService;
-    private String productSKU = null;
     private ProductDetails productDetails = null;
     private ArrayList<Attribute> productDetailsAttributes = null;
 
-    Gson gson;
+    private static final String BASE_IMAGE_URL = "https://axesso.fenego.zone";
+
+    @SuppressWarnings("unused")
+    private Gson gson;
 
     @BindView(R.id.productDetailsTitleTextView)
     TextView productDetailsTitle;
@@ -60,77 +58,53 @@ public class ProductDetailsActivity extends AppCompatActivity {
     ImageButton productDetailsButton;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_product_details);
-        ButterKnife.bind(this);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_activity_product_details,container, false);
 
-        //Voor ResourceAttribute te converten.
-        gson = new Gson();
+        ButterKnife.bind(this, view);
 
-        //Service instantie aanmaken voor calls uit te voeren.
-        productService = ProductService.retrofit.create(ProductService.class);
+        //getting product details & attributes from home.
+        Bundle bundle = getArguments();
+        productDetails = (ProductDetails) bundle.get("productDetails");
+        productDetailsAttributes =(ArrayList<Attribute>) (productDetails != null ? productDetails.getAttributes() : null);
 
-        //Intent data ophalen met productSKU
-        productSKU = getIntent().getStringExtra("ProductURI");
+        setViews();
 
-        //Call uitvoeren & views vullen.
-        setProductDetails(productSKU);
-    }
-
-    //Call uitvoeren & response opslaan
-    private void setProductDetails(String SKU){
-        try{
-            productService.getProduct(SKU).enqueue(new Callback<ProductDetails>() {
-                @Override
-                public void onResponse(Call<ProductDetails> call, Response<ProductDetails> response) {
-                    productDetails = response.body();
-                    productDetailsAttributes =(ArrayList<Attribute>) productDetails.getAttributes();
-                    setViews();
-                }
-
-                @Override
-                public void onFailure(Call<ProductDetails> call, Throwable t) {
-                    Toast.makeText(getApplicationContext(),"Could not display product!\nGetting details failed!",Toast.LENGTH_SHORT).show();
-                    t.printStackTrace();
-                }
-            });
-        }catch (Exception e){
-            e.printStackTrace();
-            Toast.makeText(getApplicationContext(),"Could not display product!",Toast.LENGTH_SHORT).show();
-            productDetailsButton.setEnabled(false);
-        }
+        return view;
     }
 
     //Views vullen met product data
     private void setViews(){
         try{
             productDetailsTitle.setText(productDetails.getProductName());
+            //noinspection deprecation
             productDetailsDescription.setText(Html.fromHtml(productDetails.getLongDescription()));
-            productDetailsRatingBar.setRating(Float.valueOf((String) productDetails.getRoundedAverageRating()));
+            productDetailsRatingBar.setRating(Float.valueOf(productDetails.getRoundedAverageRating()));
             setPriceView();
             setAvailabilityView();
             setImageView();
             setSpecsTable();
         }catch (Exception e){
-            Toast.makeText(getApplicationContext(),"Could not display product!",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(),"Could not display product!",Toast.LENGTH_SHORT).show();
             productDetailsButton.setEnabled(false);
             e.printStackTrace();
         }
     }
 
     //ProductPriceView vullen
+    @SuppressLint("SetTextI18n")
     private void setPriceView(){
         try{
             SalePrice salePrice = productDetails.getSalePrice();
             productDetailsPrice.setText(" $ " + Float.toString(salePrice.getValue()));
         }catch (Exception e){
-            Toast.makeText(getApplicationContext(),"Price could not load!",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(),"Price could not load!",Toast.LENGTH_SHORT).show();
             e.printStackTrace();
         }
     }
 
     //ProductAvailabilityView vullen
+    @SuppressLint("SetTextI18n")
     private void setAvailabilityView(){
         try{
             if(productDetails.getAvailability()){
@@ -139,16 +113,17 @@ public class ProductDetailsActivity extends AppCompatActivity {
                 productDetailsAvailability.setText("out of stock");
             }
         }catch (Exception e){
-            Toast.makeText(getApplicationContext(),"Availability could not load!",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(),"Availability could not load!",Toast.LENGTH_SHORT).show();
             productDetailsButton.setEnabled(false);
             e.printStackTrace();
         }
     }
 
     //Correcte image ophalen.
+    @SuppressWarnings("UnusedAssignment")
     private void setImageView(){
         try{
-            Image image = null;
+            Image image;
             image = productDetails.getImageURLByName("front M");
 
             if(image == null){
@@ -162,15 +137,15 @@ public class ProductDetailsActivity extends AppCompatActivity {
                 loadImage(image);
             }
         }catch (Exception e){
-            Toast.makeText(getApplicationContext(),"Image could not load!",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(),"Image could not load!",Toast.LENGTH_SHORT).show();
             e.printStackTrace();
         }
     }
 
     //ProductImageView vullen via Picasso.
     private void loadImage(Image image){
-        imageUrl = BASE_IMAGE_URL + image.getEffectiveUrl();
-        Picasso.with(this)
+        String imageUrl = BASE_IMAGE_URL + image.getEffectiveUrl();
+        Picasso.with(getContext())
                 .load(imageUrl)
                 .placeholder(R.drawable.ic_button_camera)
                 .error(R.drawable.ic_button_camera)
@@ -178,14 +153,17 @@ public class ProductDetailsActivity extends AppCompatActivity {
     }
 
     //Correcte product specificaties zoeken en in textViews steken.
+    @SuppressWarnings("TryWithIdenticalCatches")
+    @SuppressLint("SetTextI18n")
     private void setSpecsTable(){
         try{
             for (Attribute attribute : productDetailsAttributes){
-                TextView productDetailsSpecsName = new TextView(this);
-                TextView productDetailsSpecsValue = new TextView(this);
+                TextView productDetailsSpecsName = new TextView(getContext());
+                TextView productDetailsSpecsValue = new TextView(getContext());
                 switch (attribute.getType()){
                     case "String":
                         productDetailsSpecsName.setText(attribute.getName());
+                        //noinspection deprecation
                         productDetailsSpecsValue.setText(Html.fromHtml((String) attribute.getValue()));
                         addRow(productDetailsSpecsName, productDetailsSpecsValue);
                         break;
@@ -217,13 +195,14 @@ public class ProductDetailsActivity extends AppCompatActivity {
         try{
             TableRow.LayoutParams params = new TableRow.LayoutParams();
             params.setMargins(5, 2, 5, 2);
-            TableRow productDetailsSpecsRow = new TableRow(this);
+            TableRow productDetailsSpecsRow = new TableRow(getContext());
             productDetailsSpecsRow.addView(name,params);
             productDetailsSpecsRow.addView(value,params);
             productDetailsSpecsTable.addView(productDetailsSpecsRow);
         }catch (Exception e){ //geen specs weergeven!
-            Toast.makeText(getApplicationContext(),"Specifications could not load!",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(),"Specifications could not load!",Toast.LENGTH_SHORT).show();
             e.printStackTrace();
         }
     }
+
 }

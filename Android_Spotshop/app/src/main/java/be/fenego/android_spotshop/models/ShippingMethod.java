@@ -1,9 +1,12 @@
 package be.fenego.android_spotshop.models;
 
+import java.io.Serializable;
+
 /**
  * Created by Nick on 10/01/2017.
  */
-public class ShippingMethod {
+@SuppressWarnings({"unused", "DefaultFileTemplate"})
+class ShippingMethod implements Serializable{
     private String name;
     private String type;
     private String id;

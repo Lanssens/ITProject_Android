@@ -10,6 +10,7 @@ import be.fenego.android_spotshop.models.QuestionWrapper;
  * Created by Thijs on 6/01/2017.
  */
 
+@SuppressWarnings("DefaultFileTemplate")
 public interface QuestionCallback {
     void onSuccessQuestion(List<Question> questions);
     void onError();

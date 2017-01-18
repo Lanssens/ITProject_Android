@@ -19,6 +19,7 @@ import retrofit2.Response;
  * Created by Thijs on 3/01/2017.
  */
 
+@SuppressWarnings("DefaultFileTemplate")
 public class LoginUtility {
 
 
@@ -29,11 +30,7 @@ public class LoginUtility {
     public static boolean isUserLoggedIn(){
         SharedPreferences settings = currentAct.getSharedPreferences(userCredentials, 0);
         String silent = settings.getString("spotShopUsername", "");
-        if(silent.equals("")){
-            return false;
-        }else{
-            return true;
-        }
+        return !silent.equals("");
     }
     public static void removeUserCredentials(){
         currentAct.getSharedPreferences(userCredentials, 0).edit().clear().commit();

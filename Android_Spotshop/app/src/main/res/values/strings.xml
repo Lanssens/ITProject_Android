@@ -9,7 +9,6 @@
     <string name="productdetailsDescription">Description:</string>
     <string name="productDetailsQuantity">Quantity:</string>
     <string name="productDetailsQuantityEditText">1</string>
-    <string name="productDetailsAddToCartButton">ADD TO CART</string>
     <string name="productDetailsSpecs">Specs: </string>
     <string name="app_name">Android_Spotshop</string>
     <string name="drawer_open">Open navigation drawer</string>
@@ -17,5 +16,17 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="dialog_select_prompt">Choose a picture</string>
+    <string name="dialog_select_camera">Camera</string>
+    <string name="dialog_select_gallery">Gallery</string>
+    <string name="product_image_detailview">Product image detailView</string>
+    <string name="add_to_cart_button">add to cart button</string>
+    <string name="splashscreen_image">splashscreen image</string>
+    <string name="homepage_zoek_image_button">homepage zoek image button</string>
+    <string name="homepage_zoek_via_tekst_button">homepage zoek via tekst button</string>
+    <string name="logo_spotshot">logo spotshot</string>
+    <string name="listview_product_image">listview product image</string>
+    <string name="drawer_logo_afbeelding">drawer logo afbeelding</string>
 
 </resources>

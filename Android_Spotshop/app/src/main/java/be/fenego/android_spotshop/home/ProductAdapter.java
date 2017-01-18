@@ -1,15 +1,14 @@
 package be.fenego.android_spotshop.home;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.Resources;
+import android.support.annotation.NonNull;
 import android.view.*;
 import android.widget.*;
-
 import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
-
 import java.util.ArrayList;
-
 import be.fenego.android_spotshop.R;
 import be.fenego.android_spotshop.models.Element;
 import be.fenego.android_spotshop.models.SalePrice;
@@ -20,13 +19,12 @@ import butterknife.*;
  * ProductAdapter voor de ProductList te vullen met producten met een speciale layout.
  */
 
-public class ProductAdapter extends ArrayAdapter<Element> {
+class ProductAdapter extends ArrayAdapter<Element> {
     private final Context context;
     private final ArrayList<Element> elements;
     private static final String BASE_IMAGE_URL = "https://axesso.fenego.zone";
     private ViewHolder holder;
-    private String imageUrl;
-    Gson gson;
+    private final Gson gson;
 
     public ProductAdapter(Context context, ArrayList<Element> elements) {
         super(context, -1, elements);
@@ -37,8 +35,10 @@ public class ProductAdapter extends ArrayAdapter<Element> {
     }
 
     //View aanamaken met sepciale layout voor inladen van productdata in views.
+    @NonNull
+    @SuppressWarnings("ConstantConditions")
     @Override
-    public View getView(int position, View view, ViewGroup parent) {
+    public View getView(int position, View view, @NonNull ViewGroup parent) {
         try{
             LayoutInflater inflater = (LayoutInflater) context
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -69,7 +69,7 @@ public class ProductAdapter extends ArrayAdapter<Element> {
             setPriceView(position);
 
             holder.productTitle.setText(elements.get(position).getTitle());
-            holder.productRating.setRating(Float.valueOf((String) elements.get(position).getAttibuteValueByName("roundedAverageRating")));
+            holder.productRating.setRating(Float.valueOf((String) elements.get(position).getAttributeValueByName("roundedAverageRating")));
         }catch (Resources.NotFoundException e){
             e.printStackTrace();
             Toast.makeText(context.getApplicationContext(),"Could not display availability / price of certain products!",Toast.LENGTH_SHORT).show();
@@ -82,7 +82,7 @@ public class ProductAdapter extends ArrayAdapter<Element> {
 
     //correcte imageURL samenstellen en productImageView vullen via Picasso.
     private void setImageView(int position){
-        imageUrl = BASE_IMAGE_URL + (String) elements.get(position).getAttibuteValueByName("image");
+        String imageUrl = BASE_IMAGE_URL + elements.get(position).getAttributeValueByName("image");
         Picasso.with(context)
                 .load(imageUrl)
                 .placeholder(R.drawable.ic_button_camera)
@@ -91,9 +91,10 @@ public class ProductAdapter extends ArrayAdapter<Element> {
     }
 
     //ProductAvailabilityView vullen
+    @SuppressLint("SetTextI18n")
     private void setAvailabilityView(int position){
         try{
-            if((Boolean) elements.get(position).getAttibuteValueByName("availability")){
+            if((Boolean) elements.get(position).getAttributeValueByName("availability")){
                 holder.productAvailability.setText("In Stock");
             }else{
                 holder.productAvailability.setText("out of stock");
@@ -105,9 +106,10 @@ public class ProductAdapter extends ArrayAdapter<Element> {
     }
 
     //ProductPriceView vullen
+    @SuppressLint("SetTextI18n")
     private void setPriceView(int position){
         try {
-            SalePrice salePrice = gson.fromJson(elements.get(position).getAttibuteValueByName("salePrice").toString(), SalePrice.class);
+            SalePrice salePrice = gson.fromJson(elements.get(position).getAttributeValueByName("salePrice").toString(), SalePrice.class);
             holder.productPrice.setText("$ " + Float.toString(salePrice.getValue()));
         }catch (Exception e){
             e.printStackTrace();
