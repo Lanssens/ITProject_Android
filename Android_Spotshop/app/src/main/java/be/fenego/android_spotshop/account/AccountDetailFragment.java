@@ -66,10 +66,11 @@ public class AccountDetailFragment extends android.support.v4.app.Fragment imple
             address.setStreet(_street.getText().toString());
             address.setPostalCode(_postal.getText().toString());
             address.setCity(_city.getText().toString());
-            address.setCountryCode(spinnerCountries.getSelectedItem().toString());
+            address.setCountryCode(allCountries.get(spinnerCountries.getSelectedItemPosition()).getAlpha2Code());
 
             CustomerUtility.updateCustomerAddress(this, uri, address);
 
+            Toast.makeText(getActivity(), "Data saved!", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -169,7 +170,7 @@ public class AccountDetailFragment extends android.support.v4.app.Fragment imple
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), R.layout.signup_spinner_item, spinnerArrayCountries);
         spinnerCountries.setAdapter(adapter); // this will set list of values to spinner
 
-        spinnerCountries.setSelection(0);//set selected value in spinner
+        //spinnerCountries.setSelection(0);//set selected value in spinner
 
         CustomerUtility.getCustomerAddressUri( this);
     }
@@ -228,12 +229,17 @@ public class AccountDetailFragment extends android.support.v4.app.Fragment imple
         _street.setText(address.getStreet());
 
         int selectionNumber = 0;
+        System.out.println("--");
+        System.out.println(address.getCountryCode());
+        System.out.println("--");
         for(int i = 0; i < allCountries.size(); i++){
             if(allCountries.get(i).getAlpha2Code().equals(address.getCountryCode())){
+                System.out.println("Were in: " + allCountries.get(i).getAlpha2Code() + " " + address.getCountryCode());
                 selectionNumber=i;
             }
 
         }
+        System.out.println(selectionNumber + "");
         spinnerCountries.setSelection(selectionNumber);
 
         progress.dismiss();
