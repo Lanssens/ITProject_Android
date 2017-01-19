@@ -126,10 +126,6 @@ public class SignupFragment2 extends android.support.v4.app.Fragment implements 
             postAnswer = getArguments().getString("answer");
         }
 
-
-        Toast.makeText(getActivity(), postEmail + postPassword + postQuestion + postAnswer, Toast.LENGTH_SHORT).show();
-
-
         titleText3.setTextColor(Color.parseColor("#df6162"));
         titleText4.setTextColor(Color.parseColor("#df6162"));
 
@@ -229,11 +225,8 @@ public class SignupFragment2 extends android.support.v4.app.Fragment implements 
             Log.v("test", postEmail);
             customer.setPreferredLanguage("de_DE");
 
-
             customer.setCredentials(creds);
             customer.setAddress(add);
-
-
 
             CustomerUtility.createCustomer(this, customer);
         }else{
@@ -434,7 +427,6 @@ public class SignupFragment2 extends android.support.v4.app.Fragment implements 
 
     @Override
     public void onErrorCreationCustomer() {
-        Toast.makeText(getActivity(), "Email is already in use, choose a different one", Toast.LENGTH_SHORT).show();
         Toast.makeText(getActivity(), "Something went wrong", Toast.LENGTH_SHORT).show();
     }
 }

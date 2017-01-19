@@ -192,6 +192,7 @@ public class HomeFragment extends Fragment implements CloudVisionCallback, Produ
         productDetailsFragment.setArguments(bundle);
         FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
         fragmentTransaction.add(R.id.flContent, productDetailsFragment);
+        fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
     }
 

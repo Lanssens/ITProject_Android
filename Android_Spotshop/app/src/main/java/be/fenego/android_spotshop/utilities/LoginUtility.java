@@ -29,7 +29,7 @@ public class LoginUtility {
 
     public static boolean isUserLoggedIn(){
         SharedPreferences settings = currentAct.getSharedPreferences(userCredentials, 0);
-        String silent = settings.getString("spotShopUsername", "");
+        String silent = settings.getString("UN", "");
         return !silent.equals("");
     }
     public static void removeUserCredentials(){
@@ -39,9 +39,9 @@ public class LoginUtility {
         List<String> userCreds = new ArrayList<String>();
         userCreds.clear();
         SharedPreferences settings = currentAct.getSharedPreferences(userCredentials, 0);
-        userCreds.add(settings.getString("spotShopUsername", ""));
-        userCreds.add(settings.getString("spotShopPassword", ""));
-        userCreds.add(settings.getString("spotShopAuthToken", ""));
+        userCreds.add(settings.getString("UN", ""));
+        userCreds.add(settings.getString("PW", ""));
+        userCreds.add(settings.getString("AT", ""));
         return userCreds;
     }
 
@@ -51,8 +51,8 @@ public class LoginUtility {
         // All objects are from android.context.Context
         SharedPreferences settings = currentAct.getSharedPreferences(userCredentials, 0);
         SharedPreferences.Editor editor = settings.edit();
-        editor.putString("spotShopUsername", username);
-        editor.putString("spotShopPassword", password);
+        editor.putString("UN", username);
+        editor.putString("PW", password);
 
         // Commit the edits!
         editor.commit();

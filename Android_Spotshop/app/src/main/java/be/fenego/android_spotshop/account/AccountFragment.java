@@ -41,7 +41,6 @@ public class AccountFragment extends android.support.v4.app.Fragment implements 
 
     @OnClick({R.id.account_link_accountdetails, R.id.account_link_logout, R.id.account_link_mail, R.id.account_link_orderhistory, R.id.account_link_password})
     public void linkToRightPage(TextView view) {
-        Toast.makeText(getContext(), "Clicked on " + view.getText(), Toast.LENGTH_SHORT).show();
 
         switch(view.getText().toString()){
             case "Account Details": loadFragment(AccountDetailFragment.class);  break;
