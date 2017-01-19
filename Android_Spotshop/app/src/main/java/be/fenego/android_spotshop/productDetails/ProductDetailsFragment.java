@@ -5,6 +5,7 @@ import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.Html;
+import android.util.Log;
 import android.view.*;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -17,20 +18,27 @@ import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import be.fenego.android_spotshop.R;
+import be.fenego.android_spotshop.callbacks.ShoppingBasketCallback;
 import be.fenego.android_spotshop.models.Attribute;
 import be.fenego.android_spotshop.models.Image;
 import be.fenego.android_spotshop.models.ProductDetails;
 import be.fenego.android_spotshop.models.ResourceAttribute;
 import be.fenego.android_spotshop.models.SalePrice;
+import be.fenego.android_spotshop.models.ShoppingBasket;
+import be.fenego.android_spotshop.models.ShoppingBasketPostReturn;
+import be.fenego.android_spotshop.utilities.LoginUtility;
+import be.fenego.android_spotshop.utilities.ShoppingBasketUtility;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
+import retrofit2.Call;
 
 /**
  * Created by Nick on 13/01/2017.
  */
 
 @SuppressWarnings({"WeakerAccess", "DefaultFileTemplate"})
-public class ProductDetailsFragment extends Fragment {
+public class ProductDetailsFragment extends Fragment implements ShoppingBasketCallback{
 
     private ProductDetails productDetails = null;
     private ArrayList<Attribute> productDetailsAttributes = null;
@@ -57,6 +65,7 @@ public class ProductDetailsFragment extends Fragment {
     @BindView(R.id.productDetailsAddToCartButton)
     ImageButton productDetailsButton;
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_activity_product_details,container, false);
@@ -71,6 +80,16 @@ public class ProductDetailsFragment extends Fragment {
         setViews();
 
         return view;
+    }
+
+    //zal add_To_cart click afhandelen
+    @OnClick(R.id.productDetailsAddToCartButton)
+    void addToCart(View view){
+        if(LoginUtility.isUserLoggedIn()){
+            ShoppingBasketUtility.getShoppingBasket(this);
+        }else{
+            ShoppingBasketUtility.createShoppingBasket(this);
+        }
     }
 
     //Views vullen met product data
@@ -205,4 +224,23 @@ public class ProductDetailsFragment extends Fragment {
         }
     }
 
+    @Override
+    public void onSuccessGetBasket(ShoppingBasket shoppingBasket) {
+
+    }
+
+    @Override
+    public void onErrorGetBasket(Call<ShoppingBasket> call, Throwable t) {
+
+    }
+
+    @Override
+    public void onSuccessCreateBasket(ShoppingBasketPostReturn shoppingBasketPostReturn) {
+        Log.v("output: ", shoppingBasketPostReturn.getUri());
+    }
+
+    @Override
+    public void onErrorCreateBasket(Call<ShoppingBasketPostReturn> call, Throwable t) {
+
+    }
 }
