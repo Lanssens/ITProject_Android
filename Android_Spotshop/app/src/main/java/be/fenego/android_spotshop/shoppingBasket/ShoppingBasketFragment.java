@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 
 import be.fenego.android_spotshop.R;
 import be.fenego.android_spotshop.callbacks.ShoppingBasketCallback;
+import be.fenego.android_spotshop.models.LineItem;
 import be.fenego.android_spotshop.models.ShoppingBasket;
 import be.fenego.android_spotshop.models.ShoppingBasketPostReturn;
 import butterknife.ButterKnife;
@@ -29,12 +30,12 @@ public class ShoppingBasketFragment extends Fragment implements ShoppingBasketCa
 
 
     @Override
-    public void onSuccessGetBasket(ShoppingBasket shoppingBasket) {
+    public void onSuccessGetActiveBasket(ShoppingBasket shoppingBasket) {
 
     }
 
     @Override
-    public void onErrorGetBasket(Call<ShoppingBasket> call, Throwable t) {
+    public void onErrorGetActiveBasket(Call<ShoppingBasket> call, Throwable t) {
 
     }
 
@@ -45,6 +46,16 @@ public class ShoppingBasketFragment extends Fragment implements ShoppingBasketCa
 
     @Override
     public void onErrorCreateBasket(Call<ShoppingBasketPostReturn> call, Throwable t) {
+
+    }
+
+    @Override
+    public void onSuccessPostProductToBasket(LineItem lineItem) {
+
+    }
+
+    @Override
+    public void onErrorPostProductToBasket(Call<LineItem> call, Throwable t) {
 
     }
 }

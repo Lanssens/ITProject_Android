@@ -7,8 +7,6 @@ import java.util.List;
  */
 
 public class ShoppingBasket {
-    public class Example {
-
         private String id;
         private List<SalesTaxTotalsByTaxRate> salesTaxTotalsByTaxRate = null;
         private List<ShippingBucket> shippingBuckets = null;
@@ -126,6 +124,4 @@ public class ShoppingBasket {
         public void setPurchaseCurrency(String purchaseCurrency) {
             this.purchaseCurrency = purchaseCurrency;
         }
-
-    }
 }

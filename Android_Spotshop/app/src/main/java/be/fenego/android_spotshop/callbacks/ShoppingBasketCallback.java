@@ -1,5 +1,6 @@
 package be.fenego.android_spotshop.callbacks;
 
+import be.fenego.android_spotshop.models.LineItem;
 import be.fenego.android_spotshop.models.ShoppingBasket;
 import be.fenego.android_spotshop.models.ShoppingBasketPostReturn;
 import retrofit2.Call;
@@ -10,9 +11,11 @@ import retrofit2.Call;
 
 public interface ShoppingBasketCallback {
 
-    void onSuccessGetBasket(ShoppingBasket shoppingBasket);
-    void onErrorGetBasket(Call<ShoppingBasket> call, Throwable t);
+    void onSuccessGetActiveBasket(ShoppingBasket shoppingBasket);
+    void onErrorGetActiveBasket(Call<ShoppingBasket> call, Throwable t);
     void onSuccessCreateBasket(ShoppingBasketPostReturn shoppingBasketPostReturn);
     void onErrorCreateBasket(Call<ShoppingBasketPostReturn> call, Throwable t);
+    void onSuccessPostProductToBasket(LineItem lineItem);
+    void onErrorPostProductToBasket(Call<LineItem> call, Throwable t);
 
 }

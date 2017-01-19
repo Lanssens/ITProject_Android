@@ -47,17 +47,13 @@ public class ProductDetails implements Serializable {
 //    }
 // --Commented out by Inspection STOP (14/01/2017 16:28)
 
-// --Commented out by Inspection START (14/01/2017 16:28):
-//    public String getType() {
-//        return type;
-//    }
-// --Commented out by Inspection STOP (14/01/2017 16:28)
+    public String getType() {
+        return type;
+    }
 
-// --Commented out by Inspection START (14/01/2017 16:28):
-//    public void setType(String type) {
-//        this.type = type;
-//    }
-// --Commented out by Inspection STOP (14/01/2017 16:28)
+    public void setType(String type) {
+        this.type = type;
+    }
 
     public List<Attribute> getAttributes() {
         return attributes;

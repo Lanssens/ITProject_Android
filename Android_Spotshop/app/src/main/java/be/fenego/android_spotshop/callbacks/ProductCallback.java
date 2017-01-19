@@ -1,5 +1,6 @@
 package be.fenego.android_spotshop.callbacks;
 
+import be.fenego.android_spotshop.models.Element;
 import be.fenego.android_spotshop.models.ProductCollection;
 import be.fenego.android_spotshop.models.ProductDetails;
 import retrofit2.Call;
@@ -11,7 +12,7 @@ import retrofit2.Call;
 @SuppressWarnings({"UnusedParameters", "DefaultFileTemplate"})
 public interface ProductCallback {
 
-    void onSuccessGetProduct(ProductDetails productDetails);
+    void onSuccessGetProduct(ProductDetails productDetails, Element element);
     void onErrorGetProduct(Call<ProductDetails> call, Throwable t);
 
     void onSuccessGetFeaturedProducts(ProductCollection productCollection);

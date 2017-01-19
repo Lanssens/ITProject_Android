@@ -47,6 +47,27 @@ public class LoginUtility {
         return authToken;
     }
 
+    public static String retrieveAnonToken(){
+
+        SharedPreferences settings = currentAct.getSharedPreferences(userCredentials, 0);
+
+        String anonToken = settings.getString("AnonT", "");
+        return anonToken;
+    }
+
+    public static void storeAnonToken(String token){
+
+        // We need an Editor object to make preference changes.
+        // All objects are from android.context.Context
+        SharedPreferences settings = currentAct.getSharedPreferences(userCredentials, 0);
+        SharedPreferences.Editor editor = settings.edit();
+
+        editor.putString("AnonT", token);
+
+        // Commit the edits!
+        editor.commit();
+    }
+
     public static String retrieveUsername(){
 
         SharedPreferences settings = currentAct.getSharedPreferences(userCredentials, 0);

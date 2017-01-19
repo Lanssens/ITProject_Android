@@ -1,9 +1,10 @@
 
 package be.fenego.android_spotshop.models;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class LineItem {
+public class LineItem implements Serializable{
 
     private String title;
     private String type;

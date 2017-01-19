@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.text.Html;
 import android.util.Log;
 import android.view.*;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RatingBar;
@@ -16,11 +17,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
+
+import org.junit.Before;
+
 import java.util.ArrayList;
 import be.fenego.android_spotshop.R;
 import be.fenego.android_spotshop.callbacks.ShoppingBasketCallback;
 import be.fenego.android_spotshop.models.Attribute;
 import be.fenego.android_spotshop.models.Image;
+import be.fenego.android_spotshop.models.LineItem;
 import be.fenego.android_spotshop.models.ProductDetails;
 import be.fenego.android_spotshop.models.ResourceAttribute;
 import be.fenego.android_spotshop.models.SalePrice;
@@ -43,6 +48,8 @@ public class ProductDetailsFragment extends Fragment implements ShoppingBasketCa
     private ProductDetails productDetails = null;
     private ArrayList<Attribute> productDetailsAttributes = null;
 
+    LineItem lineItem;
+
     private static final String BASE_IMAGE_URL = "https://axesso.fenego.zone";
 
     @SuppressWarnings("unused")
@@ -64,6 +71,8 @@ public class ProductDetailsFragment extends Fragment implements ShoppingBasketCa
     TableLayout productDetailsSpecsTable;
     @BindView(R.id.productDetailsAddToCartButton)
     ImageButton productDetailsButton;
+    @BindView(R.id.productDetailsQuantityEditText)
+    EditText productDetailsQuantityEditText;
 
 
     @Override
@@ -77,6 +86,9 @@ public class ProductDetailsFragment extends Fragment implements ShoppingBasketCa
         productDetails = (ProductDetails) bundle.get("productDetails");
         productDetailsAttributes =(ArrayList<Attribute>) (productDetails != null ? productDetails.getAttributes() : null);
 
+        //get lineItem
+        lineItem = (LineItem) bundle.get("lineItem");
+
         setViews();
 
         return view;
@@ -86,9 +98,11 @@ public class ProductDetailsFragment extends Fragment implements ShoppingBasketCa
     @OnClick(R.id.productDetailsAddToCartButton)
     void addToCart(View view){
         if(LoginUtility.isUserLoggedIn()){
-            ShoppingBasketUtility.getShoppingBasket(this);
-        }else{
+            ShoppingBasketUtility.getActiveShoppingBasket(this);
+        }else if(LoginUtility.retrieveAnonToken().equals("")){
             ShoppingBasketUtility.createShoppingBasket(this);
+        }else{
+            //TODO:werk verder met anon basket
         }
     }
 
@@ -225,22 +239,35 @@ public class ProductDetailsFragment extends Fragment implements ShoppingBasketCa
     }
 
     @Override
-    public void onSuccessGetBasket(ShoppingBasket shoppingBasket) {
-
+    public void onSuccessGetActiveBasket(ShoppingBasket shoppingBasket) {
+        Log.v("Get basket:", "success get active basket!");
+        ShoppingBasketUtility.postProductToBasket(this, shoppingBasket.getId(), lineItem);
     }
 
     @Override
-    public void onErrorGetBasket(Call<ShoppingBasket> call, Throwable t) {
+    public void onErrorGetActiveBasket(Call<ShoppingBasket> call, Throwable t) {
 
     }
 
     @Override
     public void onSuccessCreateBasket(ShoppingBasketPostReturn shoppingBasketPostReturn) {
-        Log.v("output: ", shoppingBasketPostReturn.getUri());
+        LoginUtility.storeAnonToken(shoppingBasketPostReturn.getTitle());
+        Log.v("created basket worked: ", shoppingBasketPostReturn.getUri());
     }
 
     @Override
     public void onErrorCreateBasket(Call<ShoppingBasketPostReturn> call, Throwable t) {
+
+    }
+
+    @Override
+    public void onSuccessPostProductToBasket(LineItem lineItem) {
+        Log.v("Post lineitem:", "success post to basket!");
+        Toast.makeText(getContext().getApplicationContext(), "Works !!" ,Toast.LENGTH_LONG);
+    }
+
+    @Override
+    public void onErrorPostProductToBasket(Call<LineItem> call, Throwable t) {
 
     }
 }
