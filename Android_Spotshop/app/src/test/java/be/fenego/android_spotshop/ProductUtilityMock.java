@@ -62,7 +62,6 @@ public class ProductUtilityMock {
     private static void setUp(){
         attributesp.add(ap1);
         attributesp.add(ap2);
-        attributesp.add(ap3);
         e1.setAttributes(attributesp);
         e1.setTitle("testTitle");
         e1.setDescription("testDescription");

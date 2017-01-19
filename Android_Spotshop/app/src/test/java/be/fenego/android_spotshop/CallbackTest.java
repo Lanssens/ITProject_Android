@@ -15,7 +15,9 @@ import retrofit2.Call;
  */
 
 @SuppressWarnings("DefaultFileTemplate")
-public class HomeFragmentTest implements ProductCallback {
+public class CallbackTest implements ProductCallback {
+
+    ProductCallback productCallback;
 
     @Test
     public void getFeaturedProductsTest(){
