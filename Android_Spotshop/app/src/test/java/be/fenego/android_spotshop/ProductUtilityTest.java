@@ -1,3 +1,4 @@
+/*
 package be.fenego.android_spotshop;
 
 import android.util.Log;
@@ -25,9 +26,11 @@ import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+*/
 /**
  * Created by Nick on 18/01/2017.
- */
+ *//*
+
 
 @RunWith(PowerMockRunner.class)
 @PrepareForTest( { ProductUtility.class })
@@ -50,3 +53,4 @@ public class ProductUtilityTest {
     }
 
 }
+*/

@@ -5,6 +5,8 @@ import android.content.SharedPreferences;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 
+import com.google.api.client.repackaged.org.apache.commons.codec.binary.Base64;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,30 +31,44 @@ public class LoginUtility {
 
     public static boolean isUserLoggedIn(){
         SharedPreferences settings = currentAct.getSharedPreferences(userCredentials, 0);
-        String silent = settings.getString("UN", "");
+        String silent = settings.getString("AT", "");
         return !silent.equals("");
     }
     public static void removeUserCredentials(){
         currentAct.getSharedPreferences(userCredentials, 0).edit().clear().commit();
     }
-    public static List<String> retrieveUserCredentials(){
-        List<String> userCreds = new ArrayList<String>();
-        userCreds.clear();
+
+
+    public static String retrieveAuthToken(){
+
         SharedPreferences settings = currentAct.getSharedPreferences(userCredentials, 0);
-        userCreds.add(settings.getString("UN", ""));
-        userCreds.add(settings.getString("PW", ""));
-        userCreds.add(settings.getString("AT", ""));
-        return userCreds;
+
+        String authToken = settings.getString("AT", "");
+        return authToken;
     }
 
+    public static String retrieveUsername(){
+
+        SharedPreferences settings = currentAct.getSharedPreferences(userCredentials, 0);
+
+        String authToken = settings.getString("UN", "");
+        return authToken;
+    }
     public static void storeUserCredentials(String username, String password){
 
         // We need an Editor object to make preference changes.
         // All objects are from android.context.Context
         SharedPreferences settings = currentAct.getSharedPreferences(userCredentials, 0);
         SharedPreferences.Editor editor = settings.edit();
+
+        String authorizationtoken = username +":" +password;
+        // encode data on your side using BASE64
+        byte[]   bytesEncoded = Base64.encodeBase64(authorizationtoken.getBytes());
+        System.out.println("encoded value is " + new String(bytesEncoded ));
+        authorizationtoken = new String(bytesEncoded );
+
         editor.putString("UN", username);
-        editor.putString("PW", password);
+        editor.putString("AT", authorizationtoken);
 
         // Commit the edits!
         editor.commit();
@@ -75,21 +91,31 @@ public class LoginUtility {
 
                     // User object available
 
-                    System.out.println(response.headers().toString());
-                    System.out.println("----");
-                    System.out.println(response.raw().headers().toString());
-                    System.out.println("----");
-                    System.out.println(response.raw().code());
-                    System.out.println("----");
-                    System.out.println(response.message());
-                    System.out.println("----");
-                    System.out.println(response.headers());
-                    System.out.println("----");
-                    System.out.println(response.message());
-                    System.out.println("----");
+                    System.out.println("---------");
+                    System.out.println("Alle headers van response");
+                    System.out.println("---------");
                     for(int i = 0; i < response.headers().size(); i++){
                         System.out.println(response.headers().value(i));
                     }
+
+                    System.out.println("---------");
+                    System.out.println("Alle headers van call");
+                    System.out.println("---------");
+                    for(int i = 0; i < call.request().headers().size(); i++){
+                        System.out.println(call.request().headers().value(i));
+                    }
+
+                    System.out.println("---------");
+                    System.out.println("Specific");
+                    System.out.println("---------");
+                    System.out.println(response.headers().get("authorization"));
+                    System.out.println(response.headers().get("authentication-token"));
+
+
+
+
+
+
                     removeUserCredentials();
                     storeUserCredentials(username, password);
 

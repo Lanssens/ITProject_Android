@@ -18,13 +18,9 @@ import static org.junit.Assert.*;
 @RunWith(AndroidJUnit4.class)
 public class ExampleInstrumentedTest {
     @Test
-<<<<<<< HEAD
     public void useAppContext() throws Exception {
         // Context of the app under TestFragment.
-=======
-    public void useAppContext() {
-        // Context of the app under TestActivity.
->>>>>>> b92117851a43f7eadca190462e549365676361c9
+
         Context appContext = InstrumentationRegistry.getTargetContext();
 
         assertEquals("be.fenego.android_spotshop", appContext.getPackageName());

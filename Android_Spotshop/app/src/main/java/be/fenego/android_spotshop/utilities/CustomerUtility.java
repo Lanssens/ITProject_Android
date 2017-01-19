@@ -24,9 +24,8 @@ import retrofit2.Response;
  */
 public class CustomerUtility {
     public static void updateCustomerFew(final GeneralCallback callback, final CustomerFew customer) {
-        final List<String> data = LoginUtility.retrieveUserCredentials();
         CustomerService customerService =
-                ServiceGenerator.createService(CustomerService.class, data.get(0), data.get(1));
+                ServiceGenerator.createService(CustomerService.class, LoginUtility.retrieveAuthToken());
         Call<CustomerFew> call = customerService.updateCustomer(customer);
         call.enqueue(new Callback<CustomerFew>() {
             @Override
@@ -49,9 +48,8 @@ public class CustomerUtility {
         });
     }
     public static void updateCustomerFull(final GeneralCallback callback, final Customer customer) {
-        final List<String> data = LoginUtility.retrieveUserCredentials();
         CustomerService customerService =
-                ServiceGenerator.createService(CustomerService.class, data.get(0), data.get(1));
+                ServiceGenerator.createService(CustomerService.class, LoginUtility.retrieveAuthToken());
         Call<Customer> call = customerService.updateCustomerFully(customer);
         call.enqueue(new Callback<Customer>() {
             @Override
@@ -90,16 +88,16 @@ public class CustomerUtility {
         });
     }
     public static void updatePassword(final GeneralCallback callback, final PasswordChange password) {
-        final List<String> data = LoginUtility.retrieveUserCredentials();
+
         CustomerService customerService =
-                ServiceGenerator.createService(CustomerService.class, data.get(0), data.get(1));
+                ServiceGenerator.createService(CustomerService.class, LoginUtility.retrieveAuthToken());
         Call<Customer> call = customerService.updatePassword(password);
         call.enqueue(new Callback<Customer>() {
             @Override
             public void onResponse(Call<Customer> call, Response<Customer> response) {
                 if (response.isSuccessful()) {
                     System.out.println("Updated password");
-                    LoginUtility.storeUserCredentials(data.get(0), password.getPassword());
+                    LoginUtility.storeUserCredentials(LoginUtility.retrieveUsername(), password.getPassword());
                     callback.onSuccess();
                 } else {
                     System.out.println(response.errorBody().toString());
@@ -153,9 +151,9 @@ public class CustomerUtility {
         });
     }
     public static boolean getCustomerData(final CustomerCallback callback) {
-        List<String> data = LoginUtility.retrieveUserCredentials();
+
         CustomerService customerService =
-                ServiceGenerator.createService(CustomerService.class, data.get(0), data.get(1));
+                ServiceGenerator.createService(CustomerService.class, LoginUtility.retrieveAuthToken());
         Call<Customer> call = customerService.getUserInformation();
         call.enqueue(new Callback<Customer>() {
             @Override
@@ -175,9 +173,9 @@ public class CustomerUtility {
         return false;
     }
     public static boolean getCustomerAddressUri(final StringCallback callback) {
-        List<String> data = LoginUtility.retrieveUserCredentials();
+
         CustomerService customerService =
-                ServiceGenerator.createService(CustomerService.class, data.get(0), data.get(1));
+                ServiceGenerator.createService(CustomerService.class, LoginUtility.retrieveAuthToken());
         Call<Addresses> call = customerService.getCustomerAddresses();
         call.enqueue(new Callback<Addresses>() {
             @Override
@@ -200,9 +198,9 @@ public class CustomerUtility {
         return false;
     }
     public static boolean getCustomerAddress(final AddressCallback callback, final String uri) {
-        List<String> data = LoginUtility.retrieveUserCredentials();
+
         CustomerService customerService =
-                ServiceGenerator.createService(CustomerService.class, data.get(0), data.get(1));
+                ServiceGenerator.createService(CustomerService.class, LoginUtility.retrieveAuthToken());
         Call<Address> call = customerService.getCustomerAddress(uri);
         call.enqueue(new Callback<Address>() {
             @Override
@@ -223,9 +221,9 @@ public class CustomerUtility {
         return false;
     }
     public static boolean updateCustomerAddress(final GeneralCallback callback, final String uri, Address address) {
-        List<String> data = LoginUtility.retrieveUserCredentials();
+
         CustomerService customerService =
-                ServiceGenerator.createService(CustomerService.class, data.get(0), data.get(1));
+                ServiceGenerator.createService(CustomerService.class, LoginUtility.retrieveAuthToken());
         Call<Address> call = customerService.putCustomerAddress(uri, address);
         call.enqueue(new Callback<Address>() {
             @Override
