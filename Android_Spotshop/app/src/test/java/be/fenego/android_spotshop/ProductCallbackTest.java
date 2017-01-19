@@ -15,7 +15,7 @@ import retrofit2.Call;
  */
 
 @SuppressWarnings("DefaultFileTemplate")
-public class CallbackTest implements ProductCallback {
+public class ProductCallbackTest implements ProductCallback {
 
     ProductCallback productCallback;
 
