@@ -2,11 +2,13 @@ package be.fenego.android_spotshop.shoppingBasket;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -17,6 +19,7 @@ import java.util.List;
 import be.fenego.android_spotshop.R;
 import be.fenego.android_spotshop.callbacks.ProductCallback;
 import be.fenego.android_spotshop.callbacks.ShoppingBasketCallback;
+import be.fenego.android_spotshop.home.HomeFragment;
 import be.fenego.android_spotshop.models.LineItem;
 import be.fenego.android_spotshop.models.ProductCollection;
 import be.fenego.android_spotshop.models.ProductDetails;
@@ -41,6 +44,10 @@ public class ShoppingBasketFragment extends Fragment implements ShoppingBasketCa
 
     ArrayList<Element> elementList = null;
 
+    String delete = "";
+
+    ShoppingBasketAdapter shoppingBasketAdapter;
+
     @BindView(R.id.shoppingBasketListView)
     ListView shoppingBasketListView;
     @BindView(R.id.shoppingCartTextView)
@@ -56,15 +63,28 @@ public class ShoppingBasketFragment extends Fragment implements ShoppingBasketCa
         return view;
     }
 
+    public void deleteShoppingBasketItemClicked(View view){
+        Log.v("clicked delete: \n", "item: " + view.getContentDescription().toString());
+        delete = view.getContentDescription().toString();
+        ShoppingBasketUtility.getActiveShoppingBasket(this);
+    }
+
     @Override
     public void onSuccessGetActiveBasket(ShoppingBasket shoppingBasket) {
        try{
-           if(shoppingBasket.getShippingBuckets() != null){
-               shoppingBasketTotal.setText(shoppingBasket.getTotals().getBasketTotal().getValue().toString() + " USD");
-               ShoppingBasketUtility.getActiveBasketLineItems(this, shoppingBasket.getId());
+           if(delete.equals("")){
+               if(shoppingBasket.getShippingBuckets() != null){
+                   shoppingBasketTotal.setText(shoppingBasket.getTotals().getBasketTotal().getValue().toString() + " USD");
+                   ShoppingBasketUtility.getActiveBasketLineItems(this, shoppingBasket.getId());
+               }
+           }else{
+               ShoppingBasketUtility.deleteShoppingBasketLineItems(this, shoppingBasket.getId(), delete);
            }
        }catch (NullPointerException e){
            Toast.makeText(getContext(), "No items available yet!", Toast.LENGTH_LONG).show();
+           if(shoppingBasketAdapter != null)
+           shoppingBasketAdapter.clear();
+           shoppingBasketTotal.setText("0.00 USD");
        }
     }
 
@@ -109,13 +129,27 @@ public class ShoppingBasketFragment extends Fragment implements ShoppingBasketCa
     }
 
     @Override
+    public void onSuccessDeleteShoppingBasketLineItem(ShoppingBasket shoppingBasket) {
+        delete = "";
+
+        Toast.makeText(getContext(),"You just removed a product!",Toast.LENGTH_SHORT).show();
+        ShoppingBasketUtility.getActiveShoppingBasket(this);
+    }
+
+    @Override
+    public void onErrorDeleteShoppingBasketLineItem(Call<ShoppingBasket> call, Throwable t) {
+        Toast.makeText(getContext(),"Could not delete product!",Toast.LENGTH_SHORT).show();
+
+    }
+
+    @Override
     public void onSuccessGetProduct(ProductDetails productDetails) {
         for(Element element : elementList){
             if(element.getProduct().getTitle().equals(productDetails.getSku())){
                 element.setImageURL(productDetails.getImageURLByName("front M").getEffectiveUrl());
             }
         }
-        ArrayAdapter shoppingBasketAdapter = new ShoppingBasketAdapter(getContext(),this.elementList);
+        shoppingBasketAdapter = new ShoppingBasketAdapter(getContext(),this.elementList, ShoppingBasketFragment.this);
         shoppingBasketListView.setAdapter(shoppingBasketAdapter);
     }
 

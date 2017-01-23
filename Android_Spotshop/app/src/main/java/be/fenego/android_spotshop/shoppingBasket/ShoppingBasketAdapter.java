@@ -14,18 +14,28 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.api.services.vision.v1.model.Position;
 import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
 import be.fenego.android_spotshop.R;
+import be.fenego.android_spotshop.callbacks.ShoppingBasketCallback;
+import be.fenego.android_spotshop.menu.MenuActivity;
 import be.fenego.android_spotshop.models.LineItem;
 import be.fenego.android_spotshop.models.SalePrice;
+import be.fenego.android_spotshop.models.ShoppingBasket;
+import be.fenego.android_spotshop.models.ShoppingBasketElementList;
+import be.fenego.android_spotshop.models.ShoppingBasketPostReturn;
 import be.fenego.android_spotshop.models.shoppingBasketModels.Element;
+import be.fenego.android_spotshop.models.shoppingBasketModels.ElementList;
+import be.fenego.android_spotshop.utilities.ShoppingBasketUtility;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import butterknife.OnTouch;
+import retrofit2.Call;
 
 /**
  * Created by Nick on 19/01/2017.
@@ -36,11 +46,13 @@ public class ShoppingBasketAdapter extends ArrayAdapter<Element> {
     private final ArrayList<Element> elementList;
     private static final String BASE_IMAGE_URL = "https://axesso.fenego.zone";
     private ViewHolder holder;
+    private ShoppingBasketFragment fragment;
 
-    public ShoppingBasketAdapter(Context context, ArrayList<Element> elements) {
+    public ShoppingBasketAdapter(Context context, ArrayList<Element> elements, ShoppingBasketFragment fragment) {
         super(context, -1, elements);
         this.context = context;
         this.elementList = elements;
+        this.fragment = fragment;
     }
 
     //View aanamaken met sepciale layout voor inladen van productdata in views.
@@ -62,6 +74,7 @@ public class ShoppingBasketAdapter extends ArrayAdapter<Element> {
 
             setViews(position);
 
+
             return view;
         }catch (Exception e){
             Toast.makeText(context.getApplicationContext(),"Could not display list of basketItems!",Toast.LENGTH_SHORT).show();
@@ -78,6 +91,15 @@ public class ShoppingBasketAdapter extends ArrayAdapter<Element> {
 
             holder.sbTitle.setText(elementList.get(position).getProduct().getDescription());
             holder.sbQuantity.setText(elementList.get(position).getQuantity().getValue().toString());
+            holder.deleteImageView.setContentDescription(elementList.get(position).getId());
+
+            holder.deleteImageView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    fragment.deleteShoppingBasketItemClicked(v);
+                }
+            });
+
         }catch (Resources.NotFoundException e){
             e.printStackTrace();
             Toast.makeText(context.getApplicationContext(),"Could not display availability / price of certain products!",Toast.LENGTH_SHORT).show();
@@ -111,7 +133,9 @@ public class ShoppingBasketAdapter extends ArrayAdapter<Element> {
     }
 
     //Bind views voor basketdata in te stellen.
-    static class ViewHolder {
+    static class ViewHolder{
+        Context mcontext;
+
         @BindView(R.id.shoppingBasketListItemImageView)
         ImageView sbImage;
 
@@ -123,6 +147,9 @@ public class ShoppingBasketAdapter extends ArrayAdapter<Element> {
 
         @BindView(R.id.shoppingBasketQuantityTextView)
         TextView sbQuantity;
+
+        @BindView(R.id.shoppingBasketListItemDeleteImageView)
+        ImageView deleteImageView;
 
         public ViewHolder(View view) {
             ButterKnife.bind(this, view);

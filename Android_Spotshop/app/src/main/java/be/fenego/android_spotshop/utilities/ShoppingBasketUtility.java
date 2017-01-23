@@ -108,12 +108,34 @@ public class ShoppingBasketUtility {
         }
     }
 
+    public static void deleteShoppingBasketLineItems(final ShoppingBasketCallback callback,String basketID, String itemID){
+        android.support.v4.app.Fragment f =(android.support.v4.app.Fragment) callback;
+        try{
+            shoppingBasketService.deleteShoppingBasketLineItem(getToken(), basketID, itemID).enqueue(new Callback<ShoppingBasket>() {
+                @Override
+                public void onResponse(Call<ShoppingBasket> call, Response<ShoppingBasket> response) {
+                    callback.onSuccessDeleteShoppingBasketLineItem(response.body());
+                }
+
+                @Override
+                public void onFailure(Call<ShoppingBasket> call, Throwable t) {
+                    callback.onErrorDeleteShoppingBasketLineItem(call, t);
+                }
+            });
+        }catch (Exception e){
+            e.printStackTrace();
+            Toast.makeText(f.getContext(),"Could not delete item from shopping cart!",Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
+
     private static String getToken(){
         if(LoginUtility.isUserLoggedIn()){
-            Log.v("Post: authToken: ", LoginUtility.retrieveAuthToken());
+            Log.v("authToken: ", LoginUtility.retrieveAuthToken());
             return LoginUtility.retrieveAuthToken();
         }else {
-            Log.v("Post: anonToken: ", LoginUtility.retrieveAnonToken());
+            Log.v("anonToken: ", LoginUtility.retrieveAnonToken());
             return LoginUtility.retrieveAnonToken();
         }
     }

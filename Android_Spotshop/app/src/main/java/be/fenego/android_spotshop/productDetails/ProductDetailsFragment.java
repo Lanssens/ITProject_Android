@@ -281,7 +281,7 @@ public class ProductDetailsFragment extends Fragment implements ShoppingBasketCa
 
     @Override
     public void onSuccessPostProductToBasket(ShoppingBasketElementList ShoppingBasketElementList) {
-        Toast.makeText(getActivity(), "Product added to basket!" ,Toast.LENGTH_LONG).show();
+        Toast.makeText(getActivity(), "Product added to basket!" ,Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -297,6 +297,16 @@ public class ProductDetailsFragment extends Fragment implements ShoppingBasketCa
 
     @Override
     public void onErrorGetActiveBasketLineItems(Call<ElementList> call, Throwable t) {
+
+    }
+
+    @Override
+    public void onSuccessDeleteShoppingBasketLineItem(ShoppingBasket shoppingBasket) {
+
+    }
+
+    @Override
+    public void onErrorDeleteShoppingBasketLineItem(Call<ShoppingBasket> call, Throwable t) {
 
     }
 }

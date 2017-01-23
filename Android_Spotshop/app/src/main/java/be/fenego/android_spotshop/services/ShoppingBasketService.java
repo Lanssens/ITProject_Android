@@ -7,11 +7,13 @@ import be.fenego.android_spotshop.models.ShoppingBasket;
 
 import be.fenego.android_spotshop.models.ShoppingBasketElementList;
 import be.fenego.android_spotshop.models.ShoppingBasketPostReturn;
+import be.fenego.android_spotshop.models.shoppingBasketModels.Element;
 import be.fenego.android_spotshop.models.shoppingBasketModels.ElementList;
 import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
@@ -37,6 +39,9 @@ public interface ShoppingBasketService
 
     @GET("inSPIRED-inTRONICS-Site/-/baskets/{basketID}/items")
     Call<ElementList> getActiveShoppingBasketLineItems(@Header("authentication-token") String token, @Path("basketID") String basketID);
+
+    @DELETE("inSPIRED-inTRONICS-Site/-/baskets/{basketID}/items/{itemID}")
+    Call<ShoppingBasket> deleteShoppingBasketLineItem(@Header("authentication-token") String token, @Path("basketID") String basketID, @Path("itemID") String itemID);
 
 
     Gson gson = new GsonBuilder().create();
