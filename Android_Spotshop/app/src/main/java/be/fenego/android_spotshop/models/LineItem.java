@@ -43,4 +43,15 @@ public class LineItem implements Serializable{
         this.uri = uri;
     }
 
+    public Object getAttributeValueByName(String name){
+        Object o = null;
+        for (Attribute attribute : attributes)
+        {
+            if (attribute.getName().equals(name)){
+                o = attribute.getValue();
+            }
+        }
+        return o;
+    }
+
 }

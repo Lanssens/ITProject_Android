@@ -2,7 +2,9 @@
 package be.fenego.android_spotshop.models;
 
 
-public class ShippingMethod {
+import java.io.Serializable;
+
+public class ShippingMethod implements Serializable{
 
     private String id;
     private Integer shippingTimeMin;

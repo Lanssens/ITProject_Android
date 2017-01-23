@@ -21,16 +21,21 @@ import com.squareup.picasso.Picasso;
 import org.junit.Before;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+
 import be.fenego.android_spotshop.R;
 import be.fenego.android_spotshop.callbacks.ShoppingBasketCallback;
 import be.fenego.android_spotshop.models.Attribute;
 import be.fenego.android_spotshop.models.Image;
-import be.fenego.android_spotshop.models.LineItem;
 import be.fenego.android_spotshop.models.ProductDetails;
+import be.fenego.android_spotshop.models.Quantity;
 import be.fenego.android_spotshop.models.ResourceAttribute;
 import be.fenego.android_spotshop.models.SalePrice;
 import be.fenego.android_spotshop.models.ShoppingBasket;
+import be.fenego.android_spotshop.models.ShoppingBasketElement;
+import be.fenego.android_spotshop.models.ShoppingBasketElementList;
 import be.fenego.android_spotshop.models.ShoppingBasketPostReturn;
+import be.fenego.android_spotshop.models.shoppingBasketModels.ElementList;
 import be.fenego.android_spotshop.utilities.LoginUtility;
 import be.fenego.android_spotshop.utilities.ShoppingBasketUtility;
 import butterknife.BindView;
@@ -48,7 +53,8 @@ public class ProductDetailsFragment extends Fragment implements ShoppingBasketCa
     private ProductDetails productDetails = null;
     private ArrayList<Attribute> productDetailsAttributes = null;
 
-    LineItem lineItem;
+    ShoppingBasketElement shoppingBasketElement;
+    ShoppingBasketElementList shoppingBasketElementList;
 
     private static final String BASE_IMAGE_URL = "https://axesso.fenego.zone";
 
@@ -86,9 +92,6 @@ public class ProductDetailsFragment extends Fragment implements ShoppingBasketCa
         productDetails = (ProductDetails) bundle.get("productDetails");
         productDetailsAttributes =(ArrayList<Attribute>) (productDetails != null ? productDetails.getAttributes() : null);
 
-        //get lineItem
-        lineItem = (LineItem) bundle.get("lineItem");
-
         setViews();
 
         return view;
@@ -97,12 +100,16 @@ public class ProductDetailsFragment extends Fragment implements ShoppingBasketCa
     //zal add_To_cart click afhandelen
     @OnClick(R.id.productDetailsAddToCartButton)
     void addToCart(View view){
+        shoppingBasketElement = new ShoppingBasketElement(productDetails.getSku(), new Quantity(Integer.parseInt(productDetailsQuantityEditText.getText().toString())));
+        ArrayList<ShoppingBasketElement> shoppingBasketElementArrayList = new ArrayList<>();
+        shoppingBasketElementArrayList.add(shoppingBasketElement);
+        shoppingBasketElementList = new ShoppingBasketElementList(shoppingBasketElementArrayList);
         if(LoginUtility.isUserLoggedIn()){
             ShoppingBasketUtility.getActiveShoppingBasket(this);
         }else if(LoginUtility.retrieveAnonToken().equals("")){
             ShoppingBasketUtility.createShoppingBasket(this);
         }else{
-            //TODO:werk verder met anon basket
+            ShoppingBasketUtility.postProductToBasket(this, LoginUtility.retrieveAnonToken(), shoppingBasketElementList);
         }
     }
 
@@ -240,34 +247,56 @@ public class ProductDetailsFragment extends Fragment implements ShoppingBasketCa
 
     @Override
     public void onSuccessGetActiveBasket(ShoppingBasket shoppingBasket) {
-        Log.v("Get basket:", "success get active basket!");
-        ShoppingBasketUtility.postProductToBasket(this, shoppingBasket.getId(), lineItem);
+        Log.v("Get basket:", "success get active basket!\n" + shoppingBasket.getId() + "With AUTH token: " + LoginUtility.retrieveAuthToken());
+        Log.v("Post item aftrGETactv: ", shoppingBasketElement.getSku());
+        ShoppingBasketUtility.postProductToBasket(this, shoppingBasket.getId(), shoppingBasketElementList);
     }
 
     @Override
     public void onErrorGetActiveBasket(Call<ShoppingBasket> call, Throwable t) {
-
+        t.printStackTrace();
+        Toast.makeText(getContext(),"Could not find your shopping cart!\nTry to login / logout!",Toast.LENGTH_SHORT).show();
     }
 
     @Override
-    public void onSuccessCreateBasket(ShoppingBasketPostReturn shoppingBasketPostReturn) {
-        LoginUtility.storeAnonToken(shoppingBasketPostReturn.getTitle());
-        Log.v("created basket worked: ", shoppingBasketPostReturn.getUri());
+    public void onSuccessCreateBasket(ShoppingBasketPostReturn shoppingBasketPostReturn, String token) {
+        if(LoginUtility.isUserLoggedIn()){
+            LoginUtility.storeAuthToken(token);
+            Log.v("Auth token stored: ", token);
+        }else{
+            LoginUtility.storeAnonToken(token);
+            Log.v("Anon token stored: ", token);
+        }
+
+        Log.v("created basket worked: ", shoppingBasketPostReturn.getTitle());
+        Log.v("Post item aftrCreate: ", shoppingBasketElement.getSku());
+        ShoppingBasketUtility.postProductToBasket(this, shoppingBasketPostReturn.getTitle(), shoppingBasketElementList);
     }
 
     @Override
     public void onErrorCreateBasket(Call<ShoppingBasketPostReturn> call, Throwable t) {
+        t.printStackTrace();
+        Toast.makeText(getContext(),"Could not find your shopping cart!\nTry to login / logout!",Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onSuccessPostProductToBasket(ShoppingBasketElementList ShoppingBasketElementList) {
+        Toast.makeText(getActivity(), "Product added to basket!" ,Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onErrorPostProductToBasket(Call<ShoppingBasketElementList> call, Throwable t) {
+        t.printStackTrace();
+        Toast.makeText(getContext(),"Could not add product to your shopping cart!\nTry to login / logout!\n" + t.getMessage(),Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onSuccessGetActiveBasketLineItems(ElementList elementList) {
 
     }
 
     @Override
-    public void onSuccessPostProductToBasket(LineItem lineItem) {
-        Log.v("Post lineitem:", "success post to basket!");
-        Toast.makeText(getContext().getApplicationContext(), "Works !!" ,Toast.LENGTH_LONG);
-    }
-
-    @Override
-    public void onErrorPostProductToBasket(Call<LineItem> call, Throwable t) {
+    public void onErrorGetActiveBasketLineItems(Call<ElementList> call, Throwable t) {
 
     }
 }

@@ -84,7 +84,7 @@ public class HomeFragment extends Fragment implements CloudVisionCallback, Produ
     //Geeft detailpagina weer voor bepaald product.
     @OnItemClick(R.id.productListView)
     void showProductDetails(AdapterView<?> adapterView, View view, int i, long l){
-        ProductUtility.getProductDetails(this,elementList.get(i));
+        ProductUtility.getProductDetails(this,elementList.get(i).getUri());
     }
 
     //Zoekt producten via tekst.
@@ -186,17 +186,9 @@ public class HomeFragment extends Fragment implements CloudVisionCallback, Produ
     }
 
     @Override
-    public void onSuccessGetProduct(ProductDetails productDetails, Element element) {
+    public void onSuccessGetProduct(ProductDetails productDetails) {
         Bundle bundle = new Bundle();
         bundle.putSerializable("productDetails",productDetails);
-
-        //add lineitem for basket
-        LineItem lineItem = new LineItem();
-        lineItem.setUri(element.getUri());
-        lineItem.setTitle(element.getTitle());
-        lineItem.setType(element.getType());
-        lineItem.setAttributes(element.getAttributes());
-        bundle.putSerializable("lineItem", lineItem);
 
         ProductDetailsFragment productDetailsFragment = new ProductDetailsFragment();
         productDetailsFragment.setArguments(bundle);

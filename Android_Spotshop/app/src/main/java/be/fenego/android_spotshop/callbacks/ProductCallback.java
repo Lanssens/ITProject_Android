@@ -12,7 +12,7 @@ import retrofit2.Call;
 @SuppressWarnings({"UnusedParameters", "DefaultFileTemplate"})
 public interface ProductCallback {
 
-    void onSuccessGetProduct(ProductDetails productDetails, Element element);
+    void onSuccessGetProduct(ProductDetails productDetails);
     void onErrorGetProduct(Call<ProductDetails> call, Throwable t);
 
     void onSuccessGetFeaturedProducts(ProductCollection productCollection);

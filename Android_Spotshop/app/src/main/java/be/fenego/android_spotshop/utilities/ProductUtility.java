@@ -20,13 +20,13 @@ import retrofit2.Response;
 public class ProductUtility {
     private static final ProductService productService = ProductService.retrofit.create(ProductService.class);
 
-    public static void getProductDetails(final ProductCallback callback, final Element element){
+    public static void getProductDetails(final ProductCallback callback, String SKU){
         android.support.v4.app.Fragment f =(android.support.v4.app.Fragment) callback;
         try{
-            productService.getProduct(element.getUri()).enqueue(new Callback<ProductDetails>() {
+            productService.getProduct(SKU).enqueue(new Callback<ProductDetails>() {
                 @Override
                 public void onResponse(Call<ProductDetails> call, Response<ProductDetails> response) {
-                    callback.onSuccessGetProduct(response.body(), element);
+                    callback.onSuccessGetProduct(response.body());
                 }
 
                 @Override
