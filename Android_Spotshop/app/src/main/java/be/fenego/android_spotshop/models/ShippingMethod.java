@@ -6,7 +6,7 @@ import java.io.Serializable;
  * Created by Nick on 10/01/2017.
  */
 @SuppressWarnings({"unused", "DefaultFileTemplate"})
-class ShippingMethod implements Serializable{
+public class ShippingMethod implements Serializable{
     private String name;
     private String type;
     private String id;

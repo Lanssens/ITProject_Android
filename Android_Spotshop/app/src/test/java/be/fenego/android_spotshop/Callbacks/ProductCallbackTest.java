@@ -1,4 +1,4 @@
-package be.fenego.android_spotshop;
+package be.fenego.android_spotshop.Callbacks;
 import org.junit.Test;
 import java.util.List;
 import be.fenego.android_spotshop.callbacks.ProductCallback;
@@ -33,8 +33,6 @@ public class ProductCallbackTest implements ProductCallback {
     public void getProductsByTextTest(){
         ProductUtilityMock.getProductByText(this);
     }
-
-
 
 
     @Override

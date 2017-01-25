@@ -22,13 +22,6 @@ import be.fenego.android_spotshop.menu.MenuActivity;
 
 @RunWith(AndroidJUnit4.class)
 public class DrawerMenuTest {
-    //Instrumented tests >
-    //Cheatsheet
-    //https://google.github.io/android-testing-support-library/docs/espresso/cheatsheet/index.html
-    //https://google.github.io/android-testing-support-library/docs/index.html
-
-
-
     @Rule
     public ActivityTestRule<MenuActivity> menuActivityActivityTestRule =
             new ActivityTestRule<MenuActivity>(MenuActivity.class);

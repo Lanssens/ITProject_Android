@@ -26,7 +26,6 @@ public class CountryUtility {
             public void onResponse(Call<List<Country>> call, Response<List<Country>> response) {
                 if(response.isSuccessful()){
                     callback.onSuccessCountry(response.body());
-
                 }else{
                     callback.onCountryError();
                 }
