@@ -9,12 +9,14 @@ import be.fenego.android_spotshop.models.Element;
 import be.fenego.android_spotshop.models.ProductCollection;
 import be.fenego.android_spotshop.models.ProductDetails;
 import be.fenego.android_spotshop.models.SalePrice;
+import be.fenego.android_spotshop.utilities.ProductUtility;
 
 /**
  * Created by Nick on 14/01/2017.
  */
 @SuppressWarnings({"unused", "DefaultFileTemplate"})
-public class ProductUtilityMock {
+public class ProductUtilityMock extends ProductUtility
+{
     //detail
     static Attribute a1 = new Attribute("Internal memory type","String","DDR3-SDRAM");
     static Attribute a2 = new Attribute("Operating system architecture","String","64-bit");
@@ -57,7 +59,7 @@ public class ProductUtilityMock {
 
     public static void getProductByText(final ProductCallback callback){
         setUp();
-       callback.onSuccessGetProductsByText(productCollection);
+        callback.onSuccessGetProductsByText(productCollection);
     }
 
     private static void setUp(){
