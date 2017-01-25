@@ -42,4 +42,13 @@ public class ShippingBucket {
         this.type = type;
     }
 
+    public LineItem getLineItemByName(String name){
+        for(LineItem lineItem : lineItems){
+            if(lineItem.getTitle().equals(name)){
+                return lineItem;
+            }
+        }
+        return null;
+    }
+
 }

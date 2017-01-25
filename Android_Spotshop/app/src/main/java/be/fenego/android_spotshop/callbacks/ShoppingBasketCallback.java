@@ -23,4 +23,6 @@ public interface ShoppingBasketCallback {
     void onErrorGetActiveBasketLineItems(Call<ElementList> call, Throwable t);
     void onSuccessDeleteShoppingBasketLineItem(ShoppingBasket shoppingBasket);
     void onErrorDeleteShoppingBasketLineItem(Call<ShoppingBasket> call, Throwable t);
+    void onSuccessUpdateShoppingBasketLineItem(ShoppingBasket shoppingBasket);
+    void onErrorUpdateShoppingBasketLineItem(Call<ShoppingBasket> call, Throwable t);
 }

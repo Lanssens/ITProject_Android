@@ -3,12 +3,16 @@ package be.fenego.android_spotshop.services;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import java.util.ArrayList;
+
 import be.fenego.android_spotshop.models.ShoppingBasket;
 
 import be.fenego.android_spotshop.models.ShoppingBasketElementList;
 import be.fenego.android_spotshop.models.ShoppingBasketPostReturn;
 import be.fenego.android_spotshop.models.shoppingBasketModels.Element;
 import be.fenego.android_spotshop.models.shoppingBasketModels.ElementList;
+import be.fenego.android_spotshop.models.shoppingBasketModels.PutQuantity;
+import be.fenego.android_spotshop.models.shoppingBasketModels.Quantity;
 import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -17,6 +21,7 @@ import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Path;
 import retrofit2.http.Url;
 
@@ -42,6 +47,9 @@ public interface ShoppingBasketService
 
     @DELETE("inSPIRED-inTRONICS-Site/-/baskets/{basketID}/items/{itemID}")
     Call<ShoppingBasket> deleteShoppingBasketLineItem(@Header("authentication-token") String token, @Path("basketID") String basketID, @Path("itemID") String itemID);
+
+    @PUT("inSPIRED-inTRONICS-Site/-/baskets/{basketID}/items/{itemID}")
+    Call<ShoppingBasket> updateShoppingBasketLineItem(@Header("authentication-token") String token, @Path("basketID") String basketID, @Path("itemID") String itemID, @Body PutQuantity quantity);
 
 
     Gson gson = new GsonBuilder().create();

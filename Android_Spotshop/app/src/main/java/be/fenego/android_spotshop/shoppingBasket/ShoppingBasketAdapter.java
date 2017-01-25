@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -92,11 +93,27 @@ public class ShoppingBasketAdapter extends ArrayAdapter<Element> {
             holder.sbTitle.setText(elementList.get(position).getProduct().getDescription());
             holder.sbQuantity.setText(elementList.get(position).getQuantity().getValue().toString());
             holder.deleteImageView.setContentDescription(elementList.get(position).getId());
+            holder.sbMinusButton.setContentDescription(elementList.get(position).getId());
+            holder.sbPlusButton.setContentDescription(elementList.get(position).getId());
 
             holder.deleteImageView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    fragment.deleteShoppingBasketItemClicked(v);
+                    fragment.deleteShoppingBasketItem(v);
+                }
+            });
+
+            holder.sbMinusButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    fragment.updateShoppingBasketItem(v);
+                }
+            });
+
+            holder.sbPlusButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    fragment.updateShoppingBasketItem(v);
                 }
             });
 
@@ -150,6 +167,12 @@ public class ShoppingBasketAdapter extends ArrayAdapter<Element> {
 
         @BindView(R.id.shoppingBasketListItemDeleteImageView)
         ImageView deleteImageView;
+
+        @BindView(R.id.shoppingBasketMinusButton)
+        Button sbMinusButton;
+
+        @BindView(R.id.shoppingBasketPlusButton)
+        Button sbPlusButton;
 
         public ViewHolder(View view) {
             ButterKnife.bind(this, view);

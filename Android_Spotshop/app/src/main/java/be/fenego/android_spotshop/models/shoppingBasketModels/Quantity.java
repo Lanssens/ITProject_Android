@@ -8,6 +8,13 @@ public class Quantity {
     private Integer value;
     private String unit;
 
+    public Quantity(){
+    }
+
+    public Quantity(Integer value){
+        this.value = value;
+    }
+
     public String getType() {
         return type;
     }

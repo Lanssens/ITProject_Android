@@ -309,4 +309,14 @@ public class ProductDetailsFragment extends Fragment implements ShoppingBasketCa
     public void onErrorDeleteShoppingBasketLineItem(Call<ShoppingBasket> call, Throwable t) {
 
     }
+
+    @Override
+    public void onSuccessUpdateShoppingBasketLineItem(ShoppingBasket shoppingBasket) {
+
+    }
+
+    @Override
+    public void onErrorUpdateShoppingBasketLineItem(Call<ShoppingBasket> call, Throwable t) {
+
+    }
 }

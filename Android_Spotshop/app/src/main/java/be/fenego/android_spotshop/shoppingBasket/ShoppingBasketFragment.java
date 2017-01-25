@@ -29,6 +29,8 @@ import be.fenego.android_spotshop.models.ShoppingBasketElementList;
 import be.fenego.android_spotshop.models.ShoppingBasketPostReturn;
 import be.fenego.android_spotshop.models.shoppingBasketModels.Element;
 import be.fenego.android_spotshop.models.shoppingBasketModels.ElementList;
+import be.fenego.android_spotshop.models.shoppingBasketModels.PutQuantity;
+import be.fenego.android_spotshop.models.shoppingBasketModels.Quantity;
 import be.fenego.android_spotshop.utilities.ProductUtility;
 import be.fenego.android_spotshop.utilities.ShoppingBasketUtility;
 import butterknife.BindView;
@@ -45,6 +47,11 @@ public class ShoppingBasketFragment extends Fragment implements ShoppingBasketCa
     ArrayList<Element> elementList = null;
 
     String delete = "";
+    String update = "";
+    Quantity updateQuantity = null;
+
+    boolean minus = false;
+    boolean plus = false;
 
     ShoppingBasketAdapter shoppingBasketAdapter;
 
@@ -63,22 +70,47 @@ public class ShoppingBasketFragment extends Fragment implements ShoppingBasketCa
         return view;
     }
 
-    public void deleteShoppingBasketItemClicked(View view){
+    public void deleteShoppingBasketItem(View view){
         Log.v("clicked delete: \n", "item: " + view.getContentDescription().toString());
         delete = view.getContentDescription().toString();
         ShoppingBasketUtility.getActiveShoppingBasket(this);
     }
 
+    public void updateShoppingBasketItem(View view){
+        if(view.getId() == R.id.shoppingBasketMinusButton){
+            minus = true;
+            update = view.getContentDescription().toString();
+            ShoppingBasketUtility.getActiveShoppingBasket(this);
+        }else if(view.getId() == R.id.shoppingBasketPlusButton){
+            plus = true;
+            update = view.getContentDescription().toString();
+            ShoppingBasketUtility.getActiveShoppingBasket(this);
+        }
+    }
+
     @Override
     public void onSuccessGetActiveBasket(ShoppingBasket shoppingBasket) {
        try{
-           if(delete.equals("")){
+           if(delete.equals("") && update.equals("")){
                if(shoppingBasket.getShippingBuckets() != null){
                    shoppingBasketTotal.setText(shoppingBasket.getTotals().getBasketTotal().getValue().toString() + " USD");
                    ShoppingBasketUtility.getActiveBasketLineItems(this, shoppingBasket.getId());
                }
-           }else{
+           }else if(!delete.equals("") && update.equals("")){
                ShoppingBasketUtility.deleteShoppingBasketLineItems(this, shoppingBasket.getId(), delete);
+           }else if(delete.equals("") && ! update.equals("")){
+               for(Element element : elementList){
+                   if(element.getId().equals(update)){
+                       updateQuantity =  element.getQuantity();
+                   }
+               }
+               if(plus){
+                   updateQuantity.setValue(updateQuantity.getValue() + 1);
+               }else if(minus){
+                   updateQuantity.setValue(updateQuantity.getValue() - 1);
+               }
+               PutQuantity putQuantity = new PutQuantity(updateQuantity);
+               ShoppingBasketUtility.updateShoppingBasketLineItems(this, shoppingBasket.getId(), update, putQuantity);
            }
        }catch (NullPointerException e){
            Toast.makeText(getContext(), "No items available yet!", Toast.LENGTH_LONG).show();
@@ -139,6 +171,21 @@ public class ShoppingBasketFragment extends Fragment implements ShoppingBasketCa
     @Override
     public void onErrorDeleteShoppingBasketLineItem(Call<ShoppingBasket> call, Throwable t) {
         Toast.makeText(getContext(),"Could not delete product!",Toast.LENGTH_SHORT).show();
+
+    }
+
+    @Override
+    public void onSuccessUpdateShoppingBasketLineItem(ShoppingBasket shoppingBasket) {
+        update = "";
+        updateQuantity = null;
+        plus = false;
+        minus = false;
+        Toast.makeText(getContext(),"You just updated the quantity!",Toast.LENGTH_SHORT).show();
+        ShoppingBasketUtility.getActiveShoppingBasket(this);
+    }
+
+    @Override
+    public void onErrorUpdateShoppingBasketLineItem(Call<ShoppingBasket> call, Throwable t) {
 
     }
 
