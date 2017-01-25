@@ -46,6 +46,36 @@ public class LoginUtility {
         String authToken = settings.getString("AT", "");
         return authToken;
     }
+    public static void storeAuthToken(String token){
+        SharedPreferences settings = currentAct.getSharedPreferences(userCredentials, 0);
+        SharedPreferences.Editor editor = settings.edit();
+
+        editor.putString("AT", token);
+
+        // Commit the edits!
+        editor.commit();
+    }
+
+    public static String retrieveAnonToken(){
+
+        SharedPreferences settings = currentAct.getSharedPreferences(userCredentials, 0);
+
+        String anonToken = settings.getString("AnonT", "");
+        return anonToken;
+    }
+
+    public static void storeAnonToken(String token){
+
+        // We need an Editor object to make preference changes.
+        // All objects are from android.context.Context
+        SharedPreferences settings = currentAct.getSharedPreferences(userCredentials, 0);
+        SharedPreferences.Editor editor = settings.edit();
+
+        editor.putString("AnonT", token);
+
+        // Commit the edits!
+        editor.commit();
+    }
 
     public static String retrieveUsername(){
 
@@ -54,18 +84,18 @@ public class LoginUtility {
         String authToken = settings.getString("UN", "");
         return authToken;
     }
-    public static void storeUserCredentials(String username, String password){
+    public static void storeUserCredentials(String username, String authorizationtoken){
 
         // We need an Editor object to make preference changes.
         // All objects are from android.context.Context
         SharedPreferences settings = currentAct.getSharedPreferences(userCredentials, 0);
         SharedPreferences.Editor editor = settings.edit();
 
-        String authorizationtoken = username +":" +password;
+        //String authorizationtoken = username +":" +password;
         // encode data on your side using BASE64
-        byte[]   bytesEncoded = Base64.encodeBase64(authorizationtoken.getBytes());
+        /*byte[]   bytesEncoded = Base64.encodeBase64(authorizationtoken.getBytes());
         System.out.println("encoded value is " + new String(bytesEncoded ));
-        authorizationtoken = new String(bytesEncoded );
+        authorizationtoken = new String(bytesEncoded );*/
 
         editor.putString("UN", username);
         editor.putString("AT", authorizationtoken);
@@ -117,7 +147,7 @@ public class LoginUtility {
 
 
                     removeUserCredentials();
-                    storeUserCredentials(username, password);
+                    storeUserCredentials(username, response.headers().get("authentication-token"));
 
                     //Get all headers
                     //Headers headers = response.headers();

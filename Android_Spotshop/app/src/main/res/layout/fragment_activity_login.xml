@@ -18,7 +18,7 @@
         <ImageView
             android:contentDescription="@string/logo_spotshot"
             android:id="@+id/login_splash_image"
-            android:src="@drawable/splash_name"
+            android:src="@drawable/splash_name_scale"
             android:layout_width="wrap_content"
             android:layout_height="72dp"
             android:layout_marginBottom="24dp"

@@ -29,6 +29,7 @@ import java.util.ArrayList;
 import java.util.List;
 import be.fenego.android_spotshop.R;
 import be.fenego.android_spotshop.callbacks.CloudVisionCallback;
+import be.fenego.android_spotshop.models.LineItem;
 import be.fenego.android_spotshop.utilities.CloudVisionUtility;
 import be.fenego.android_spotshop.utilities.ImageUtility;
 import be.fenego.android_spotshop.utilities.PermissionUtility;
@@ -188,6 +189,7 @@ public class HomeFragment extends Fragment implements CloudVisionCallback, Produ
     public void onSuccessGetProduct(ProductDetails productDetails) {
         Bundle bundle = new Bundle();
         bundle.putSerializable("productDetails",productDetails);
+
         ProductDetailsFragment productDetailsFragment = new ProductDetailsFragment();
         productDetailsFragment.setArguments(bundle);
         FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();

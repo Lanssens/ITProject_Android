@@ -1,5 +1,6 @@
 package be.fenego.android_spotshop.callbacks;
 
+import be.fenego.android_spotshop.models.Element;
 import be.fenego.android_spotshop.models.ProductCollection;
 import be.fenego.android_spotshop.models.ProductDetails;
 import retrofit2.Call;

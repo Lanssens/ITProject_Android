@@ -74,7 +74,7 @@ public class ServiceGenerator {
                     Request.Builder requestBuilder = original.newBuilder()
                             //FnswrmLnsuo=|oGMDTlKPIq1xuJxSiTjUHXlqcnMT7tabTgF6qmoGqyrf/iD63U2ylw==|s1b12c3e6a3dbf85a
                             //
-                            .header("Authorization", "Basic " + authToken)
+                            .header("authentication-token",  authToken)
                             //.header("authentication-token", "lNiLUWaXNok=|JD85fRMzvsVX97n2F/gceKQl7C8us+KzzmJrD9tqhVx54m6KsGL9Yw==|s1b12c3e636cfd015")
                             .method(original.method(), original.body());
 

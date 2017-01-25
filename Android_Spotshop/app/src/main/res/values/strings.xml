@@ -28,5 +28,12 @@
     <string name="logo_spotshot">logo spotshot</string>
     <string name="listview_product_image">listview product image</string>
     <string name="drawer_logo_afbeelding">drawer logo afbeelding</string>
+    <string name="shoppingCartProducts">Products:</string>
+    <string name="shoppingCartPriceTextView">00.00 USD</string>
+    <string name="plusButtonSB">+</string>
+    <string name="minusButtonSB">-</string>
+    <string name="priceSB">00.00 USD</string>
+    <string name="titleSB">test</string>
+    <string name="sbquantity">1</string>
 
 </resources>

@@ -2,20 +2,22 @@
 package be.fenego.android_spotshop.models;
 
 
-import java.io.Serializable;
+public class CommonShippingMethod {
 
-
-/**
- * Created by Nick on 10/01/2017.
- */
-@SuppressWarnings({"unused", "DefaultFileTemplate"})
-public class ShippingMethod implements Serializable{
-
+    private Integer shippingTimeMax;
     private String id;
     private Integer shippingTimeMin;
     private String name;
     private String type;
-    private Integer shippingTimeMax;
+    private String description;
+
+    public Integer getShippingTimeMax() {
+        return shippingTimeMax;
+    }
+
+    public void setShippingTimeMax(Integer shippingTimeMax) {
+        this.shippingTimeMax = shippingTimeMax;
+    }
 
     public String getId() {
         return id;
@@ -49,12 +51,12 @@ public class ShippingMethod implements Serializable{
         this.type = type;
     }
 
-    public Integer getShippingTimeMax() {
-        return shippingTimeMax;
+    public String getDescription() {
+        return description;
     }
 
-    public void setShippingTimeMax(Integer shippingTimeMax) {
-        this.shippingTimeMax = shippingTimeMax;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
 }

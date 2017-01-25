@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/shoppingBasketListItem"
+    android:stretchColumns="1"
+    android:shrinkColumns="1">
+    <TableRow>
+        <ImageView
+            app:srcCompat="@drawable/ic_button_camera"
+            android:id="@+id/shoppingBasketListItemImageView"
+            android:layout_height="80dp"
+            android:layout_width="80dp"
+            android:layout_margin="0dp"
+            android:padding="0dp" />
+        <TableLayout android:layout_gravity="center" android:shrinkColumns="*">
+            <TableRow>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/shoppingBasketListItemTitleTextView"
+                    android:text="@string/titleSB"
+                    android:textAlignment="center"
+                    android:textStyle="bold"/>
+            </TableRow>
+            <TableRow>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/shoppingBasketListPriceTitleTextView"
+                    android:text="@string/priceSB"
+                    android:textAlignment="center"/>
+            </TableRow>
+            <TableRow android:layout_gravity="center">
+                <LinearLayout android:orientation="horizontal" android:layout_gravity="center">
+                    <Button
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:text="@string/minusButtonSB"
+                        android:background="@color/colorWhite"
+                        android:textColor="@color/colorPrimary"
+                        android:textStyle="bold"
+                        android:textSize="25dp"
+                        android:textAlignment="center"
+                        android:id="@+id/shoppingBasketMinusButton"
+                        android:layout_gravity="center"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/shoppingBasketQuantityTextView"
+                        android:text="@string/sbquantity"
+                        android:layout_marginLeft="2dp"
+                        android:layout_marginRight="2dp"/>
+                    <Button
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:text="@string/plusButtonSB"
+                        android:background="@color/colorWhite"
+                        android:textColor="@color/colorPrimary"
+                        android:textStyle="bold"
+                        android:textSize="25dp"
+                        android:textAlignment="center"
+                        android:id="@+id/shoppingBasketPlusButton"
+                        android:layout_gravity="center"/>
+                </LinearLayout>
+            </TableRow>
+        </TableLayout>
+
+        <ImageView
+            app:srcCompat="@drawable/ic_action_delete"
+            android:id="@+id/shoppingBasketListItemDeleteImageView"
+            android:layout_height="80dp"
+            android:layout_width="80dp"
+            android:layout_margin="0dp"
+            android:padding="0dp"
+            android:layout_gravity="right" />
+    </TableRow>
+</TableLayout>
