@@ -104,12 +104,13 @@ public class ProductDetailsFragment extends Fragment implements ShoppingBasketCa
         ArrayList<ShoppingBasketElement> shoppingBasketElementArrayList = new ArrayList<>();
         shoppingBasketElementArrayList.add(shoppingBasketElement);
         shoppingBasketElementList = new ShoppingBasketElementList(shoppingBasketElementArrayList);
+
         if(LoginUtility.isUserLoggedIn()){
             ShoppingBasketUtility.getActiveShoppingBasket(this);
         }else if(LoginUtility.retrieveAnonToken().equals("")){
             ShoppingBasketUtility.createShoppingBasket(this);
         }else{
-            ShoppingBasketUtility.postProductToBasket(this, LoginUtility.retrieveAnonToken(), shoppingBasketElementList);
+            ShoppingBasketUtility.getActiveShoppingBasket(this);
         }
     }
 
