@@ -45,16 +45,4 @@ public interface CustomerService {
 
 
 
-    /*{
-        "password": "!InterShop00!"
-    }
-
-    {
-        "customerNo": "Patricia1",
-            "firstName" : "Patricia",
-            "lastName" : "blubb",
-            "email" : "patricia@test.intershop.de",
-            "preferredLanguage" : "de_DE"
-    }*/
-
 }

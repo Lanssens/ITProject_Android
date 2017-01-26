@@ -2,6 +2,8 @@ package be.fenego.android_spotshop.account;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +19,7 @@ import java.util.List;
 import be.fenego.android_spotshop.R;
 import be.fenego.android_spotshop.callbacks.AddressCallback;
 import be.fenego.android_spotshop.callbacks.CountryCallback;
+import be.fenego.android_spotshop.home.HomeFragment;
 import be.fenego.android_spotshop.utilities.CountryUtility;
 import be.fenego.android_spotshop.callbacks.CustomerCallback;
 import be.fenego.android_spotshop.utilities.CustomerUtility;
@@ -25,6 +28,7 @@ import be.fenego.android_spotshop.callbacks.StringCallback;
 import be.fenego.android_spotshop.models.Address;
 import be.fenego.android_spotshop.models.Country;
 import be.fenego.android_spotshop.models.Customer;
+import be.fenego.android_spotshop.utilities.LoginUtility;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -33,7 +37,7 @@ import butterknife.OnClick;
  * Created by Thijs on 1/13/2017.
  */
 
-public class AccountDetailFragment extends android.support.v4.app.Fragment implements CountryCallback, CustomerCallback ,StringCallback, AddressCallback, GeneralCallback{
+public class AccountDetailFragment extends android.support.v4.app.Fragment implements CountryCallback, CustomerCallback, StringCallback, AddressCallback, GeneralCallback {
 
     @BindView(R.id.account_detail_firstname)
     EditText _firstName;
@@ -56,7 +60,7 @@ public class AccountDetailFragment extends android.support.v4.app.Fragment imple
 
     @OnClick(R.id.account_detail_btn_save)
     public void saveButton(Button view) {
-        if(validate()){
+        if (validate()) {
             customer.setFirstName(_firstName.getText().toString());
             customer.setLastName(_lastName.getText().toString());
             customer.setPhoneMobile(_phone.getText().toString());
@@ -135,27 +139,42 @@ public class AccountDetailFragment extends android.support.v4.app.Fragment imple
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Haal Fragment-layout op
-        View fragmentView = inflater.inflate(R.layout.fragment_activity_accountdetails, container, false);
-        ButterKnife.bind(this, fragmentView);
+        if (LoginUtility.isUserLoggedIn()) {
+
+            View fragmentView = inflater.inflate(R.layout.fragment_activity_accountdetails, container, false);
+            ButterKnife.bind(this, fragmentView);
 
 
-        progress = new ProgressDialog(getActivity());
-        progress.setTitle("Loading");
-        progress.setMessage("Loading data...");
-        progress.setCancelable(false); // disable dismiss by tapping outside of the dialog
-        progress.show();
+            progress = new ProgressDialog(getActivity());
+            progress.setTitle("Loading");
+            progress.setMessage("Loading data...");
+            progress.setCancelable(false); // disable dismiss by tapping outside of the dialog
+            progress.show();
 
-        CustomerUtility.getCustomerData(this);
+            CustomerUtility.getCustomerData(this);
 
-        CountryUtility.getAllCountries(this);
-        getActivity().setTitle("Account Detail");
+            CountryUtility.getAllCountries(this);
+            getActivity().setTitle("Account Detail");
 
 
+            return fragmentView;
+        } else {
+            Fragment newFragment = new HomeFragment();
+            FragmentTransaction transaction = getFragmentManager().beginTransaction();
 
-        return fragmentView;
+            // Replace whatever is in the fragment_container view with this fragment,
+            // and add the transaction to the back stack
+            transaction.replace(R.id.flContent, newFragment);
+            transaction.addToBackStack(null);
+
+            // Commit the transaction
+            transaction.commit();
+        }
+        return null;
     }
 
     Spinner spinnerCountries;
+
     @Override
     public void onSuccessCountry(List<Country> countries) {
         allCountries = countries;
@@ -172,7 +191,7 @@ public class AccountDetailFragment extends android.support.v4.app.Fragment imple
 
         //spinnerCountries.setSelection(0);//set selected value in spinner
 
-        CustomerUtility.getCustomerAddressUri( this);
+        CustomerUtility.getCustomerAddressUri(this);
     }
 
     @Override
@@ -181,6 +200,7 @@ public class AccountDetailFragment extends android.support.v4.app.Fragment imple
     }
 
     private Customer customer;
+
     @Override
     public void onSuccessCustomer(Customer customer) {
         this.customer = customer;
@@ -191,7 +211,7 @@ public class AccountDetailFragment extends android.support.v4.app.Fragment imple
 
 
         //_countries.setText(customer.getFirstName());
-       // Toast.makeText(getActivity(), customer.getAddress().getStreet(), Toast.LENGTH_SHORT).show();
+        // Toast.makeText(getActivity(), customer.getAddress().getStreet(), Toast.LENGTH_SHORT).show();
 
     }
 
@@ -206,6 +226,7 @@ public class AccountDetailFragment extends android.support.v4.app.Fragment imple
     }
 
     private String uri;
+
     @Override
     public void onSuccessString(String text) {
         this.uri = text;
@@ -220,10 +241,10 @@ public class AccountDetailFragment extends android.support.v4.app.Fragment imple
     }
 
     private Address address;
+
     @Override
     public void onSuccessAddress(Address address) {
         this.address = address;
-        Toast.makeText(getActivity(), address.getCountryCode(), Toast.LENGTH_SHORT).show();
         _postal.setText(address.getPostalCode());
         _city.setText(address.getCity());
         _street.setText(address.getStreet());
@@ -232,10 +253,10 @@ public class AccountDetailFragment extends android.support.v4.app.Fragment imple
         System.out.println("--");
         System.out.println(address.getCountryCode());
         System.out.println("--");
-        for(int i = 0; i < allCountries.size(); i++){
-            if(allCountries.get(i).getAlpha2Code().equals(address.getCountryCode())){
+        for (int i = 0; i < allCountries.size(); i++) {
+            if (allCountries.get(i).getAlpha2Code().equals(address.getCountryCode())) {
                 System.out.println("Were in: " + allCountries.get(i).getAlpha2Code() + " " + address.getCountryCode());
-                selectionNumber=i;
+                selectionNumber = i;
             }
 
         }
@@ -248,6 +269,6 @@ public class AccountDetailFragment extends android.support.v4.app.Fragment imple
 
     @Override
     public void onAddressError() {
-       // Toast.makeText(getActivity(), "addressno", Toast.LENGTH_SHORT).show();
+        // Toast.makeText(getActivity(), "addressno", Toast.LENGTH_SHORT).show();
     }
 }

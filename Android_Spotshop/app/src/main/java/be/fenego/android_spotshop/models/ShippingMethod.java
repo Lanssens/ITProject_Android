@@ -4,7 +4,10 @@ package be.fenego.android_spotshop.models;
 
 import java.io.Serializable;
 
-@SuppressWarnings("ALL")
+/**
+ * Created by Nick on 10/01/2017.
+ */
+@SuppressWarnings({"unused", "DefaultFileTemplate"})
 public class ShippingMethod implements Serializable{
 
     private String id;

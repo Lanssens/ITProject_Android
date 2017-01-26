@@ -1,4 +1,4 @@
-package be.fenego.android_spotshop;
+package be.fenego.android_spotshop.Callbacks;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +20,7 @@ public class ProductUtilityMock {
     static final Attribute a2 = new Attribute("Operating system architecture","String","64-bit");
     static final List<Attribute> attributes = new ArrayList<>();
     static final ProductDetails productDetails = new ProductDetails();
+
 
     //list
     static final ProductCollection productCollection = new ProductCollection();

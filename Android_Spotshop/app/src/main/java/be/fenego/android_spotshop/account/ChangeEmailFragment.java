@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import be.fenego.android_spotshop.R;
 import be.fenego.android_spotshop.callbacks.CustomerCallback;
+import be.fenego.android_spotshop.home.HomeFragment;
 import be.fenego.android_spotshop.utilities.CustomerUtility;
 import be.fenego.android_spotshop.callbacks.GeneralCallback;
 import be.fenego.android_spotshop.utilities.LoginUtility;
@@ -38,8 +39,8 @@ public class ChangeEmailFragment extends android.support.v4.app.Fragment impleme
 
     @OnClick(R.id.change_email_save)
     public void saveButton(Button view) {
-        if(validate()){
-            if(!customer.equals(null)){
+        if (validate()) {
+            if (!customer.equals(null)) {
                /* newCustomer = new CustomerFew();
                 newCustomer.setCustomerNo(UUID.randomUUID().toString());
                 newCustomer.setPreferredLanguage("de_DE");
@@ -58,22 +59,37 @@ public class ChangeEmailFragment extends android.support.v4.app.Fragment impleme
         }
     }
 
-    @OnTextChanged(value = { R.id.change_email_input1 , R.id.change_email_input2 },
+    @OnTextChanged(value = {R.id.change_email_input1, R.id.change_email_input2},
             callback = OnTextChanged.Callback.AFTER_TEXT_CHANGED)
     void fixValidationOnTextChanged() {
         validate();
     }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // Haal Fragment-layout op
-        View fragmentView = inflater.inflate(R.layout.fragment_activity_changemail, container, false);
-        ButterKnife.bind(this, fragmentView);
+        if (LoginUtility.isUserLoggedIn()) {
+            // Haal Fragment-layout op
+            View fragmentView = inflater.inflate(R.layout.fragment_activity_changemail, container, false);
+            ButterKnife.bind(this, fragmentView);
 
-        CustomerUtility.getCustomerData(this);
+            CustomerUtility.getCustomerData(this);
 
-        getActivity().setTitle("Change email");
+            getActivity().setTitle("Change email");
 
-        return fragmentView;
+            return fragmentView;
+        } else {
+            Fragment newFragment = new HomeFragment();
+            FragmentTransaction transaction = getFragmentManager().beginTransaction();
+
+            // Replace whatever is in the fragment_container view with this fragment,
+            // and add the transaction to the back stack
+            transaction.replace(R.id.flContent, newFragment);
+            transaction.addToBackStack(null);
+
+            // Commit the transaction
+            transaction.commit();
+        }
+        return null;
     }
 
     public boolean validate() {
@@ -98,6 +114,7 @@ public class ChangeEmailFragment extends android.support.v4.app.Fragment impleme
 
         return valid;
     }
+
     @Override
     public void onSuccess() {
         Toast.makeText(getActivity(), "Email Changed", Toast.LENGTH_SHORT).show();

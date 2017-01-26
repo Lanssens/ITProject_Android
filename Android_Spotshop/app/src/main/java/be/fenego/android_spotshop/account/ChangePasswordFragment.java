@@ -11,9 +11,11 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import be.fenego.android_spotshop.R;
+import be.fenego.android_spotshop.home.HomeFragment;
 import be.fenego.android_spotshop.utilities.CustomerUtility;
 import be.fenego.android_spotshop.callbacks.GeneralCallback;
 import be.fenego.android_spotshop.models.PasswordChange;
+import be.fenego.android_spotshop.utilities.LoginUtility;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -31,27 +33,42 @@ public class ChangePasswordFragment extends android.support.v4.app.Fragment impl
 
     @OnClick(R.id.change_password_save)
     public void saveButton(Button view) {
-        if(validate()){
+        if (validate()) {
             PasswordChange pw = new PasswordChange();
             pw.setPassword(_passwordText1.getText().toString());
-            CustomerUtility.updatePassword(this, pw );
+            CustomerUtility.updatePassword(this, pw);
         }
     }
 
-    @OnTextChanged(value = { R.id.change_password_input1 , R.id.change_password_input2 },
+    @OnTextChanged(value = {R.id.change_password_input1, R.id.change_password_input2},
             callback = OnTextChanged.Callback.AFTER_TEXT_CHANGED)
     void fixValidationOnTextChanged() {
         validate();
     }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // Haal Fragment-layout op
-        View fragmentView = inflater.inflate(R.layout.fragment_activity_changepassword, container, false);
-        ButterKnife.bind(this, fragmentView);
+        if (LoginUtility.isUserLoggedIn()) {
+            // Haal Fragment-layout op
+            View fragmentView = inflater.inflate(R.layout.fragment_activity_changepassword, container, false);
+            ButterKnife.bind(this, fragmentView);
 
-        getActivity().setTitle("Change password");
+            getActivity().setTitle("Change password");
 
-        return fragmentView;
+            return fragmentView;
+        } else {
+            Fragment newFragment = new HomeFragment();
+            FragmentTransaction transaction = getFragmentManager().beginTransaction();
+
+            // Replace whatever is in the fragment_container view with this fragment,
+            // and add the transaction to the back stack
+            transaction.replace(R.id.flContent, newFragment);
+            transaction.addToBackStack(null);
+
+            // Commit the transaction
+            transaction.commit();
+        }
+        return null;
     }
 
     public boolean validate() {
