@@ -97,7 +97,7 @@ public class CustomerUtility {
             public void onResponse(Call<Customer> call, Response<Customer> response) {
                 if (response.isSuccessful()) {
                     System.out.println("Updated password");
-                    LoginUtility.storeUserCredentials(LoginUtility.retrieveUsername(), password.getPassword());
+
                     callback.onSuccess();
                 } else {
                     System.out.println(response.errorBody().toString());
@@ -151,7 +151,7 @@ public class CustomerUtility {
         });
     }
     public static boolean getCustomerData(final CustomerCallback callback) {
-
+        System.out.println(LoginUtility.retrieveAuthToken());
         CustomerService customerService =
                 ServiceGenerator.createService(CustomerService.class, LoginUtility.retrieveAuthToken());
         Call<Customer> call = customerService.getUserInformation();

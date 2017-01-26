@@ -35,7 +35,10 @@ public class LoginUtility {
         return !silent.equals("");
     }
     public static void removeUserCredentials(){
+        System.out.println("Removed user creds");
         currentAct.getSharedPreferences(userCredentials, 0).edit().clear().commit();
+        SharedPreferences settings = currentAct.getSharedPreferences(userCredentials, 0);
+        System.out.println(settings.getString("AT", "Empty AUTH token"));
     }
 
 
@@ -52,6 +55,7 @@ public class LoginUtility {
 
         editor.putString("AT", token);
 
+        System.out.println("Stored AUTH token: " + token);
         // Commit the edits!
         editor.commit();
     }
@@ -72,9 +76,10 @@ public class LoginUtility {
         SharedPreferences.Editor editor = settings.edit();
 
         editor.putString("AnonT", token);
-
         // Commit the edits!
         editor.commit();
+
+
     }
 
     public static String retrieveUsername(){
@@ -102,62 +107,35 @@ public class LoginUtility {
 
         // Commit the edits!
         editor.commit();
+
+        settings = currentAct.getSharedPreferences(userCredentials, 0);
+        System.out.println("Stored AUTH token: " + settings.getString("AT", ""));
     }
 
     public static void setCurrentAct(Activity currentAct) {
         LoginUtility.currentAct = currentAct;
     }
     public static boolean loginUser(final Fragment currentFragment, final String username, final String password){
-
-        CustomerService customerService =
-                ServiceGenerator.createService(CustomerService.class, username, password);
+        CustomerService customerService = null;
+        System.out.println("Trying to log in with: " + username + "en" +  password);
+        customerService = ServiceGenerator.createService(CustomerService.class, username, password);
         Call<Customer> call = customerService.getUserInformation();
 
         call.enqueue(new Callback<Customer>() {
             @Override
             public void onResponse(Call<Customer> call, Response<Customer> response) {
 
+                System.out.println(response.code());
+                System.out.println(call.request().url());
+                for(int i = 0; i < call.request().headers().size(); i++){
+                    call.request().headers().value(i);
+                }
+                System.out.println();
+
                 if (response.isSuccessful()) {
-
-                    // User object available
-
-                    System.out.println("---------");
-                    System.out.println("Alle headers van response");
-                    System.out.println("---------");
-                    for(int i = 0; i < response.headers().size(); i++){
-                        System.out.println(response.headers().value(i));
-                    }
-
-                    System.out.println("---------");
-                    System.out.println("Alle headers van call");
-                    System.out.println("---------");
-                    for(int i = 0; i < call.request().headers().size(); i++){
-                        System.out.println(call.request().headers().value(i));
-                    }
-
-                    System.out.println("---------");
-                    System.out.println("Specific");
-                    System.out.println("---------");
-                    System.out.println(response.headers().get("authorization"));
-                    System.out.println(response.headers().get("authentication-token"));
-
-
-
-
-
-
                     removeUserCredentials();
                     storeUserCredentials(username, response.headers().get("authentication-token"));
 
-                    //Get all headers
-                    //Headers headers = response.headers();
-
-                    //Get header value
-                    //String cookie = response.headers().get("authentication-token");
-
-                } else {
-                    // Error response (kan unauthorized zijn)
-                    // No implementation needed right now :c
                 }
             }
             @Override

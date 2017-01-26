@@ -71,6 +71,7 @@ public class LoginFragment extends android.support.v4.app.Fragment  {
 
         ButterKnife.bind(this, fragmentView);
 
+        LoginUtility.removeUserCredentials();
         _emailText.setText("Siepisdom@test.com");
         _passwordText.setText("Siepisdom1");
         getActivity().setTitle("Login");
@@ -92,39 +93,47 @@ public class LoginFragment extends android.support.v4.app.Fragment  {
 
     public void login() {
         Log.d(TAG, "Login");
+        LoginUtility.removeUserCredentials();
 
+        //Log.v("lel", LoginUtility.isUserLoggedIn() + "");
         if (!validate()) {
             onLoginFailed();
             return;
+        }else{
+
+            _loginButton.setEnabled(false);
+
+            final ProgressDialog progressDialog = new ProgressDialog(getActivity());
+            //progressDialog.setIndeterminate(true);
+            //progressDialog.getWindow().setGravity(Gravity.BOTTOM);
+            progressDialog.setMessage("Authenticating...");
+            progressDialog.show();
+
+
+            String email = _emailText.getText().toString();
+            String password = _passwordText.getText().toString();
+
+            Log.v("test", "Before login call ");
+            LoginUtility.loginUser(this, email, password);
+
+            new android.os.Handler().postDelayed(
+                    new Runnable() {
+                        public void run() {
+                            // On complete call either onLoginSuccess or onLoginFailed
+                            if(LoginUtility.isUserLoggedIn()){
+                                System.out.println("Na het wachten success");
+                                onLoginSuccess();
+                            }
+                            else{
+                                System.out.println("Na het wachten fail");
+                                onLoginFailed();
+                            }
+                            progressDialog.dismiss();
+                        }
+                    }, 4500);
         }
 
-        _loginButton.setEnabled(false);
 
-        final ProgressDialog progressDialog = new ProgressDialog(getActivity());
-        //progressDialog.setIndeterminate(true);
-        //progressDialog.getWindow().setGravity(Gravity.BOTTOM);
-        progressDialog.setMessage("Authenticating...");
-        progressDialog.show();
-
-
-        String email = _emailText.getText().toString();
-        String password = _passwordText.getText().toString();
-
-        LoginUtility.loginUser(this, email, password);
-
-        new android.os.Handler().postDelayed(
-                new Runnable() {
-                    public void run() {
-                        // On complete call either onLoginSuccess or onLoginFailed
-                        if(LoginUtility.isUserLoggedIn()){
-                            onLoginSuccess();
-                        }
-                        else{
-                            onLoginFailed();
-                        }
-                        progressDialog.dismiss();
-                    }
-                }, 3000);
     }
 
     public void openSignupFragment() {
@@ -143,8 +152,11 @@ public class LoginFragment extends android.support.v4.app.Fragment  {
     }
 
     public void openForgotPasswordFragment() {
-        Toast.makeText(getActivity(), "Clicked on forgot password", Toast.LENGTH_LONG).show();
-
+        Log.v("Test", "YEs or no " + LoginUtility.isUserLoggedIn());
+        Log.v("Test", "Auth token: " + LoginUtility.retrieveAuthToken());
+        Log.v("Test", "Anon token: " + LoginUtility.retrieveAnonToken());
+        Log.v("Test", "Username: " + LoginUtility.retrieveUsername());
+        LoginUtility.removeUserCredentials();
     }
 
 
@@ -152,7 +164,7 @@ public class LoginFragment extends android.support.v4.app.Fragment  {
     public void onLoginSuccess() {
 
         //Cannot login anymore for safety
-        _loginButton.setEnabled(true);
+        _loginButton.setEnabled(false);
 
         // Check if no view has focus:
         MenuActivity.hideKeyboard((MenuActivity)getActivity());
@@ -162,10 +174,12 @@ public class LoginFragment extends android.support.v4.app.Fragment  {
             // Create new fragment and transaction
             newFragment = new ReviewFragment();
             Bundle bundle = new Bundle();
+            System.out.println("Van login naar review");
             bundle.putSerializable("shoppingBasket", shoppingBasket);
             newFragment.setArguments(bundle);
 
         }else{
+            System.out.println("Van login naar home");
             newFragment = new HomeFragment();
         }
 

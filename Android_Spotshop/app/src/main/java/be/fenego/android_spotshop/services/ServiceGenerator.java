@@ -34,16 +34,19 @@ public class ServiceGenerator {
 
     //With Basic Authentication
     public static <S> S createService(Class<S> serviceClass, String username, String password) {
+        System.out.println("In basic auth generator with " + username + " en " + password);
         if (username != null && password != null) {
             String credentials = username + ":" + password;
             final String basic =
                     "Basic " + Base64.encodeToString(credentials.getBytes(), Base64.NO_WRAP);
 
+            httpClient = new OkHttpClient.Builder();
             httpClient.addInterceptor(new Interceptor() {
                 @Override
                 public Response intercept(Interceptor.Chain chain) throws IOException {
                     Request original = chain.request();
 
+                    System.out.println("Het zou moeten aangepast zijn");
                     Request.Builder requestBuilder = original.newBuilder()
                             .header("Authorization", basic)
                             .header("Accept", "application/json")
@@ -64,7 +67,9 @@ public class ServiceGenerator {
 
     //With token
     public static <S> S createService(Class<S> serviceClass, final String authToken) {
+        System.out.println("In token generator");
         if (authToken != null) {
+            httpClient = new OkHttpClient.Builder();
             httpClient.addInterceptor(new Interceptor() {
                 @Override
                 public Response intercept(Interceptor.Chain chain) throws IOException {
