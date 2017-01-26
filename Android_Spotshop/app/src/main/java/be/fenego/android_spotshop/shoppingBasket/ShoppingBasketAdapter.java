@@ -4,50 +4,34 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.Resources;
 import android.support.annotation.NonNull;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.google.api.services.vision.v1.model.Position;
-import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
-
 import java.util.ArrayList;
-
 import be.fenego.android_spotshop.R;
-import be.fenego.android_spotshop.callbacks.ShoppingBasketCallback;
-import be.fenego.android_spotshop.menu.MenuActivity;
-import be.fenego.android_spotshop.models.LineItem;
-import be.fenego.android_spotshop.models.SalePrice;
-import be.fenego.android_spotshop.models.ShoppingBasket;
-import be.fenego.android_spotshop.models.ShoppingBasketElementList;
-import be.fenego.android_spotshop.models.ShoppingBasketPostReturn;
 import be.fenego.android_spotshop.models.shoppingBasketModels.Element;
-import be.fenego.android_spotshop.models.shoppingBasketModels.ElementList;
-import be.fenego.android_spotshop.utilities.ShoppingBasketUtility;
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
-import butterknife.OnTouch;
-import retrofit2.Call;
+
 
 /**
  * Created by Nick on 19/01/2017.
+ * adapter voor de shopping basket item lijst te vullen.
  */
 
-public class ShoppingBasketAdapter extends ArrayAdapter<Element> {
+@SuppressWarnings("ALL")
+class ShoppingBasketAdapter extends ArrayAdapter<Element> {
     private final Context context;
     private final ArrayList<Element> elementList;
     private static final String BASE_IMAGE_URL = "https://axesso.fenego.zone";
     private ViewHolder holder;
-    private ShoppingBasketFragment fragment;
+    private final ShoppingBasketFragment fragment;
 
     public ShoppingBasketAdapter(Context context, ArrayList<Element> elements, ShoppingBasketFragment fragment) {
         super(context, -1, elements);
@@ -56,7 +40,7 @@ public class ShoppingBasketAdapter extends ArrayAdapter<Element> {
         this.fragment = fragment;
     }
 
-    //View aanamaken met sepciale layout voor inladen van productdata in views.
+    //View aanamaken met sepciale layout voor inladen van basket item data in views.
     @NonNull
     @SuppressWarnings("ConstantConditions")
     @Override
@@ -84,7 +68,8 @@ public class ShoppingBasketAdapter extends ArrayAdapter<Element> {
         return view;
     }
 
-    //Views vullen met data van een bepaald product.
+    //Views vullen met data van een bepaald basket item.
+    @SuppressLint("SetTextI18n")
     private void setViews(int position){
         try{
             setImageView(position);

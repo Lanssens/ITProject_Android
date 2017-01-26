@@ -2,6 +2,7 @@
 package be.fenego.android_spotshop.models;
 
 
+@SuppressWarnings("ALL")
 public class SalesTaxTotalsByTaxRate {
 
     private Amount amount;

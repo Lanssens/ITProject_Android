@@ -4,6 +4,7 @@ package be.fenego.android_spotshop.models;
 
 import java.io.Serializable;
 
+@SuppressWarnings("ALL")
 public class ShippingMethod implements Serializable{
 
     private String id;

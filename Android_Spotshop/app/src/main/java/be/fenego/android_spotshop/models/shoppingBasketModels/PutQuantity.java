@@ -4,6 +4,7 @@ package be.fenego.android_spotshop.models.shoppingBasketModels;
  * Created by Nick on 25/01/2017.
  */
 
+@SuppressWarnings("ALL")
 public class PutQuantity {
     private Quantity quantity;
 

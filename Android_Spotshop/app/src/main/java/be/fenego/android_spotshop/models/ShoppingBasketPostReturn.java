@@ -4,6 +4,7 @@ package be.fenego.android_spotshop.models;
  * Created by Nick on 19/01/2017.
  */
 
+@SuppressWarnings("ALL")
 public class ShoppingBasketPostReturn {
     private String type;
     private String uri;

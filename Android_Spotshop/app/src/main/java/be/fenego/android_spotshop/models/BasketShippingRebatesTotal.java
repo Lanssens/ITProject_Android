@@ -2,6 +2,7 @@
 package be.fenego.android_spotshop.models;
 
 
+@SuppressWarnings("unused")
 public class BasketShippingRebatesTotal {
 
     private String type;

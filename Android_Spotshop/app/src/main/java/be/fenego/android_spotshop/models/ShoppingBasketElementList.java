@@ -7,6 +7,7 @@ import java.util.List;
  * Created by Nick on 23/01/2017.
  */
 
+@SuppressWarnings("ALL")
 public class ShoppingBasketElementList {
     private List<ShoppingBasketElement> elements = null;
 

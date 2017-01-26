@@ -6,6 +6,7 @@ import java.util.List;
  * Created by Nick on 19/01/2017.
  */
 
+@SuppressWarnings("ALL")
 public class ShoppingBasket {
         private String id;
         private List<SalesTaxTotalsByTaxRate> salesTaxTotalsByTaxRate = null;

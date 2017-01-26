@@ -3,6 +3,7 @@ package be.fenego.android_spotshop.models;
 /**
  * Created by Nick on 23/01/2017.
  */
+@SuppressWarnings("ALL")
 public class ShoppingBasketElement {
     private String sku;
     private Quantity quantity;

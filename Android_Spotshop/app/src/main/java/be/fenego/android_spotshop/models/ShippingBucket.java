@@ -3,6 +3,7 @@ package be.fenego.android_spotshop.models;
 
 import java.util.List;
 
+@SuppressWarnings("ALL")
 public class ShippingBucket {
 
     private ShippingMethod shippingMethod;

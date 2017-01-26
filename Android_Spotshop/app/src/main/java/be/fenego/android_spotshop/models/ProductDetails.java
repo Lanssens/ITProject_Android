@@ -281,6 +281,7 @@ public class ProductDetails implements Serializable {
 
     public Image getImageURLByName(String name){
         Image image = null;
+        assert (images != null ? images : null) != null;
         for(Image i : images != null ? images : null){
             if(i.getName().equals(name)){
                 image = i;

@@ -17,12 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
-
-import org.junit.Before;
-
 import java.util.ArrayList;
-import java.util.Arrays;
-
 import be.fenego.android_spotshop.R;
 import be.fenego.android_spotshop.callbacks.ShoppingBasketCallback;
 import be.fenego.android_spotshop.models.Attribute;
@@ -47,7 +42,7 @@ import retrofit2.Call;
  * Created by Nick on 13/01/2017.
  */
 
-@SuppressWarnings({"WeakerAccess", "DefaultFileTemplate"})
+@SuppressWarnings({"WeakerAccess", "DefaultFileTemplate", "UnusedParameters"})
 public class ProductDetailsFragment extends Fragment implements ShoppingBasketCallback{
 
     private ProductDetails productDetails = null;

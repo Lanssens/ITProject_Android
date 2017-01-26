@@ -2,6 +2,7 @@
 package be.fenego.android_spotshop.models;
 
 
+@SuppressWarnings("ALL")
 public class TaxTotal {
 
     private String type;

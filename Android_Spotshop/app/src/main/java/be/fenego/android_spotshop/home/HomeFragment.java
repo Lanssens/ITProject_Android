@@ -29,7 +29,6 @@ import java.util.ArrayList;
 import java.util.List;
 import be.fenego.android_spotshop.R;
 import be.fenego.android_spotshop.callbacks.CloudVisionCallback;
-import be.fenego.android_spotshop.models.LineItem;
 import be.fenego.android_spotshop.utilities.CloudVisionUtility;
 import be.fenego.android_spotshop.utilities.ImageUtility;
 import be.fenego.android_spotshop.utilities.PermissionUtility;
@@ -248,6 +247,7 @@ public class HomeFragment extends Fragment implements CloudVisionCallback, Produ
         productListView.setAdapter(productAdapter);
     }
 
+    //Mehtode die output format voor aan call mee te geven.
     private String formatResponse(BatchAnnotateImagesResponse cloudVisionResponse){
         String result = "inSPIRED-inTRONICS-Site/-/products?attrs=image,roundedAverageRating,salePrice,availability&searchTerm=*";
 
