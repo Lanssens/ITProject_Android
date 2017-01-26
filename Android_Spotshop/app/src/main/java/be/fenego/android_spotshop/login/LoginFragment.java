@@ -67,8 +67,8 @@ public class LoginFragment extends android.support.v4.app.Fragment  {
 
         ButterKnife.bind(this, fragmentView);
 
-        _emailText.setText("Siepisdom@test.com");
-        _passwordText.setText("Siepisdom1");
+        _emailText.setText("Testaccount@weetge.com");
+        _passwordText.setText("Testaccount11");
         getActivity().setTitle("Login");
 
         return fragmentView;
