@@ -16,6 +16,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import be.fenego.android_spotshop.R;
+import be.fenego.android_spotshop.models.ShoppingBasket;
+import be.fenego.android_spotshop.review.ReviewFragment;
 import be.fenego.android_spotshop.utilities.LoginUtility;
 import be.fenego.android_spotshop.home.HomeFragment;
 import be.fenego.android_spotshop.menu.MenuActivity;
@@ -32,6 +34,8 @@ public class LoginFragment extends android.support.v4.app.Fragment  {
 
     private static final String TAG = "LoginFragment";
     private static final int REQUEST_SIGNUP = 0;
+
+    private ShoppingBasket shoppingBasket;
 
     @BindView(R.id.input_email) EditText _emailText;
     @BindView(R.id.input_password) EditText _passwordText;
@@ -71,7 +75,18 @@ public class LoginFragment extends android.support.v4.app.Fragment  {
         _passwordText.setText("Siepisdom1");
         getActivity().setTitle("Login");
 
+        redirectionLogic();
+
         return fragmentView;
+    }
+
+    private void redirectionLogic() {
+        Bundle bundle = getArguments();
+        if(bundle != null){
+
+            this.shoppingBasket = (ShoppingBasket) bundle.get("shoppingBasket");
+            Log.v("lel",  "The id is: " + shoppingBasket.getId());
+        }
     }
 
 
@@ -142,10 +157,19 @@ public class LoginFragment extends android.support.v4.app.Fragment  {
         // Check if no view has focus:
         MenuActivity.hideKeyboard((MenuActivity)getActivity());
 
-        // Create new fragment and transaction
-        Fragment newFragment = new HomeFragment();
-        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        Fragment newFragment;
+        if(shoppingBasket != null){
+            // Create new fragment and transaction
+            newFragment = new ReviewFragment();
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("shoppingBasket", shoppingBasket);
+            newFragment.setArguments(bundle);
 
+        }else{
+            newFragment = new HomeFragment();
+        }
+
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
         // Replace whatever is in the fragment_container view with this fragment,
         // and add the transaction to the back stack
         transaction.replace(R.id.flContent, newFragment);

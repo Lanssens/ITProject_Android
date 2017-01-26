@@ -1,12 +1,13 @@
 package be.fenego.android_spotshop.models;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by Nick on 19/01/2017.
  */
 
-public class ShoppingBasket {
+public class ShoppingBasket implements Serializable{
         private String id;
         private List<SalesTaxTotalsByTaxRate> salesTaxTotalsByTaxRate = null;
         private List<ShippingBucket> shippingBuckets = null;

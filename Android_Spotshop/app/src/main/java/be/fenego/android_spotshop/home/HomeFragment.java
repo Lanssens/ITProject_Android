@@ -77,6 +77,7 @@ public class HomeFragment extends Fragment implements CloudVisionCallback, Produ
         ButterKnife.bind(this, view);
 
         ProductUtility.getFeaturedProducts(this);
+        getActivity().setTitle("Shop");
 
         return view;
     }

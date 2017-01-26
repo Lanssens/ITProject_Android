@@ -23,6 +23,7 @@ import java.util.Queue;
 import be.fenego.android_spotshop.R;
 import be.fenego.android_spotshop.account.AccountFragment;
 import be.fenego.android_spotshop.models.ShoppingBasket;
+import be.fenego.android_spotshop.review.ReviewFragment;
 import be.fenego.android_spotshop.shoppingBasket.ShoppingBasketFragment;
 import be.fenego.android_spotshop.utilities.LoginUtility;
 import be.fenego.android_spotshop.home.HomeFragment;
@@ -186,7 +187,7 @@ public class MenuActivity extends AppCompatActivity{
                 fragmentClass = ShoppingBasketFragment.class;
                 break;
             case R.id.nav_third_fragment:
-                fragmentClass = TestFragment.class;
+                fragmentClass = ReviewFragment.class;
                 break;
             case R.id.nav_fourth_fragment:
                 fragmentClass = AccountFragment.class;

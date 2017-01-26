@@ -35,5 +35,9 @@
     <string name="priceSB">00.00 USD</string>
     <string name="titleSB">test</string>
     <string name="sbquantity">1</string>
-
+    <string name="reviewPageShippingMeth"><b>Shipping:</b></string>
+    <string name="reviewPagePaymentMeth"><b>Payment:</b></string>
+    <string name="reviewPageItems"><b>Items:</b></string>
+    <string name="reviewPageShippingAddress"><b>Shipping address</b></string>
+    <string name="reviewPageInvoiceAddress"><b>Invoice address</b></string>
 </resources>

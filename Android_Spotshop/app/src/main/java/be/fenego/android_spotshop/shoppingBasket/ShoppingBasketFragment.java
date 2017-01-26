@@ -3,6 +3,7 @@ package be.fenego.android_spotshop.shoppingBasket;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,8 +11,11 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +24,7 @@ import be.fenego.android_spotshop.R;
 import be.fenego.android_spotshop.callbacks.ProductCallback;
 import be.fenego.android_spotshop.callbacks.ShoppingBasketCallback;
 import be.fenego.android_spotshop.home.HomeFragment;
+import be.fenego.android_spotshop.login.LoginFragment;
 import be.fenego.android_spotshop.models.LineItem;
 import be.fenego.android_spotshop.models.ProductCollection;
 import be.fenego.android_spotshop.models.ProductDetails;
@@ -29,6 +34,9 @@ import be.fenego.android_spotshop.models.ShoppingBasketElementList;
 import be.fenego.android_spotshop.models.ShoppingBasketPostReturn;
 import be.fenego.android_spotshop.models.shoppingBasketModels.Element;
 import be.fenego.android_spotshop.models.shoppingBasketModels.ElementList;
+import be.fenego.android_spotshop.review.ReviewFragment;
+import be.fenego.android_spotshop.signup.SignupFragment2;
+import be.fenego.android_spotshop.utilities.LoginUtility;
 import be.fenego.android_spotshop.utilities.ProductUtility;
 import be.fenego.android_spotshop.utilities.ShoppingBasketUtility;
 import butterknife.BindView;
@@ -47,12 +55,21 @@ public class ShoppingBasketFragment extends Fragment implements ShoppingBasketCa
     String delete = "";
 
     ShoppingBasketAdapter shoppingBasketAdapter;
+    private ShoppingBasket shoppingBasket;
 
     @BindView(R.id.shoppingBasketListView)
     ListView shoppingBasketListView;
     @BindView(R.id.shoppingCartTextView)
     TextView shoppingBasketTotal;
 
+    @OnClick(R.id.shoppingCartCheckoutImageView)
+    public void linkToCheckout(View view) {
+        if(shoppingBasket.getShippingBuckets() != null){
+            nextFragment();
+        }else{
+            Toast.makeText(getContext(), "Shoppingbasket is empty", Toast.LENGTH_SHORT).show();
+        }
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_activity_shopping_basket,container, false);
@@ -69,10 +86,35 @@ public class ShoppingBasketFragment extends Fragment implements ShoppingBasketCa
         ShoppingBasketUtility.getActiveShoppingBasket(this);
     }
 
+
+    private void nextFragment() {
+        Fragment newFragment;
+        if(LoginUtility.isUserLoggedIn()){
+            newFragment = new ReviewFragment();
+        }else{
+            newFragment = new LoginFragment();
+            Toast.makeText(getActivity(), "Make sure to login before you checkout", Toast.LENGTH_SHORT).show();
+        }
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("shoppingBasket", shoppingBasket);
+        newFragment.setArguments(bundle);
+
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+
+        // Replace whatever is in the fragment_container view with this fragment,
+        // and add the transaction to the back stack
+        transaction.replace(R.id.flContent, newFragment);
+        //transaction.addToBackStack(null);
+
+        // Commit the transaction
+        transaction.commit();
+    }
+
     @Override
     public void onSuccessGetActiveBasket(ShoppingBasket shoppingBasket) {
        try{
            if(delete.equals("")){
+               this.shoppingBasket = shoppingBasket;
                if(shoppingBasket.getShippingBuckets() != null){
                    shoppingBasketTotal.setText(shoppingBasket.getTotals().getBasketTotal().getValue().toString() + " USD");
                    ShoppingBasketUtility.getActiveBasketLineItems(this, shoppingBasket.getId());

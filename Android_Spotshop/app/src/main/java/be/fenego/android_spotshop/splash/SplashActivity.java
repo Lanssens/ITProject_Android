@@ -21,7 +21,7 @@ import be.fenego.android_spotshop.menu.MenuActivity;
 public class SplashActivity extends Activity {
 
     /** Duur van splashscreen in ms **/
-    private final int SPLASH_DISPLAY_LENGTH = 1000;
+    private final int SPLASH_DISPLAY_LENGTH = 1;
 
     /** Functie die wordt aangeroepen wanneer de activity aangemaakt wordt */
     @Override

@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import be.fenego.android_spotshop.R;
 import be.fenego.android_spotshop.home.HomeFragment;
+import be.fenego.android_spotshop.login.LoginFragment;
 import be.fenego.android_spotshop.utilities.CustomerUtility;
 import be.fenego.android_spotshop.callbacks.GeneralCallback;
 import be.fenego.android_spotshop.models.PasswordChange;
@@ -98,7 +99,8 @@ public class ChangePasswordFragment extends android.support.v4.app.Fragment impl
     public void onSuccess() {
         Toast.makeText(getActivity(), "Password changed", Toast.LENGTH_SHORT).show();
 
-        Fragment newFragment = new AccountFragment();
+        LoginUtility.removeUserCredentials();
+        Fragment newFragment = new LoginFragment();
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
 
         // Replace whatever is in the fragment_container view with this fragment,
