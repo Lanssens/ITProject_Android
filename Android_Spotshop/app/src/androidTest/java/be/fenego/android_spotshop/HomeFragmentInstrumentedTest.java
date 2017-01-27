@@ -1,8 +1,10 @@
 package be.fenego.android_spotshop;
 
+import android.support.test.espresso.ViewAssertion;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 
+import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -27,10 +29,8 @@ public class HomeFragmentInstrumentedTest {
     public ActivityTestRule<MenuActivity> menuActivityActivityTestRule = new ActivityTestRule<>(MenuActivity.class);
 
     @Test
-    public void checkDetailFragmentCalled() throws Exception{
-        //onView(withId(R.id.nav_first_fragment)).perform(click());
-
-        //onData(withId(R.id.productListView)).inAdapterView(withId(R.id.homeListViewListItem)).perform(click());
-        //onView(withId(R.id.fragment_activity_product_details)).check(matches(isDisplayed()));
+    public void checkProductListNotNull() throws Exception{
+        onView(withId(R.id.searchButton)).perform(click());
+        Assert.assertNotNull(R.id.productListView);
     }
 }
