@@ -5,6 +5,7 @@ import com.google.gson.GsonBuilder;
 import be.fenego.android_spotshop.models.ShoppingBasket;
 import be.fenego.android_spotshop.models.ShoppingBasketElementList;
 import be.fenego.android_spotshop.models.ShoppingBasketPostReturn;
+import be.fenego.android_spotshop.models.shoppingBasketModels.BasketOwner;
 import be.fenego.android_spotshop.models.shoppingBasketModels.ElementList;
 import be.fenego.android_spotshop.models.shoppingBasketModels.PutQuantity;
 import retrofit2.Call;
@@ -32,6 +33,9 @@ public interface ShoppingBasketService
 
     @POST("inSPIRED-inTRONICS-Site/-/baskets")
     Call<ShoppingBasketPostReturn> createShoppingBasket();
+
+    @PUT("inSPIRED-inTRONICS-Site/-/baskets/{basketID}")
+    Call<ShoppingBasket> setOwnerOnAnonBasket(@Header("authentication-token") String token, @Path("basketID") String basketID, @Body BasketOwner basketOwner);
 
     @POST("inSPIRED-inTRONICS-Site/-/baskets/{basketID}/items")
     Call<ShoppingBasketElementList> postProductToBasket(@Header("authentication-token") String token, @Path("basketID") String basketID, @Body ShoppingBasketElementList shoppingBasketElementList);

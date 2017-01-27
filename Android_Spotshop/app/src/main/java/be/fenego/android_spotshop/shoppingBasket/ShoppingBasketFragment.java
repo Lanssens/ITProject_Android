@@ -112,12 +112,8 @@ public class ShoppingBasketFragment extends Fragment implements ShoppingBasketCa
 
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
 
-        // Replace whatever is in the fragment_container view with this fragment,
-        // and add the transaction to the back stack
         transaction.replace(R.id.flContent, newFragment);
-        //transaction.addToBackStack(null);
 
-        // Commit the transaction
         transaction.commit();
     }
 

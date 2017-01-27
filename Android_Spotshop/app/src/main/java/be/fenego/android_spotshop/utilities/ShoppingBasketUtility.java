@@ -2,10 +2,13 @@ package be.fenego.android_spotshop.utilities;
 
 import android.util.Log;
 import android.widget.Toast;
+
+import be.fenego.android_spotshop.callbacks.ChangeBasketOwnerCallback;
 import be.fenego.android_spotshop.callbacks.ShoppingBasketCallback;
 import be.fenego.android_spotshop.models.ShoppingBasket;
 import be.fenego.android_spotshop.models.ShoppingBasketElementList;
 import be.fenego.android_spotshop.models.ShoppingBasketPostReturn;
+import be.fenego.android_spotshop.models.shoppingBasketModels.BasketOwner;
 import be.fenego.android_spotshop.models.shoppingBasketModels.ElementList;
 import be.fenego.android_spotshop.models.shoppingBasketModels.PutQuantity;
 import be.fenego.android_spotshop.services.ShoppingBasketService;
@@ -149,7 +152,36 @@ public class ShoppingBasketUtility {
         }
     }
 
+    public static void setOwnerOnAnonBasket(final ChangeBasketOwnerCallback callback, String basketID){
+        Log.v("Test", "---");
+        Log.v("Auth", LoginUtility.retrieveAuthToken());
+        Log.v("Anon", LoginUtility.retrieveAnonToken());
+        Log.v("Basket", basketID);
 
+        android.support.v4.app.Fragment f =(android.support.v4.app.Fragment) callback;
+        BasketOwner basketOwner = new BasketOwner();
+        basketOwner.setNewOwnerAuthenticationToken(LoginUtility.retrieveAuthToken());
+        try{
+            shoppingBasketService.setOwnerOnAnonBasket(LoginUtility.retrieveAnonToken(), basketID ,basketOwner).enqueue(new Callback<ShoppingBasket>() {
+                @Override
+                public void onResponse(Call<ShoppingBasket> call, Response<ShoppingBasket> response) {
+                    Log.v("Log", response.code() + "");
+                    Log.v("Log", call.request().url() + "");
+                    Log.v("Log", response.message() + "");
+                    callback.onSuccessChangeBasketOwner(response.body());
+                }
+
+                @Override
+                public void onFailure(Call<ShoppingBasket> call, Throwable t) {
+                    Log.v("Log", t + "");
+                    callback.onErrorChangeBasketOwner();
+                }
+            });
+        }catch (Exception e){
+            e.printStackTrace();
+            Toast.makeText(f.getContext(),"Couldn't change the basket owner!",Toast.LENGTH_SHORT).show();
+        }
+    }
 
     private static String getToken(){
         if(LoginUtility.isUserLoggedIn()){
