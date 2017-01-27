@@ -8,7 +8,9 @@ import java.util.List;
  * Created by Nick on 23/01/2017.
  */
 
+@SuppressWarnings("ALL")
 public class ShoppingBasketElementList implements Serializable {
+
     private List<ShoppingBasketElement> elements = null;
 
     public ShoppingBasketElementList(ArrayList<ShoppingBasketElement> shoppingBasketElementArrayList){

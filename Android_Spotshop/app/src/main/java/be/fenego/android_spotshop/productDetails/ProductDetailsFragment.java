@@ -17,12 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
-
-import org.junit.Before;
-
 import java.util.ArrayList;
-import java.util.Arrays;
-
 import be.fenego.android_spotshop.R;
 import be.fenego.android_spotshop.callbacks.ShoppingBasketCallback;
 import be.fenego.android_spotshop.models.Attribute;
@@ -47,7 +42,7 @@ import retrofit2.Call;
  * Created by Nick on 13/01/2017.
  */
 
-@SuppressWarnings({"WeakerAccess", "DefaultFileTemplate"})
+@SuppressWarnings({"WeakerAccess", "DefaultFileTemplate", "UnusedParameters"})
 public class ProductDetailsFragment extends Fragment implements ShoppingBasketCallback{
 
     private ProductDetails productDetails = null;
@@ -104,12 +99,13 @@ public class ProductDetailsFragment extends Fragment implements ShoppingBasketCa
         ArrayList<ShoppingBasketElement> shoppingBasketElementArrayList = new ArrayList<>();
         shoppingBasketElementArrayList.add(shoppingBasketElement);
         shoppingBasketElementList = new ShoppingBasketElementList(shoppingBasketElementArrayList);
+
         if(LoginUtility.isUserLoggedIn()){
             ShoppingBasketUtility.getActiveShoppingBasket(this);
         }else if(LoginUtility.retrieveAnonToken().equals("")){
             ShoppingBasketUtility.createShoppingBasket(this);
         }else{
-            ShoppingBasketUtility.postProductToBasket(this, LoginUtility.retrieveAnonToken(), shoppingBasketElementList);
+            ShoppingBasketUtility.getActiveShoppingBasket(this);
         }
     }
 
@@ -307,6 +303,16 @@ public class ProductDetailsFragment extends Fragment implements ShoppingBasketCa
 
     @Override
     public void onErrorDeleteShoppingBasketLineItem(Call<ShoppingBasket> call, Throwable t) {
+
+    }
+
+    @Override
+    public void onSuccessUpdateShoppingBasketLineItem(ShoppingBasket shoppingBasket) {
+
+    }
+
+    @Override
+    public void onErrorUpdateShoppingBasketLineItem(Call<ShoppingBasket> call, Throwable t) {
 
     }
 }

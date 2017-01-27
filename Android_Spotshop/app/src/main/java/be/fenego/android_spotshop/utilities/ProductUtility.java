@@ -4,7 +4,6 @@ package be.fenego.android_spotshop.utilities;
 import android.widget.Toast;
 
 import be.fenego.android_spotshop.callbacks.ProductCallback;
-import be.fenego.android_spotshop.models.Element;
 import be.fenego.android_spotshop.models.ProductCollection;
 import be.fenego.android_spotshop.models.ProductDetails;
 import be.fenego.android_spotshop.services.ProductService;

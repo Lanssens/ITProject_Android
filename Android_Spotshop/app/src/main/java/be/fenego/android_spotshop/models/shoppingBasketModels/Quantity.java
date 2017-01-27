@@ -2,11 +2,19 @@
 package be.fenego.android_spotshop.models.shoppingBasketModels;
 
 
+@SuppressWarnings("ALL")
 public class Quantity {
 
     private String type;
     private Integer value;
     private String unit;
+
+    public Quantity(){
+    }
+
+    public Quantity(Integer value){
+        this.value = value;
+    }
 
     public String getType() {
         return type;

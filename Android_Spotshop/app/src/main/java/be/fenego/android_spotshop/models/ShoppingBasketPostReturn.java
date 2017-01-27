@@ -6,7 +6,10 @@ import java.io.Serializable;
  * Created by Nick on 19/01/2017.
  */
 
+import java.io.Serializable;
+@SuppressWarnings("ALL")
 public class ShoppingBasketPostReturn implements Serializable {
+
     private String type;
     private String uri;
     private String title;

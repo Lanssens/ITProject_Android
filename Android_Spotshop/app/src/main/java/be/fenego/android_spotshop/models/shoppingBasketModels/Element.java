@@ -3,6 +3,7 @@ package be.fenego.android_spotshop.models.shoppingBasketModels;
 
 import java.util.List;
 
+@SuppressWarnings("unused")
 public class Element {
 
     private String name;

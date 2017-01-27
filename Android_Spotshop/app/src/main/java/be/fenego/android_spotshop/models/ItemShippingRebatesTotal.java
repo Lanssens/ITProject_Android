@@ -6,6 +6,7 @@ import java.io.Serializable;
 
 public class ItemShippingRebatesTotal implements Serializable {
 
+
     private String type;
     private Integer value;
     private String currencyMnemonic;

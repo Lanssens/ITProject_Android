@@ -4,7 +4,9 @@ package be.fenego.android_spotshop.models;
 import java.io.Serializable;
 import java.util.List;
 
+@SuppressWarnings("ALL")
 public class ShippingBucket implements Serializable {
+
 
     private ShippingMethod shippingMethod;
     private List<LineItem> lineItems = null;
@@ -41,6 +43,15 @@ public class ShippingBucket implements Serializable {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public LineItem getLineItemByName(String name){
+        for(LineItem lineItem : lineItems){
+            if(lineItem.getTitle().equals(name)){
+                return lineItem;
+            }
+        }
+        return null;
     }
 
 }

@@ -4,6 +4,7 @@ package be.fenego.android_spotshop.models;
 import java.io.Serializable;
 import java.util.List;
 
+@SuppressWarnings("ALL")
 public class LineItem implements Serializable{
 
     private String title;

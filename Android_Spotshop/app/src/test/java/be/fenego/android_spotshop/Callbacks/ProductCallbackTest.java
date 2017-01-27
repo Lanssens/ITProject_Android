@@ -14,7 +14,7 @@ import retrofit2.Call;
  * Created by Nick on 14/01/2017.
  */
 
-@SuppressWarnings("DefaultFileTemplate")
+@SuppressWarnings("ALL")
 public class ProductCallbackTest implements ProductCallback {
 
     ProductCallback productCallback;

@@ -18,20 +18,20 @@ import be.fenego.android_spotshop.utilities.ProductUtility;
 public class ProductUtilityMock extends ProductUtility
 {
     //detail
-    static Attribute a1 = new Attribute("Internal memory type","String","DDR3-SDRAM");
-    static Attribute a2 = new Attribute("Operating system architecture","String","64-bit");
-    static List<Attribute> attributes = new ArrayList<>();
-    static ProductDetails productDetails = new ProductDetails();
+    static final Attribute a1 = new Attribute("Internal memory type","String","DDR3-SDRAM");
+    static final Attribute a2 = new Attribute("Operating system architecture","String","64-bit");
+    static final List<Attribute> attributes = new ArrayList<>();
+    static final ProductDetails productDetails = new ProductDetails();
 
 
     //list
-    static ProductCollection productCollection = new ProductCollection();
-    static List<Element> elements = new ArrayList<>();
-    static Element e1 = new Element();
-    static Element e2 = new Element();
-    static List<Attribute> attributesp = new ArrayList<>();
-    static Attribute ap1 = new Attribute("image","String","/INTERSHOP/static/WFS/inSPIRED-inTRONICS-Site/-/inSPIRED/en_US/M/3934150-1725.jpg");
-    static Attribute ap2 = new Attribute("salePrice","ResourceAttribute", new SalePrice("Money",10,"USD"));
+    static final ProductCollection productCollection = new ProductCollection();
+    static final List<Element> elements = new ArrayList<>();
+    static final Element e1 = new Element();
+    static final Element e2 = new Element();
+    static final List<Attribute> attributesp = new ArrayList<>();
+    static final Attribute ap1 = new Attribute("image","String","/INTERSHOP/static/WFS/inSPIRED-inTRONICS-Site/-/inSPIRED/en_US/M/3934150-1725.jpg");
+    static final Attribute ap2 = new Attribute("salePrice","ResourceAttribute", new SalePrice("Money",10,"USD"));
     static Attribute ap3 = new Attribute("availability","Boolean",true);
 
 

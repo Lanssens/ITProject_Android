@@ -71,6 +71,7 @@ public class LoginFragment extends android.support.v4.app.Fragment  {
 
         ButterKnife.bind(this, fragmentView);
 
+
         LoginUtility.removeUserCredentials();
         _emailText.setText("Testaccount@weetge.com");
         _passwordText.setText("Testaccount11");

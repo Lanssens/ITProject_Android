@@ -3,8 +3,9 @@ package be.fenego.android_spotshop.models;
 
 
 import java.io.Serializable;
-
+@SuppressWarnings("ALL")
 public class SalesTaxTotalsByTaxRate implements Serializable {
+
 
     private Amount amount;
     private String name;

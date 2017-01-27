@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/shoppingBasketListItem"
     android:stretchColumns="1"
     android:shrinkColumns="1">
-    <TableRow>
+    <TableRow tools:ignore="UselessParent">
         <ImageView
+            android:contentDescription="@string/shoppingbasketlistitemimage"
             app:srcCompat="@drawable/ic_button_camera"
             android:id="@+id/shoppingBasketListItemImageView"
             android:layout_height="80dp"
@@ -33,7 +35,8 @@
                     android:textAlignment="center"/>
             </TableRow>
             <TableRow android:layout_gravity="center">
-                <LinearLayout android:orientation="horizontal" android:layout_gravity="center">
+                <LinearLayout android:orientation="horizontal" android:layout_gravity="center"
+                    tools:ignore="UselessParent">
                     <Button
                         android:layout_width="25dp"
                         android:layout_height="25dp"
@@ -74,6 +77,7 @@
             android:layout_width="80dp"
             android:layout_margin="0dp"
             android:padding="0dp"
-            android:layout_gravity="right" />
+            android:layout_gravity="right"
+            tools:ignore="ContentDescription" />
     </TableRow>
 </TableLayout>

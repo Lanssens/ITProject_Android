@@ -3,8 +3,10 @@ package be.fenego.android_spotshop.models;
 
 
 import java.io.Serializable;
-
+@SuppressWarnings("ALL")
 public class BasketShippingRebatesTotal implements Serializable {
+
+
 
     private String type;
     private Integer value;
