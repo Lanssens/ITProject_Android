@@ -133,7 +133,7 @@ public class LoginUtility {
                 System.out.println();
 
                 if (response.isSuccessful()) {
-                    removeUserCredentials();
+                    //removeUserCredentials();
                     storeUserCredentials(username, response.headers().get("authentication-token"));
 
                 }

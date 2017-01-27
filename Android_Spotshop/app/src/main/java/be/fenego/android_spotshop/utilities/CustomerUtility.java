@@ -31,7 +31,6 @@ public class CustomerUtility {
             @Override
             public void onResponse(Call<CustomerFew> call, Response<CustomerFew> response) {
                 if (response.isSuccessful()) {
-                    //LoginUtility.storeUserCredentials(customer.getCredentials().getLogin(), data.get(1));
                     callback.onSuccess();
                 } else {
                     System.out.println(response.errorBody().toString());

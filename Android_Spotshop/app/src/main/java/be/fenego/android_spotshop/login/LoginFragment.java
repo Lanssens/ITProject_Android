@@ -16,12 +16,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import be.fenego.android_spotshop.R;
+import be.fenego.android_spotshop.callbacks.ChangeBasketOwnerCallback;
 import be.fenego.android_spotshop.models.ShoppingBasket;
 import be.fenego.android_spotshop.review.ReviewFragment;
 import be.fenego.android_spotshop.utilities.LoginUtility;
 import be.fenego.android_spotshop.home.HomeFragment;
 import be.fenego.android_spotshop.menu.MenuActivity;
 import be.fenego.android_spotshop.signup.SignupFragment;
+import be.fenego.android_spotshop.utilities.ShoppingBasketUtility;
 import butterknife.ButterKnife;
 import butterknife.*;
 
@@ -30,7 +32,7 @@ import butterknife.*;
  */
 
 
-public class LoginFragment extends android.support.v4.app.Fragment  {
+public class LoginFragment extends android.support.v4.app.Fragment implements ChangeBasketOwnerCallback {
 
     private static final String TAG = "LoginFragment";
     private static final int REQUEST_SIGNUP = 0;
@@ -72,7 +74,14 @@ public class LoginFragment extends android.support.v4.app.Fragment  {
         ButterKnife.bind(this, fragmentView);
 
 
-        LoginUtility.removeUserCredentials();
+        Bundle bundle = getArguments();
+        if(bundle != null){
+
+            this.shoppingBasket = (ShoppingBasket) bundle.get("shoppingBasket");
+            Log.v("lel",  "The id is lel: " + shoppingBasket.getId());
+            Log.v("lel",  "The id is lel: " + shoppingBasket.getShippingBuckets().get(0).getLineItems().get(0).getTitle());
+        }
+
         _emailText.setText("Testaccount@weetge.com");
         _passwordText.setText("Testaccount11");
         getActivity().setTitle("Login");
@@ -94,8 +103,10 @@ public class LoginFragment extends android.support.v4.app.Fragment  {
 
     public void login() {
         Log.d(TAG, "Login");
-        LoginUtility.removeUserCredentials();
-
+        //LoginUtility.removeUserCredentials();
+            //NewAuth:
+            //URL basket id
+            //Header auth-token:
         //Log.v("lel", LoginUtility.isUserLoggedIn() + "");
         if (!validate()) {
             onLoginFailed();
@@ -167,28 +178,25 @@ public class LoginFragment extends android.support.v4.app.Fragment  {
 
         Fragment newFragment;
         if(shoppingBasket != null){
-            // Create new fragment and transaction
-            newFragment = new ReviewFragment();
-            Bundle bundle = new Bundle();
-            System.out.println("Van login naar review");
-            bundle.putSerializable("shoppingBasket", shoppingBasket);
-            newFragment.setArguments(bundle);
+            ShoppingBasketUtility.setOwnerOnAnonBasket(this,shoppingBasket.getId());
+
 
         }else{
             System.out.println("Van login naar home");
             newFragment = new HomeFragment();
+            FragmentTransaction transaction = getFragmentManager().beginTransaction();
+            // Replace whatever is in the fragment_container view with this fragment,
+            // and add the transaction to the back stack
+            transaction.replace(R.id.flContent, newFragment);
+            transaction.addToBackStack(null);
+
+            // Commit the transaction
+            transaction.commit();
+            ((MenuActivity)getActivity()).changePersonalTabInMenu(LoginUtility.isUserLoggedIn());
+            Toast.makeText(getActivity(), "Login succeeded", Toast.LENGTH_LONG).show();
         }
 
-        FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        // Replace whatever is in the fragment_container view with this fragment,
-        // and add the transaction to the back stack
-        transaction.replace(R.id.flContent, newFragment);
-        transaction.addToBackStack(null);
 
-        // Commit the transaction
-        transaction.commit();
-        ((MenuActivity)getActivity()).changePersonalTabInMenu(LoginUtility.isUserLoggedIn());
-        Toast.makeText(getActivity(), "Login succeeded", Toast.LENGTH_LONG).show();
     }
 
     public void onLoginFailed() {
@@ -224,5 +232,27 @@ public class LoginFragment extends android.support.v4.app.Fragment  {
     public void onDestroyView() {
         MenuActivity.hideKeyboard((MenuActivity)getActivity());
         super.onDestroyView();
+    }
+
+    @Override
+    public void onSuccessChangeBasketOwner(ShoppingBasket basket) {
+        Fragment newFragment;
+        // Create new fragment and transaction
+        newFragment = new ReviewFragment();
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("shoppingBasket", shoppingBasket);
+        newFragment.setArguments(bundle);
+
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        transaction.replace(R.id.flContent, newFragment);
+        transaction.addToBackStack(null);
+
+        transaction.commit();
+        ((MenuActivity)getActivity()).changePersonalTabInMenu(LoginUtility.isUserLoggedIn());
+    }
+
+    @Override
+    public void onErrorChangeBasketOwner() {
+
     }
 }
