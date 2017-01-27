@@ -1,5 +1,6 @@
 package be.fenego.android_spotshop.models;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -7,7 +8,7 @@ import java.util.List;
  */
 
 @SuppressWarnings({"unused", "DefaultFileTemplate"})
-public class ProductCollection {
+public class ProductCollection implements Serializable {
     private String pageable;
     private Integer total;
     private Integer offset;

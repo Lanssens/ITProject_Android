@@ -2,7 +2,9 @@
 package be.fenego.android_spotshop.models;
 
 
-public class CommonShipToAddress {
+import java.io.Serializable;
+
+public class CommonShipToAddress implements Serializable {
 
     private String street;
     private String city;

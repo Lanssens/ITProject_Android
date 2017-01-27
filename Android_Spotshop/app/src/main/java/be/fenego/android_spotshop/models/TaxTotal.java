@@ -2,7 +2,9 @@
 package be.fenego.android_spotshop.models;
 
 
-public class TaxTotal {
+import java.io.Serializable;
+
+public class TaxTotal implements Serializable {
 
     private String type;
     private Double value;

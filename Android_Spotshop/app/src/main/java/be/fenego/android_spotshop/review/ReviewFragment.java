@@ -25,6 +25,7 @@ import be.fenego.android_spotshop.utilities.CustomerUtility;
 import be.fenego.android_spotshop.utilities.LoginUtility;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * Created by Thijs on 1/25/2017.
@@ -33,6 +34,10 @@ import butterknife.ButterKnife;
 public class ReviewFragment extends android.support.v4.app.Fragment {
     private ShoppingBasket shoppingBasket;
 
+    @OnClick(R.id.shoppingCartCheckoutImageView)
+    public void linkToCheckout(View view) {
+        Toast.makeText(getActivity(), "Ready to checkout", Toast.LENGTH_LONG).show();
+    }
     @BindView(R.id.reviewPageListView) ListView lv;
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         if(LoginUtility.isUserLoggedIn()){
@@ -48,6 +53,14 @@ public class ReviewFragment extends android.support.v4.app.Fragment {
                 Toast.makeText(getActivity(), shoppingBasket.getName(), Toast.LENGTH_SHORT).show();
             }
 
+
+            //Basket >
+            //Address, payment, shipping method putten
+            //Payment > Plaaza   INT         basket/payments   //simple checkout cash on delivery
+            //Shipping > ook zetten
+            //
+
+            // /orders POST basket ID > terms and conditions = true
 
             // Instanciating an array list (you don't need to do this,
             // you already have yours).

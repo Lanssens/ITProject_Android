@@ -1,9 +1,10 @@
 
 package be.fenego.android_spotshop.models;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class ShippingBucket {
+public class ShippingBucket implements Serializable {
 
     private ShippingMethod shippingMethod;
     private List<LineItem> lineItems = null;

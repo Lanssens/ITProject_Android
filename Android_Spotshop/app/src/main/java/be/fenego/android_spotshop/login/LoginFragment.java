@@ -72,8 +72,8 @@ public class LoginFragment extends android.support.v4.app.Fragment  {
         ButterKnife.bind(this, fragmentView);
 
         LoginUtility.removeUserCredentials();
-        _emailText.setText("Siepisdom@test.com");
-        _passwordText.setText("Siepisdom1");
+        _emailText.setText("Testaccount@weetge.com");
+        _passwordText.setText("Testaccount11");
         getActivity().setTitle("Login");
 
         redirectionLogic();
@@ -152,11 +152,6 @@ public class LoginFragment extends android.support.v4.app.Fragment  {
     }
 
     public void openForgotPasswordFragment() {
-        Log.v("Test", "YEs or no " + LoginUtility.isUserLoggedIn());
-        Log.v("Test", "Auth token: " + LoginUtility.retrieveAuthToken());
-        Log.v("Test", "Anon token: " + LoginUtility.retrieveAnonToken());
-        Log.v("Test", "Username: " + LoginUtility.retrieveUsername());
-        LoginUtility.removeUserCredentials();
     }
 
 

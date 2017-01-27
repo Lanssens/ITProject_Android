@@ -2,7 +2,9 @@
 package be.fenego.android_spotshop.models;
 
 
-public class BucketShippingRebatesTotal {
+import java.io.Serializable;
+
+public class BucketShippingRebatesTotal implements Serializable {
 
     private String type;
     private Integer value;

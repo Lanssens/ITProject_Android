@@ -29,6 +29,7 @@ public class ServiceGenerator {
                     .addConverterFactory(GsonConverterFactory.create());
 
     public static <S> S createService(Class<S> serviceClass) {
+        httpClient = new OkHttpClient.Builder();
         return createService(serviceClass, null, null);
     }
 

@@ -2,7 +2,9 @@
 package be.fenego.android_spotshop.models;
 
 
-public class CommonShippingMethod {
+import java.io.Serializable;
+
+public class CommonShippingMethod implements Serializable{
 
     private Integer shippingTimeMax;
     private String id;

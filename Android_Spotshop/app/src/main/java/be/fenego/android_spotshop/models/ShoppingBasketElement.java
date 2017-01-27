@@ -1,9 +1,11 @@
 package be.fenego.android_spotshop.models;
 
+import java.io.Serializable;
+
 /**
  * Created by Nick on 23/01/2017.
  */
-public class ShoppingBasketElement {
+public class ShoppingBasketElement implements Serializable {
     private String sku;
     private Quantity quantity;
     private String senderName;

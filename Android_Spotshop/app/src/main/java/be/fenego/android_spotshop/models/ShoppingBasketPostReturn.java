@@ -1,10 +1,12 @@
 package be.fenego.android_spotshop.models;
 
+import java.io.Serializable;
+
 /**
  * Created by Nick on 19/01/2017.
  */
 
-public class ShoppingBasketPostReturn {
+public class ShoppingBasketPostReturn implements Serializable {
     private String type;
     private String uri;
     private String title;

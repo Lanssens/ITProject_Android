@@ -2,7 +2,9 @@
 package be.fenego.android_spotshop.models.shoppingBasketModels;
 
 
-public class Amount {
+import java.io.Serializable;
+
+public class Amount   implements Serializable {
 
     private String type;
     private Double value;

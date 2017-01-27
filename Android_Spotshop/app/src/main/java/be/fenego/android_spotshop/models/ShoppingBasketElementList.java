@@ -1,5 +1,6 @@
 package be.fenego.android_spotshop.models;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,7 +8,7 @@ import java.util.List;
  * Created by Nick on 23/01/2017.
  */
 
-public class ShoppingBasketElementList {
+public class ShoppingBasketElementList implements Serializable {
     private List<ShoppingBasketElement> elements = null;
 
     public ShoppingBasketElementList(ArrayList<ShoppingBasketElement> shoppingBasketElementArrayList){
