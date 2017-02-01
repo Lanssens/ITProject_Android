@@ -3,8 +3,8 @@ package be.fenego.android_spotshop.models;
 
 
 import java.io.Serializable;
-@SuppressWarnings("ALL")
 
+@SuppressWarnings("ALL")
 public class CommonShippingMethod implements Serializable{
 
     private Integer shippingTimeMax;

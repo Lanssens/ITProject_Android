@@ -6,14 +6,15 @@ import java.io.Serializable;
  * Created by Nick on 20/12/2016.
  */
 
-@SuppressWarnings({"DefaultFileTemplate", "unused"})
+
+@SuppressWarnings("unused")
 public class Attribute implements Serializable {
 
-    @SuppressWarnings("unused")
+
     private String name;
-    @SuppressWarnings("unused")
+
     private String type;
-    @SuppressWarnings("unused")
+
     private Object value;
 
 

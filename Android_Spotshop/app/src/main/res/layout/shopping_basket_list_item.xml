@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/shoppingBasketListItem"
     android:stretchColumns="1"
     android:shrinkColumns="1">
     <TableRow tools:ignore="UselessParent">
@@ -78,6 +77,6 @@
             android:layout_margin="0dp"
             android:padding="0dp"
             android:layout_gravity="right"
-            tools:ignore="ContentDescription" />
+            tools:ignore="ContentDescription,RtlHardcoded" />
     </TableRow>
 </TableLayout>

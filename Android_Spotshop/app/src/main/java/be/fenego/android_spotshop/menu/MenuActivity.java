@@ -42,7 +42,7 @@ public class MenuActivity extends AppCompatActivity{
     private NavigationView nvDrawer;
     private ActionBarDrawerToggle drawerToggle;
 
-    private Queue<android.support.v4.app.Fragment> fragments = new LinkedList<android.support.v4.app.Fragment>();
+    private Queue<android.support.v4.app.Fragment> fragments = new LinkedList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -6,8 +6,15 @@ import be.fenego.android_spotshop.models.ShoppingBasket;
 import be.fenego.android_spotshop.models.ShoppingBasketElementList;
 import be.fenego.android_spotshop.models.ShoppingBasketPostReturn;
 import be.fenego.android_spotshop.models.shoppingBasketModels.BasketOwner;
+import be.fenego.android_spotshop.models.shoppingBasketModels.CommonShippingMethod;
 import be.fenego.android_spotshop.models.shoppingBasketModels.ElementList;
+import be.fenego.android_spotshop.models.shoppingBasketModels.InvoiceAddressContainer;
+import be.fenego.android_spotshop.models.shoppingBasketModels.OrderPost;
+import be.fenego.android_spotshop.models.shoppingBasketModels.OrderPostResponse;
+import be.fenego.android_spotshop.models.shoppingBasketModels.PaymentMethod;
 import be.fenego.android_spotshop.models.shoppingBasketModels.PutQuantity;
+import be.fenego.android_spotshop.models.shoppingBasketModels.ShippingAddressContainer;
+import be.fenego.android_spotshop.models.shoppingBasketModels.ShippingMethodContainer;
 import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -37,6 +44,18 @@ public interface ShoppingBasketService
     @PUT("inSPIRED-inTRONICS-Site/-/baskets/{basketID}")
     Call<ShoppingBasket> setOwnerOnAnonBasket(@Header("authentication-token") String token, @Path("basketID") String basketID, @Body BasketOwner basketOwner);
 
+    @PUT("inSPIRED-inTRONICS-Site/-/baskets/{basketID}")
+    Call<ShoppingBasket> updateCommonShippingMethod(@Header("authentication-token") String token, @Path("basketID") String basketID, @Body ShippingMethodContainer shippingMethodContainer);
+
+    @PUT("inSPIRED-inTRONICS-Site/-/baskets/{basketID}")
+    Call<ShoppingBasket> updateInvoiceAddress(@Header("authentication-token") String token, @Path("basketID") String basketID, @Body InvoiceAddressContainer invoiceAddressContainer);
+
+    @PUT("inSPIRED-inTRONICS-Site/-/baskets/{basketID}")
+    Call<ShoppingBasket> updateShippingAddress(@Header("authentication-token") String token, @Path("basketID") String basketID, @Body ShippingAddressContainer shippingAddressContainer);
+
+    @POST("inSPIRED-inTRONICS-Site/-/baskets/{basketID}/payments")
+    Call<PaymentMethod> postBasketPaymentMethod(@Header("authentication-token") String token, @Path("basketID") String basketID, @Body PaymentMethod paymentMethod);
+
     @POST("inSPIRED-inTRONICS-Site/-/baskets/{basketID}/items")
     Call<ShoppingBasketElementList> postProductToBasket(@Header("authentication-token") String token, @Path("basketID") String basketID, @Body ShoppingBasketElementList shoppingBasketElementList);
 
@@ -49,6 +68,8 @@ public interface ShoppingBasketService
     @PUT("inSPIRED-inTRONICS-Site/-/baskets/{basketID}/items/{itemID}")
     Call<ShoppingBasket> updateShoppingBasketLineItem(@Header("authentication-token") String token, @Path("basketID") String basketID, @Path("itemID") String itemID, @Body PutQuantity quantity);
 
+    @POST("inSPIRED-inTRONICS-Site/-/orders")
+    Call<OrderPostResponse> postOrderFromBasket(@Header("authentication-token") String token, @Body OrderPost orderPost);
 
     Gson gson = new GsonBuilder().create();
 

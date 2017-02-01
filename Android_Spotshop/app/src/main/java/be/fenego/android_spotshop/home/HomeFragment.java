@@ -286,7 +286,7 @@ public class HomeFragment extends Fragment implements CloudVisionCallback, Produ
     //Mehtode die output format voor aan call mee te geven.
     private String formatResponse(BatchAnnotateImagesResponse cloudVisionResponse){
         String result = "inSPIRED-inTRONICS-Site/-/products?attrs=image,roundedAverageRating,salePrice,availability&searchTerm=*";
-        List<String> historyList = new ArrayList<String>();;
+        List<String> historyList = new ArrayList<>();
 
         List<EntityAnnotation> annotations = new ArrayList<>();
         if(cloudVisionResponse.getResponses().get(0).getLabelAnnotations() != null)

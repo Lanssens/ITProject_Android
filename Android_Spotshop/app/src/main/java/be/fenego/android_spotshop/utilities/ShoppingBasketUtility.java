@@ -10,7 +10,13 @@ import be.fenego.android_spotshop.models.ShoppingBasketElementList;
 import be.fenego.android_spotshop.models.ShoppingBasketPostReturn;
 import be.fenego.android_spotshop.models.shoppingBasketModels.BasketOwner;
 import be.fenego.android_spotshop.models.shoppingBasketModels.ElementList;
+import be.fenego.android_spotshop.models.shoppingBasketModels.InvoiceAddressContainer;
+import be.fenego.android_spotshop.models.shoppingBasketModels.OrderPost;
+import be.fenego.android_spotshop.models.shoppingBasketModels.OrderPostResponse;
+import be.fenego.android_spotshop.models.shoppingBasketModels.PaymentMethod;
 import be.fenego.android_spotshop.models.shoppingBasketModels.PutQuantity;
+import be.fenego.android_spotshop.models.shoppingBasketModels.ShippingAddressContainer;
+import be.fenego.android_spotshop.models.shoppingBasketModels.ShippingMethodContainer;
 import be.fenego.android_spotshop.services.ShoppingBasketService;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -180,6 +186,116 @@ public class ShoppingBasketUtility {
         }catch (Exception e){
             e.printStackTrace();
             Toast.makeText(f.getContext(),"Couldn't change the basket owner!",Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public static void updateCommonShippingMethod(final ShoppingBasketCallback callback, String basketID, ShippingMethodContainer shippingMethodContainer){
+        android.support.v4.app.Fragment f =(android.support.v4.app.Fragment) callback;
+        try{
+            shoppingBasketService.updateCommonShippingMethod(getToken(),basketID, shippingMethodContainer).enqueue(new Callback<ShoppingBasket>() {
+                @Override
+                public void onResponse(Call<ShoppingBasket> call, Response<ShoppingBasket> response) {
+                    callback.onSuccessUpdateCommonShippingMethod(response.body());
+                }
+
+                @Override
+                public void onFailure(Call<ShoppingBasket> call, Throwable t) {
+                    callback.onErrorUpdateCommonShippingMethod(call, t);
+                }
+            });
+        }catch (Exception e){
+            e.printStackTrace();
+            Toast.makeText(f.getContext(),"Could not finalize order!",Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public static void postBasketPaymentMethod(final ShoppingBasketCallback callback, String basketID, PaymentMethod paymentMethod){
+        android.support.v4.app.Fragment f =(android.support.v4.app.Fragment) callback;
+        try{
+            shoppingBasketService.postBasketPaymentMethod(getToken(), basketID, paymentMethod).enqueue(new Callback<PaymentMethod>() {
+                @Override
+                public void onResponse(Call<PaymentMethod> call, Response<PaymentMethod> response) {
+                    callback.onSuccessPostBasketPaymentMethod(response.body());
+                }
+
+                @Override
+                public void onFailure(Call<PaymentMethod> call, Throwable t) {
+                    callback.onErrorPostBasketPaymentMethod(call, t);
+                }
+            });
+        }catch (Exception e){
+            e.printStackTrace();
+            Toast.makeText(f.getContext(),"Could not finalize order!",Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public static void postOrder(final ShoppingBasketCallback callback, OrderPost orderPost){
+        android.support.v4.app.Fragment f =(android.support.v4.app.Fragment) callback;
+        try{
+            shoppingBasketService.postOrderFromBasket(getToken(),orderPost).enqueue(new Callback<OrderPostResponse>() {
+                @Override
+                public void onResponse(Call<OrderPostResponse> call, Response<OrderPostResponse> response) {
+                    Log.v("To Order: " , response.code()+ "");
+                    callback.onSuccessPostOrder(response.body());
+                }
+
+                @Override
+                public void onFailure(Call<OrderPostResponse> call, Throwable t) {
+                    callback.onErrorPostOrder(call, t);
+                }
+            });
+        }catch (Exception e){
+            e.printStackTrace();
+            Toast.makeText(f.getContext(),"Could not finalize order!",Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public static void updateInvoiceAddress(final ShoppingBasketCallback callback, String basketID, InvoiceAddressContainer invoiceAddressContainer){
+        android.support.v4.app.Fragment f =(android.support.v4.app.Fragment) callback;
+        try{
+            shoppingBasketService.updateInvoiceAddress(getToken(), basketID, invoiceAddressContainer).enqueue(new Callback<ShoppingBasket>() {
+                @Override
+                public void onResponse(Call<ShoppingBasket> call, Response<ShoppingBasket> response) {
+                    if(!Integer.toString(response.code()).equals("200")){
+                        callback.onErrorUpdateInvoiceAddress(call, new Throwable("Problem with invoice address!"));
+                    }else{
+                        callback.onSuccessUpdateInvoiceAddress(response.body());
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<ShoppingBasket> call, Throwable t) {
+                    callback.onErrorUpdateInvoiceAddress(call, t);
+                }
+            });
+        }catch (Exception e){
+            e.printStackTrace();
+            Toast.makeText(f.getContext(),"Could not finalize order!",Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public static void updateShippingAddress(final ShoppingBasketCallback callback, String basketID, ShippingAddressContainer shippingAddressContainer){
+        android.support.v4.app.Fragment f =(android.support.v4.app.Fragment) callback;
+        try{
+            shoppingBasketService.updateShippingAddress(getToken(), basketID, shippingAddressContainer).enqueue(new Callback<ShoppingBasket>() {
+                @Override
+                public void onResponse(Call<ShoppingBasket> call, Response<ShoppingBasket> response) {
+                    if(!Integer.toString(response.code()).equals("200")){
+                        callback.onErrorUpdateShippingAddress(call, new Throwable("Problem with shipping address!"));
+                    }else{
+                        callback.onSuccessUpdateShippingAddress(response.body());
+
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<ShoppingBasket> call, Throwable t) {
+                    callback.onErrorUpdateShippingAddress(call, t);
+                }
+            });
+        }catch (Exception e){
+            e.printStackTrace();
+            Toast.makeText(f.getContext(),"Could not finalize order!",Toast.LENGTH_SHORT).show();
         }
     }
 

@@ -2,20 +2,13 @@ package be.fenego.android_spotshop.review;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.res.Resources;
 import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.squareup.picasso.Picasso;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -28,7 +21,7 @@ import butterknife.ButterKnife;
  * Created by Thijs on 1/27/2017.
  */
 
-public class ReviewPageAdapter extends ArrayAdapter<Element> {
+class ReviewPageAdapter extends ArrayAdapter<Element> {
     private final Context context;
     private final ArrayList<Element> elementList;
     private ViewHolder holder;
@@ -85,7 +78,6 @@ public class ReviewPageAdapter extends ArrayAdapter<Element> {
 
     //Bind views voor basketdata in te stellen.
     static class ViewHolder{
-        Context mcontext;
 
         @BindView(R.id.reviewPageListItemAmount)
         TextView tvAmount;

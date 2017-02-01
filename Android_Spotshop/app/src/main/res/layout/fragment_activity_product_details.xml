@@ -2,7 +2,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/fragment_activity_product_details"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingBottom="5dp"
@@ -57,7 +56,6 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/description"
                 android:text="@string/productdetailsDescription"
                 android:textSize="14sp"
                 android:layout_marginTop="10dp"/>
@@ -96,7 +94,6 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/productDetailsSpecs"
                 android:text="@string/productDetailsSpecs"
                 android:textSize="14sp"
                 android:layout_marginTop="10dp" />
@@ -137,7 +134,8 @@
         android:id="@+id/productDetailsQuantityEditText"
         android:text="@string/productDetailsQuantityEditText"
         android:layout_toRightOf="@id/quantity"
-        android:maxLength="6"/>
+        android:maxLength="6"
+        tools:ignore="RtlHardcoded" />
 
     <ImageButton
         android:contentDescription="@string/add_to_cart_button"

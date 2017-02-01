@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/reviewPageFragment"
     android:background="@color/colorWhite">
 
     <LinearLayout
@@ -26,14 +26,17 @@
                 android:layout_centerInParent="true"
                 android:text="@string/shoppingCartPriceTextView"
                 android:textColor="@color/colorPrimary"
-                android:textSize="30dp" />
+                android:textSize="30dp"
+                tools:ignore="RelativeOverlap" />
 
             <ImageView
+                android:contentDescription="@string/checkout_icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/shoppingCartCheckoutImageView"
                 app:srcCompat="@drawable/ic_reviewpage_complete"
-                android:layout_alignParentRight="true"/>
+                android:layout_alignParentRight="true"
+                tools:ignore="RtlHardcoded" />
 
         </RelativeLayout>
 
@@ -62,7 +65,7 @@
                 android:layout_marginBottom="4dp"
                 android:layout_marginTop="4dp"
                 android:layout_weight="1.5"
-                android:text="{Number}"
+                android:text="@string/number"
                 android:id="@+id/reviewPageItemAmount"
                 android:textSize="20dp" />
 
@@ -89,7 +92,7 @@
                 android:layout_marginBottom="4dp"
                 android:layout_marginTop="4dp"
                 android:layout_weight="1.5"
-                android:text="{ShippingMethod}"
+                android:text="@string/shippingmethod"
                 android:id="@+id/reviewPageShippingMethod"
                 android:textSize="20dp" />
 
@@ -116,7 +119,7 @@
                 android:layout_marginBottom="4dp"
                 android:layout_marginTop="4dp"
                 android:layout_weight="1.5"
-                android:text="{PaymentMethod}"
+                android:text="@string/paymentmethod"
                 android:id="@+id/reviewPagePaymentMethod"
                 android:textSize="20dp" />
 
@@ -138,19 +141,19 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="name"
+            android:text="@string/name"
             android:id="@+id/reviewPageShippingAddressName"
             android:textSize="12dp" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="street"
+            android:text="@string/street"
             android:id="@+id/reviewPageShippingAddressStreet"
             android:textSize="12dp" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="postcode"
+            android:text="@string/postcode"
             android:id="@+id/reviewPageShippingAddressPostcode"
             android:textSize="12dp" />
 
@@ -164,19 +167,19 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="name"
+            android:text="@string/nameinvoice"
             android:id="@+id/reviewPageInvoiceAddressName"
             android:textSize="12dp" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="street"
+            android:text="@string/invoiceStreet"
             android:id="@+id/reviewPageInvoiceAddressStreet"
             android:textSize="12dp" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="postcode"
+            android:text="@string/invoicepostcode"
             android:id="@+id/reviewPageInvoiceAddressPostcode"
             android:textSize="12dp" />
 
@@ -187,11 +190,11 @@
             android:layout_marginBottom="10dp"
             android:background="?android:attr/listDivider"/>
         <TextView
-            android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingLeft="10dp"
-            android:text="@string/reviewPageItems" />
+            android:text="@string/reviewPageItems"
+            tools:ignore="RtlHardcoded" />
 
         <ListView
             android:id="@+id/reviewPageListView"

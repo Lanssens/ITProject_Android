@@ -5,7 +5,6 @@
     android:gravity="center">
 
     <ImageView
-        android:id="@+id/imageView"
         android:src="@drawable/launch_screen_scale"
         android:contentDescription="Launch screen image"
         android:layout_width="fill_parent"

@@ -2,7 +2,9 @@
 package be.fenego.android_spotshop.models;
 
 
-public class InvoiceToAddress {
+import java.io.Serializable;
+
+public class InvoiceToAddress implements Serializable {
 
     private String street;
     private String city;

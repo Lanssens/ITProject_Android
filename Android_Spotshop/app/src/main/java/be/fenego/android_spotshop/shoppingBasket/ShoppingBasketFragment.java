@@ -31,6 +31,8 @@ import be.fenego.android_spotshop.models.ShoppingBasketElementList;
 import be.fenego.android_spotshop.models.ShoppingBasketPostReturn;
 import be.fenego.android_spotshop.models.shoppingBasketModels.Element;
 import be.fenego.android_spotshop.models.shoppingBasketModels.ElementList;
+import be.fenego.android_spotshop.models.shoppingBasketModels.OrderPostResponse;
+import be.fenego.android_spotshop.models.shoppingBasketModels.PaymentMethod;
 import be.fenego.android_spotshop.review.ReviewFragment;
 import be.fenego.android_spotshop.signup.SignupFragment2;
 import be.fenego.android_spotshop.utilities.LoginUtility;
@@ -47,7 +49,7 @@ import retrofit2.Call;
  * Created by Nick on 19/01/2017.
  */
 
-@SuppressWarnings("DefaultFileTemplate")
+@SuppressWarnings({"DefaultFileTemplate", "WeakerAccess"})
 public class ShoppingBasketFragment extends Fragment implements ShoppingBasketCallback, ProductCallback {
 
     private ArrayList<Element> elementList = null;
@@ -70,9 +72,9 @@ public class ShoppingBasketFragment extends Fragment implements ShoppingBasketCa
     TextView shoppingBasketTotal;
 
     @OnClick(R.id.shoppingCartCheckoutImageView)
-    public void linkToCheckout(View view) {
+    public void linkToCheckout() {
         if (shoppingBasket != null) {
-            if (shoppingBasket.getShippingBuckets() != null) {
+            if (shoppingBasket.getShippingBuckets() != null  && shoppingBasket.getTotals().getBasketTotal() != null) {
                 nextFragment();
             }
         } else {
@@ -233,6 +235,56 @@ public class ShoppingBasketFragment extends Fragment implements ShoppingBasketCa
     @Override
     public void onErrorUpdateShoppingBasketLineItem(Call<ShoppingBasket> call, Throwable t) {
         Toast.makeText(getContext(), "Could not update quantity!", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onSuccessUpdateCommonShippingMethod(ShoppingBasket shoppingBasket) {
+
+    }
+
+    @Override
+    public void onErrorUpdateCommonShippingMethod(Call<ShoppingBasket> call, Throwable t) {
+
+    }
+
+    @Override
+    public void onSuccessPostBasketPaymentMethod(PaymentMethod paymentMethod) {
+
+    }
+
+    @Override
+    public void onErrorPostBasketPaymentMethod(Call<PaymentMethod> call, Throwable t) {
+
+    }
+
+    @Override
+    public void onSuccessPostOrder(OrderPostResponse orderPostResponse) {
+
+    }
+
+    @Override
+    public void onErrorPostOrder(Call<OrderPostResponse> call, Throwable t) {
+
+    }
+
+    @Override
+    public void onSuccessUpdateInvoiceAddress(ShoppingBasket shoppingBasket) {
+
+    }
+
+    @Override
+    public void onErrorUpdateInvoiceAddress(Call<ShoppingBasket> call, Throwable t) {
+
+    }
+
+    @Override
+    public void onSuccessUpdateShippingAddress(ShoppingBasket shoppingBasket) {
+
+    }
+
+    @Override
+    public void onErrorUpdateShippingAddress(Call<ShoppingBasket> call, Throwable t) {
+
     }
 
     @Override

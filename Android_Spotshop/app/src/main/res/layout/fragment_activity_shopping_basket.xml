@@ -5,7 +5,6 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/shoppingBasketFragment"
     android:background="@color/colorWhite">
 
     <RelativeLayout
@@ -25,7 +24,8 @@
             android:layout_height="wrap_content"
             android:id="@+id/shoppingCartCheckoutImageView"
             app:srcCompat="@drawable/ic_action_name"
-            android:layout_alignParentRight="true"/>
+            android:layout_alignParentRight="true"
+            tools:ignore="RtlHardcoded" />
     </RelativeLayout>
 
 
@@ -34,7 +34,6 @@
         android:text="@string/shoppingCartProducts"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/textView"
         android:paddingLeft="10dp"
         tools:ignore="RtlHardcoded" />
 

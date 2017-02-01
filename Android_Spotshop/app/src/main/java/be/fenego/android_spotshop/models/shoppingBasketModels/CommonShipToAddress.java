@@ -1,5 +1,5 @@
 
-package be.fenego.android_spotshop.models;
+package be.fenego.android_spotshop.models.shoppingBasketModels;
 
 
 
@@ -19,6 +19,19 @@ public class CommonShipToAddress implements Serializable {
     private String type;
     private String phoneHome;
     private String lastName;
+
+    public CommonShipToAddress(String addressName, String firstname, String lastname, String countryCode, String postalCode, String city, String street){
+        this.type = "address";
+        this.country = "";
+        this.city = city;
+        this.street = street;
+        this.phoneHome = "";
+        this.firstName = firstname;
+        this.lastName = lastname;
+        this.countryCode = countryCode;
+        this.postalCode = postalCode;
+        this.addressName = addressName;
+    }
 
     public String getStreet() {
         return street;

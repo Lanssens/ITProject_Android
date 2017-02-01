@@ -8,7 +8,7 @@ import java.util.List;
  * Created by Nick on 10/01/2017.
  */
 
-@SuppressWarnings({"unused", "DefaultFileTemplate", "CanBeFinal"})
+@SuppressWarnings("ALL")
 public class ProductDetails implements Serializable {
     private String name;
     private String type;
@@ -281,7 +281,7 @@ public class ProductDetails implements Serializable {
 
     public Image getImageURLByName(String name){
         Image image = null;
-        assert (images != null ? images : null) != null;
+        assert null != null;
         for(Image i : images != null ? images : null){
             if(i.getName().equals(name)){
                 image = i;

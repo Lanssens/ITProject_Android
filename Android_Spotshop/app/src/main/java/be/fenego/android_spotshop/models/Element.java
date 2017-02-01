@@ -6,7 +6,7 @@ import java.util.List;
  * Created by Nick on 23/12/2016.
  */
 
-@SuppressWarnings({"unused", "DefaultFileTemplate"})
+@SuppressWarnings("SameParameterValue")
 public class Element{
     private String type;
     private List<Attribute> attributes = null;

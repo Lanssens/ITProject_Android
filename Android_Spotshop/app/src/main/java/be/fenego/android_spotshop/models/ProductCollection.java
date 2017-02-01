@@ -7,7 +7,7 @@ import java.util.List;
  * Created by Nick on 23/12/2016.
  */
 
-@SuppressWarnings({"unused", "DefaultFileTemplate"})
+@SuppressWarnings("ALL")
 public class ProductCollection implements Serializable {
     private String pageable;
     private Integer total;

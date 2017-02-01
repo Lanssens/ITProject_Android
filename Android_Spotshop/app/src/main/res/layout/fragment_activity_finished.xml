@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite"
+    tools:ignore="Overdraw">
+
+    <TextView
+        android:text="@string/congratulations"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/congrats"
+        android:layout_centerInParent="true"
+        android:textAlignment="center"
+        android:textSize="30dp"/>
+
+    <ImageButton
+        android:contentDescription="@string/successfull_icon"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/ic_finished_icon"
+        android:background="@color/colorWhite"
+        android:layout_above="@id/congrats"/>
+
+    <TextView
+    android:text="@string/your_order_has_been_made"
+
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/textView3"
+    android:layout_below="@id/congrats"
+    android:textAlignment="center"
+    android:textSize="20dp"/>
+
+    <TextView
+        android:text="@string/you_will_receive_a_confirmation_email_shortly"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textView3"
+        android:textAlignment="center"
+        android:textSize="14dp"
+        android:layout_marginTop="10dp"/>
+</RelativeLayout>

@@ -4,7 +4,7 @@ package be.fenego.android_spotshop.models;
  * Created by Nick on 11/01/2017.
  */
 
-@SuppressWarnings({"unused", "DefaultFileTemplate"})
+@SuppressWarnings("ALL")
 public class ResourceAttribute {
     private String type;
     private Float value;

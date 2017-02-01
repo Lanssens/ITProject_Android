@@ -8,7 +8,6 @@ import java.io.Serializable;
 /**
  * Created by Nick on 10/01/2017.
  */
-@SuppressWarnings({"unused", "DefaultFileTemplate"})
 
 public class ShippingMethod implements Serializable{
 

@@ -15,14 +15,12 @@
     <string name="drawer_close">Close navigation drawer</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <string name="dialog_select_prompt">Choose a picture</string>
     <string name="dialog_select_camera">Camera</string>
     <string name="dialog_select_gallery">Gallery</string>
     <string name="product_image_detailview">Product image detailView</string>
     <string name="add_to_cart_button">add to cart button</string>
-    <string name="splashscreen_image">splashscreen image</string>
     <string name="homepage_zoek_image_button">homepage zoek image button</string>
     <string name="homepage_zoek_via_tekst_button">homepage zoek via tekst button</string>
     <string name="logo_spotshot">logo spotshot</string>
@@ -42,5 +40,19 @@
     <string name="reviewPageInvoiceAddress"><b>Invoice address</b></string>
     <string name="shoppingbasketlistitemimage">ShoppingBasketListItemImage</string>
     <string name="shoppingbasket_check_out_button">ShoppingBasket check-out button</string>
+    <string name="you_will_receive_a_confirmation_email_shortly">you will receive a confirmation email shortly.</string>
+    <string name="your_order_has_been_made">Your order has been made.</string>
+    <string name="congratulations">Congratulations !</string>
+    <string name="checkout_icon">checkout icon</string>
+    <string name="successfull_icon">successfull icon</string>
+    <string name="number">{Number}</string>
+    <string name="shippingmethod">{ShippingMethod}</string>
+    <string name="paymentmethod">{PaymentMethod}</string>
+    <string name="name">name</string>
+    <string name="street">street</string>
+    <string name="postcode">postcode</string>
+    <string name="nameinvoice">name</string>
+    <string name="invoiceStreet">street</string>
+    <string name="invoicepostcode">postcode</string>
 
 </resources>

@@ -4,7 +4,7 @@ package be.fenego.android_spotshop.models;
 
 import java.io.Serializable;
 @SuppressWarnings("ALL")
-public class ShippingTaxTotalsByTaxRate implements Serializable {
+class ShippingTaxTotalsByTaxRate implements Serializable {
 
 
     private Amount_ amount;

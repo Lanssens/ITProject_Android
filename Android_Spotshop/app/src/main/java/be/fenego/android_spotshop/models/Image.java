@@ -6,7 +6,7 @@ import java.io.Serializable;
  * Created by Nick on 10/01/2017.
  */
 
-@SuppressWarnings("DefaultFileTemplate")
+
 public class Image implements Serializable{
     @SuppressWarnings("unused")
     private String name;

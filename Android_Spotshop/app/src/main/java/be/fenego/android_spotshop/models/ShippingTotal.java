@@ -3,7 +3,6 @@ package be.fenego.android_spotshop.models;
 
 
 import java.io.Serializable;
-@SuppressWarnings("ALL")
 public class ShippingTotal implements Serializable {
 
     private String type;

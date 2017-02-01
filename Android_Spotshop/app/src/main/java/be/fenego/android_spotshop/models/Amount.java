@@ -2,7 +2,7 @@
 package be.fenego.android_spotshop.models;
 
 
-@SuppressWarnings("unused")
+
 public class Amount {
 
     private String type;

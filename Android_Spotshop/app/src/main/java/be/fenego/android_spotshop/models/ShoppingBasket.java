@@ -3,6 +3,8 @@ package be.fenego.android_spotshop.models;
 import java.io.Serializable;
 import java.util.List;
 
+import be.fenego.android_spotshop.models.shoppingBasketModels.CommonShipToAddress;
+
 /**
  * Created by Nick on 19/01/2017.
  */
