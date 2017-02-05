@@ -5,11 +5,6 @@ import android.content.SharedPreferences;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 
-import com.google.api.client.repackaged.org.apache.commons.codec.binary.Base64;
-
-import java.util.ArrayList;
-import java.util.List;
-
 import be.fenego.android_spotshop.models.Customer;
 import be.fenego.android_spotshop.services.CustomerService;
 import be.fenego.android_spotshop.services.ServiceGenerator;

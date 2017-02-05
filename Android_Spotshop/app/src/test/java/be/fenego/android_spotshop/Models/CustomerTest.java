@@ -1,11 +1,6 @@
 package be.fenego.android_spotshop.Models;
 
-import android.provider.ContactsContract;
-
-import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import be.fenego.android_spotshop.models.Address;

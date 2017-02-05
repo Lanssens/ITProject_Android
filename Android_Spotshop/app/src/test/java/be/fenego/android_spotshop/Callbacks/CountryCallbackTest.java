@@ -7,9 +7,7 @@ import org.junit.Test;
 import java.util.List;
 
 import be.fenego.android_spotshop.callbacks.CountryCallback;
-import be.fenego.android_spotshop.callbacks.ProductCallback;
 import be.fenego.android_spotshop.models.Country;
-import be.fenego.android_spotshop.utilities.CountryUtility;
 
 /**
  * Created by Thijs on 1/19/2017.

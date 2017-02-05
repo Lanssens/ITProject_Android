@@ -31,7 +31,8 @@
             android:textColor="#9e9d9d"
 
             android:textSize="18sp"
-            tools:text="PERSONAL:" />
+            tools:text="PERSONAL:"
+            tools:ignore="HardcodedText" />
 
         <LinearLayout
             android:layout_width="fill_parent"
@@ -50,7 +51,8 @@
                     android:id="@+id/register_input_firstname"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="First name" />
+                    android:hint="First name"
+                    tools:ignore="HardcodedText" />
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
@@ -64,7 +66,8 @@
                     android:id="@+id/register_input_lastname"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Last name" />
+                    android:hint="Last name"
+                    tools:ignore="HardcodedText" />
             </android.support.design.widget.TextInputLayout>
         </LinearLayout>
 
@@ -78,7 +81,8 @@
                 android:id="@+id/register_input_phone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Phone" />
+                android:hint="Phone"
+                tools:ignore="HardcodedText" />
         </android.support.design.widget.TextInputLayout>
 
 
@@ -99,7 +103,8 @@
                     android:id="@+id/register_input_month"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Month" />
+                    android:hint="Month"
+                    tools:ignore="HardcodedText" />
             </android.widget.LinearLayout>
 
             <android.support.design.widget.TextInputLayout
@@ -114,7 +119,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Day"
-                    android:inputType="numberDecimal" />
+                    android:inputType="numberDecimal"
+                    tools:ignore="HardcodedText" />
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
@@ -129,7 +135,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Year"
-                    android:inputType="numberDecimal" />
+                    android:inputType="numberDecimal"
+                    tools:ignore="HardcodedText" />
             </android.support.design.widget.TextInputLayout>
         </LinearLayout>
 
@@ -150,7 +157,8 @@
             android:textColor="#9e9d9d"
 
             android:textSize="18sp"
-            tools:text="ADDRESS:" />
+            tools:text="ADDRESS:"
+            tools:ignore="HardcodedText" />
 
         <android.widget.LinearLayout
             android:layout_width="match_parent"
@@ -162,7 +170,8 @@
                 android:id="@+id/register_input_countries"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Countries" />
+                android:hint="Countries"
+                tools:ignore="HardcodedText" />
         </android.widget.LinearLayout>
 
         <android.support.design.widget.TextInputLayout
@@ -175,7 +184,8 @@
                 android:id="@+id/register_input_address"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Address" />
+                android:hint="Address"
+                tools:ignore="HardcodedText" />
         </android.support.design.widget.TextInputLayout>
 
         <LinearLayout
@@ -195,7 +205,8 @@
                     android:id="@+id/register_input_postalcode"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Postal code" />
+                    android:hint="Postal code"
+                    tools:ignore="HardcodedText" />
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
@@ -209,7 +220,8 @@
                     android:id="@+id/register_input_city"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="City" />
+                    android:hint="City"
+                    tools:ignore="HardcodedText" />
             </android.support.design.widget.TextInputLayout>
         </LinearLayout>
 
@@ -225,6 +237,7 @@
             android:background="@drawable/button_style"
             android:textColor="#ffffff"
 
-            android:text="Complete"/>
+            android:text="Complete"
+            tools:ignore="HardcodedText" />
     </LinearLayout>
 </ScrollView>

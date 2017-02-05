@@ -1,6 +1,6 @@
 package be.fenego.android_spotshop.utilities;
 import android.util.Log;
-import java.util.List;
+
 import be.fenego.android_spotshop.callbacks.AddressCallback;
 import be.fenego.android_spotshop.callbacks.CustomerCallback;
 import be.fenego.android_spotshop.callbacks.CustomerCreationCallback;

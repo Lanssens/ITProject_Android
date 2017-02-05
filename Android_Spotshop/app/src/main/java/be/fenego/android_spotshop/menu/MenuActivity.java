@@ -22,13 +22,10 @@ import java.util.Queue;
 
 import be.fenego.android_spotshop.R;
 import be.fenego.android_spotshop.account.AccountFragment;
-import be.fenego.android_spotshop.models.ShoppingBasket;
-import be.fenego.android_spotshop.review.ReviewFragment;
 import be.fenego.android_spotshop.shoppingBasket.ShoppingBasketFragment;
 import be.fenego.android_spotshop.utilities.LoginUtility;
 import be.fenego.android_spotshop.home.HomeFragment;
 import be.fenego.android_spotshop.login.LoginFragment;
-import be.fenego.android_spotshop.test.TestFragment;
 
 
 /**

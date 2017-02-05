@@ -1,36 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_first_fragment"
             android:icon="@drawable/ic_menu_shop"
             android:checked="true"
-            android:title="Shop" />
+            android:title="Shop"
+            tools:ignore="HardcodedText" />
         <item
             android:id="@+id/nav_second_fragment"
             android:icon="@drawable/ic_shoppingcart"
-            android:title="Cart" />
+            android:title="Cart"
+            tools:ignore="HardcodedText" />
      
-        <item android:title="Personal">
+        <item android:title="Personal"
+            tools:ignore="HardcodedText">
             <menu>
                 <group android:checkableBehavior="single">
                     <item
                         android:id="@+id/nav_fourth_fragment"
                         android:icon="@drawable/ic_menu_account"
-                        android:title="Account" />
+                        android:title="Account"
+                        tools:ignore="HardcodedText" />
                     <item
                         android:visible="false"
                         android:icon="@drawable/ic_menu_order_history"
-                        android:title="Order History" />
+                        android:title="Order History"
+                        tools:ignore="HardcodedText" />
                     <item
                         android:id="@+id/nav_sixth_fragment"
                         android:icon="@drawable/ic_menu_logout"
-                        android:title="Logout" />
+                        android:title="Logout"
+                        tools:ignore="HardcodedText" />
                     <item
                         android:id="@+id/nav_seventh_fragment"
                         android:icon="@drawable/ic_menu_login"
-                        android:title="Login" />
+                        android:title="Login"
+                        tools:ignore="HardcodedText" />
                 </group>
             </menu>
         </item>

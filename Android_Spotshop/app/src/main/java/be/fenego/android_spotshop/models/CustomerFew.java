@@ -1,8 +1,5 @@
 package be.fenego.android_spotshop.models;
 
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
-
 /**
  * Created by Thijs on 1/13/2017.
  */

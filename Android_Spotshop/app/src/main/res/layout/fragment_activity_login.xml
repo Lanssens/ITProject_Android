@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:fitsSystemWindows="true"
@@ -32,7 +33,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textEmailAddress"
-                android:hint="Email" />
+                android:hint="Email"
+                tools:ignore="HardcodedText" />
         </android.support.design.widget.TextInputLayout>
 
         <!-- PasswordChange Label -->
@@ -45,7 +47,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
-                android:hint="Password"/>
+                android:hint="Password"
+                tools:ignore="HardcodedText" />
         </android.support.design.widget.TextInputLayout>
 
         <Button
@@ -59,7 +62,8 @@
             android:background="@drawable/button_style"
             android:textColor="#ffffff"
 
-            android:text="Login"/>
+            android:text="Login"
+            tools:ignore="HardcodedText" />
 
         <TextView android:id="@+id/link_signup"
             android:layout_width="fill_parent"
@@ -67,14 +71,16 @@
             android:layout_marginBottom="24dp"
             android:text="Sign up"
             android:gravity="center"
-            android:textSize="16dip"/>
+            android:textSize="16dip"
+            tools:ignore="HardcodedText" />
         <TextView android:id="@+id/link_forgot_password"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="24dp"
             android:text="Forgot your password?"
             android:gravity="center"
-            android:textSize="16dip"/>
+            android:textSize="16dip"
+            tools:ignore="HardcodedText" />
 
     </LinearLayout>
 </ScrollView>

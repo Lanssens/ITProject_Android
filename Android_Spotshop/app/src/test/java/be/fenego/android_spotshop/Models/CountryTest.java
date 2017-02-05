@@ -1,10 +1,7 @@
 package be.fenego.android_spotshop.Models;
 
-import java.util.List;
 import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import be.fenego.android_spotshop.models.Country;

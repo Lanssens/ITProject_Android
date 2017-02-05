@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:fitsSystemWindows="true"
@@ -23,7 +24,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textEmailAddress"
-                android:hint="Email" />
+                android:hint="Email"
+                tools:ignore="HardcodedText" />
         </android.support.design.widget.TextInputLayout>
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
@@ -34,7 +36,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textEmailAddress"
-                android:hint="Repeat email" />
+                android:hint="Repeat email"
+                tools:ignore="HardcodedText" />
         </android.support.design.widget.TextInputLayout>
 
 
@@ -50,7 +53,8 @@
             android:background="@drawable/button_style"
             android:textColor="#ffffff"
 
-            android:text="Save"/>
+            android:text="Save"
+            tools:ignore="HardcodedText" />
 
     </LinearLayout>
 </ScrollView>

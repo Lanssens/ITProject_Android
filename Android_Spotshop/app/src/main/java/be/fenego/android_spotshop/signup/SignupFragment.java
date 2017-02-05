@@ -22,7 +22,6 @@ import be.fenego.android_spotshop.R;
 import be.fenego.android_spotshop.utilities.CustomerUtility;
 import be.fenego.android_spotshop.callbacks.QuestionCallback;
 import be.fenego.android_spotshop.models.Question;
-import butterknife.OnTextChanged;
 import butterknife.*;
 
 /**

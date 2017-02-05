@@ -5,8 +5,6 @@ import java.util.List;
 
 import be.fenego.android_spotshop.callbacks.CountryCallback;
 import be.fenego.android_spotshop.models.Country;
-import be.fenego.android_spotshop.models.Element;
-import be.fenego.android_spotshop.models.ProductCollection;
 import be.fenego.android_spotshop.utilities.CountryUtility;
 
 /**
