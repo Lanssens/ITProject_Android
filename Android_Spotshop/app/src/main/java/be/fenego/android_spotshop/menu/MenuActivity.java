@@ -186,9 +186,7 @@ public class MenuActivity extends AppCompatActivity{
             case R.id.nav_second_fragment:
                 fragmentClass = ShoppingBasketFragment.class;
                 break;
-            case R.id.nav_third_fragment:
-                fragmentClass = ReviewFragment.class;
-                break;
+
             case R.id.nav_fourth_fragment:
                 fragmentClass = AccountFragment.class;
                 break;

@@ -1,4 +1,4 @@
-package be.fenego.android_spotshop;
+package be.fenego.android_spotshop.Callbacks;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -66,10 +66,7 @@ public class ShoppingBasketTest implements ShoppingBasketCallback {
 
     @Override
     public void onSuccessGetActiveBasket(ShoppingBasket shoppingBasket) {
-        if(shoppingBasket != null){
-            boolean b = true;
-            Assert.assertTrue(b);
-        }
+        Assert.assertNotNull(shoppingBasket);
     }
 
     @Override
@@ -79,10 +76,7 @@ public class ShoppingBasketTest implements ShoppingBasketCallback {
 
     @Override
     public void onSuccessCreateBasket(ShoppingBasketPostReturn shoppingBasketPostReturn, String token) {
-        if(shoppingBasketPostReturn != null){
-            boolean b = true;
-            Assert.assertTrue(b);
-        }
+        Assert.assertNotNull(shoppingBasketPostReturn);
     }
 
     @Override
@@ -92,10 +86,7 @@ public class ShoppingBasketTest implements ShoppingBasketCallback {
 
     @Override
     public void onSuccessPostProductToBasket(ShoppingBasketElementList shoppingBasketElementList) {
-        if(shoppingBasketElementList != null){
-            boolean b = true;
-            Assert.assertTrue(b);
-        }
+        Assert.assertNotNull(shoppingBasketElementList);
     }
 
     @Override
@@ -105,10 +96,7 @@ public class ShoppingBasketTest implements ShoppingBasketCallback {
 
     @Override
     public void onSuccessGetActiveBasketLineItems(ElementList elementList) {
-        if(elementList != null){
-            boolean b = true;
-            Assert.assertTrue(b);
-        }
+        Assert.assertNotNull(elementList);
     }
 
     @Override
@@ -118,10 +106,7 @@ public class ShoppingBasketTest implements ShoppingBasketCallback {
 
     @Override
     public void onSuccessDeleteShoppingBasketLineItem(ShoppingBasket shoppingBasket) {
-        if(shoppingBasket != null){
-            boolean b = true;
-            Assert.assertTrue(b);
-        }
+        Assert.assertNotNull(shoppingBasket);
     }
 
     @Override
@@ -131,10 +116,7 @@ public class ShoppingBasketTest implements ShoppingBasketCallback {
 
     @Override
     public void onSuccessUpdateShoppingBasketLineItem(ShoppingBasket shoppingBasket) {
-        if(shoppingBasket != null){
-            boolean b = true;
-            Assert.assertTrue(b);
-        }
+        Assert.assertNotNull(shoppingBasket);
     }
 
     @Override

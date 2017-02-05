@@ -1,4 +1,4 @@
-package be.fenego.android_spotshop;
+package be.fenego.android_spotshop.Callbacks;
 
 import java.util.ArrayList;
 
