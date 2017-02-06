@@ -15,17 +15,20 @@ import static org.junit.Assert.*;
  *
  * @author Thijs
  */
-@SuppressWarnings("ConstantConditions")
+@SuppressWarnings({"ConstantConditions", "unused"})
 public class ProductDetailsTest {
     
+    @SuppressWarnings("unused")
     private ProductDetails productDetails;
 
+    @SuppressWarnings("unused")
     @Before
     public void setUp() {
         productDetails = new ProductDetails();
     }
     
 
+    @SuppressWarnings("unused")
     @Test
     public void testSetAndGetAttributes() {
 
@@ -34,6 +37,7 @@ public class ProductDetailsTest {
         assertEquals(expResult, result);
     }
 
+    @SuppressWarnings("unused")
     @Test
     public void testSetAndGetProductName() {
 
@@ -45,6 +49,7 @@ public class ProductDetailsTest {
     }
 
 
+    @SuppressWarnings("unused")
     @Test
     public void testSetAndGetLongDescription() {
         String value = "test";
@@ -54,6 +59,7 @@ public class ProductDetailsTest {
         assertEquals(value, expectedValue);
     }
 
+    @SuppressWarnings("unused")
     @Test
     public void testSetAndGetAvailability() {
         productDetails.setAvailability(true);
@@ -62,6 +68,7 @@ public class ProductDetailsTest {
         assertTrue(expectedValue);
     }
 
+    @SuppressWarnings("unused")
     @Test
     public void testSetAndGetRoundedAverageRating() {
         String value = "test";

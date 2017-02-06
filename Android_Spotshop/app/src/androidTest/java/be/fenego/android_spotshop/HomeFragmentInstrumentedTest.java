@@ -17,13 +17,15 @@ import static android.support.test.espresso.matcher.ViewMatchers.withId;
 /**
  * Created by Nick on 15/01/2017.
  */
-@SuppressWarnings("DefaultFileTemplate")
+@SuppressWarnings({"DefaultFileTemplate", "unused"})
 @RunWith(AndroidJUnit4.class)
 public class HomeFragmentInstrumentedTest {
 
+    @SuppressWarnings("unused")
     @Rule
     public ActivityTestRule<MenuActivity> menuActivityActivityTestRule = new ActivityTestRule<>(MenuActivity.class);
 
+    @SuppressWarnings("unused")
     @Test
     public void checkProductListNotNull() throws Exception{
         onView(withId(R.id.searchButton)).perform(click());

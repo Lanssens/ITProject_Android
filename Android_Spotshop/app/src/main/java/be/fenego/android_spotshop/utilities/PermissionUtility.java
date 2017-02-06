@@ -13,6 +13,7 @@ import java.util.ArrayList;
 
 @SuppressWarnings({"unused", "DefaultFileTemplate"})
 public class PermissionUtility {
+    @SuppressWarnings("unused")
     public static boolean requestPermission(
             Fragment fragment, int requestCode, String... permissions) {
         boolean granted = true;
@@ -38,6 +39,7 @@ public class PermissionUtility {
     }
 
 
+    @SuppressWarnings("unused")
     public static boolean permissionGranted(
             int requestCode, int permissionCode, int[] grantResults) {
         return requestCode == permissionCode && grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED;

@@ -17,26 +17,32 @@ import be.fenego.android_spotshop.models.shoppingBasketModels.ElementList;
 class ShoppingBasketUtilityMock {
 
 
+    @SuppressWarnings("unused")
     public static void getActiveShoppingBasket(final ShoppingBasketCallback callback){
       callback.onSuccessGetActiveBasket(new ShoppingBasket());
     }
 
+    @SuppressWarnings("unused")
     public static void createShoppingBasket(final ShoppingBasketCallback callback){
         callback.onSuccessCreateBasket(new ShoppingBasketPostReturn(), "ok");
     }
 
+    @SuppressWarnings("unused")
     public static void postProductToBasket(final ShoppingBasketCallback callback){
         callback.onSuccessPostProductToBasket(new ShoppingBasketElementList(new ArrayList<ShoppingBasketElement>()));
     }
 
+    @SuppressWarnings("unused")
     public static void getActiveBasketLineItems(final ShoppingBasketCallback callback){
         callback.onSuccessGetActiveBasketLineItems(new ElementList());
     }
 
+    @SuppressWarnings("unused")
     public static void deleteShoppingBasketLineItems(final ShoppingBasketCallback callback){
         callback.onSuccessDeleteShoppingBasketLineItem(new ShoppingBasket());
     }
 
+    @SuppressWarnings("unused")
     public static void updateShoppingBasketLineItems(final ShoppingBasketCallback callback){
       callback.onSuccessUpdateShoppingBasketLineItem(new ShoppingBasket());
     }

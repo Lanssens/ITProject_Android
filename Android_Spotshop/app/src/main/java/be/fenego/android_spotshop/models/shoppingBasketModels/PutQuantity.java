@@ -6,16 +6,20 @@ package be.fenego.android_spotshop.models.shoppingBasketModels;
 
 @SuppressWarnings("ALL")
 public class PutQuantity {
+    @SuppressWarnings("unused")
     private Quantity quantity;
 
+    @SuppressWarnings("unused")
     public PutQuantity(Quantity quantity){
         this.quantity = quantity;
     }
 
+    @SuppressWarnings("unused")
     public Quantity getQuantity() {
         return quantity;
     }
 
+    @SuppressWarnings("unused")
     public void setQuantity(Quantity quantity) {
         this.quantity = quantity;
     }

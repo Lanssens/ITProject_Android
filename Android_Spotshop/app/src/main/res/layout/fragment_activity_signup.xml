@@ -30,7 +30,7 @@
 
             tools:text="CREDENTIALS:"
             android:text="CREDENTIALS:"
-            tools:ignore="HardcodedText" />
+            tools:ignore="HardcodedText,RtlHardcoded" />
         <!-- Email Label -->
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
@@ -99,7 +99,7 @@
 
             tools:text="SECURITY QUESTION:"
             android:text="SECURITY QUESTION:"
-            tools:ignore="HardcodedText" />
+            tools:ignore="HardcodedText,RtlHardcoded" />
 
         <android.widget.LinearLayout
             android:layout_width="match_parent"

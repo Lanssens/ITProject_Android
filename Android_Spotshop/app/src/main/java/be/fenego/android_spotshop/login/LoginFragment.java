@@ -1,5 +1,6 @@
 package be.fenego.android_spotshop.login;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -29,19 +30,27 @@ import butterknife.*;
  */
 
 
+@SuppressWarnings("DefaultFileTemplate")
 public class LoginFragment extends android.support.v4.app.Fragment implements ChangeBasketOwnerCallback {
 
     private static final String TAG = "LoginFragment";
+    @SuppressWarnings("unused")
     private static final int REQUEST_SIGNUP = 0;
 
     private ShoppingBasket shoppingBasket;
 
+    @SuppressWarnings({"WeakerAccess", "unused"})
     @BindView(R.id.input_email) EditText _emailText;
+    @SuppressWarnings({"WeakerAccess", "unused"})
     @BindView(R.id.input_password) EditText _passwordText;
+    @SuppressWarnings({"WeakerAccess", "unused"})
     @BindView(R.id.btn_login) Button _loginButton;
+    @SuppressWarnings("unused")
     @BindView(R.id.link_signup) TextView _signupLink;
+    @SuppressWarnings("unused")
     @BindView(R.id.link_forgot_password) TextView _forgotPasswordLink;
 
+    @SuppressWarnings("unused")
     @OnTextChanged(value = { R.id.input_email, R.id.input_password },
             callback = OnTextChanged.Callback.AFTER_TEXT_CHANGED)
     void fixValidationOnTextChanged() {
@@ -49,19 +58,21 @@ public class LoginFragment extends android.support.v4.app.Fragment implements Ch
     }
 
 
+    @SuppressWarnings("unused")
     @OnClick(R.id.btn_login)
     public void loginButton(Button view) {
         login();
     }
+    @SuppressWarnings("unused")
     @OnClick({R.id.link_signup, R.id.link_forgot_password})
     public void linkToRightPage(TextView view) {
-        Toast.makeText(getContext(), "Clicked on " + view.getText(), Toast.LENGTH_SHORT).show();
         switch(view.getText().toString()){
             case "Forgot your password?": openForgotPasswordFragment(); break;
             case "Sign up": openSignupFragment(); break;
         }
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Haal Fragment-layout op
@@ -75,7 +86,7 @@ public class LoginFragment extends android.support.v4.app.Fragment implements Ch
         if(bundle != null){
 
             this.shoppingBasket = (ShoppingBasket) bundle.get("shoppingBasket");
-            Log.v("lel",  "The id is lel: " + shoppingBasket.getId());
+            Log.v("lel",  "The id is lel: " + (shoppingBasket != null ? shoppingBasket.getId() : null));
             Log.v("lel",  "The id is lel: " + shoppingBasket.getShippingBuckets().get(0).getLineItems().get(0).getTitle());
         }
 
@@ -93,12 +104,12 @@ public class LoginFragment extends android.support.v4.app.Fragment implements Ch
         if(bundle != null){
 
             this.shoppingBasket = (ShoppingBasket) bundle.get("shoppingBasket");
-            Log.v("lel",  "The id is: " + shoppingBasket.getId());
+            Log.v("lel",  "The id is: " + (shoppingBasket != null ? shoppingBasket.getId() : null));
         }
     }
 
 
-    public void login() {
+    private void login() {
         Log.d(TAG, "Login");
         //LoginUtility.removeUserCredentials();
             //NewAuth:
@@ -107,7 +118,6 @@ public class LoginFragment extends android.support.v4.app.Fragment implements Ch
         //Log.v("lel", LoginUtility.isUserLoggedIn() + "");
         if (!validate()) {
             onLoginFailed();
-            return;
         }else{
 
             _loginButton.setEnabled(false);
@@ -145,7 +155,7 @@ public class LoginFragment extends android.support.v4.app.Fragment implements Ch
 
     }
 
-    public void openSignupFragment() {
+    private void openSignupFragment() {
 
         // Create new fragment and transaction
         Fragment newFragment = new SignupFragment();
@@ -160,18 +170,20 @@ public class LoginFragment extends android.support.v4.app.Fragment implements Ch
         transaction.commit();
     }
 
-    public void openForgotPasswordFragment() {
+    @SuppressWarnings("EmptyMethod")
+    private void openForgotPasswordFragment() {
+        //Not implemented
     }
 
 
 
-    public void onLoginSuccess() {
+    private void onLoginSuccess() {
 
         //Cannot login anymore for safety
         _loginButton.setEnabled(false);
 
         // Check if no view has focus:
-        MenuActivity.hideKeyboard((MenuActivity)getActivity());
+        MenuActivity.hideKeyboard(getActivity());
 
         Fragment newFragment;
         if(shoppingBasket != null){
@@ -196,13 +208,13 @@ public class LoginFragment extends android.support.v4.app.Fragment implements Ch
 
     }
 
-    public void onLoginFailed() {
+    private void onLoginFailed() {
         Toast.makeText(getActivity(), "Incorrect login details. Try again.", Toast.LENGTH_LONG).show();
 
         _loginButton.setEnabled(true);
     }
 
-    public boolean validate() {
+    private boolean validate() {
         boolean valid = true;
 
         String email = _emailText.getText().toString();
@@ -227,7 +239,7 @@ public class LoginFragment extends android.support.v4.app.Fragment implements Ch
     //To hide keyboard when going to different fragment
     @Override
     public void onDestroyView() {
-        MenuActivity.hideKeyboard((MenuActivity)getActivity());
+        MenuActivity.hideKeyboard(getActivity());
         super.onDestroyView();
     }
 

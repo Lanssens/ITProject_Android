@@ -119,18 +119,23 @@ class ProductAdapter extends ArrayAdapter<Element> {
 
     //Bind views voor productdata in te stellen.
     static class ViewHolder {
+        @SuppressWarnings("unused")
         @BindView(R.id.productImageImageView)
         ImageView productImage;
 
+        @SuppressWarnings("unused")
         @BindView(R.id.productTitleTextView)
         TextView productTitle;
 
+        @SuppressWarnings("unused")
         @BindView(R.id.productRatingBar)
         RatingBar productRating;
 
+        @SuppressWarnings("unused")
         @BindView(R.id.productPriceTextView)
         TextView productPrice;
 
+        @SuppressWarnings("unused")
         @BindView(R.id.productAvailabilityTextView)
         TextView productAvailability;
 

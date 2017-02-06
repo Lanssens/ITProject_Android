@@ -14,6 +14,7 @@ import retrofit2.Response;
  */
 
 public class SearchHistoryUtility {
+    @SuppressWarnings("CanBeFinal")
     private static HistoryService historyService =  HistoryService.retrofit.create(HistoryService.class);
 
     public static void postSearchHistory(HistoryItem historyItem){

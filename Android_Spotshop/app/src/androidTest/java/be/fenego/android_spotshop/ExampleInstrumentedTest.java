@@ -17,6 +17,7 @@ import static org.junit.Assert.*;
 @SuppressWarnings("unused")
 @RunWith(AndroidJUnit4.class)
 public class ExampleInstrumentedTest {
+    @SuppressWarnings("unused")
     @Test
     public void useAppContext() throws Exception {
         // Context of the app under TestFragment.

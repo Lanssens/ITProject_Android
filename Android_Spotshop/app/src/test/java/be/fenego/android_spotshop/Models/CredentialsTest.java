@@ -11,15 +11,19 @@ import static org.junit.Assert.*;
  *
  * @author Thijs
  */
+@SuppressWarnings("unused")
 public class CredentialsTest {
     
+    @SuppressWarnings("unused")
     private Credentials cred;
+    @SuppressWarnings("unused")
     @Before
     public void setUp() {
         cred = new Credentials();
     }
 
 
+    @SuppressWarnings("unused")
     @Test
     public void testGetLogin() {
 
@@ -30,6 +34,7 @@ public class CredentialsTest {
     }
 
 
+    @SuppressWarnings("unused")
     @Test
     public void testGetPassword() {
 
@@ -40,6 +45,7 @@ public class CredentialsTest {
     }
 
 
+    @SuppressWarnings("unused")
     @Test
     public void testGetSecurityQuestion() {
 
@@ -50,6 +56,7 @@ public class CredentialsTest {
     }
 
 
+    @SuppressWarnings("unused")
     @Test
     public void testGetSecurityQuestionAnswer() {
 

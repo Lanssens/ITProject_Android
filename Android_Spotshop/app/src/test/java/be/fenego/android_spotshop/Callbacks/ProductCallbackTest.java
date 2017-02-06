@@ -14,27 +14,32 @@ import retrofit2.Call;
  * Created by Nick on 14/01/2017.
  */
 
-@SuppressWarnings("ALL")
+@SuppressWarnings({"ALL", "unused"})
 public class ProductCallbackTest implements ProductCallback {
 
+    @SuppressWarnings("unused")
     ProductCallback productCallback;
 
+    @SuppressWarnings("unused")
     @Test
     public void getFeaturedProductsTest(){
         ProductUtilityMock.getFeaturedProducts(this);
     }
 
+    @SuppressWarnings("unused")
     @Test
     public void getProductDetailsTest(){
         ProductUtilityMock.getProductDetails(this);
     }
 
+    @SuppressWarnings("unused")
     @Test
     public void getProductsByTextTest(){
         ProductUtilityMock.getProductByText(this);
     }
 
 
+    @SuppressWarnings("unused")
     @Override
     public void onSuccessGetProduct(ProductDetails productDetails) {
         SalePrice checkDetail = new SalePrice("ProductPrice",10,"USD");
@@ -65,12 +70,14 @@ public class ProductCallbackTest implements ProductCallback {
         productDetails.getAttributes();
     }
 
+    @SuppressWarnings("unused")
     @Override
     public void onErrorGetProduct(Call<ProductDetails> call, Throwable t) {
 
     }
 
 
+    @SuppressWarnings("unused")
     @Override
     public void onSuccessGetFeaturedProducts(ProductCollection productCollection) {
        List<Element> elementList = productCollection.getElements();
@@ -109,26 +116,31 @@ public class ProductCallbackTest implements ProductCallback {
 
     }
 
+    @SuppressWarnings("unused")
     @Override
     public void onErrorGetFeaturedProducts(Call<ProductCollection> call, Throwable t) {
 
     }
 
+    @SuppressWarnings("unused")
     @Override
     public void onSuccessGetProductsByImage(ProductCollection productCollection) {
 
     }
 
+    @SuppressWarnings("unused")
     @Override
     public void onErrorGetProductsByImage(Call<ProductCollection> call, Throwable t) {
 
     }
 
+    @SuppressWarnings("unused")
     @Override
     public void onSuccessGetProductsByText(ProductCollection productCollection) {
 
     }
 
+    @SuppressWarnings("unused")
     @Override
     public void onErrorGetProductsByText(Call<ProductCollection> call, Throwable t) {
 

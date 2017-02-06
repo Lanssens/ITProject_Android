@@ -1,9 +1,7 @@
 package be.fenego.android_spotshop.Models;
 
 import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import be.fenego.android_spotshop.models.Question;
@@ -14,20 +12,25 @@ import static org.junit.Assert.*;
  *
  * @author Thijs
  */
+@SuppressWarnings("unused")
 public class QuestionTest {
     
+    @SuppressWarnings("unused")
     private Question question;
 
+    @SuppressWarnings("unused")
     @Before
     public void setUp() {
         question = new Question();
     }
     
+    @SuppressWarnings({"EmptyMethod", "unused"})
     @After
     public void tearDown() {
     }
 
 
+    @SuppressWarnings("unused")
     @Test
     public void testSetAndGetType() {
 
@@ -38,6 +41,7 @@ public class QuestionTest {
         assertEquals(value, expectedValue);
     }
 
+    @SuppressWarnings("unused")
     @Test
     public void testSetAndGetKey() {
 
@@ -49,6 +53,7 @@ public class QuestionTest {
         assertEquals(value, expectedValue);
     }
 
+    @SuppressWarnings("unused")
     @Test
     public void testSetAndGetText() {
 

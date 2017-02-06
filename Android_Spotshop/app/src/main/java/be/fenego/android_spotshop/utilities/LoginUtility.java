@@ -1,5 +1,6 @@
 package be.fenego.android_spotshop.utilities;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.support.v4.app.Fragment;
@@ -21,6 +22,7 @@ public class LoginUtility {
 
 
 
+    @SuppressLint("StaticFieldLeak")
     private static Activity currentAct;
     private static final String userCredentials = "UserDataSpotShop";
 
@@ -29,6 +31,7 @@ public class LoginUtility {
         String silent = settings.getString("AT", "");
         return !silent.equals("");
     }
+    @SuppressLint("CommitPrefEdits")
     public static void removeUserCredentials(){
         System.out.println("Removed user creds");
         currentAct.getSharedPreferences(userCredentials, 0).edit().clear().commit();
@@ -37,6 +40,7 @@ public class LoginUtility {
     }
 
 
+    @SuppressWarnings("UnnecessaryLocalVariable")
     public static String retrieveAuthToken(){
 
         SharedPreferences settings = currentAct.getSharedPreferences(userCredentials, 0);
@@ -44,6 +48,7 @@ public class LoginUtility {
         String authToken = settings.getString("AT", "");
         return authToken;
     }
+    @SuppressLint("CommitPrefEdits")
     public static void storeAuthToken(String token){
         SharedPreferences settings = currentAct.getSharedPreferences(userCredentials, 0);
         SharedPreferences.Editor editor = settings.edit();
@@ -55,6 +60,7 @@ public class LoginUtility {
         editor.commit();
     }
 
+    @SuppressWarnings("UnnecessaryLocalVariable")
     public static String retrieveAnonToken(){
 
         SharedPreferences settings = currentAct.getSharedPreferences(userCredentials, 0);
@@ -63,6 +69,7 @@ public class LoginUtility {
         return anonToken;
     }
 
+    @SuppressLint("CommitPrefEdits")
     public static void storeAnonToken(String token){
 
         // We need an Editor object to make preference changes.
@@ -77,6 +84,7 @@ public class LoginUtility {
 
     }
 
+    @SuppressWarnings({"unused", "UnnecessaryLocalVariable"})
     public static String retrieveUsername(){
 
         SharedPreferences settings = currentAct.getSharedPreferences(userCredentials, 0);
@@ -84,6 +92,8 @@ public class LoginUtility {
         String authToken = settings.getString("UN", "");
         return authToken;
     }
+    @SuppressWarnings("WeakerAccess")
+    @SuppressLint("CommitPrefEdits")
     public static void storeUserCredentials(String username, String authorizationtoken){
 
         // We need an Editor object to make preference changes.
@@ -110,6 +120,7 @@ public class LoginUtility {
     public static void setCurrentAct(Activity currentAct) {
         LoginUtility.currentAct = currentAct;
     }
+    @SuppressWarnings({"UnusedReturnValue", "SameReturnValue", "UnusedParameters"})
     public static boolean loginUser(final Fragment currentFragment, final String username, final String password){
         CustomerService customerService = null;
         System.out.println("Trying to log in with: " + username + "en" +  password);

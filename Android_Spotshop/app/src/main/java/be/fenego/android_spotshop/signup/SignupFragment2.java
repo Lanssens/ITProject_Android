@@ -1,5 +1,6 @@
 package be.fenego.android_spotshop.signup;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -47,38 +48,56 @@ import butterknife.OnTextChanged;
  * Created by Thijs on 02/01/2017.
  */
 
+@SuppressWarnings({"DefaultFileTemplate", "unused"})
 public class SignupFragment2 extends android.support.v4.app.Fragment implements CustomerCreationCallback, CountryCallback {
+    @SuppressWarnings("unused")
     private List<Country> allCountries;
+    @SuppressWarnings("unused")
     private List<String> allMonths;
+    @SuppressWarnings("unused")
     private ProgressDialog progress;
 
+    @SuppressWarnings("unused")
     @BindView(R.id.register_btn_complete)
     Button _nextButton;
+    @SuppressWarnings({"WeakerAccess", "unused"})
     @BindView(R.id.register_title3)
     TextView titleText3;
+    @SuppressWarnings({"WeakerAccess", "unused"})
     @BindView(R.id.register_title4)
     TextView titleText4;
+    @SuppressWarnings({"WeakerAccess", "unused"})
     @BindView(R.id.register_input_firstname)
     EditText _firstnameText;
+    @SuppressWarnings({"WeakerAccess", "unused"})
     @BindView(R.id.register_input_lastname)
     EditText _lastnameText;
+    @SuppressWarnings({"WeakerAccess", "unused"})
     @BindView(R.id.register_input_phone)
     EditText _phoneText;
+    @SuppressWarnings({"WeakerAccess", "unused"})
     @BindView(R.id.register_input_day)
     EditText _dayText;
+    @SuppressWarnings({"WeakerAccess", "unused"})
     @BindView(R.id.register_input_year)
     EditText _yearText;
+    @SuppressWarnings({"WeakerAccess", "unused"})
     @BindView(R.id.register_input_address)
     EditText _addressText;
+    @SuppressWarnings({"WeakerAccess", "unused"})
     @BindView(R.id.register_input_postalcode)
     EditText _postalcodeText;
+    @SuppressWarnings({"WeakerAccess", "unused"})
     @BindView(R.id.register_input_city)
     EditText _cityText;
+    @SuppressWarnings("unused")
     @BindView(R.id.register_input_countries)
     Spinner _allCountriesSpinner;
 
-    View fragmentView;
+    @SuppressWarnings({"FieldCanBeLocal", "unused"})
+    private View fragmentView;
 
+    @SuppressWarnings("unused")
     @OnTextChanged(value = {R.id.register_input_firstname, R.id.register_input_lastname, R.id.register_input_phone, R.id.register_input_day, R.id.register_input_year, R.id.register_input_address, R.id.register_input_postalcode, R.id.register_input_city},
             callback = OnTextChanged.Callback.AFTER_TEXT_CHANGED)
     void fixValidationOnTextChanged() {
@@ -86,25 +105,39 @@ public class SignupFragment2 extends android.support.v4.app.Fragment implements 
     }
 
 
+    @SuppressWarnings("unused")
     @OnClick(R.id.register_btn_complete)
     public void loginButton(Button view) {
         nextFragment();
     }
 
+    @SuppressWarnings("unused")
     private String postEmail;
+    @SuppressWarnings("unused")
     private String postPassword;
+    @SuppressWarnings("unused")
     private String postQuestion;
+    @SuppressWarnings("unused")
     private String postAnswer;
+    @SuppressWarnings({"FieldCanBeLocal", "unused"})
     private String postFirstname;
+    @SuppressWarnings({"FieldCanBeLocal", "unused"})
     private String postLastname;
+    @SuppressWarnings({"FieldCanBeLocal", "unused"})
     private String postPhone;
+    @SuppressWarnings({"FieldCanBeLocal", "unused"})
     private String postDate;
+    @SuppressWarnings({"FieldCanBeLocal", "unused"})
     private String postCountry;
+    @SuppressWarnings({"FieldCanBeLocal", "unused"})
     private String postAddress;
+    @SuppressWarnings({"FieldCanBeLocal", "unused"})
     private String postPostal;
+    @SuppressWarnings({"FieldCanBeLocal", "unused"})
     private String postCity;
 
 
+    @SuppressWarnings("unused")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         fragmentView = inflater.inflate(R.layout.fragment_activity_signup2, container, false);
@@ -135,27 +168,29 @@ public class SignupFragment2 extends android.support.v4.app.Fragment implements 
         return fragmentView;
     }
 
+    @SuppressWarnings("unused")
     private void loadMonths() {
         String[] months = new DateFormatSymbols().getMonths();
         List<String> allMonths = Arrays.asList(months);
 
-        EditText et = (EditText) getView().findViewById(R.id.register_input_day);
+        @SuppressWarnings("ConstantConditions") EditText et = (EditText) getView().findViewById(R.id.register_input_day);
         et.setFilters(new InputFilter[]{new InputFilterMinMax("1", "31")});
 
         et = (EditText) getView().findViewById(R.id.register_input_year);
         et.setFilters(new InputFilter[]{new InputFilterMinMax("1", Integer.toString(Calendar.getInstance().get(Calendar.YEAR)))});
 
         Spinner spinnerMonths = (Spinner) getView().findViewById(R.id.register_input_month);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), R.layout.signup_spinner_item, allMonths);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), R.layout.signup_spinner_item, allMonths);
         spinnerMonths.setAdapter(adapter); // this will set list of values to spinner
 
         spinnerMonths.setSelection(0);
         progress.dismiss();
     }
 
+    @SuppressWarnings("unused")
     private void nextFragment() {
         if(validate()){
-            Spinner spinnerMonths = (Spinner) getView().findViewById(R.id.register_input_month);
+            @SuppressWarnings("ConstantConditions") Spinner spinnerMonths = (Spinner) getView().findViewById(R.id.register_input_month);
             int month= spinnerMonths.getSelectedItemPosition()+1;
 
             Spinner spinnerCountry = (Spinner) getView().findViewById(R.id.register_input_countries);
@@ -234,12 +269,14 @@ public class SignupFragment2 extends android.support.v4.app.Fragment implements 
         }
     }
 
-    final static String DATE_FORMAT = "dd-MM-yyyy";
+    @SuppressWarnings("unused")
+    private final static String DATE_FORMAT = "dd-MM-yyyy";
 
-    public static boolean isDateValid(String date)
+    @SuppressWarnings("unused")
+    private static boolean isDateValid(String date)
     {
         try {
-            DateFormat df = new SimpleDateFormat(DATE_FORMAT);
+            @SuppressLint("SimpleDateFormat") DateFormat df = new SimpleDateFormat(DATE_FORMAT);
             //DateFormat df = DateFormat.getDateInstance();
             df.setLenient(false);
             df.parse(date);
@@ -248,6 +285,7 @@ public class SignupFragment2 extends android.support.v4.app.Fragment implements 
             return false;
         }
     }
+    @SuppressWarnings("unused")
     private boolean validate() {
         boolean valid = true;
        
@@ -262,7 +300,7 @@ public class SignupFragment2 extends android.support.v4.app.Fragment implements 
 
         //Check if date is valid
         if (isInteger(year) && isInteger(day)) {
-            Spinner spinnerMonths = (Spinner) getView().findViewById(R.id.register_input_month);
+            @SuppressWarnings("ConstantConditions") Spinner spinnerMonths = (Spinner) getView().findViewById(R.id.register_input_month);
             int month= spinnerMonths.getSelectedItemPosition()+1;
 
             if(!isDateValid( day + "-" + month + "-" + year )){
@@ -329,7 +367,8 @@ public class SignupFragment2 extends android.support.v4.app.Fragment implements 
         return valid;
     }
 
-    public boolean isInteger(String s) {
+    @SuppressWarnings("unused")
+    private boolean isInteger(String s) {
         try {
             Integer.parseInt(s);
         } catch (NumberFormatException e) {
@@ -341,10 +380,11 @@ public class SignupFragment2 extends android.support.v4.app.Fragment implements 
         return true;
     }
 
+    @SuppressWarnings("unused")
     @Override
     public void onSuccessCountry(List<Country> countries) {
         allCountries = countries;
-        List<String> spinnerArrayCountries = new ArrayList<String>();
+        List<String> spinnerArrayCountries = new ArrayList<>();
 
         loadMonths();
 
@@ -352,8 +392,8 @@ public class SignupFragment2 extends android.support.v4.app.Fragment implements 
             spinnerArrayCountries.add(country.getName());
 
         }
-        Spinner spinnerCountries = (Spinner) getView().findViewById(R.id.register_input_countries);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), R.layout.signup_spinner_item, spinnerArrayCountries);
+        @SuppressWarnings("ConstantConditions") Spinner spinnerCountries = (Spinner) getView().findViewById(R.id.register_input_countries);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), R.layout.signup_spinner_item, spinnerArrayCountries);
         spinnerCountries.setAdapter(adapter); // this will set list of values to spinner
 
         spinnerCountries.setSelection(0);//set selected value in spinner
@@ -362,7 +402,8 @@ public class SignupFragment2 extends android.support.v4.app.Fragment implements 
     }
 
 
-    public void loadCountriesWhenAPIDown() {
+    @SuppressWarnings("unused")
+    private void loadCountriesWhenAPIDown() {
         allCountries = new ArrayList<>();
 
         Country belgium = new Country();
@@ -383,15 +424,15 @@ public class SignupFragment2 extends android.support.v4.app.Fragment implements 
         allCountries.add(duitsland);
         allCountries.add(luxemburg);
 
-        List<String> spinnerArrayCountries = new ArrayList<String>();
+        List<String> spinnerArrayCountries = new ArrayList<>();
 
 
         for (Country country : allCountries) {
             spinnerArrayCountries.add(country.getName());
 
         }
-        Spinner spinnerCountries = (Spinner) getView().findViewById(R.id.register_input_countries);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), R.layout.signup_spinner_item, spinnerArrayCountries);
+        @SuppressWarnings("ConstantConditions") Spinner spinnerCountries = (Spinner) getView().findViewById(R.id.register_input_countries);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), R.layout.signup_spinner_item, spinnerArrayCountries);
         spinnerCountries.setAdapter(adapter); // this will set list of values to spinner
 
         spinnerCountries.setSelection(0);//set selected value in spinner
@@ -399,6 +440,7 @@ public class SignupFragment2 extends android.support.v4.app.Fragment implements 
 
     }
 
+    @SuppressWarnings("unused")
     @Override
     public void onCountryError() {
         loadMonths();
@@ -410,6 +452,7 @@ public class SignupFragment2 extends android.support.v4.app.Fragment implements 
     }
 
 
+    @SuppressWarnings("unused")
     @Override
     public void onSuccessCreationCustomer() {
         Toast.makeText(getActivity(), "Registration successful", Toast.LENGTH_SHORT).show();
@@ -425,6 +468,7 @@ public class SignupFragment2 extends android.support.v4.app.Fragment implements 
         transaction.commit();
     }
 
+    @SuppressWarnings("unused")
     @Override
     public void onErrorCreationCustomer() {
         Toast.makeText(getActivity(), "Something went wrong", Toast.LENGTH_SHORT).show();

@@ -11,9 +11,12 @@ import be.fenego.android_spotshop.utilities.CountryUtility;
  * Created by Thijs on 1/19/2017.
  */
 
+@SuppressWarnings({"WeakerAccess", "DefaultFileTemplate", "unused"})
 public class CountryUtilityMock extends CountryUtility{
+    @SuppressWarnings({"WeakerAccess", "unused"})
     static final List<Country> countries = new ArrayList<>();
 
+    @SuppressWarnings("unused")
     public static void getAllCountries(final CountryCallback callback, boolean succeed){
         Country belgium = new Country();
         belgium.setName("Belgium");

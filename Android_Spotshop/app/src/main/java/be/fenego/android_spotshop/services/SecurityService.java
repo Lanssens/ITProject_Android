@@ -1,7 +1,6 @@
 package be.fenego.android_spotshop.services;
 
-import be.fenego.android_spotshop.models.Customer;
-import be.fenego.android_spotshop.models.Question;
+
 import be.fenego.android_spotshop.models.QuestionWrapper;
 import retrofit2.Call;
 import retrofit2.Retrofit;
@@ -17,6 +16,7 @@ public interface SecurityService {
     @GET("security/questions")
     Call<QuestionWrapper> getAllSecurityQuestions();
 
+    @SuppressWarnings("UnnecessaryInterfaceModifier")
     public static final Retrofit retrofit = new Retrofit.Builder()
             .baseUrl("https://axesso.fenego.zone/INTERSHOP/rest/WFS/inSPIRED-inTRONICS-Site/-/")
             .addConverterFactory(GsonConverterFactory.create())

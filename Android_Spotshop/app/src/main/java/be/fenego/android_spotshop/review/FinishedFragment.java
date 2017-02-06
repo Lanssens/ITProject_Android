@@ -12,6 +12,7 @@ import be.fenego.android_spotshop.R;
  * Created by Nick on 1/02/2017.
  */
 
+@SuppressWarnings("DefaultFileTemplate")
 public class FinishedFragment extends Fragment {
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

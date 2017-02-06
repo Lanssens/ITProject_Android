@@ -10,12 +10,15 @@ import static org.junit.Assert.*;
  *
  * @author Thijs
  */
+@SuppressWarnings("unused")
 public class AddressTest {
 
+    @SuppressWarnings("unused")
     private Address instance;
 
 
 
+    @SuppressWarnings("unused")
     @Before
     public void setUp() {
         instance = new Address();
@@ -23,6 +26,7 @@ public class AddressTest {
 
 
 
+    @SuppressWarnings("unused")
     @Test
     public void testSetAndGetAddressName() {
 
@@ -34,6 +38,7 @@ public class AddressTest {
     }
 
 
+    @SuppressWarnings("unused")
     @Test
     public void testSetAndGetEmail() {
 
@@ -45,6 +50,7 @@ public class AddressTest {
     }
 
 
+    @SuppressWarnings("unused")
     @Test
     public void testSetAndGetFirstName() {
 
@@ -56,6 +62,7 @@ public class AddressTest {
     }
 
 
+    @SuppressWarnings("unused")
     @Test
     public void testSetAndGetLastName() {
 
@@ -67,6 +74,7 @@ public class AddressTest {
     }
 
 
+    @SuppressWarnings("unused")
     @Test
     public void testSetAndGetCountryCode() {
 
@@ -78,6 +86,7 @@ public class AddressTest {
     }
 
 
+    @SuppressWarnings("unused")
     @Test
     public void testSetAndGetPostalCode() {
 
@@ -89,6 +98,7 @@ public class AddressTest {
     }
 
 
+    @SuppressWarnings("unused")
     @Test
     public void testSetAndGetCity() {
 
@@ -99,6 +109,7 @@ public class AddressTest {
         assertEquals(expResult, result);
     }
 
+    @SuppressWarnings("unused")
     @Test
     public void testSetAndGetStreet() {
 

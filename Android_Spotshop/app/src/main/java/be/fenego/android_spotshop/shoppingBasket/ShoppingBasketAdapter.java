@@ -27,12 +27,18 @@ import butterknife.ButterKnife;
 
 @SuppressWarnings("ALL")
 class ShoppingBasketAdapter extends ArrayAdapter<Element> {
+    @SuppressWarnings("unused")
     private final Context context;
+    @SuppressWarnings("unused")
     private final ArrayList<Element> elementList;
+    @SuppressWarnings("unused")
     private static final String BASE_IMAGE_URL = "https://axesso.fenego.zone";
+    @SuppressWarnings("unused")
     private ViewHolder holder;
+    @SuppressWarnings("unused")
     private final ShoppingBasketFragment fragment;
 
+    @SuppressWarnings("unused")
     public ShoppingBasketAdapter(Context context, ArrayList<Element> elements, ShoppingBasketFragment fragment) {
         super(context, -1, elements);
         this.context = context;
@@ -42,7 +48,7 @@ class ShoppingBasketAdapter extends ArrayAdapter<Element> {
 
     //View aanamaken met sepciale layout voor inladen van basket item data in views.
     @NonNull
-    @SuppressWarnings("ConstantConditions")
+    @SuppressWarnings({"ConstantConditions", "unused"})
     @Override
     public View getView(int position, View view, @NonNull ViewGroup parent) {
         try{
@@ -82,6 +88,7 @@ class ShoppingBasketAdapter extends ArrayAdapter<Element> {
             holder.sbPlusButton.setContentDescription(elementList.get(position).getId());
 
             holder.deleteImageView.setOnClickListener(new View.OnClickListener() {
+                @SuppressWarnings("unused")
                 @Override
                 public void onClick(View v) {
                     fragment.deleteShoppingBasketItem(v);
@@ -89,6 +96,7 @@ class ShoppingBasketAdapter extends ArrayAdapter<Element> {
             });
 
             holder.sbMinusButton.setOnClickListener(new View.OnClickListener() {
+                @SuppressWarnings("unused")
                 @Override
                 public void onClick(View v) {
                     fragment.updateShoppingBasketItem(v);
@@ -96,6 +104,7 @@ class ShoppingBasketAdapter extends ArrayAdapter<Element> {
             });
 
             holder.sbPlusButton.setOnClickListener(new View.OnClickListener() {
+                @SuppressWarnings("unused")
                 @Override
                 public void onClick(View v) {
                     fragment.updateShoppingBasketItem(v);
@@ -113,6 +122,7 @@ class ShoppingBasketAdapter extends ArrayAdapter<Element> {
     }
 
     //correcte imageURL samenstellen en shoppingbasketImageView vullen via Picasso.
+    @SuppressWarnings("unused")
     private void setImageView(int position){
         String imageUrl = BASE_IMAGE_URL + elementList.get(position).getImageURL();
         Picasso.with(context)
@@ -123,6 +133,7 @@ class ShoppingBasketAdapter extends ArrayAdapter<Element> {
     }
 
     //sbPriceView vullen
+    @SuppressWarnings("unused")
     @SuppressLint("SetTextI18n")
     private void setPriceView(int position){
         try {
@@ -136,29 +147,38 @@ class ShoppingBasketAdapter extends ArrayAdapter<Element> {
 
     //Bind views voor basketdata in te stellen.
     static class ViewHolder{
+        @SuppressWarnings("unused")
         Context mcontext;
 
+        @SuppressWarnings("unused")
         @BindView(R.id.shoppingBasketListItemImageView)
         ImageView sbImage;
 
+        @SuppressWarnings("unused")
         @BindView(R.id.shoppingBasketListItemTitleTextView)
         TextView sbTitle;
 
+        @SuppressWarnings("unused")
         @BindView(R.id.shoppingBasketListPriceTitleTextView)
         TextView sbPrice;
 
+        @SuppressWarnings("unused")
         @BindView(R.id.shoppingBasketQuantityTextView)
         TextView sbQuantity;
 
+        @SuppressWarnings("unused")
         @BindView(R.id.shoppingBasketListItemDeleteImageView)
         ImageView deleteImageView;
 
+        @SuppressWarnings("unused")
         @BindView(R.id.shoppingBasketMinusButton)
         Button sbMinusButton;
 
+        @SuppressWarnings("unused")
         @BindView(R.id.shoppingBasketPlusButton)
         Button sbPlusButton;
 
+        @SuppressWarnings("unused")
         public ViewHolder(View view) {
             ButterKnife.bind(this, view);
         }

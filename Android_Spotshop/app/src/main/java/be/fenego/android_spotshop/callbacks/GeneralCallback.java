@@ -5,6 +5,7 @@ package be.fenego.android_spotshop.callbacks;
  */
 
 
+@SuppressWarnings("DefaultFileTemplate")
 public interface GeneralCallback {
     void onSuccess();
     void onError();

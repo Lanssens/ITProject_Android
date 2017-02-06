@@ -6,7 +6,7 @@ import java.io.Serializable;
  * Created by Nick on 29/12/2016.
  */
 
-@SuppressWarnings({"SameParameterValue", "CanBeFinal"})
+@SuppressWarnings({"SameParameterValue", "CanBeFinal", "DefaultFileTemplate"})
 public class SalePrice implements Serializable{
     //type=Money, value=172.5, currencyMnemonic=USD
     private String type;

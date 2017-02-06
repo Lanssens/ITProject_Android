@@ -21,6 +21,7 @@ import butterknife.ButterKnife;
  * Created by Thijs on 1/27/2017.
  */
 
+@SuppressWarnings("DefaultFileTemplate")
 class ReviewPageAdapter extends ArrayAdapter<Element> {
     private final Context context;
     private final ArrayList<Element> elementList;
@@ -79,10 +80,13 @@ class ReviewPageAdapter extends ArrayAdapter<Element> {
     //Bind views voor basketdata in te stellen.
     static class ViewHolder{
 
+        @SuppressWarnings("unused")
         @BindView(R.id.reviewPageListItemAmount)
         TextView tvAmount;
+        @SuppressWarnings("unused")
         @BindView(R.id.reviewPageListItemName)
         TextView tvName;
+        @SuppressWarnings("unused")
         @BindView(R.id.reviewPageListItemPrice)
         TextView tvPrice;
 

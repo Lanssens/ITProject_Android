@@ -19,7 +19,7 @@
             android:layout_weight="0.5"
             android:id="@+id/reviewPageListItemAmount"
             android:text="1x"
-            android:textSize="12dp"
+            android:textSize="12sp"
             tools:ignore="HardcodedText" />
 
         <TextView
@@ -30,7 +30,7 @@
             android:layout_weight="1.5"
             android:text="Itemname"
             android:id="@+id/reviewPageListItemName"
-            android:textSize="12dp"
+            android:textSize="12sp"
             tools:ignore="HardcodedText" />
         <TextView
             android:layout_width="0dp"
@@ -40,7 +40,7 @@
             android:layout_weight="0.8"
             android:text="100 USD"
             android:id="@+id/reviewPageListItemPrice"
-            android:textSize="12dp"
+            android:textSize="12sp"
             tools:ignore="HardcodedText" />
 
 

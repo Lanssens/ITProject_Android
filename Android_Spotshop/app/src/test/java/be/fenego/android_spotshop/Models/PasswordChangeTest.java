@@ -11,15 +11,19 @@ import static org.junit.Assert.*;
  *
  * @author Thijs
  */
+@SuppressWarnings("unused")
 public class PasswordChangeTest {
     
-    PasswordChange passwordChange;
+    @SuppressWarnings("unused")
+    private PasswordChange passwordChange;
+    @SuppressWarnings("unused")
     @Before
     public void setUp() {
         passwordChange = new PasswordChange();
     }
 
 
+    @SuppressWarnings("unused")
     @Test
     public void testSetAndGetPassword() {
 

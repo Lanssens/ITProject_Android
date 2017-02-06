@@ -28,8 +28,10 @@ import retrofit2.Response;
 /**
  * Created by Thijs on 12/21/2016.
  */
+@SuppressWarnings({"DefaultFileTemplate", "unused"})
 public class TestFragment extends android.support.v4.app.Fragment implements StringCallback, AddressCallback{
 
+    @SuppressWarnings({"UnnecessaryLocalVariable", "unused"})
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Haal Fragment-layout op
@@ -41,6 +43,7 @@ public class TestFragment extends android.support.v4.app.Fragment implements Str
         return fragmentView;
     }
 
+    @SuppressWarnings("unused")
     public void testPostCustomer(){
         Credentials creds = new Credentials();
         creds.setLogin("Siep2@gmail.com");
@@ -78,6 +81,7 @@ public class TestFragment extends android.support.v4.app.Fragment implements Str
         Call<Customer> call = customerService.createCustomer(customer);
 
         call.enqueue(new Callback<Customer>() {
+            @SuppressWarnings("unused")
             @Override
             public void onResponse(Call<Customer> call, Response<Customer> response) {
 
@@ -104,6 +108,7 @@ public class TestFragment extends android.support.v4.app.Fragment implements Str
 
                 }
             }
+            @SuppressWarnings("unused")
             @Override
             public void onFailure(Call<Customer> call, Throwable t) {
                 // Something went seriously wrong
@@ -114,22 +119,26 @@ public class TestFragment extends android.support.v4.app.Fragment implements Str
 
 
 
+    @SuppressWarnings("unused")
     @Override
     public void onSuccessString(String text) {
         Toast.makeText(getActivity(), "textyes", Toast.LENGTH_SHORT).show();
         CustomerUtility.getCustomerAddress(this, text);
     }
 
+    @SuppressWarnings("unused")
     @Override
     public void onErrorString() {
         Toast.makeText(getActivity(), "textno", Toast.LENGTH_SHORT).show();
     }
 
+    @SuppressWarnings("unused")
     @Override
     public void onSuccessAddress(Address address) {
         Toast.makeText(getActivity(), "addressyes", Toast.LENGTH_SHORT).show();
     }
 
+    @SuppressWarnings("unused")
     @Override
     public void onAddressError() {
         Toast.makeText(getActivity(), "addressno", Toast.LENGTH_SHORT).show();

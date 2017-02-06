@@ -39,6 +39,7 @@ public class MenuActivity extends AppCompatActivity{
     private NavigationView nvDrawer;
     private ActionBarDrawerToggle drawerToggle;
 
+    @SuppressWarnings("unused")
     private Queue<android.support.v4.app.Fragment> fragments = new LinkedList<>();
 
     @Override
@@ -110,6 +111,7 @@ public class MenuActivity extends AppCompatActivity{
     }
 
 
+    @SuppressWarnings("WeakerAccess")
     public void loadFragmentInContainer(Class fragmentClass) {
         //Load in the right fragment
         Fragment fragment = null;
@@ -172,7 +174,7 @@ public class MenuActivity extends AppCompatActivity{
         }
     }
 
-    public void selectDrawerItem(MenuItem menuItem) {
+    private void selectDrawerItem(MenuItem menuItem) {
         // Create a new fragment and specify the fragment to show based on nav item clicked
         Fragment fragment = null;
         Class fragmentClass;
@@ -217,10 +219,7 @@ public class MenuActivity extends AppCompatActivity{
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (drawerToggle.onOptionsItemSelected(item)) {
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
+        return drawerToggle.onOptionsItemSelected(item) || super.onOptionsItemSelected(item);
 
     }
 }

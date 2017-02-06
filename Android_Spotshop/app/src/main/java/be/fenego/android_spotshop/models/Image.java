@@ -7,6 +7,7 @@ import java.io.Serializable;
  */
 
 
+@SuppressWarnings("DefaultFileTemplate")
 public class Image implements Serializable{
     @SuppressWarnings("unused")
     private String name;

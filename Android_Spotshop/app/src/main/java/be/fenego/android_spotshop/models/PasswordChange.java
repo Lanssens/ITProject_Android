@@ -7,6 +7,7 @@ import com.google.gson.annotations.SerializedName;
  * Created by Thijs on 1/12/2017.
  */
 
+@SuppressWarnings("DefaultFileTemplate")
 public class PasswordChange {
 
     @SerializedName("password")

@@ -32,13 +32,14 @@
 
             android:textSize="18sp"
             tools:text="PERSONAL:"
-            tools:ignore="HardcodedText" />
+            tools:ignore="HardcodedText,RtlHardcoded" />
 
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:gravity="bottom"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            tools:ignore="DisableBaselineAlignment">
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="0dp"
@@ -82,6 +83,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Phone"
+                android:inputType="phone"
                 tools:ignore="HardcodedText" />
         </android.support.design.widget.TextInputLayout>
 
@@ -90,7 +92,8 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:gravity="bottom"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            tools:ignore="DisableBaselineAlignment">
 
             <android.widget.LinearLayout
                 android:layout_width="0dp"
@@ -158,7 +161,7 @@
 
             android:textSize="18sp"
             tools:text="ADDRESS:"
-            tools:ignore="HardcodedText" />
+            tools:ignore="HardcodedText,RtlHardcoded" />
 
         <android.widget.LinearLayout
             android:layout_width="match_parent"
@@ -192,7 +195,8 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:gravity="bottom"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            tools:ignore="DisableBaselineAlignment">
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="0dp"

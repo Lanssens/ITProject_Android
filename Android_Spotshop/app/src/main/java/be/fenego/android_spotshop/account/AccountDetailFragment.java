@@ -37,27 +37,38 @@ import butterknife.OnClick;
  * Created by Thijs on 1/13/2017.
  */
 
+@SuppressWarnings({"DefaultFileTemplate", "unused"})
 public class AccountDetailFragment extends android.support.v4.app.Fragment implements CountryCallback, CustomerCallback, StringCallback, AddressCallback, GeneralCallback {
 
+    @SuppressWarnings({"WeakerAccess", "unused"})
     @BindView(R.id.account_detail_firstname)
     EditText _firstName;
+    @SuppressWarnings({"WeakerAccess", "unused"})
     @BindView(R.id.account_detail_lastname)
     EditText _lastName;
+    @SuppressWarnings({"WeakerAccess", "unused"})
     @BindView(R.id.account_detail_phone)
     EditText _phone;
+    @SuppressWarnings("unused")
     @BindView(R.id.account_detail_countries)
     Spinner _countries;
+    @SuppressWarnings({"WeakerAccess", "unused"})
     @BindView(R.id.account_detail_postal)
     EditText _postal;
+    @SuppressWarnings({"WeakerAccess", "unused"})
     @BindView(R.id.account_detail_city)
     EditText _city;
+    @SuppressWarnings({"WeakerAccess", "unused"})
     @BindView(R.id.account_detail_street)
     EditText _street;
 
+    @SuppressWarnings("unused")
     private ProgressDialog progress;
 
+    @SuppressWarnings("unused")
     private List<Country> allCountries;
 
+    @SuppressWarnings("unused")
     @OnClick(R.id.account_detail_btn_save)
     public void saveButton(Button view) {
         if (validate()) {
@@ -78,6 +89,7 @@ public class AccountDetailFragment extends android.support.v4.app.Fragment imple
         }
     }
 
+    @SuppressWarnings("unused")
     private boolean validate() {
         boolean valid = true;
 
@@ -136,6 +148,7 @@ public class AccountDetailFragment extends android.support.v4.app.Fragment imple
         return valid;
     }
 
+    @SuppressWarnings("unused")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Haal Fragment-layout op
@@ -173,20 +186,23 @@ public class AccountDetailFragment extends android.support.v4.app.Fragment imple
         return null;
     }
 
+    @SuppressWarnings({"WeakerAccess", "unused"})
     Spinner spinnerCountries;
 
+    @SuppressWarnings("unused")
     @Override
     public void onSuccessCountry(List<Country> countries) {
         allCountries = countries;
-        List<String> spinnerArrayCountries = new ArrayList<String>();
+        List<String> spinnerArrayCountries = new ArrayList<>();
 
 
         for (Country country : allCountries) {
             spinnerArrayCountries.add(country.getName());
 
         }
+        //noinspection ConstantConditions
         spinnerCountries = (Spinner) getView().findViewById(R.id.account_detail_countries);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), R.layout.signup_spinner_item, spinnerArrayCountries);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), R.layout.signup_spinner_item, spinnerArrayCountries);
         spinnerCountries.setAdapter(adapter); // this will set list of values to spinner
 
         //spinnerCountries.setSelection(0);//set selected value in spinner
@@ -194,13 +210,16 @@ public class AccountDetailFragment extends android.support.v4.app.Fragment imple
         CustomerUtility.getCustomerAddressUri(this);
     }
 
+    @SuppressWarnings("unused")
     @Override
     public void onCountryError() {
 
     }
 
+    @SuppressWarnings("unused")
     private Customer customer;
 
+    @SuppressWarnings("unused")
     @Override
     public void onSuccessCustomer(Customer customer) {
         this.customer = customer;
@@ -215,18 +234,22 @@ public class AccountDetailFragment extends android.support.v4.app.Fragment imple
 
     }
 
+    @SuppressWarnings("unused")
     @Override
     public void onSuccess() {
 
     }
 
+    @SuppressWarnings("unused")
     @Override
     public void onError() {
 
     }
 
+    @SuppressWarnings("unused")
     private String uri;
 
+    @SuppressWarnings("unused")
     @Override
     public void onSuccessString(String text) {
         this.uri = text;
@@ -235,13 +258,16 @@ public class AccountDetailFragment extends android.support.v4.app.Fragment imple
 
     }
 
+    @SuppressWarnings("unused")
     @Override
     public void onErrorString() {
         //Toast.makeText(getActivity(), "textno", Toast.LENGTH_SHORT).show();
     }
 
+    @SuppressWarnings("unused")
     private Address address;
 
+    @SuppressWarnings("unused")
     @Override
     public void onSuccessAddress(Address address) {
         this.address = address;
@@ -267,6 +293,7 @@ public class AccountDetailFragment extends android.support.v4.app.Fragment imple
 
     }
 
+    @SuppressWarnings("unused")
     @Override
     public void onAddressError() {
         // Toast.makeText(getActivity(), "addressno", Toast.LENGTH_SHORT).show();

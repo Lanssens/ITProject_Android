@@ -1,6 +1,5 @@
 package be.fenego.android_spotshop.Models;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -12,22 +11,22 @@ import static org.junit.Assert.*;
  *
  * @author Thijs
  */
+@SuppressWarnings("unused")
 public class CountryTest {
 
 
+    @SuppressWarnings("unused")
     private Country instance;
+    @SuppressWarnings("unused")
     @Before
     public void setUp() {
         instance = new Country();
-    }
-    
-    @After
-    public void tearDown() {
     }
 
     /**
      * Test of getName method, of class Country.
      */
+    @SuppressWarnings("unused")
     @Test
     public void testSetAndGetName() {
 
@@ -39,6 +38,7 @@ public class CountryTest {
     }
 
 
+    @SuppressWarnings("unused")
     @Test
     public void testSetAndGetAlpha2Code() {
 
@@ -49,6 +49,7 @@ public class CountryTest {
         assertEquals(expResult, result);
     }
 
+    @SuppressWarnings("unused")
     @Test
     public void testSetAndGetAlpha3Code() {
 
@@ -62,6 +63,7 @@ public class CountryTest {
 
 
 
+    @SuppressWarnings("unused")
     @Test
     public void testSetAndGetCapital() {
 
@@ -73,6 +75,7 @@ public class CountryTest {
     }
 
 
+    @SuppressWarnings("unused")
     @Test
     public void testSetAndGetAltSpellings() {
 
@@ -85,6 +88,7 @@ public class CountryTest {
 
 
 
+    @SuppressWarnings("unused")
     @Test
     public void testSetAndGetRelevance() {
 
@@ -96,6 +100,7 @@ public class CountryTest {
     }
 
 
+    @SuppressWarnings("unused")
     @Test
     public void testSetAndGetRegion() {
 
@@ -107,6 +112,7 @@ public class CountryTest {
     }
 
 
+    @SuppressWarnings("unused")
     @Test
     public void testSetAndGetSubregion() {
 
@@ -119,6 +125,7 @@ public class CountryTest {
 
 
 
+    @SuppressWarnings("unused")
     @Test
     public void testSetAndGetPopulation() {
 
@@ -130,6 +137,7 @@ public class CountryTest {
     }
 
 
+    @SuppressWarnings("unused")
     @Test
     public void testSetAndGetDemonym() {
 
@@ -141,6 +149,7 @@ public class CountryTest {
     }
 
 
+    @SuppressWarnings("unused")
     @Test
     public void testSetAndGetArea() {
 
@@ -151,6 +160,7 @@ public class CountryTest {
         assertEquals(expResult, result);
     }
 
+    @SuppressWarnings("unused")
     @Test
     public void testSetAndGetGini() {
 
@@ -162,6 +172,7 @@ public class CountryTest {
     }
 
 
+    @SuppressWarnings("unused")
     @Test
     public void testSetAndGetNativeName() {
 
@@ -172,6 +183,7 @@ public class CountryTest {
         assertEquals(expResult, result);
     }
 
+    @SuppressWarnings("unused")
     @Test
     public void testSetAndGetNumericCode() {
         String expResult = "test";

@@ -8,31 +8,52 @@ import java.util.List;
  * Created by Nick on 10/01/2017.
  */
 
-@SuppressWarnings("ALL")
+@SuppressWarnings({"ALL", "unused"})
 public class ProductDetails implements Serializable {
+    @SuppressWarnings("unused")
     private String name;
+    @SuppressWarnings("unused")
     private String type;
+    @SuppressWarnings("unused")
     private List<Attribute> attributes = null;
+    @SuppressWarnings("unused")
     private String sku;
+    @SuppressWarnings("unused")
     private String productName;
+    @SuppressWarnings("unused")
     private String shortDescription;
+    @SuppressWarnings("unused")
     private String longDescription;
+    @SuppressWarnings("unused")
     private Boolean availability;
+    @SuppressWarnings("unused")
     private Boolean retailSet;
+    @SuppressWarnings("unused")
     private Boolean inStock;
+    @SuppressWarnings("unused")
     private Boolean productMaster;
+    @SuppressWarnings("unused")
     private Boolean mastered;
+    @SuppressWarnings("unused")
     private String roundedAverageRating;
+    @SuppressWarnings("unused")
     private Integer readyForShipmentMin;
+    @SuppressWarnings("unused")
     private Integer readyForShipmentMax;
+    @SuppressWarnings("unused")
     private Integer minOrderQuantity;
+    @SuppressWarnings("unused")
     private Boolean productBundle;
+    @SuppressWarnings("unused")
     private String manufacturer;
    // private ListPrice listPrice;
+    @SuppressWarnings("unused")
     private SalePrice salePrice;
+    @SuppressWarnings("unused")
     private List<ShippingMethod> shippingMethods = null;
    /* private List<AvailableGiftWrap> availableGiftWraps = null;
     private List<AvailableGiftMessage> availableGiftMessages = null;*/
+    @SuppressWarnings("unused")
     private final List<Image> images = null;
 
 // --Commented out by Inspection START (14/01/2017 16:28):
@@ -47,34 +68,42 @@ public class ProductDetails implements Serializable {
 //    }
 // --Commented out by Inspection STOP (14/01/2017 16:28)
 
+    @SuppressWarnings("unused")
     public String getType() {
         return type;
     }
 
+    @SuppressWarnings("unused")
     public void setType(String type) {
         this.type = type;
     }
 
+    @SuppressWarnings("unused")
     public List<Attribute> getAttributes() {
         return attributes;
     }
 
+    @SuppressWarnings("unused")
     public void setAttributes(List<Attribute> attributes) {
         this.attributes = attributes;
     }
 
+    @SuppressWarnings("unused")
     public String getSku() {
         return sku;
     }
 
+    @SuppressWarnings("unused")
     public void setSku(String sku) {
         this.sku = sku;
     }
 
+    @SuppressWarnings("unused")
     public String getProductName() {
         return productName;
     }
 
+    @SuppressWarnings("unused")
     public void setProductName(String productName) {
         this.productName = productName;
     }
@@ -91,18 +120,22 @@ public class ProductDetails implements Serializable {
 //    }
 // --Commented out by Inspection STOP (14/01/2017 16:28)
 
+    @SuppressWarnings("unused")
     public String getLongDescription() {
         return longDescription;
     }
 
+    @SuppressWarnings("unused")
     public void setLongDescription(String longDescription) {
         this.longDescription = longDescription;
     }
 
+    @SuppressWarnings("unused")
     public Boolean getAvailability() {
         return availability;
     }
 
+    @SuppressWarnings("unused")
     public void setAvailability(Boolean availability) {
         this.availability = availability;
     }
@@ -155,10 +188,12 @@ public class ProductDetails implements Serializable {
 //    }
 // --Commented out by Inspection STOP (14/01/2017 16:28)
 
+    @SuppressWarnings("unused")
     public String getRoundedAverageRating() {
         return roundedAverageRating;
     }
 
+    @SuppressWarnings("unused")
     public void setRoundedAverageRating(String roundedAverageRating) {
         this.roundedAverageRating = roundedAverageRating;
     }
@@ -231,10 +266,12 @@ public class ProductDetails implements Serializable {
         this.listPrice = listPrice;
     }*/
 
+    @SuppressWarnings("unused")
     public SalePrice getSalePrice() {
         return salePrice;
     }
 
+    @SuppressWarnings("unused")
     public void setSalePrice(SalePrice salePrice) {
         this.salePrice = salePrice;
     }
@@ -279,6 +316,7 @@ public class ProductDetails implements Serializable {
 //    }
 // --Commented out by Inspection STOP (14/01/2017 16:28)
 
+    @SuppressWarnings("unused")
     public Image getImageURLByName(String name){
         Image image = null;
         assert null != null;

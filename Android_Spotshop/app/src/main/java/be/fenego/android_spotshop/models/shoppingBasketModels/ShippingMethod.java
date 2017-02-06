@@ -2,6 +2,7 @@
 package be.fenego.android_spotshop.models.shoppingBasketModels;
 
 
+@SuppressWarnings("unused")
 public class ShippingMethod {
 
     private String name;

@@ -3,27 +3,22 @@ package be.fenego.android_spotshop.shoppingBasket;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.gson.Gson;
 
 import java.util.ArrayList;
 
 import be.fenego.android_spotshop.R;
 import be.fenego.android_spotshop.callbacks.ProductCallback;
 import be.fenego.android_spotshop.callbacks.ShoppingBasketCallback;
-import be.fenego.android_spotshop.home.HomeFragment;
 import be.fenego.android_spotshop.login.LoginFragment;
-import be.fenego.android_spotshop.models.LineItem;
 import be.fenego.android_spotshop.models.ProductCollection;
 import be.fenego.android_spotshop.models.ProductDetails;
 import be.fenego.android_spotshop.models.ShoppingBasket;
@@ -34,7 +29,6 @@ import be.fenego.android_spotshop.models.shoppingBasketModels.ElementList;
 import be.fenego.android_spotshop.models.shoppingBasketModels.OrderPostResponse;
 import be.fenego.android_spotshop.models.shoppingBasketModels.PaymentMethod;
 import be.fenego.android_spotshop.review.ReviewFragment;
-import be.fenego.android_spotshop.signup.SignupFragment2;
 import be.fenego.android_spotshop.utilities.LoginUtility;
 import be.fenego.android_spotshop.models.shoppingBasketModels.PutQuantity;
 import be.fenego.android_spotshop.models.shoppingBasketModels.Quantity;
@@ -65,12 +59,14 @@ public class ShoppingBasketFragment extends Fragment implements ShoppingBasketCa
     private boolean plus = false;
 
     private ShoppingBasketAdapter shoppingBasketAdapter;
+    @SuppressWarnings("unused")
     @BindView(R.id.shoppingBasketListView)
     ListView shoppingBasketListView;
-    @SuppressWarnings("WeakerAccess")
+    @SuppressWarnings({"WeakerAccess", "unused"})
     @BindView(R.id.shoppingCartTextView)
     TextView shoppingBasketTotal;
 
+    @SuppressWarnings("unused")
     @OnClick(R.id.shoppingCartCheckoutImageView)
     public void linkToCheckout() {
         if (shoppingBasket != null) {

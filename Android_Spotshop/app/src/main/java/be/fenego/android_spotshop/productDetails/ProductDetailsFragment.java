@@ -58,22 +58,31 @@ public class ProductDetailsFragment extends Fragment implements ShoppingBasketCa
     @SuppressWarnings("unused")
     private Gson gson;
 
+    @SuppressWarnings("unused")
     @BindView(R.id.productDetailsTitleTextView)
     TextView productDetailsTitle;
+    @SuppressWarnings("unused")
     @BindView(R.id.productDetailsDescriptionTextView)
     TextView productDetailsDescription;
+    @SuppressWarnings("unused")
     @BindView(R.id.productDetailsPriceTextView)
     TextView productDetailsPrice;
+    @SuppressWarnings("unused")
     @BindView(R.id.productDetailsAvailabilityTextView)
     TextView productDetailsAvailability;
+    @SuppressWarnings("unused")
     @BindView(R.id.productDetailsImageView)
     ImageView productDetailsImage;
+    @SuppressWarnings("unused")
     @BindView(R.id.productDetailsRatingBar)
     RatingBar productDetailsRatingBar;
+    @SuppressWarnings("unused")
     @BindView(R.id.productDetailsSpecsTable)
     TableLayout productDetailsSpecsTable;
+    @SuppressWarnings("unused")
     @BindView(R.id.productDetailsAddToCartButton)
     ImageButton productDetailsButton;
+    @SuppressWarnings("unused")
     @BindView(R.id.productDetailsQuantityEditText)
     EditText productDetailsQuantityEditText;
 
@@ -95,6 +104,7 @@ public class ProductDetailsFragment extends Fragment implements ShoppingBasketCa
     }
 
     //zal add_To_cart click afhandelen
+    @SuppressWarnings("unused")
     @OnClick(R.id.productDetailsAddToCartButton)
     void addToCart(View view){
         shoppingBasketElement = new ShoppingBasketElement(productDetails.getSku(), new Quantity(Integer.parseInt(productDetailsQuantityEditText.getText().toString())));

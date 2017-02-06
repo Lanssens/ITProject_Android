@@ -12,16 +12,20 @@ import java.util.List;
 @SuppressWarnings("ALL")
 public class ShoppingBasketElementList implements Serializable {
 
+    @SuppressWarnings("unused")
     private List<ShoppingBasketElement> elements = null;
 
+    @SuppressWarnings("unused")
     public ShoppingBasketElementList(ArrayList<ShoppingBasketElement> shoppingBasketElementArrayList){
         this.elements = shoppingBasketElementArrayList;
     }
 
+    @SuppressWarnings("unused")
     public List<ShoppingBasketElement> getElements() {
         return elements;
     }
 
+    @SuppressWarnings("unused")
     public void setElements(List<ShoppingBasketElement> elements) {
         this.elements = elements;
     }

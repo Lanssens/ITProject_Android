@@ -13,6 +13,7 @@ public class BasketOwner {
     @Expose
     private String newOwnerAuthenticationToken;
 
+    @SuppressWarnings("unused")
     public String getNewOwnerAuthenticationToken() {
         return newOwnerAuthenticationToken;
     }

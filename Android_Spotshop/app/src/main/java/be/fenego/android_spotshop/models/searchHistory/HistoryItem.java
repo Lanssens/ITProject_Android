@@ -9,6 +9,7 @@ import java.util.List;
  * Created by Nick on 26/01/2017.
  */
 
+@SuppressWarnings("DefaultFileTemplate")
 public class HistoryItem {
     private String id;
     @SerializedName("customer_id")
@@ -21,14 +22,17 @@ public class HistoryItem {
     private List<String> tags = null;
     private String searchDate;
 
+    @SuppressWarnings("unused")
     public String getId() {
         return id;
     }
 
+    @SuppressWarnings("unused")
     public void setId(String id) {
         this.id = id;
     }
 
+    @SuppressWarnings("unused")
     public String getCustomerId() {
         return customerId;
     }
@@ -37,6 +41,7 @@ public class HistoryItem {
         this.customerId = customerId;
     }
 
+    @SuppressWarnings("unused")
     public String getImageString() {
         return imageString;
     }
@@ -45,14 +50,17 @@ public class HistoryItem {
         this.imageString = imageString;
     }
 
+    @SuppressWarnings("unused")
     public Integer getV() {
         return v;
     }
 
+    @SuppressWarnings("unused")
     public void setV(Integer v) {
         this.v = v;
     }
 
+    @SuppressWarnings("unused")
     public List<String> getTags() {
         return tags;
     }
@@ -61,10 +69,12 @@ public class HistoryItem {
         this.tags = tags;
     }
 
+    @SuppressWarnings("unused")
     public String getSearchDate() {
         return searchDate;
     }
 
+    @SuppressWarnings("unused")
     public void setSearchDate(String searchDate) {
         this.searchDate = searchDate;
     }

@@ -4,6 +4,7 @@ package be.fenego.android_spotshop.models.shoppingBasketModels;
 
 import java.io.Serializable;
 
+@SuppressWarnings("unused")
 public class Amount   implements Serializable {
 
     private String type;

@@ -17,13 +17,15 @@ import be.fenego.android_spotshop.menu.MenuActivity;
 /**
  * Created by Thijs on 12/21/2016.
  */
-@SuppressWarnings("DefaultFileTemplate")
+@SuppressWarnings({"DefaultFileTemplate", "unused"})
 public class SplashActivity extends Activity {
 
     /** Duur van splashscreen in ms **/
+    @SuppressWarnings({"FieldCanBeLocal", "unused"})
     private final int SPLASH_DISPLAY_LENGTH = 1;
 
     /** Functie die wordt aangeroepen wanneer de activity aangemaakt wordt */
+    @SuppressWarnings("unused")
     @Override
     public void onCreate(Bundle savedInstanceState) {
         //TODO: fix the screen before splash screen appears
@@ -34,6 +36,7 @@ public class SplashActivity extends Activity {
 
         startActivity(new Intent(this, MenuActivity.class));
         new Handler().postDelayed(new Runnable(){
+            @SuppressWarnings("unused")
             @Override
             public void run() {
                 Intent mainIntent = new Intent(SplashActivity.this,MenuActivity.class);

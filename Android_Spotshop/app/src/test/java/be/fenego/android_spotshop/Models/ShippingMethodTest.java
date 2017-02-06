@@ -11,16 +11,20 @@ import static org.junit.Assert.*;
  *
  * @author Thijs
  */
+@SuppressWarnings("unused")
 public class ShippingMethodTest {
 
+    @SuppressWarnings("unused")
     private ShippingMethod shippingMethod;
 
+    @SuppressWarnings("unused")
     @Before
     public void setUp() {
         shippingMethod = new ShippingMethod();
     }
 
 
+    @SuppressWarnings("unused")
     @Test
     public void testSetAndGetName() {
 
@@ -32,6 +36,7 @@ public class ShippingMethodTest {
     }
 
 
+    @SuppressWarnings("unused")
     @Test
     public void testSetAndGetType() {
         String value = "test";
@@ -42,6 +47,7 @@ public class ShippingMethodTest {
     }
 
 
+    @SuppressWarnings("unused")
     @Test
     public void testSetAndGetId() {
         String value = "test";
@@ -52,6 +58,7 @@ public class ShippingMethodTest {
     }
 
 
+    @SuppressWarnings("unused")
     @Test
     public void testSetAndGetShippingTimeMin() {
 
@@ -63,6 +70,7 @@ public class ShippingMethodTest {
     }
 
 
+    @SuppressWarnings("unused")
     @Test
     public void testSetAndGetShippingTimeMax() {
         int value = 50;

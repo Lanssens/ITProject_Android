@@ -10,6 +10,7 @@ import com.google.gson.annotations.SerializedName;
  * Created by Thijs on 6/01/2017.
  */
 
+@SuppressWarnings("DefaultFileTemplate")
 public class Country {
 
     @SerializedName("name")
@@ -87,10 +88,12 @@ public class Country {
         this.name = name;
     }
 
+    @SuppressWarnings("unused")
     public List<String> getTopLevelDomain() {
         return topLevelDomain;
     }
 
+    @SuppressWarnings("unused")
     public void setTopLevelDomain(List<String> topLevelDomain) {
         this.topLevelDomain = topLevelDomain;
     }
@@ -111,10 +114,12 @@ public class Country {
         this.alpha3Code = alpha3Code;
     }
 
+    @SuppressWarnings("unused")
     public List<String> getCallingCodes() {
         return callingCodes;
     }
 
+    @SuppressWarnings("unused")
     public void setCallingCodes(List<String> callingCodes) {
         this.callingCodes = callingCodes;
     }
@@ -127,10 +132,12 @@ public class Country {
         this.capital = capital;
     }
 
+    @SuppressWarnings("unused")
     public List<String> getAltSpellings() {
         return altSpellings;
     }
 
+    @SuppressWarnings("unused")
     public void setAltSpellings(List<String> altSpellings) {
         this.altSpellings = altSpellings;
     }
@@ -159,10 +166,12 @@ public class Country {
         this.subregion = subregion;
     }
 
+    @SuppressWarnings("unused")
     public Translations getTranslations() {
         return translations;
     }
 
+    @SuppressWarnings("unused")
     public void setTranslations(Translations translations) {
         this.translations = translations;
     }
@@ -175,10 +184,12 @@ public class Country {
         this.population = population;
     }
 
+    @SuppressWarnings("unused")
     public List<Double> getLatlng() {
         return latlng;
     }
 
+    @SuppressWarnings("unused")
     public void setLatlng(List<Double> latlng) {
         this.latlng = latlng;
     }
@@ -207,18 +218,22 @@ public class Country {
         this.gini = gini;
     }
 
+    @SuppressWarnings("unused")
     public List<String> getTimezones() {
         return timezones;
     }
 
+    @SuppressWarnings("unused")
     public void setTimezones(List<String> timezones) {
         this.timezones = timezones;
     }
 
+    @SuppressWarnings("unused")
     public List<String> getBorders() {
         return borders;
     }
 
+    @SuppressWarnings("unused")
     public void setBorders(List<String> borders) {
         this.borders = borders;
     }
@@ -239,18 +254,22 @@ public class Country {
         this.numericCode = numericCode;
     }
 
+    @SuppressWarnings("unused")
     public List<String> getCurrencies() {
         return currencies;
     }
 
+    @SuppressWarnings("unused")
     public void setCurrencies(List<String> currencies) {
         this.currencies = currencies;
     }
 
+    @SuppressWarnings("unused")
     public List<String> getLanguages() {
         return languages;
     }
 
+    @SuppressWarnings("unused")
     public void setLanguages(List<String> languages) {
         this.languages = languages;
     }

@@ -30,16 +30,21 @@ import butterknife.OnClick;
 /**
  * Created by Thijs on 12/21/2016.
  */
+@SuppressWarnings("DefaultFileTemplate")
 public class AccountFragment extends android.support.v4.app.Fragment implements CustomerCallback {
 
 
+    @SuppressWarnings("unused")
     @BindView(R.id.account_header_mail)
     TextView accountMail;
+    @SuppressWarnings("unused")
     @BindView(R.id.account_header_name)
     TextView accountName;
+    @SuppressWarnings("unused")
     @BindView(R.id.account_link_accountdetails)
     TextView _accountDetails;
 
+    @SuppressWarnings("unused")
     @OnClick({R.id.account_link_accountdetails, R.id.account_link_logout, R.id.account_link_mail, R.id.account_link_orderhistory, R.id.account_link_password})
     public void linkToRightPage(TextView view) {
 
@@ -79,7 +84,7 @@ public class AccountFragment extends android.support.v4.app.Fragment implements 
         return null;
     }
 
-    public void loadFragment(Class fragmentClass) {
+    private void loadFragment(Class fragmentClass) {
 
         // Create new fragment and transaction
         Fragment fragment = null;
@@ -105,6 +110,7 @@ public class AccountFragment extends android.support.v4.app.Fragment implements 
 
 
 
+    @SuppressWarnings("ConstantConditions")
     @Override
     public void onSuccessCustomer(Customer customer) {
         TextView headerName = (TextView) getView().findViewById(R.id.account_header_name);
@@ -117,7 +123,10 @@ public class AccountFragment extends android.support.v4.app.Fragment implements 
 
     @Override
     public void onError() {
-
+        LoginUtility.removeUserCredentials();
+        Toast.makeText(getActivity(), "Something went wrong with getting user data.", Toast.LENGTH_LONG).show();
+        progress.dismiss();
+        loadFragment(HomeFragment.class);
     }
 }
 

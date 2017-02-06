@@ -11,5 +11,6 @@ import be.fenego.android_spotshop.models.Question;
 @SuppressWarnings("DefaultFileTemplate")
 public interface QuestionCallback {
     void onSuccessQuestion(List<Question> questions);
+    @SuppressWarnings("EmptyMethod")
     void onError();
 }

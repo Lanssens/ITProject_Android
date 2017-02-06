@@ -44,7 +44,7 @@
     <string name="your_order_has_been_made">Your order has been made.</string>
     <string name="congratulations">Congratulations !</string>
     <string name="checkout_icon">checkout icon</string>
-    <string name="successfull_icon">successfull icon</string>
+    <string name="successfull_icon">successful icon</string>
     <string name="number">{Number}</string>
     <string name="shippingmethod">{ShippingMethod}</string>
     <string name="paymentmethod">{PaymentMethod}</string>

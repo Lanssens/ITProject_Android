@@ -22,12 +22,15 @@ import retrofit2.Response;
 /**
  * Created by Thijs on 6/01/2017.
  */
+@SuppressWarnings("DefaultFileTemplate")
 public class CustomerUtility {
+    @SuppressWarnings("unused")
     public static void updateCustomerFew(final GeneralCallback callback, final CustomerFew customer) {
         CustomerService customerService =
                 ServiceGenerator.createService(CustomerService.class, LoginUtility.retrieveAuthToken());
         Call<CustomerFew> call = customerService.updateCustomer(customer);
         call.enqueue(new Callback<CustomerFew>() {
+            @SuppressWarnings("unused")
             @Override
             public void onResponse(Call<CustomerFew> call, Response<CustomerFew> response) {
                 if (response.isSuccessful()) {
@@ -39,6 +42,7 @@ public class CustomerUtility {
                     callback.onError();
                 }
             }
+            @SuppressWarnings("unused")
             @Override
             public void onFailure(Call<CustomerFew> call, Throwable t) {
                 // Something went seriously wrong
@@ -134,14 +138,17 @@ public class CustomerUtility {
             }
         });
     }
+    @SuppressWarnings("unused")
     public static void update(final QuestionCallback callback){
         SecurityService securityService = SecurityService.retrofit.create(SecurityService.class);
         final Call<QuestionWrapper> call = securityService.getAllSecurityQuestions();
         call.enqueue(new Callback<QuestionWrapper>() {
+            @SuppressWarnings("unused")
             @Override
             public void onResponse(Call<QuestionWrapper> call, Response<QuestionWrapper> response) {
                 callback.onSuccessQuestion(response.body().getElements());
             }
+            @SuppressWarnings("unused")
             @Override
             public void onFailure(Call<QuestionWrapper> call, Throwable t) {
                 System.out.println(t.getMessage());
@@ -149,6 +156,7 @@ public class CustomerUtility {
             }
         });
     }
+    @SuppressWarnings({"UnusedReturnValue", "SameReturnValue"})
     public static boolean getCustomerData(final CustomerCallback callback) {
         System.out.println(LoginUtility.retrieveAuthToken());
         CustomerService customerService =
@@ -171,6 +179,7 @@ public class CustomerUtility {
         });
         return false;
     }
+    @SuppressWarnings({"UnusedReturnValue", "SameReturnValue"})
     public static boolean getCustomerAddressUri(final StringCallback callback) {
 
         CustomerService customerService =
@@ -196,6 +205,7 @@ public class CustomerUtility {
         });
         return false;
     }
+    @SuppressWarnings({"UnusedReturnValue", "SameReturnValue"})
     public static boolean getCustomerAddress(final AddressCallback callback, final String uri) {
 
         CustomerService customerService =
@@ -219,6 +229,7 @@ public class CustomerUtility {
         });
         return false;
     }
+    @SuppressWarnings({"UnusedReturnValue", "SameReturnValue", "UnusedParameters"})
     public static boolean updateCustomerAddress(final GeneralCallback callback, final String uri, Address address) {
 
         CustomerService customerService =
@@ -229,7 +240,6 @@ public class CustomerUtility {
             public void onResponse(Call<Address> call, Response<Address> response) {
                 if (response.isSuccessful()) {
                     System.out.println(response.body().getStreet());
-                } else {
                 }
             }
             @Override

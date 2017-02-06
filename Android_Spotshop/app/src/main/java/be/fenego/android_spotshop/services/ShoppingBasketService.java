@@ -6,7 +6,6 @@ import be.fenego.android_spotshop.models.ShoppingBasket;
 import be.fenego.android_spotshop.models.ShoppingBasketElementList;
 import be.fenego.android_spotshop.models.ShoppingBasketPostReturn;
 import be.fenego.android_spotshop.models.shoppingBasketModels.BasketOwner;
-import be.fenego.android_spotshop.models.shoppingBasketModels.CommonShippingMethod;
 import be.fenego.android_spotshop.models.shoppingBasketModels.ElementList;
 import be.fenego.android_spotshop.models.shoppingBasketModels.InvoiceAddressContainer;
 import be.fenego.android_spotshop.models.shoppingBasketModels.OrderPost;

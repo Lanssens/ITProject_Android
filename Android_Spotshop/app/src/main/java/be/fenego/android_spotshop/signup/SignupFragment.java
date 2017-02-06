@@ -28,34 +28,45 @@ import butterknife.*;
  * Created by Thijs on 02/01/2017.
  */
 
+@SuppressWarnings({"DefaultFileTemplate", "unused"})
 public class SignupFragment extends android.support.v4.app.Fragment implements QuestionCallback {
 
-    private List<Question> allQuestions;
+    @SuppressWarnings("unused")
     @BindView(R.id.register_btn_next) Button _nextButton;
+    @SuppressWarnings({"WeakerAccess", "unused"})
     @BindView(R.id.register_title1) TextView titleText1;
+    @SuppressWarnings({"WeakerAccess", "unused"})
     @BindView(R.id.register_title2) TextView titleText2;
+    @SuppressWarnings({"WeakerAccess", "unused"})
     @BindView(R.id.register_input_email) EditText _emailText1;
+    @SuppressWarnings({"WeakerAccess", "unused"})
     @BindView(R.id.register_input_email2) EditText _emailText2;
+    @SuppressWarnings({"WeakerAccess", "unused"})
     @BindView(R.id.register_input_password) EditText _passwordText1;
+    @SuppressWarnings({"WeakerAccess", "unused"})
     @BindView(R.id.register_input_password2) EditText _passwordText2;
+    @SuppressWarnings({"WeakerAccess", "unused"})
     @BindView(R.id.register_input_answer) EditText _answerText;
 
-    View fragmentView;
-    LayoutInflater inflater;
-    ViewGroup container;
+    @SuppressWarnings({"FieldCanBeLocal", "unused"})
+    private ViewGroup container;
 
+    @SuppressWarnings("unused")
     @OnClick(R.id.register_btn_next)
     public void loginButton(Button view) {
         nextFragment();
     }
 
+    @SuppressWarnings("unused")
     @OnTextChanged(value = { R.id.register_input_email, R.id.register_input_email2 , R.id.register_input_password , R.id.register_input_password2 , R.id.register_input_answer },
             callback = OnTextChanged.Callback.AFTER_TEXT_CHANGED)
     void fixValidationOnTextChanged() {
         validate();
     }
 
+    @SuppressWarnings("unused")
     private ProgressDialog progress;
+    @SuppressWarnings("unused")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         progress = new ProgressDialog(getActivity());
@@ -65,12 +76,11 @@ public class SignupFragment extends android.support.v4.app.Fragment implements Q
         progress.show();
 // To dismiss the dialog
 
-        fragmentView = inflater.inflate(R.layout.fragment_activity_signup, container, false);
+        View fragmentView = inflater.inflate(R.layout.fragment_activity_signup, container, false);
         ButterKnife.bind(this, fragmentView);
 
         getActivity().setTitle("Signup");
         // Haal Fragment-layout op
-        this.inflater = inflater;
         this.container = container;
 
         CustomerUtility.getAllQuestions(this);
@@ -82,7 +92,8 @@ public class SignupFragment extends android.support.v4.app.Fragment implements Q
         return fragmentView;
     }
 
-    public boolean validate() {
+    @SuppressWarnings("unused")
+    private boolean validate() {
         boolean valid = true;
 
         String email1 = _emailText1.getText().toString();
@@ -128,6 +139,7 @@ public class SignupFragment extends android.support.v4.app.Fragment implements Q
 
         return valid;
     }
+    @SuppressWarnings({"ConstantConditions", "unused"})
     private void nextFragment() {
 
         if(validate()){
@@ -158,21 +170,22 @@ public class SignupFragment extends android.support.v4.app.Fragment implements Q
     }
 
 
+    @SuppressWarnings({"ConstantConditions", "unused"})
     @Override
     public void onSuccessQuestion(List<Question> questions) {
-        allQuestions = questions;
-        List<String> spinnerArrayQuestions = new ArrayList<String>();
-        for (Question question : allQuestions) {
+        List<String> spinnerArrayQuestions = new ArrayList<>();
+        for (Question question : questions) {
             spinnerArrayQuestions.add(question.getText());
         }
         Spinner spinnerQuestions = (Spinner) getView().findViewById(R.id.register_input_security_questions);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), R.layout.signup_spinner_item, spinnerArrayQuestions);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), R.layout.signup_spinner_item, spinnerArrayQuestions);
         spinnerQuestions.setAdapter(adapter); // this will set list of values to spinner
 
         spinnerQuestions.setSelection(0);//set selected value in spinner
         progress.dismiss();
     }
 
+    @SuppressWarnings("unused")
     @Override
     public void onError() {
 

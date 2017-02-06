@@ -26,12 +26,16 @@ import butterknife.OnTextChanged;
  * Created by Thijs on 1/12/2017.
  */
 
+@SuppressWarnings({"DefaultFileTemplate", "unused"})
 public class ChangePasswordFragment extends android.support.v4.app.Fragment implements GeneralCallback {
+    @SuppressWarnings({"WeakerAccess", "unused"})
     @BindView(R.id.change_password_input1)
     EditText _passwordText1;
+    @SuppressWarnings({"WeakerAccess", "unused"})
     @BindView(R.id.change_password_input2)
     EditText _passwordText2;
 
+    @SuppressWarnings("unused")
     @OnClick(R.id.change_password_save)
     public void saveButton(Button view) {
         if (validate()) {
@@ -41,12 +45,14 @@ public class ChangePasswordFragment extends android.support.v4.app.Fragment impl
         }
     }
 
+    @SuppressWarnings("unused")
     @OnTextChanged(value = {R.id.change_password_input1, R.id.change_password_input2},
             callback = OnTextChanged.Callback.AFTER_TEXT_CHANGED)
     void fixValidationOnTextChanged() {
         validate();
     }
 
+    @SuppressWarnings("unused")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         if (LoginUtility.isUserLoggedIn()) {
@@ -72,7 +78,8 @@ public class ChangePasswordFragment extends android.support.v4.app.Fragment impl
         return null;
     }
 
-    public boolean validate() {
+    @SuppressWarnings("unused")
+    private boolean validate() {
         boolean valid = true;
 
         String password1 = _passwordText1.getText().toString();
@@ -95,6 +102,7 @@ public class ChangePasswordFragment extends android.support.v4.app.Fragment impl
         return valid;
     }
 
+    @SuppressWarnings("unused")
     @Override
     public void onSuccess() {
         Toast.makeText(getActivity(), "Password changed", Toast.LENGTH_SHORT).show();
@@ -112,6 +120,7 @@ public class ChangePasswordFragment extends android.support.v4.app.Fragment impl
         transaction.commit();
     }
 
+    @SuppressWarnings("unused")
     @Override
     public void onError() {
         Toast.makeText(getActivity(), "Something went wrong", Toast.LENGTH_SHORT).show();

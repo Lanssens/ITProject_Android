@@ -28,15 +28,21 @@ import butterknife.OnTextChanged;
  * Created by Thijs on 1/12/2017.
  */
 
+@SuppressWarnings({"DefaultFileTemplate", "unused"})
 public class ChangeEmailFragment extends android.support.v4.app.Fragment implements GeneralCallback, CustomerCallback {
+    @SuppressWarnings({"WeakerAccess", "unused"})
     @BindView(R.id.change_email_input1)
     EditText _emailText1;
+    @SuppressWarnings({"WeakerAccess", "unused"})
     @BindView(R.id.change_email_input2)
     EditText _emailText2;
 
+    @SuppressWarnings("unused")
     private CustomerFew newCustomer;
+    @SuppressWarnings("unused")
     private Customer customer;
 
+    @SuppressWarnings({"unused", "ObjectEqualsNull"})
     @OnClick(R.id.change_email_save)
     public void saveButton(Button view) {
         if (validate()) {
@@ -59,12 +65,14 @@ public class ChangeEmailFragment extends android.support.v4.app.Fragment impleme
         }
     }
 
+    @SuppressWarnings("unused")
     @OnTextChanged(value = {R.id.change_email_input1, R.id.change_email_input2},
             callback = OnTextChanged.Callback.AFTER_TEXT_CHANGED)
     void fixValidationOnTextChanged() {
         validate();
     }
 
+    @SuppressWarnings("unused")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         if (LoginUtility.isUserLoggedIn()) {
@@ -92,7 +100,8 @@ public class ChangeEmailFragment extends android.support.v4.app.Fragment impleme
         return null;
     }
 
-    public boolean validate() {
+    @SuppressWarnings("unused")
+    private boolean validate() {
         boolean valid = true;
 
         String email1 = _emailText1.getText().toString();
@@ -115,6 +124,7 @@ public class ChangeEmailFragment extends android.support.v4.app.Fragment impleme
         return valid;
     }
 
+    @SuppressWarnings("unused")
     @Override
     public void onSuccess() {
         Toast.makeText(getActivity(), "Email Changed", Toast.LENGTH_SHORT).show();
@@ -133,11 +143,13 @@ public class ChangeEmailFragment extends android.support.v4.app.Fragment impleme
     }
 
 
+    @SuppressWarnings("unused")
     @Override
     public void onSuccessCustomer(Customer customer) {
         this.customer = customer;
     }
 
+    @SuppressWarnings("unused")
     @Override
     public void onError() {
         Toast.makeText(getActivity(), "Email already in use", Toast.LENGTH_SHORT).show();

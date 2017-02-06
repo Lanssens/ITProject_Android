@@ -3,6 +3,7 @@ apply plugin: 'com.android.application'
 //noinspection GroovyMissingReturnStatement
 android {
     compileSdkVersion 24
+    //noinspection GradleDependency,GradleDependency
     buildToolsVersion "24.0.2"
     defaultConfig {
         applicationId "be.fenego.android_spotshop"

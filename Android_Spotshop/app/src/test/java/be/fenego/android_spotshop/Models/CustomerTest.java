@@ -13,16 +13,20 @@ import static org.junit.Assert.*;
  *
  * @author Thijs
  */
+@SuppressWarnings("unused")
 public class CustomerTest {
     
+    @SuppressWarnings("unused")
     private Customer customer;
 
+    @SuppressWarnings("unused")
     @Before
     public void setUp() {
         customer = new Customer();
     }
 
 
+    @SuppressWarnings("unused")
     @Test
     public void testCredentialsInCustomer() {
         Credentials credentials = new Credentials();
@@ -32,6 +36,7 @@ public class CustomerTest {
 
         assertEquals(credentials.getLogin(), result);
     }
+    @SuppressWarnings("unused")
     @Test
     public void testAddressInCustomer() {
         Address address = new Address();
@@ -42,6 +47,7 @@ public class CustomerTest {
         assertEquals(address.getAddressName(), result);
     }
 
+    @SuppressWarnings("unused")
     @Test
     public void testSetAndGetCustomerNo() {
 
@@ -53,6 +59,7 @@ public class CustomerTest {
     }
 
 
+    @SuppressWarnings("unused")
     @Test
     public void testSetAndGetTitle() {
 
@@ -64,6 +71,7 @@ public class CustomerTest {
     }
 
 
+    @SuppressWarnings("unused")
     @Test
     public void testSetAndGetFirstName() {
 
@@ -75,6 +83,7 @@ public class CustomerTest {
     }
 
 
+    @SuppressWarnings("unused")
     @Test
     public void testSetAndGetLastName() {
         String expResult = "";
@@ -84,6 +93,7 @@ public class CustomerTest {
         assertEquals(expResult, result);
     }
 
+    @SuppressWarnings("unused")
     @Test
     public void testSetAndGetBirthday() {
         String expResult = "";
@@ -94,6 +104,7 @@ public class CustomerTest {
     }
 
 
+    @SuppressWarnings("unused")
     @Test
     public void testSetAndGetPhoneHome() {
         String expResult = "";
@@ -103,6 +114,7 @@ public class CustomerTest {
         assertEquals(expResult, result);
     }
 
+    @SuppressWarnings("unused")
     @Test
     public void testSetAndGetPhoneBusiness() {
         String expResult = "";
@@ -112,6 +124,7 @@ public class CustomerTest {
         assertEquals(expResult, result);
     }
 
+    @SuppressWarnings("unused")
     @Test
     public void testSetAndGetPhoneMobile() {
         String expResult = "";
@@ -121,6 +134,7 @@ public class CustomerTest {
         assertEquals(expResult, result);
     }
 
+    @SuppressWarnings("unused")
     @Test
     public void testSetAndGetFax() {
         String expResult = "";
@@ -131,6 +145,7 @@ public class CustomerTest {
     }
 
 
+    @SuppressWarnings("unused")
     @Test
     public void testSetAndGetEmail() {
         String expResult = "";
@@ -140,6 +155,7 @@ public class CustomerTest {
         assertEquals(expResult, result);
     }
 
+    @SuppressWarnings("unused")
     @Test
     public void testSetAndGetPreferredLanguage() {
         String expResult = "";

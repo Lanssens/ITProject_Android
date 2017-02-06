@@ -72,12 +72,15 @@ public class HomeFragment extends Fragment implements CloudVisionCallback, Produ
 
     private ArrayList<Element> elementList = null;
 
+    @SuppressWarnings("unused")
     @BindView(R.id.productListView)
     ListView productListView;
 
+    @SuppressWarnings("unused")
     @BindView(R.id.searchButton)
     ImageButton searchButton;
 
+    @SuppressWarnings("unused")
     @BindView(R.id.searchEditText)
     EditText searchEditText;
 
@@ -93,12 +96,14 @@ public class HomeFragment extends Fragment implements CloudVisionCallback, Produ
     }
 
     //Geeft detailpagina weer voor bepaald product.
+    @SuppressWarnings("unused")
     @OnItemClick(R.id.productListView)
     void showProductDetails(AdapterView<?> adapterView, View view, int i, long l){
         ProductUtility.getProductDetails(this,elementList.get(i).getUri());
     }
 
     //Zoekt producten via tekst.
+    @SuppressWarnings("unused")
     @OnClick(R.id.searchButton)
     void searchProducts(View view){
         if(!searchEditText.getText().toString().isEmpty()){
@@ -107,18 +112,21 @@ public class HomeFragment extends Fragment implements CloudVisionCallback, Produ
     }
 
     //Dialog voor afbeelding te maken / image te selecteren.
+    @SuppressWarnings("unused")
     @OnClick(R.id.imagePickerButton)
     void openImageChooser(View view){
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder
                 .setMessage(R.string.dialog_select_prompt)
                 .setPositiveButton(R.string.dialog_select_gallery, new DialogInterface.OnClickListener() {
+                    @SuppressWarnings("unused")
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         startGalleryChooser();
                     }
                 })
                 .setNegativeButton(R.string.dialog_select_camera, new DialogInterface.OnClickListener() {
+                    @SuppressWarnings("unused")
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         startCamera();

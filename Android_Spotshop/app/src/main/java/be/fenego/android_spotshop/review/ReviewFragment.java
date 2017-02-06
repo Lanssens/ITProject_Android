@@ -46,43 +46,58 @@ import retrofit2.Call;
  * Created by Thijs on 1/25/2017.
  */
 
-@SuppressWarnings({"FieldCanBeLocal", "WeakerAccess"})
+@SuppressWarnings({"FieldCanBeLocal", "WeakerAccess", "DefaultFileTemplate", "unused"})
 public class ReviewFragment extends android.support.v4.app.Fragment implements ShoppingBasketCallback, StringCallback, AddressCallback {
+    @SuppressWarnings("unused")
     private ShoppingBasket shoppingBasket;
+    @SuppressWarnings("unused")
     private Address invoiceAddress;
 
+    @SuppressWarnings("unused")
     @BindView(R.id.reviewPageListView)
     ListView reviewPageListView;
 
+    @SuppressWarnings("unused")
     @BindView(R.id.reviewPageInvoiceAddressName)
     TextView reviewPageInvoiceAddressName;
+    @SuppressWarnings("unused")
     @BindView(R.id.reviewPageInvoiceAddressPostcode)
     TextView reviewPageInvoiceAddressPostcode;
+    @SuppressWarnings("unused")
     @BindView(R.id.reviewPageInvoiceAddressStreet)
     TextView reviewPageInvoiceAddressStreet;
 
+    @SuppressWarnings("unused")
     @BindView(R.id.reviewPageShippingAddressStreet)
     TextView reviewPageShippingAddressStreet;
+    @SuppressWarnings("unused")
     @BindView(R.id.reviewPageShippingAddressPostcode)
     TextView reviewPageShippingAddressPostcode;
+    @SuppressWarnings("unused")
     @BindView(R.id.reviewPageShippingAddressName)
     TextView reviewPageShippingAddressName;
 
+    @SuppressWarnings("unused")
     @BindView(R.id.reviewPageItemAmount)
     TextView reviewPageItemAmount;
+    @SuppressWarnings("unused")
     @BindView(R.id.reviewPageShippingMethod)
     TextView reviewPageShippingMethod;
+    @SuppressWarnings("unused")
     @BindView(R.id.reviewPagePaymentMethod)
     TextView reviewPagePaymentMethod;
 
+    @SuppressWarnings("unused")
     @BindView(R.id.reviewPageTotalPrice)
     TextView reviewPageTotalPrice;
 
     //zorgt ervoor dat shopping basket om wordt gezet naar order door shippingmethod, payment method, invoice adres en shipping adres in te stellen.
+    @SuppressWarnings("unused")
     @OnClick(R.id.shoppingCartCheckoutImageView)
     public void linkToCheckout() {
         ShoppingBasketUtility.updateCommonShippingMethod(this, shoppingBasket.getId(), new ShippingMethodContainer(new CommonShippingMethod("ShippingMethodRO", "International Express Delivery", "INT",3,5)));
     }
+    @SuppressWarnings("unused")
     @SuppressLint("SetTextI18n")
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         if(LoginUtility.isUserLoggedIn()){
@@ -115,6 +130,7 @@ public class ReviewFragment extends android.support.v4.app.Fragment implements S
     }
 
     //zal nieuw fragment inladen.
+    @SuppressWarnings("unused")
     public void loadFragment(Class fragmentClass) {
 
         // Create new fragment and transaction
@@ -139,36 +155,43 @@ public class ReviewFragment extends android.support.v4.app.Fragment implements S
 
     }
 
+    @SuppressWarnings("unused")
     @Override
     public void onSuccessGetActiveBasket(ShoppingBasket shoppingBasket) {
 
     }
 
+    @SuppressWarnings("unused")
     @Override
     public void onErrorGetActiveBasket(Call<ShoppingBasket> call, Throwable t) {
 
     }
 
+    @SuppressWarnings("unused")
     @Override
     public void onSuccessCreateBasket(ShoppingBasketPostReturn shoppingBasketPostReturn, String token) {
 
     }
 
+    @SuppressWarnings("unused")
     @Override
     public void onErrorCreateBasket(Call<ShoppingBasketPostReturn> call, Throwable t) {
 
     }
 
+    @SuppressWarnings("unused")
     @Override
     public void onSuccessPostProductToBasket(ShoppingBasketElementList shoppingBasketElementList) {
 
     }
 
+    @SuppressWarnings("unused")
     @Override
     public void onErrorPostProductToBasket(Call<ShoppingBasketElementList> call, Throwable t) {
 
     }
 
+    @SuppressWarnings("unused")
     @SuppressLint("SetTextI18n")
     @Override
     public void onSuccessGetActiveBasketLineItems(ElementList elementList) {
@@ -192,91 +215,109 @@ public class ReviewFragment extends android.support.v4.app.Fragment implements S
 
     }
 
+    @SuppressWarnings("unused")
     @Override
     public void onErrorGetActiveBasketLineItems(Call<ElementList> call, Throwable t) {
 
     }
 
+    @SuppressWarnings("unused")
     @Override
     public void onSuccessDeleteShoppingBasketLineItem(ShoppingBasket shoppingBasket) {
 
     }
 
+    @SuppressWarnings("unused")
     @Override
     public void onErrorDeleteShoppingBasketLineItem(Call<ShoppingBasket> call, Throwable t) {
 
     }
 
+    @SuppressWarnings("unused")
     @Override
     public void onSuccessUpdateShoppingBasketLineItem(ShoppingBasket shoppingBasket) {
 
     }
 
+    @SuppressWarnings("unused")
     @Override
     public void onErrorUpdateShoppingBasketLineItem(Call<ShoppingBasket> call, Throwable t) {
 
     }
 
+    @SuppressWarnings("unused")
     @Override
     public void onSuccessUpdateCommonShippingMethod(ShoppingBasket shoppingBasket) {
         ShoppingBasketUtility.postBasketPaymentMethod(this, shoppingBasket.getId(), new PaymentMethod("ISH_CASH_ON_DELIVERY","Payment"));
     }
 
+    @SuppressWarnings("unused")
     @Override
     public void onErrorUpdateCommonShippingMethod(Call<ShoppingBasket> call, Throwable t) {
         Toast.makeText(getContext(),"Could not finalize order!\n" + t.getMessage(),Toast.LENGTH_SHORT).show();
     }
 
+    @SuppressWarnings("unused")
     @Override
     public void onSuccessPostBasketPaymentMethod(PaymentMethod paymentMethod) {
         ShoppingBasketUtility.updateInvoiceAddress(this,shoppingBasket.getId(), new InvoiceAddressContainer(new InvoiceAddress(invoiceAddress.getAddressName(),invoiceAddress.getEmail(), invoiceAddress.getFirstName(), invoiceAddress.getLastName(),invoiceAddress.getCountryCode(),invoiceAddress.getPostalCode(), invoiceAddress.getCity(), invoiceAddress.getStreet())));
     }
 
+    @SuppressWarnings("unused")
     @Override
     public void onErrorPostBasketPaymentMethod(Call<PaymentMethod> call, Throwable t) {
         Toast.makeText(getContext(),"Could not finalize order!\n" + t.getMessage(),Toast.LENGTH_SHORT).show();
     }
 
+    @SuppressWarnings("unused")
     @Override
     public void onSuccessPostOrder(OrderPostResponse orderPostResponse) {
         loadFragment(FinishedFragment.class);
     }
 
+    @SuppressWarnings("unused")
     @Override
     public void onErrorPostOrder(Call<OrderPostResponse> call, Throwable t) {
         Toast.makeText(getContext(),"Could not finalize order!\n" + t.getMessage(),Toast.LENGTH_SHORT).show();
     }
 
+    @SuppressWarnings("unused")
     @Override
     public void onSuccessUpdateInvoiceAddress(ShoppingBasket shoppingBasket) {
         ShoppingBasketUtility.updateShippingAddress(this, shoppingBasket.getId(), new ShippingAddressContainer(new CommonShipToAddress(invoiceAddress.getAddressName(), invoiceAddress.getFirstName(), invoiceAddress.getLastName(),invoiceAddress.getCountryCode(),invoiceAddress.getPostalCode(), invoiceAddress.getCity(), invoiceAddress.getStreet())));
     }
 
+    @SuppressWarnings("unused")
     @Override
     public void onErrorUpdateInvoiceAddress(Call<ShoppingBasket> call, Throwable t) {
         Toast.makeText(getContext(),"Could not finalize order!\n" + t.getMessage(),Toast.LENGTH_SHORT).show();
     }
 
+    @SuppressWarnings("unused")
     @Override
     public void onSuccessUpdateShippingAddress(ShoppingBasket shoppingBasket) {
         ShoppingBasketUtility.postOrder(this, new OrderPost(shoppingBasket.getId(), "true"));
     }
 
+    @SuppressWarnings("unused")
     @Override
     public void onErrorUpdateShippingAddress(Call<ShoppingBasket> call, Throwable t) {
         Toast.makeText(getContext(),"Could not finalize order!\n" + t.getMessage(),Toast.LENGTH_SHORT).show();
     }
 
+    @SuppressWarnings("unused")
     @Override
     public void onSuccessString(String text) {
         CustomerUtility.getCustomerAddress(this, text);
     }
 
+    @SuppressWarnings("unused")
     @Override
     public void onErrorString() {
 
     }
 
+    @SuppressWarnings("unused")
     @SuppressLint("SetTextI18n")
     @Override
     public void onSuccessAddress(Address address) {
@@ -290,6 +331,7 @@ public class ReviewFragment extends android.support.v4.app.Fragment implements S
         reviewPageShippingAddressPostcode.setText(address.getPostalCode() + " " + address.getCity() + " " + address.getCountryCode());
     }
 
+    @SuppressWarnings("unused")
     @Override
     public void onAddressError() {
 
