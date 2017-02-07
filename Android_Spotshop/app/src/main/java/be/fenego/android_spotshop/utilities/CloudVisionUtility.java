@@ -100,6 +100,7 @@ public class CloudVisionUtility {
                             add(logoDetection);
                             add(textDetection);
                         }});
+
                         // Add the list of one thing to the request
                         add(annotateImageRequest);
                     }});

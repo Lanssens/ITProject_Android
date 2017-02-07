@@ -257,7 +257,12 @@ public class ShoppingBasketUtility {
                 @Override
                 public void onResponse(Call<OrderPostResponse> call, Response<OrderPostResponse> response) {
                     Log.v("To Order: " , response.code()+ "");
-                    callback.onSuccessPostOrder(response.body());
+
+                    if(!Integer.toString(response.code()).equals("201")){
+                        callback.onErrorPostOrder(call, new Throwable("Invalid address!"));
+                    }else{
+                        callback.onSuccessPostOrder(response.body());
+                    }
                 }
 
                 @Override
