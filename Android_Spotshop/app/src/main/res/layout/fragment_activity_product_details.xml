@@ -129,12 +129,14 @@
 
     <EditText
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:inputType="number"
         android:id="@+id/productDetailsQuantityEditText"
         android:text="@string/productDetailsQuantityEditText"
         android:layout_toRightOf="@id/quantity"
         android:maxLength="6"
+        android:gravity="top"
+
         tools:ignore="RtlHardcoded" />
 
     <ImageButton

@@ -1,6 +1,7 @@
 package be.fenego.android_spotshop.review;
 
 import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -91,6 +92,8 @@ public class ReviewFragment extends android.support.v4.app.Fragment implements S
     @BindView(R.id.reviewPageTotalPrice)
     TextView reviewPageTotalPrice;
 
+    private ProgressDialog progress;
+
     //zorgt ervoor dat shopping basket om wordt gezet naar order door shippingmethod, payment method, invoice adres en shipping adres in te stellen.
     @SuppressWarnings("unused")
     @OnClick(R.id.shoppingCartCheckoutImageView)
@@ -117,6 +120,12 @@ public class ReviewFragment extends android.support.v4.app.Fragment implements S
                     reviewPagePaymentMethod.setText("Cash on Delivery");
                 }
             }
+
+            progress = new ProgressDialog(getActivity());
+            progress.setTitle("Loading");
+            progress.setMessage("Loading data...");
+            progress.setCancelable(false); // disable dismiss by tapping outside of the dialog
+            progress.show();
 
             CustomerUtility.getCustomerAddressUri(this);
             ShoppingBasketUtility.getActiveBasketLineItems(this, shoppingBasket.getId());
@@ -211,6 +220,7 @@ public class ReviewFragment extends android.support.v4.app.Fragment implements S
         }else{
             System.out.println("elementList is leeg");
         }
+
 
     }
 
@@ -329,11 +339,13 @@ public class ReviewFragment extends android.support.v4.app.Fragment implements S
         reviewPageShippingAddressName.setText(address.getFirstName() + address.getLastName());
         reviewPageShippingAddressStreet.setText(address.getStreet());
         reviewPageShippingAddressPostcode.setText(address.getPostalCode() + " " + address.getCity() + " " + address.getCountryCode());
+
+        progress.dismiss();
     }
 
     @SuppressWarnings("unused")
     @Override
     public void onAddressError() {
-
+        progress.dismiss();
     }
 }
