@@ -72,6 +72,7 @@ public class ShoppingBasketFragment extends Fragment implements ShoppingBasketCa
         if (shoppingBasket != null) {
             if (shoppingBasket.getShippingBuckets() != null  && shoppingBasket.getTotals().getBasketTotal() != null) {
                 nextFragment();
+                shoppingBasketTotal.setText("0.00 USD");
             }
         } else {
             Toast.makeText(getContext(), "Shoppingbasket is empty", Toast.LENGTH_SHORT).show();

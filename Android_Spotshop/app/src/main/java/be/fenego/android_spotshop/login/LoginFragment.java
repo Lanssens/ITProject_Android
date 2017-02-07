@@ -90,8 +90,8 @@ public class LoginFragment extends android.support.v4.app.Fragment implements Ch
             Log.v("lel",  "The id is lel: " + shoppingBasket.getShippingBuckets().get(0).getLineItems().get(0).getTitle());
         }
 
-        _emailText.setText("Testaccount@weetge.com");
-        _passwordText.setText("Testaccount11");
+        _emailText.setText("nicktest@test.com");
+        _passwordText.setText("Nicktest123");
         getActivity().setTitle("Login");
 
         redirectionLogic();

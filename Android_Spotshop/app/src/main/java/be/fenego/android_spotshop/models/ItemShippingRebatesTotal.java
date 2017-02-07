@@ -11,7 +11,7 @@ public class ItemShippingRebatesTotal implements Serializable {
     @SuppressWarnings("unused")
     private String type;
     @SuppressWarnings("unused")
-    private Integer value;
+    private Double value;
     @SuppressWarnings("unused")
     private String currencyMnemonic;
 
@@ -26,12 +26,12 @@ public class ItemShippingRebatesTotal implements Serializable {
     }
 
     @SuppressWarnings("unused")
-    public Integer getValue() {
+    public Double getValue() {
         return value;
     }
 
     @SuppressWarnings("unused")
-    public void setValue(Integer value) {
+    public void setValue(Double value) {
         this.value = value;
     }
 

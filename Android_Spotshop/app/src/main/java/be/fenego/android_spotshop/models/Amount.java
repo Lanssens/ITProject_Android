@@ -2,9 +2,10 @@
 package be.fenego.android_spotshop.models;
 
 
+import java.io.Serializable;
 
 @SuppressWarnings("unused")
-public class Amount {
+public class Amount implements Serializable{
 
     @SuppressWarnings("unused")
     private String type;
