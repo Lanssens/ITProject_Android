@@ -170,7 +170,6 @@ public class ReviewFragment extends android.support.v4.app.Fragment implements S
     @SuppressWarnings("unused")
     @Override
     public void onSuccessCreateBasket(ShoppingBasketPostReturn shoppingBasketPostReturn, String token) {
-
     }
 
     @SuppressWarnings("unused")
@@ -272,6 +271,7 @@ public class ReviewFragment extends android.support.v4.app.Fragment implements S
     @SuppressWarnings("unused")
     @Override
     public void onSuccessPostOrder(OrderPostResponse orderPostResponse) {
+        ShoppingBasketUtility.createShoppingBasketWithHeader(this);
         loadFragment(FinishedFragment.class);
     }
 

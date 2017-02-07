@@ -40,6 +40,9 @@ public interface ShoppingBasketService
     @POST("inSPIRED-inTRONICS-Site/-/baskets")
     Call<ShoppingBasketPostReturn> createShoppingBasket();
 
+    @POST("inSPIRED-inTRONICS-Site/-/baskets")
+    Call<ShoppingBasketPostReturn> createShoppingBasketWithHeader(@Header("authentication-token") String token);
+
     @PUT("inSPIRED-inTRONICS-Site/-/baskets/{basketID}")
     Call<ShoppingBasket> setOwnerOnAnonBasket(@Header("authentication-token") String token, @Path("basketID") String basketID, @Body BasketOwner basketOwner);
 

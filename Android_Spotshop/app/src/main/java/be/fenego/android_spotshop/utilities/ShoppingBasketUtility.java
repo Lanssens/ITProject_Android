@@ -1,5 +1,6 @@
 package be.fenego.android_spotshop.utilities;
 
+import android.provider.Settings;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -63,6 +64,26 @@ public class ShoppingBasketUtility {
                 @Override
                 public void onFailure(Call<ShoppingBasketPostReturn> call, Throwable t) {
                     callback.onErrorCreateBasket(call, t);
+                }
+            });
+        }catch (Exception e){
+            e.printStackTrace();
+            Toast.makeText(f.getContext(),"Could not create basket!",Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public static void createShoppingBasketWithHeader(final ShoppingBasketCallback callback){
+        android.support.v4.app.Fragment f =(android.support.v4.app.Fragment) callback;
+        try{
+            shoppingBasketService.createShoppingBasketWithHeader(getToken()).enqueue(new Callback<ShoppingBasketPostReturn>() {
+                @Override
+                public void onResponse(Call<ShoppingBasketPostReturn> call, Response<ShoppingBasketPostReturn> response) {
+                    Log.v("Empty basket :", "OK!");
+                }
+
+                @Override
+                public void onFailure(Call<ShoppingBasketPostReturn> call, Throwable t) {
+                    Log.v("Empty basket :", "FAIL!");
                 }
             });
         }catch (Exception e){
