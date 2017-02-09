@@ -1,6 +1,7 @@
 package be.fenego.android_spotshop.home;
 
 import android.Manifest;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -68,6 +69,7 @@ public class HomeFragment extends Fragment implements CloudVisionCallback, Produ
     private static final int CAMERA_IMAGE_REQUEST = 3;
     private static final String FILE_NAME = "temp.jpg";
 
+    private ProgressDialog progress;
     private HistoryItem historyItem;
 
     private ArrayList<Element> elementList = null;
@@ -169,6 +171,13 @@ public class HomeFragment extends Fragment implements CloudVisionCallback, Produ
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        
+        progress = new ProgressDialog(getActivity());
+        progress.setTitle("Loading");
+        progress.setMessage("Loading products...");
+        progress.setCancelable(false);
+        progress.show();
+
         if (requestCode == GALLERY_IMAGE_REQUEST && resultCode ==  RESULT_OK && data != null) {
             uploadImage(data.getData());
         } else if (requestCode == CAMERA_IMAGE_REQUEST && resultCode == RESULT_OK) {
@@ -208,6 +217,7 @@ public class HomeFragment extends Fragment implements CloudVisionCallback, Produ
 
     @Override
     public void onSuccessPostImage(BatchAnnotateImagesResponse cloudVisionResponse) {
+
         String annotationParameter = formatResponse(cloudVisionResponse);
         ProductUtility.getProductsByImage(this,annotationParameter);
         if(LoginUtility.isUserLoggedIn()){
@@ -255,11 +265,13 @@ public class HomeFragment extends Fragment implements CloudVisionCallback, Produ
 
     @Override
     public void onSuccessGetProductsByImage(ProductCollection productCollection) {
+        progress.dismiss();
         handleSuccess(productCollection);
     }
 
     @Override
     public void onErrorGetProductsByImage(Call<ProductCollection> call, Throwable t) {
+        progress.dismiss();
         t.printStackTrace();
         Toast.makeText(getContext(),"Could not get products from image!\nGetting product list failed!",Toast.LENGTH_SHORT).show();
     }
